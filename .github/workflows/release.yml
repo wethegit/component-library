@@ -31,9 +31,6 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish Storybook to Github Pages
-        run: npx turbo run build --filter=@wethegit/components-docs
-
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
