@@ -1,4 +1,7 @@
-### Useful Commands
+# Component Library
+TODO: write about the philosophy of this library, why it exists, what it solves and provide a guide for contribution.
+
+## Useful Commands
 
 - `yarn build` - Build all packages, including the Storybook site
 - `yarn dev` - Run all packages locally and preview with Storybook
@@ -72,35 +75,8 @@ Storybook provides us with an interactive UI playground for our components. This
 
 - Use Vite to bundle stories instantly (in milliseconds)
 - Automatically find any stories inside the `stories/` folder
-- Support using module path aliases like `@wethegit-components` for imports
+- Support using module path aliases like `@wethegit/components` for imports
 - Write MDX for component documentation pages
-
-For example, here's the included Story for our `Button` component:
-
-```js:apps/docs/stories/button.stories.mdx
-import { Button } from '@wethegit-components/src';
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-
-<Meta title="Components/Button" component={Button} />
-
-# Button
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur tempor, nisl nunc egestas nisi, euismod aliquam nisl nunc euismod.
-
-## Props
-
-<Props of={Box} />
-
-## Examples
-
-<Preview>
-  <Story name="Default">
-    <Button>Hello</Button>
-  </Story>
-</Preview>
-```
-
-This example includes a few helpful Storybook scripts:
 
 - `yarn dev`: Starts Storybook in dev mode with hot reloading at `localhost:6006`
 - `yarn build`: Builds the Storybook UI and generates the static HTML files
@@ -108,20 +84,19 @@ This example includes a few helpful Storybook scripts:
 
 ## Versioning & Publishing Packages
 
-This example uses [Changesets](https://github.com/changesets/changesets) to manage versions, create changelogs, and publish to npm. It's preconfigured so you can start publishing packages immediately.
-
-You'll need to create an `NPM_TOKEN` and `GITHUB_TOKEN` and add it to your GitHub repository settings to enable access to npm. It's also worth installing the [Changesets bot](https://github.com/apps/changeset-bot) on your repository.
+We use [Changesets](https://github.com/changesets/changesets) to manage versions, create changelogs, and publish to npm. It's preconfigured so you can start publishing packages immediately.
 
 ### Generating the Changelog
 
 To generate your changelog, run `yarn changeset` locally:
 
 1. **Which packages would you like to include?** – This shows which packages and changed and which have remained the same. By default, no packages are included. Press `space` to select the packages you want to include in the `changeset`.
-1. **Which packages should have a major bump?** – Press `space` to select the packages you want to bump versions for.
-1. If doing the first major version, confirm you want to release.
-1. Write a summary for the changes.
-1. Confirm the changeset looks as expected.
-1. A new Markdown file will be created in the `changeset` folder with the summary and a list of the packages included.
+1.1 We ONLY publish the `wethegit-components` and `wethegit-component-cli` packages, everything else is used internally in the monorepo and the Storybook documentation is published to GitHub Pages.
+2. **Which packages should have a major bump?** – Press `space` to select the packages you want to bump versions for.
+3. If doing the first major version, confirm you want to release.
+4. Write a summary for the changes.
+5. Confirm the changeset looks as expected.
+6. A new Markdown file will be created in the `changeset` folder with the summary and a list of the packages included.
 
 ### Releasing
 
