@@ -91,19 +91,23 @@ We use [Changesets](https://github.com/changesets/changesets) to manage versions
 To generate your changelog, run `yarn changeset` locally:
 
 1. **Which packages would you like to include?** – This shows which packages and changed and which have remained the same. By default, no packages are included. Press `space` to select the packages you want to include in the `changeset`.
-1.1 We ONLY publish the `wethegit-components` and `wethegit-component-cli` packages, everything else is used internally in the monorepo and the Storybook documentation is published to GitHub Pages.
+1.1 We ONLY publish the `@wethegit/components` and `@wethegit/component-cli` packages, everything else is used internally in the monorepo and the Storybook documentation is published to GitHub Pages.
 2. **Which packages should have a major bump?** – Press `space` to select the packages you want to bump versions for.
 3. If doing the first major version, confirm you want to release.
 4. Write a summary for the changes.
 5. Confirm the changeset looks as expected.
 6. A new Markdown file will be created in the `changeset` folder with the summary and a list of the packages included.
 
+### Version the packages
+To generate the changelogs and bump the versions of the packages, run:
+`yarn version-packages`
+
 ### Releasing
 
 When you push your code to GitHub, the [GitHub Action](https://github.com/changesets/action) will run the `release` script defined in the root `package.json`:
 
 ```bash
-turbo run build --filter=docs^... && changeset publish
+turbo run build --filter=@wethegit/components-docs^... && changeset publish
 ```
 
 Turborepo runs the `build` script for all publishable packages (excluding docs) and publishes the packages to npm.

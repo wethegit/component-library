@@ -6,5 +6,6 @@
   "linked": [],
   "access": "public",
   "updateInternalDependencies": "patch",
-  "ignore": ["@wethegit/components-docs"]
+  "ignore": ["@wethegit/components-docs", "eslint-config-custom", "tsconfig"],
+  "baseBranch": "main"
 }
