@@ -7,6 +7,9 @@
   "files": [
     "src/**"
   ],
+  "exports": {
+    ".": "./src/index.tsx"
+  },
   "scripts": {
     "lint": "eslint src/",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",

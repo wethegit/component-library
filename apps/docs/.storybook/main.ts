@@ -5,7 +5,7 @@ function getAbsolutePath(value) {
 }
 
 const config = {
-  stories: ["../stories/*.stories.tsx", "../stories/**/*.stories.tsx"],
+  stories: ["../stories/**/*.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-essentials"),
@@ -15,9 +15,6 @@ const config = {
     name: getAbsolutePath("@storybook/react-vite"),
     options: {},
   },
-
-  core: {},
-
   async viteFinal(config, { configType }) {
     // customize the Vite config here
     return {
@@ -27,7 +24,10 @@ const config = {
         alias: [
           {
             find: "@wethegit/components",
-            replacement: resolve(__dirname, "../../../packages/wethegit-components/"),
+            replacement: resolve(
+              __dirname,
+              "../../../packages/wethegit-components/"
+            ),
           },
         ],
       },
