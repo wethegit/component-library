@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "ui";
+import { Button } from "@wethegit/components";
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -26,7 +26,7 @@ export const Primary: Story = {
       {...props}
       onClick={(): void => {
         // eslint-disable-next-line no-alert -- alert for demo
-        alert("Hello from Turborepo!");
+        alert("Hello!");
       }}
     >
       Hello

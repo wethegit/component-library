@@ -14,10 +14,11 @@
     "@changesets/cli": "^2.25.2",
     "eslint": "^8.48.0",
     "prettier": "^3.0.3",
+    "eslint-config-custom": "*",
     "tsconfig": "*",
     "turbo": "latest"
   },
-  "packageManager": "npm@8.19.4",
+  "packageManager": "yarn@1.22.19",
   "workspaces": [
     "apps/*",
     "packages/*"
