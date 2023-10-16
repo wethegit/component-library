@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { Command } from "commander"
 
 import packageInfo from "../package.json"
@@ -15,13 +14,12 @@ async function main() {
     .description("add components and dependencies to your project")
     .version(
       packageInfo.version || "1.0.0",
-      "-v, --version",
-      "display the version number"
+      "-v, --version"
     )
 
   program.addCommand(init).addCommand(add)
 
-  program.parse()
+  program.parse(process.argv)
 }
 
 main()

@@ -1,15 +1,17 @@
-import { existsSync, promises as fs } from "fs"
-import path from "path"
-import chalk from "chalk"
-import { Command } from "commander"
+import { existsSync, promises as fs } from "fs";
+import path from "path";
+import chalk from "chalk";
+import { Command } from "commander";
+import ora from "ora";
+import { execa } from "execa";
 
 import {
   getPackageManager,
   promptForConfig,
   getConfig,
   logger,
-  handleError
-} from "../../utils"
+  handleError,
+} from "../../utils";
 
 export const init = new Command()
   .name("init")
@@ -22,53 +24,43 @@ export const init = new Command()
   )
   .action(async (options) => {
     try {
-      const cwd = path.resolve(options.cwd)
+      const cwd = path.resolve(options.cwd);
 
       // Ensure target directory exists.
       if (!existsSync(cwd)) {
-        logger.error(`The path ${cwd} does not exist. Please try again.`)
-        process.exit(1)
+        logger.error(`The path ${cwd} does not exist. Please try again.`);
+        process.exit(1);
       }
 
       // Read config.
-      const existingConfig = await getConfig(cwd)
-      const config = await promptForConfig(cwd, existingConfig, options.yes)
+      const existingConfig = await getConfig(cwd);
+      const config = await promptForConfig(cwd, existingConfig, options.yes);
 
-      await runInit(cwd, config)
+      await runInit(cwd, config);
 
-      logger.info("")
+      logger.info("");
       logger.info(
         `${chalk.green("Success!")} Project initialization completed.`
-      )
-      logger.info("")
+      );
+      logger.info("");
     } catch (error) {
-      handleError(error)
+      handleError(error);
     }
-  })
+  });
 
-export async function runInit(cwd, config) {
-  const spinner = ora(`Initializing project...`)?.start()
+export async function runInit(cwd: string, config: {}) {
+  const spinner = ora(`Initializing project...`)?.start();
 
   // TODO: Ensure all resolved paths directories exist.
 
-  // Write tailwind config.
-  // TODO: get bare config from themes folder.
-  await fs.writeFile(
-    config.tailwindConfig,
-    '',
-    "utf8"
-  )
-
-  spinner?.succeed()
+  spinner?.succeed();
 
   // Install dependencies.
-  const dependenciesSpinner = ora(`Installing dependencies...`)?.start()
-  const packageManager = await getPackageManager(cwd)
+  const dependenciesSpinner = ora(`Installing dependencies...`)?.start();
+  const packageManager = await getPackageManager(cwd);
 
-  // TODO: add support for other icon libraries.
-  const deps = [
-    ...PROJECT_DEPENDENCIES
-  ]
+  // TODO: add support for other library dependecies
+  const deps = [""];
 
   await execa(
     packageManager,
@@ -76,6 +68,6 @@ export async function runInit(cwd, config) {
     {
       cwd,
     }
-  )
-  dependenciesSpinner?.succeed()
+  );
+  dependenciesSpinner?.succeed();
 }

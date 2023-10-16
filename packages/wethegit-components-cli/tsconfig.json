@@ -3,6 +3,7 @@
     "lib": ["ES2015"],
     "module": "CommonJS",
     "outDir": "./dist",
+    "resolveJsonModule": true,
   },
   "exclude": ["node_modules", "dist"],
   "extends": "tsconfig/base.json",
