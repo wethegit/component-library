@@ -5,7 +5,11 @@ The goal of these component is to provide a solid base for your own components.
 
 Each file inside of `wethegit-components/src` is a component inside our design system.
 
-It's **important** to know that this library is **never** compiled. The source files are used as is by the consuming application. They are meant to be copied into your project and used with the [CLI](../wethegit-components-cli/README.md).
+It's **important** to know that this library is **never** compiled. The source files are provided as is. They are meant to be copied into your project. For an easy DX use the [CLI](../wethegit-components-cli/README.md).
+
+That being said, you can **still** use this library as a dependency if you want to, you most likely already have a bundler in place to handle your React codebase.
+
+## Adding components
 
 When adding a new file, ensure the component is also exported from the entry `index.tsx` file:
 

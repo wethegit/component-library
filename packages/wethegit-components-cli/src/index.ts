@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { Command } from "commander";
 
 import { version } from "../package.json";
@@ -18,11 +17,10 @@ program
   .command("init")
   .name("init")
   .description("initialize your project and install dependencies")
-  .option("-y, --yes", "skip confirmation prompt.", false)
+  .option("-s, --skip", "skip confirmation prompt.", false)
   .option(
-    "-c, --cwd <cwd>",
-    "the working directory. defaults to the current directory.",
-    process.cwd()
+    "-r, --root <root>",
+    "the working directory. defaults to the current directory."
   )
   .action(init);
 
@@ -33,5 +31,3 @@ program
   .action(add);
 
 program.parse(process.argv);
-
-console.log(program.args[0]);
