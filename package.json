@@ -9,7 +9,7 @@
     "typecheck": "turbo run typecheck",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build --filter=@wethegit/components --filter=@wethegit/components-cli && changeset publish"
+    "release": "turbo run build --filter=^@wethegit/components-docs && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
