@@ -1,23 +1,26 @@
 {
   "name": "@wethegit/components-cli",
-  "version": "0.0.0",
-  "main": "./dist/index.js",
+  "version": "2.0.0",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "bin": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/**"
+    "dist"
   ],
   "engines": {
     "node": "~18"
   },
   "scripts": {
     "build": "tsup",
-    "watch": "tsup --watch",
+    "dev": "tsup --watch",
     "lint": "eslint src/",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
+    "@types/prompts": "^2.4.6",
     "eslint-config-custom": "*",
     "tsconfig": "*",
     "tsup": "^7.2.0",
@@ -25,5 +28,14 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@antfu/ni": "^0.21.8",
+    "execa": "^8.0.1",
+    "ora": "^7.0.1",
+    "prompts": "^2.4.2"
+  },
+  "peerDependencies": {
+    "@wethegit/components": "2.0.0"
   }
 }

@@ -14,3 +14,15 @@ TODO:
 2.1 Check installed component
 2.2 Advanced: provide a diff of the component to be installed
 2.3 Install component
+
+## Building
+`tsup` compiles `src/index.ts`, into a CommonJS format as well as their TypeScript types.
+
+Run `yarn build` to confirm compilation is working correctly. You should see a folder `wethegit-components-cli/dist` which contains the compiled output.
+
+```bash
+wethegit-components
+└── dist
+    ├── index.d.ts  <-- Types
+    └── index.js    <-- CommonJS version
+```
