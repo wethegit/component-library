@@ -1,11 +1,6 @@
 import chalk from "chalk";
 
-import {
-  buildAndParseConfig,
-  logger,
-  handleError,
-  ensureCwd,
-} from "../../utils";
+import { buildAndParseConfig, logger, ensureCwd } from "../../utils";
 
 interface Options {
   root: string;
@@ -40,6 +35,8 @@ export async function init({ root, skip }: Options) {
     logger.info(`${chalk.green("Success!")} Project initialization completed.`);
     logger.info("");
   } catch (error) {
-    handleError(error);
+    logger.error("");
+    logger.error(error);
+    process.exit(0);
   }
 }

@@ -32,10 +32,7 @@ export async function promptForConfig(
         {
           type: "text",
           name: "componentsRootDir",
-          message: (prev) =>
-            `What is the ${highlight(
-              "components"
-            )} root directory relative to ${prev}?`,
+          message: `What is your ${highlight("components")} root directory?`,
           initial: DEFAULT_CONFIG.componentsRootDir,
         },
       ],
