@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "lib": ["ES2015"],
-    "module": "CommonJS",
+    "lib": ["ES2023"],
+    "module": "ESNext",
     "outDir": "./dist",
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
   "exclude": ["node_modules", "dist"],
   "extends": "tsconfig/base.json",
-  "include": ["."],
+  "include": ["./src/**/*"]
 }

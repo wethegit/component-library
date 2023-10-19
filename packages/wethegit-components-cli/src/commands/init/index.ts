@@ -1,59 +1,40 @@
-import { existsSync } from "fs";
-import path from "path";
 import chalk from "chalk";
-import ora from "ora";
-import {execa} from "execa";
 
 import {
-  getPackageManager,
-  promptForConfig,
-  getConfig,
+  buildAndParseConfig,
   logger,
   handleError,
+  ensureCwd,
 } from "../../utils";
 
 interface Options {
-  cwd: string;
-  yes: boolean;
+  root: string;
+  skip: boolean;
 }
 
-export async function init(options: Options) {
+export async function init({ root, skip }: Options) {
   try {
-    console.log("init");
-    console.log(options);
-    const cwd = path.resolve(options.cwd);
+    // get cwd and ensure it exists, this will be our root
+    const cwd = await ensureCwd(root, { createIfNotExist: true });
 
-    // Ensure target directory exists.
-    if (!existsSync(cwd)) {
-      logger.error(`The path ${cwd} does not exist. Please try again.`);
-      process.exit(1);
-    }
+    // Read config and prompt for config if can't find it, optionally skip it and return default
+    await buildAndParseConfig(cwd, { skipPrompt: skip });
 
-    // Read config.
-    const existingConfig = await getConfig(cwd);
-    const config = await promptForConfig(cwd, existingConfig, options.yes);
+    /*
+      NOTE: in the future we might wanna install required/global dependencies
+      // Install dependencies.
+      const dependenciesSpinner = ora(`Installing dependencies...`)?.start();
 
-    const spinner = ora(`Initializing project...`)?.start();
-
-    // TODO: Ensure all resolved paths directories exist.
-
-    spinner?.succeed();
-
-    // Install dependencies.
-    const dependenciesSpinner = ora(`Installing dependencies...`)?.start();
-    const packageManager = await getPackageManager(cwd);
-
-    // TODO: add support for other library dependecies
-    const deps = [""];
-
-    await execa(
-      packageManager,
-      [packageManager === "npm" ? "install" : "add", ...deps],
-      {
-        cwd,
+      try {
+        await installDependencies(deps);
+        dependenciesSpinner?.succeed();
       }
-    );
-    dependenciesSpinner?.succeed();
+      catch (e) {
+        dependenciesSpinner?.fail();
+        logger.error(e);
+        process.exit(1);
+      }
+    */
 
     logger.info("");
     logger.info(`${chalk.green("Success!")} Project initialization completed.`);

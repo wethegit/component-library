@@ -7,7 +7,7 @@ export default defineConfig((options: Options) => ({
   format: ["esm"],
   target: "esnext",
   banner: {
-    js: `
+    js: `#!/usr/bin/env node
     const { require, __filename, __dirname } = await (async () => {
       const { createRequire } = await import("node:module");
       const { fileURLToPath } = await import("node:url");
