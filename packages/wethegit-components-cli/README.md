@@ -2,20 +2,36 @@
 
 CLI companion for `@wethegit/components`.
 
-TODO:
-1. Command to initiate the setup to use the components
-1.1 Look through project setup for a config file
-1.1.1 Check paths for components
-1.1.1 Check paths for dependecies like hooks, context, etc
-1.2 Bring default base required dependencies
-1.3 Install dependencies
+## Installation
 
-2. Command to install/copy component to project
-2.1 Check installed component
-2.2 Advanced: provide a diff of the component to be installed
-2.3 Install component
+```bash
+yarn add -D @wethegit/components-cli
+```
+
+## Usage
+
+```bash
+npx @wethegit/components-cli --help
+```
+
+## Developing and testing
+
+Make sure you using the required Node version from [nvmrc](./.nvmrc).
+
+1. Run `yarn install` from the **root of the monorepo**, not from this package's directory.
+2. `cd` into this package's directory and run `yarn dev`
+3. Run `npm link`. **Note:** it MUST be `npm link` and not `yarn link`
+
+Now that we have a local version of the package available we need a node project to test on. If you have one already, skip to step 3.
+
+1. Create a new directory and `cd` into it.
+2. Run `yarn init -y`
+3. Run `npm link @wethegit/components-cli`
+
+You should now be able to run `@wethegit/components-cli` from the command line.
 
 ## Building
+
 `tsup` compiles `src/index.ts`, into a CommonJS format as well as their TypeScript types.
 
 Run `yarn build` to confirm compilation is working correctly. You should see a folder `wethegit-components-cli/dist` which contains the compiled output.
