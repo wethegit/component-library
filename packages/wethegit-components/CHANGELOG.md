@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.1.1
+
+### Patch Changes
+
+- Adds the add command to the CLI
+
 ## 2.1.0
 
 ### Minor Changes
