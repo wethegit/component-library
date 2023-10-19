@@ -1,5 +1,5 @@
-import { resolve } from "path";
-import { ensureDir, pathExists } from "fs-extra";
+import { resolve } from "node:path";
+import fse from "fs-extra";
 import chalk from "chalk";
 import ora from "ora";
 
@@ -26,7 +26,7 @@ export async function ensureConfigPaths({
 
   componentsRootDir = resolve(cwd, componentsRootDir);
 
-  if (!(await pathExists(componentsRootDir))) {
+  if (!(await fse.pathExists(componentsRootDir))) {
     const spinner = ora(
       `Components root directory ${highlight(
         componentsRootDir
@@ -34,7 +34,7 @@ export async function ensureConfigPaths({
     )?.start();
 
     try {
-      await ensureDir(componentsRootDir);
+      await fse.ensureDir(componentsRootDir);
       await spinner.succeed();
     } catch (e) {
       await spinner.fail(

@@ -1,5 +1,5 @@
-import { ensureDir, pathExists } from "fs-extra";
-import { resolve } from "path";
+import { resolve } from "node:path";
+import fse from "fs-extra";
 
 import { logger } from "./logger";
 
@@ -16,8 +16,8 @@ export async function ensureCwd(
 
   // Ensure target directory exists.
   try {
-    if (!(await pathExists(cwd))) {
-      if (createIfNotExist) await ensureDir(cwd);
+    if (!(await fse.pathExists(cwd))) {
+      if (createIfNotExist) await fse.ensureDir(cwd);
       else {
         logger.error(`Directory ${cwd} does not exist`);
         process.exit(1);

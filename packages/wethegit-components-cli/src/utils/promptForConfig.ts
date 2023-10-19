@@ -1,5 +1,5 @@
-import { outputJson, pathExists } from "fs-extra";
-import { resolve } from "path";
+import { resolve } from "node:path";
+import fse from "fs-extra";
 import chalk from "chalk";
 import ora from "ora";
 import prompts from "prompts";
@@ -19,7 +19,7 @@ export async function promptForConfig(
     const highlight = (text: string) => chalk.cyan(text);
 
     const tsConfigPath = resolve(cwd, "./tsconfig.json");
-    const isThereATsConfig = await pathExists(tsConfigPath);
+    const isThereATsConfig = await fse.pathExists(tsConfigPath);
 
     const response = await prompts(
       [
@@ -67,7 +67,7 @@ export async function promptForConfig(
   const targetPath = resolve(cwd, DEFAULT_CONFIG_FILE_NAME);
 
   try {
-    await outputJson(targetPath, config, { spaces: 2 });
+    await fse.outputJson(targetPath, config, { spaces: 2 });
   } catch (error) {
     await spinner.fail();
     logger.error(`Failed to write ${targetPath}.`);

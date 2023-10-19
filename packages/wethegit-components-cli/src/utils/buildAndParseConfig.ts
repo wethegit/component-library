@@ -1,5 +1,5 @@
-import { resolve } from "path";
-import { pathExists, readJson } from "fs-extra";
+import { resolve } from "node:path";
+import fse from "fs-extra";
 import chalk from "chalk";
 import ora from "ora";
 
@@ -30,11 +30,11 @@ export async function buildAndParseConfig(
   let config: Config = DEFAULT_CONFIG;
 
   const localConfigFile = resolve(cwd, DEFAULT_CONFIG_FILE_NAME);
-  if (await pathExists(localConfigFile)) {
+  if (await fse.pathExists(localConfigFile)) {
     await spinner.info(`Found ${chalk.cyan(DEFAULT_CONFIG_FILE_NAME)} file`);
 
     try {
-      const localConfig = await readJson(localConfigFile);
+      const localConfig = await fse.readJson(localConfigFile);
 
       config = {
         ...config,
