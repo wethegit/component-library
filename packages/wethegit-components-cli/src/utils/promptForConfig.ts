@@ -6,8 +6,7 @@ import prompts from "prompts";
 
 import type { Config } from "../index.d";
 
-import { logger } from "./logger";
-import { DEFAULT_CONFIG_FILE_NAME, DEFAULT_CONFIG } from "./consts";
+import { DEFAULT_CONFIG } from "./consts";
 
 export async function promptForConfig(
   cwd: string,
@@ -23,19 +22,13 @@ export async function promptForConfig(
       resolve(cwd, defaultTsConfigPath)
     );
 
-    let { tsconfigPath, typescript, ...response } = await prompts(
+    let response = await prompts(
       [
         {
           type: "confirm",
           name: "typescript",
           message: `Are you using ${highlight("Typescript")}?`,
           initial: isThereATsConfig,
-        },
-        {
-          type: (prev) => (prev ? "text" : null),
-          name: "tsconfigPath",
-          message: `Where is ${highlight("tsconfig.json")} localed?`,
-          initial: defaultTsConfigPath,
         },
         {
           type: "text",
@@ -51,16 +44,9 @@ export async function promptForConfig(
       }
     );
 
-    if (typescript) {
-      typescript = {
-        tsconfigPath,
-      };
-    }
-
     config = {
       ...DEFAULT_CONFIG,
       ...response,
-      typescript,
     };
 
     const proceed = await prompts({

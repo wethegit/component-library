@@ -50,26 +50,11 @@ export async function copyComponentsByName({
     const src = resolve(componentsPackageSrcRoot, name);
     const dest = resolve(componentsRootDir, name);
 
-    if (typescript) {
-      let { tsconfigPath } = typescript;
-
-      if (!fse.existsSync(tsconfigPath)) {
-        await componentSpinner.fail();
-
-        logger.error(
-          `Could not find ${chalk.cyan(
-            "tsconfig.json"
-          )} file at ${tsconfigPath}.`
-        );
-
-        process.exit(1);
-      }
-
+    if (!typescript) {
       const files = await glob("*", { cwd: src, absolute: true });
 
       const filePromises = transformTsToJs({
         files,
-        tsconfigPath,
         dest,
       });
 

@@ -1,31 +1,16 @@
 import { basename, extname, resolve } from "node:path";
 import { Project, ScriptTarget, ts } from "ts-morph";
 import fse from "fs-extra";
-import chalk from "chalk";
 
 import { logger } from "../../../utils";
 
 interface TransformTsToJsOptions {
-  tsconfigPath: string;
   dest: string;
   files: string[];
 }
 
-export async function transformTsToJs({
-  tsconfigPath,
-  dest,
-  files,
-}: TransformTsToJsOptions) {
-  if (!fse.existsSync(tsconfigPath)) {
-    logger.error(
-      `Could not find ${chalk.cyan("tsconfig.json")} file at ${tsconfigPath}.`
-    );
-
-    process.exit(1);
-  }
-
+export async function transformTsToJs({ dest, files }: TransformTsToJsOptions) {
   const tsProject = new Project({
-    tsConfigFilePath: tsconfigPath,
     skipAddingFilesFromTsConfig: true,
     skipFileDependencyResolution: true,
     compilerOptions: {
