@@ -1,6 +1,6 @@
 # @wethegit/components-cli
 
-CLI companion for `@wethegit/components`.
+CLI companion for `@wethegit/components`. It allows you to initialize and add components to a project.
 
 ## Installation
 
