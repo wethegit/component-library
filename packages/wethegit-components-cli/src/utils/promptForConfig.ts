@@ -6,8 +6,7 @@ import prompts from "prompts";
 
 import type { Config } from "../index.d";
 
-import { logger } from "./logger";
-import { DEFAULT_CONFIG_FILE_NAME, DEFAULT_CONFIG } from "./consts";
+import { DEFAULT_CONFIG } from "./consts";
 
 export async function promptForConfig(
   cwd: string,
@@ -18,10 +17,12 @@ export async function promptForConfig(
   if (!skip) {
     const highlight = (text: string) => chalk.cyan(text);
 
-    const tsConfigPath = resolve(cwd, "./tsconfig.json");
-    const isThereATsConfig = await fse.pathExists(tsConfigPath);
+    const defaultTsConfigPath = "./tsconfig.json";
+    const isThereATsConfig = await fse.pathExists(
+      resolve(cwd, defaultTsConfigPath)
+    );
 
-    const response = await prompts(
+    let response = await prompts(
       [
         {
           type: "confirm",
@@ -57,22 +58,6 @@ export async function promptForConfig(
 
     if (!proceed) process.exit(0);
   }
-
-  // Write to file.
-  const spinner = ora(`Writing ${DEFAULT_CONFIG_FILE_NAME}...`).start();
-
-  const targetPath = resolve(cwd, DEFAULT_CONFIG_FILE_NAME);
-
-  try {
-    await fse.outputJson(targetPath, config, { spaces: 2 });
-  } catch (error) {
-    await spinner.fail();
-    logger.error(`Failed to write ${targetPath}.`);
-    logger.error(error);
-    process.exit(1);
-  }
-
-  await spinner.succeed();
 
   return config;
 }

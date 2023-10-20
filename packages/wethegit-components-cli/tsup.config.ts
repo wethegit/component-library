@@ -6,6 +6,7 @@ export default defineConfig((options: Options) => ({
   dts: true,
   format: ["esm"],
   target: "esnext",
+  external: ["prettier", "eslint"],
   banner: {
     js: `#!/usr/bin/env node
     const { require, __filename, __dirname } = await (async () => {

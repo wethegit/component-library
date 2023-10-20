@@ -1,5 +1,11 @@
 # @wethegit/components-cli
 
+## 2.3.0
+
+### Minor Changes
+
+- Adds Ts to Js transformation to CLI
+
 ## 2.2.0
 
 ### Minor Changes
