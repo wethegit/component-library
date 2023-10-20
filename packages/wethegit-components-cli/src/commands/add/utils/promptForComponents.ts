@@ -20,6 +20,7 @@ export function promptForComponents() {
       message: `This operation will ${chalk.yellow(
         "overwrite"
       )} any existing files, are you sure you want to proceed?`,
+      initial: false,
     },
   ]);
 }

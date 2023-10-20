@@ -9,7 +9,7 @@ import { DEFAULT_CONFIG, DEFAULT_CONFIG_FILE_NAME } from "./consts";
 import { logger } from "./logger";
 import { ensureCwd } from "./ensureCwd";
 import { promptForConfig } from "./promptForConfig";
-import { ensureConfigPaths } from "./ensureConfigPaths";
+import { resolveConfigPaths } from "./resolveConfigPaths";
 
 interface BuildAndParseConfigOptions {
   skipPrompt: boolean;
@@ -56,8 +56,7 @@ export async function buildAndParseConfig(
       ...configFromPrompt,
     };
   }
-
-  const parsedConfig = await ensureConfigPaths({
+  const resolvedConfig = await resolveConfigPaths({
     cwd,
     config,
   });
@@ -78,5 +77,5 @@ export async function buildAndParseConfig(
 
   await spinnerJson.succeed();
 
-  return parsedConfig;
+  return resolvedConfig;
 }

@@ -1,11 +1,13 @@
+import { resolve } from "node:path";
+import ora from "ora";
 import chalk from "chalk";
+import fse from "fs-extra";
 import appRootPath from "app-root-path";
 import resolvePackagePath from "resolve-package-path";
 
 import { logger, buildAndParseConfig, ensureCwd } from "../../utils";
 
 import { copyComponentsByName, promptForComponents } from "./utils";
-import { resolve } from "node:path";
 
 interface Options {
   root: string;
@@ -36,10 +38,32 @@ export async function add(options: Options) {
 
     // ask what components to install
     const { selectedComponentNames, proceed } = await promptForComponents();
-    if (!proceed) process.exit(1);
+
+    if (!proceed || selectedComponentNames.length <= 0) process.exit(1);
+
+    // create components dir if it doesnt exist
+    if (!(await fse.pathExists(config.componentsRootDir))) {
+      const { componentsRootDir } = config;
+
+      const spinner = ora(
+        `Components root directory ${chalk.cyan(
+          componentsRootDir
+        )} does not exist, creating...`
+      )?.start();
+
+      try {
+        await fse.ensureDir(componentsRootDir);
+        await spinner.succeed();
+      } catch (e) {
+        await spinner.fail(
+          `Error creating ${chalk.cyan(componentsRootDir)} directory`
+        );
+        logger.error(e);
+        process.exit(1);
+      }
+    }
 
     // copy components
-
     try {
       await copyComponentsByName({
         componentsPackageRoot,
