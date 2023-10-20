@@ -30,6 +30,7 @@ export async function transformTsToJs({ dest, files }: TransformTsToJsOptions) {
     if ([".ts", ".tsx"].includes(extname(file))) {
       try {
         const fileContents = await fse.readFile(file, "utf-8");
+
         tsProject.createSourceFile(filename, fileContents);
         totalTsFiles++;
       } catch (e) {
@@ -37,6 +38,7 @@ export async function transformTsToJs({ dest, files }: TransformTsToJsOptions) {
         logger.error(e);
       }
     } else {
+      // copy file directly if not a ts file
       filePromises.push(fse.copy(file, outFile));
     }
   }

@@ -23,6 +23,11 @@ export async function copyComponentsByName({
   config,
   selectedComponentNames,
 }: CopyComponentsByNameOptions) {
+  if (!selectedComponentNames.length) {
+    logger.info(`No components selected, exiting...`);
+    return;
+  }
+
   const { componentsRootDir, typescript } = config;
 
   const componentsPackageSrcRoot = resolve(componentsPackageRoot, "../src");
