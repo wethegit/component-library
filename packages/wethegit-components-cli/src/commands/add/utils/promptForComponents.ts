@@ -15,7 +15,7 @@ export function promptForComponents() {
       })),
     },
     {
-      type: "confirm",
+      type: (val) => (val.length > 0 ? "confirm" : null),
       name: "proceed",
       message: `This operation will ${chalk.yellow(
         "overwrite"
