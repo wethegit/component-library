@@ -19,7 +19,26 @@ export async function ensureConfigPaths({
   cwd,
   config,
 }: EnsureConfigPathsOptions) {
-  let { componentsRootDir } = config;
+  let { componentsRootDir, typescript } = config;
+
+  if (typescript) {
+    const { tsconfigPath } = typescript;
+    const tsconfigPathResolved = resolve(cwd, tsconfigPath);
+
+    if (!(await fse.existsSync(tsconfigPathResolved))) {
+      logger.error(
+        `Could not find ${highlight(
+          "tsconfig.json"
+        )} file at ${tsconfigPathResolved}.`
+      );
+      process.exit(1);
+    }
+
+    typescript = {
+      ...typescript,
+      tsconfigPath: tsconfigPathResolved,
+    };
+  }
 
   // resolve required paths
   if (!componentsRootDir) componentsRootDir = DEFAULT_CONFIG.componentsRootDir;
@@ -48,5 +67,6 @@ export async function ensureConfigPaths({
   return {
     ...config,
     componentsRootDir,
+    typescript,
   };
 }

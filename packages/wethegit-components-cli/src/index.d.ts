@@ -14,7 +14,11 @@ export type ComponentsIndex = {
   [key: string]: ComponentConfig;
 };
 
+export interface ConfigTsOptions {
+  tsconfigPath: string;
+};
+
 export interface Config {
-  typescript: boolean;
+  typescript: false | ConfigTsOptions;
   componentsRootDir: string;
 }

@@ -30,6 +30,7 @@ export async function buildAndParseConfig(
   let config: Config = DEFAULT_CONFIG;
 
   const localConfigFile = resolve(cwd, DEFAULT_CONFIG_FILE_NAME);
+
   if (await fse.pathExists(localConfigFile)) {
     await spinner.info(`Found ${chalk.cyan(DEFAULT_CONFIG_FILE_NAME)} file`);
 
@@ -60,6 +61,22 @@ export async function buildAndParseConfig(
     cwd,
     config,
   });
+
+  // Write to file.
+  const spinnerJson = ora(`Writing ${DEFAULT_CONFIG_FILE_NAME}...`).start();
+
+  const targetPath = resolve(cwd, DEFAULT_CONFIG_FILE_NAME);
+
+  try {
+    await fse.outputJson(targetPath, config, { spaces: 2 });
+  } catch (error) {
+    await spinnerJson.fail();
+    logger.error(`Failed to write ${targetPath}.`);
+    logger.error(error);
+    process.exit(1);
+  }
+
+  await spinnerJson.succeed();
 
   return parsedConfig;
 }

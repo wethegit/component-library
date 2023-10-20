@@ -18,16 +18,24 @@ export async function promptForConfig(
   if (!skip) {
     const highlight = (text: string) => chalk.cyan(text);
 
-    const tsConfigPath = resolve(cwd, "./tsconfig.json");
-    const isThereATsConfig = await fse.pathExists(tsConfigPath);
+    const defaultTsConfigPath = "./tsconfig.json";
+    const isThereATsConfig = await fse.pathExists(
+      resolve(cwd, defaultTsConfigPath)
+    );
 
-    const response = await prompts(
+    let { tsconfigPath, typescript, ...response } = await prompts(
       [
         {
           type: "confirm",
           name: "typescript",
           message: `Are you using ${highlight("Typescript")}?`,
           initial: isThereATsConfig,
+        },
+        {
+          type: (prev) => (prev ? "text" : null),
+          name: "tsconfigPath",
+          message: `Where is ${highlight("tsconfig.json")} localed?`,
+          initial: defaultTsConfigPath,
         },
         {
           type: "text",
@@ -43,9 +51,16 @@ export async function promptForConfig(
       }
     );
 
+    if (typescript) {
+      typescript = {
+        tsconfigPath,
+      };
+    }
+
     config = {
       ...DEFAULT_CONFIG,
       ...response,
+      typescript,
     };
 
     const proceed = await prompts({
@@ -57,22 +72,6 @@ export async function promptForConfig(
 
     if (!proceed) process.exit(0);
   }
-
-  // Write to file.
-  const spinner = ora(`Writing ${DEFAULT_CONFIG_FILE_NAME}...`).start();
-
-  const targetPath = resolve(cwd, DEFAULT_CONFIG_FILE_NAME);
-
-  try {
-    await fse.outputJson(targetPath, config, { spaces: 2 });
-  } catch (error) {
-    await spinner.fail();
-    logger.error(`Failed to write ${targetPath}.`);
-    logger.error(error);
-    process.exit(1);
-  }
-
-  await spinner.succeed();
 
   return config;
 }
