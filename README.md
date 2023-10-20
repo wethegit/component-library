@@ -1,5 +1,40 @@
-# Component Library
-TODO: write about the philosophy of this library, why it exists, what it solves and provide a guide for contribution.
+# We The Collective Component Library
+
+Unstyled, accessible, React component primitives that can be copy and pasted into your project.
+
+### Philosophy
+
+At We The Collective our projects are always visually drastically different. Having a design system with a fixed API and styles doesn't make sense.
+
+These components are designed to be a foundation to be extended upon based on your project's requirements. They are meant to speed up work and provide easy of mind knowing that they are accessible and tested.
+
+To extend that even further this library is developed so that components are copied into your project instead of being imported from a package.
+
+## Getting Started
+
+Check required node version in [`.nvmrc`](./.nvmrc).
+
+### Install
+
+```bash
+npm install -D @wethegit/components-cli
+```
+
+### Usage
+
+Initialize the project with the CLI:
+
+```bash
+npx @wethegit/components-cli init
+```
+
+Install components:
+
+```bash
+npx @wethegit/components-cli add
+```
+
+## Development
 
 ## Useful Commands
 
@@ -35,21 +70,22 @@ We use [Changesets](https://github.com/changesets/changesets) to manage versions
 
 To generate your changelog, run `yarn changeset` locally:
 
-1. **Which packages would you like to include?** – This shows which packages and changed and which have remained the same. By default, no packages are included. Press `space` to select the packages you want to include in the `changeset`.
+1. **Which packages would you like to include?** – This shows which packages changed and which have remained the same. By default, no packages are included. Press `space` to select the packages you want to include in the `changeset`.
 
-    1.1. We **ONLY** publish the `@wethegit/components` and `@wethegit/component-cli` packages, everything else is used internally in the monorepo and the Storybook documentation is published separately to GitHub Pages.
+   1.1. Selected only the packages that changed and note that we **ONLY** publish the `@wethegit/components` and `@wethegit/component-cli` packages, everything else is used internally in the monorepo and the Storybook documentation is published separately to GitHub Pages.
 
-2. **Which packages should have a major bump?** – Press `space` to select the packages you want to bump versions for.
+2. **Which packages should have a major bump?** – Press `space` to select the packages you want to bump versions for or `enter` to skip.
 
-    2.1. If doing the first major version, confirm you want to release.
+   2.1. If doing the first major version, confirm you want to release.
+
+3. **Which packages should have a minor bump?** – Press `space` to select the packages you want to bump versions for or `enter` to skip.
 
 4. Write a summary for the changes.
 
 5. Confirm the changeset looks as expected.
 
-6. A new Markdown file will be created in the `changeset` folder with the summary and a list of the packages included.
-
 ### Version the packages
+
 To generate the changelogs and bump the versions of the packages, run:
 `yarn version-packages`
 
