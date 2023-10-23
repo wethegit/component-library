@@ -1,6 +1,6 @@
 # We The Collective Component Library
 
-Unstyled, accessible, React component primitives that can be copy and pasted into your project.
+Minally styled, accessible, React component primitives that can be copy and pasted into your project.
 
 ### Philosophy
 

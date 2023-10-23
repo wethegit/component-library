@@ -1,13 +1,18 @@
-import { resolve } from "node:path";
-import ora from "ora";
 import chalk from "chalk";
-import fse from "fs-extra";
-import appRootPath from "app-root-path";
-import resolvePackagePath from "resolve-package-path";
 
-import { logger, buildAndParseConfig, ensureCwd } from "../../utils";
+import {
+  logger,
+  buildAndParseConfig,
+  ensureCwd,
+  handleError,
+  ensureComponentsPackageIsInstalled,
+} from "../../utils";
 
-import { copyComponentsByName, promptForComponents } from "./utils";
+import {
+  copyComponentsByName,
+  formatComponentFilesWithPrettier,
+  promptForComponents,
+} from "./utils";
 
 interface Options {
   root: string;
@@ -15,19 +20,8 @@ interface Options {
 
 export async function add(options: Options) {
   try {
-    let componentsPackageRoot = resolvePackagePath(
-      "@wethegit/components",
-      appRootPath.toString()
-    );
+    const componentsPackageRoot = ensureComponentsPackageIsInstalled();
 
-    if (!componentsPackageRoot) {
-      logger.error(
-        "Failed to find @wethegit/components package. It should be installed as a dependency automatically, something went wrong with the CLI installation."
-      );
-      process.exit(1);
-    }
-
-    componentsPackageRoot = resolve(componentsPackageRoot, "../src");
     const { root } = options;
 
     // different than init if cwd doesnt exist this will throw, user should run init first to ensure deps and other requirements are met
@@ -41,47 +35,39 @@ export async function add(options: Options) {
 
     if (!proceed || selectedComponentNames.length <= 0) process.exit(1);
 
-    // create components dir if it doesnt exist
-    if (!(await fse.pathExists(config.componentsRootDir))) {
-      const { componentsRootDir } = config;
-
-      const spinner = ora(
-        `Components root directory ${chalk.cyan(
-          componentsRootDir
-        )} does not exist, creating...`
-      )?.start();
-
-      try {
-        await fse.ensureDir(componentsRootDir);
-        await spinner.succeed();
-      } catch (e) {
-        await spinner.fail(
-          `Error creating ${chalk.cyan(componentsRootDir)} directory`
-        );
-        logger.error(e);
-        process.exit(1);
-      }
-    }
-
     // copy components
     try {
       await copyComponentsByName({
-        componentsPackageRoot,
         config,
         selectedComponentNames,
       });
-    } catch (e) {
-      logger.error("");
-      logger.error(e);
-      process.exit(1);
+    } catch (error) {
+      handleError({
+        error,
+        exit: true,
+      });
+    }
+
+    // format component files
+    try {
+      await formatComponentFilesWithPrettier({
+        config,
+        selectedComponentNames,
+      });
+    } catch (error) {
+      handleError({
+        error,
+        exit: true,
+      });
     }
 
     logger.info("");
     logger.success(`${chalk.green("Success!")} All done!`);
     logger.info("");
   } catch (error) {
-    logger.error("");
-    logger.error(error);
-    process.exit(0);
+    handleError({
+      error,
+      exit: true,
+    });
   }
 }

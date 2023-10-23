@@ -7,6 +7,9 @@ interface EnsureCwdOptions {
   createIfNotExist: boolean;
 }
 
+/**
+ * Ensures the current working directory exists.
+ */
 export async function ensureCwd(
   root: string,
   options?: EnsureCwdOptions

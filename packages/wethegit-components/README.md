@@ -1,6 +1,6 @@
 # @wethegit/components
 
-Set of primitive components for React. Unstyled. Accessible.
+Set of primitive components for React. Minimally styled. Accessible.
 The goal of these component is to provide a solid base for your own components.
 
 ### Getting started
@@ -19,7 +19,13 @@ Then install the library:
 npm install @wethegit/components
 ```
 
-And import the components you need:
+Import the global styles:
+
+```tsx
+import "@wethegit/components/src/styles/global.scss";
+```
+
+And use the components you need as you would any other React component:
 
 ```tsx
 import { Button } from "@wethegit/components";
@@ -42,17 +48,17 @@ This will start Storybook and watch for changes in the components' source files.
 
 ### Adding components
 
-When adding a new file, ensure the component is also exported from the main `src/index.tsx` file:
+When adding a new file, ensure the component is also exported from the main `src/components/index.tsx` file:
 
 ```tsx
-// src/index.tsx
+// src/components/index.tsx
 export * from "./button";
 ```
 
 Export only the necessary pieces of the component and their types from the component directory's `index.tsx` file.
 
 ```tsx
-// src/button/index.tsx
+// src/components/button/index.tsx
 export { Button } from "./button";
 export type { ButtonProps } from "./button";
 ```

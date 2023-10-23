@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.2.0
+
+### Minor Changes
+
+- Adds global styles
+
 ## 2.1.1
 
 ### Patch Changes

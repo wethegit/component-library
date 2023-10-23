@@ -1,5 +1,8 @@
 import { detect } from "@antfu/ni";
 
+/**
+ * Detects the package manager used in the target directory.
+ */
 export async function getPackageManager(targetDir: string) {
   const packageManager = await detect({ programmatic: true, cwd: targetDir });
 
