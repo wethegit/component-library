@@ -1,6 +1,6 @@
 # @wethegit/components-cli
 
-## 3.0.0
+## 2.4.0
 
 ### Minor Changes
 
