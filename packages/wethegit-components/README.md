@@ -13,6 +13,8 @@ That being said, you can **still** use this library as a dependency if you want 
 
 To do so, first make sure you are using `typescript` and that you include `node_modules/@wethegit/components/src` in your `tsconfig.json`'s `include` array.
 
+Also, ensure that you have `sass` installed and configured in your bundler.
+
 Then install the library:
 
 ```sh
