@@ -16,6 +16,7 @@ import {
 import { transformTsToJs } from "./transformTsToJs";
 
 interface CopyComponentsByNameOptions {
+  cwd: string;
   config: Config;
   selectedComponentNames: string[];
 }
@@ -24,6 +25,7 @@ interface CopyComponentsByNameOptions {
  * Copies components by name from the @wethegit/components package to the components directory.
  */
 export async function copyComponentsByName({
+  cwd,
   config,
   selectedComponentNames,
 }: CopyComponentsByNameOptions) {
@@ -83,6 +85,7 @@ export async function copyComponentsByName({
       const files = await glob("*", { cwd: src, absolute: true });
 
       const filePromises = transformTsToJs({
+        cwd,
         files,
         destDir: dest,
       });

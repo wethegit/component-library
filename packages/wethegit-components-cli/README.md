@@ -16,7 +16,9 @@ Initialize the project, this step will create the required directories and insta
 npx @wethegit/components-cli init
 ```
 
-Install components:
+As part of the initialization process, the global styles will be copied to specified directory, `src/styles` by default. Make sure you import them in your project.
+
+And finally, install any components you want to use:
 
 ```bash
 npx @wethegit/components-cli add

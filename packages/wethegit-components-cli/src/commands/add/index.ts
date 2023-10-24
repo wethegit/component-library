@@ -38,6 +38,7 @@ export async function add(options: Options) {
     // copy components
     try {
       await copyComponentsByName({
+        cwd,
         config,
         selectedComponentNames,
       });

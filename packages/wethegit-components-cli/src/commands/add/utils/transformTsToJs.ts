@@ -5,6 +5,7 @@ import fse from "fs-extra";
 import { logger } from "../../../utils";
 
 interface TransformTsToJsOptions {
+  cwd: string;
   destDir: string;
   files: string[];
 }
@@ -13,16 +14,25 @@ interface TransformTsToJsOptions {
  * Transforms ts files to js files. If a file is not a ts file, it will be copied directly.
  */
 export async function transformTsToJs({
+  cwd,
   destDir,
   files,
 }: TransformTsToJsOptions) {
+  const defaultTsConfigPath = resolve(cwd, "./tsconfig.json");
+  const isThereATsConfig = await fse.pathExists(defaultTsConfigPath);
+
   const tsProject = new Project({
+    ...(isThereATsConfig
+      ? { tsConfigFilePath: defaultTsConfigPath }
+      : { undefined }),
     skipAddingFilesFromTsConfig: true,
     skipFileDependencyResolution: true,
     compilerOptions: {
       target: ScriptTarget.ESNext,
       outDir: destDir,
       jsx: ts.JsxEmit.Preserve,
+      declaration: true,
+      declarationDir: resolve(cwd, "types"),
     },
   });
 

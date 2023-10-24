@@ -34,14 +34,21 @@ export async function formatComponentFilesWithPrettier({
   if (!isPrettierInstalled) return;
 
   // if they have prettier installed it's most likely already configured
-  const { formatFiles } = await prompts({
-    type: "confirm",
-    name: "formatFiles",
-    message: `Seems that ${chalk.cyan(
-      "prettier"
-    )} is installed. Do you want to format the output files?`,
-    initial: true,
-  });
+  const { formatFiles } = await prompts(
+    {
+      type: "confirm",
+      name: "formatFiles",
+      message: `Seems that ${chalk.cyan(
+        "prettier"
+      )} is installed. Do you want to format the output files?`,
+      initial: true,
+    },
+    {
+      onCancel: () => {
+        process.exit(1);
+      },
+    }
+  );
 
   if (!formatFiles) return;
 
