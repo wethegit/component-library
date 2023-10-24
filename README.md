@@ -14,13 +14,11 @@ To extend that even further this library is developed so that components are cop
 
 Check required node version in [`.nvmrc`](./.nvmrc).
 
-### Install
+Install:
 
 ```bash
 npm install -D @wethegit/components-cli
 ```
-
-### Usage
 
 Initialize the project with the CLI:
 

@@ -2,16 +2,24 @@
 
 CLI companion for `@wethegit/components`. It allows you to initialize and add components to a project.
 
-## Installation
+## Usage
+
+Install:
 
 ```bash
 yarn add -D @wethegit/components-cli
 ```
 
-## Usage
+Initialize the project, this step will create the required directories and install the required dependencies:
 
 ```bash
-npx @wethegit/components-cli --help
+npx @wethegit/components-cli init
+```
+
+Install components:
+
+```bash
+npx @wethegit/components-cli add
 ```
 
 ## Developing and testing
