@@ -1,13 +1,15 @@
 import { resolve } from "node:path";
 import fse from "fs-extra";
 import chalk from "chalk";
-import ora from "ora";
 import prompts from "prompts";
 
 import type { Config } from "../index.d";
 
 import { DEFAULT_CONFIG } from "./consts";
 
+/**
+ * Prompts the user for config options.
+ */
 export async function promptForConfig(
   cwd: string,
   skip: boolean
@@ -36,6 +38,12 @@ export async function promptForConfig(
           message: `What is your ${highlight("components")} root directory?`,
           initial: DEFAULT_CONFIG.componentsRootDir,
         },
+        {
+          type: "text",
+          name: "stylesRootDir",
+          message: `What is your ${highlight("styles")} root directory?`,
+          initial: DEFAULT_CONFIG.stylesRootDir,
+        },
       ],
       {
         onCancel: () => {
@@ -49,7 +57,7 @@ export async function promptForConfig(
       ...response,
     };
 
-    const proceed = await prompts({
+    const { proceed } = await prompts({
       type: "confirm",
       name: "proceed",
       message: `Is this correct?\n${JSON.stringify(config, null, 2)}`,

@@ -1,6 +1,6 @@
 # We The Collective Component Library
 
-Unstyled, accessible, React component primitives that can be copy and pasted into your project.
+Minally styled, accessible, React component primitives that can be copy and pasted into your project.
 
 ### Philosophy
 
@@ -14,13 +14,11 @@ To extend that even further this library is developed so that components are cop
 
 Check required node version in [`.nvmrc`](./.nvmrc).
 
-### Install
+Install:
 
 ```bash
 npm install -D @wethegit/components-cli
 ```
-
-### Usage
 
 Initialize the project with the CLI:
 

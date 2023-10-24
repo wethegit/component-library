@@ -3,43 +3,65 @@ import fse from "fs-extra";
 import ora from "ora";
 import chalk from "chalk";
 import { glob } from "glob";
-import prompts from "prompts";
 
 import type { Config } from "../../../index.d";
 import COMPONENTS_INDEX from "../../../component-index";
-import { logger } from "../../../utils";
+import {
+  handleError,
+  logger,
+  COMPONENTS_PACKAGE_COMPONENTS_DIR,
+  ensureComponentsPackageIsInstalled,
+} from "../../../utils";
 
 import { transformTsToJs } from "./transformTsToJs";
-import { formatFilesWithPrettier } from "./formatFilesWithPrettier";
 
 interface CopyComponentsByNameOptions {
-  componentsPackageRoot: string;
+  cwd: string;
   config: Config;
   selectedComponentNames: string[];
 }
 
+/**
+ * Copies components by name from the @wethegit/components package to the components directory.
+ */
 export async function copyComponentsByName({
-  componentsPackageRoot,
+  cwd,
   config,
   selectedComponentNames,
 }: CopyComponentsByNameOptions) {
   if (!selectedComponentNames.length) {
     logger.info(`No components selected, exiting...`);
+
     return;
   }
 
+  const componentsPackageRoot = ensureComponentsPackageIsInstalled();
+
   const { componentsRootDir, typescript } = config;
 
-  const componentsPackageSrcRoot = resolve(componentsPackageRoot, "../src");
+  // create components dir if it doesnt exist
+  if (!(await fse.pathExists(componentsRootDir))) {
+    const spinner = ora(
+      `Components root directory ${chalk.cyan(
+        componentsRootDir
+      )} does not exist, creating...`
+    )?.start();
 
-  const { formatFiles } = await prompts({
-    type: "confirm",
-    name: "formatFiles",
-    message: `Do you want to format the output files? It requires ${chalk.cyan(
-      "prettier"
-    )} to be installed.`,
-    initial: true,
-  });
+    try {
+      await fse.ensureDir(componentsRootDir);
+
+      await spinner.succeed();
+    } catch (error) {
+      handleError({
+        error,
+        spinner,
+        exit: true,
+        spinnerText: `Error creating ${chalk.cyan(
+          componentsRootDir
+        )} directory`,
+      });
+    }
+  }
 
   const allFilesSpinner = ora("Copying files...").start();
 
@@ -52,74 +74,43 @@ export async function copyComponentsByName({
 
     const { name } = COMPONENTS_INDEX[componentName];
 
-    const src = resolve(componentsPackageSrcRoot, name);
+    const src = resolve(
+      componentsPackageRoot,
+      COMPONENTS_PACKAGE_COMPONENTS_DIR,
+      name
+    );
     const dest = resolve(componentsRootDir, name);
 
     if (!typescript) {
       const files = await glob("*", { cwd: src, absolute: true });
 
       const filePromises = transformTsToJs({
+        cwd,
         files,
-        dest,
+        destDir: dest,
       });
 
       allFilesPromise.push(
         filePromises
           .then(() => componentSpinner.succeed())
-          .catch((e) => catchError(e, componentSpinner, componentName))
+          .catch((error) => handleError({ error, spinner: componentSpinner }))
       );
     } else {
       allFilesPromise.push(
         fse
           .copy(src, dest)
           .then(() => componentSpinner.succeed())
-          .catch((e) => catchError(e, componentSpinner, componentName))
+          .catch((error) => handleError({ error, spinner: componentSpinner }))
       );
     }
   }
 
-  if (formatFiles) {
-    try {
-      await Promise.all(allFilesPromise);
-      await allFilesSpinner.succeed();
-    } catch (e) {
-      catchError(e, allFilesSpinner, "output files");
-    }
+  // wait for all files to be copied
+  try {
+    await Promise.all(allFilesPromise);
 
-    const formatSpinner = ora("Formatting output files...").start();
-
-    // NOTE: maybe format format output files?
-    const outputFiles = await glob(
-      selectedComponentNames.map((name) => `${name}/**/*.jsx`),
-      { cwd: componentsRootDir, absolute: true }
-    );
-
-    try {
-      await formatFilesWithPrettier({
-        files: outputFiles,
-      });
-
-      await formatSpinner.succeed();
-    } catch (e) {
-      catchError(e, formatSpinner, "output files");
-    }
-  } else {
-    try {
-      await Promise.all(allFilesPromise);
-      await allFilesSpinner.succeed();
-    } catch (e) {
-      catchError(e, allFilesSpinner, "output files");
-    }
+    await allFilesSpinner.succeed();
+  } catch (error) {
+    handleError({ error, spinner: allFilesSpinner, exit: true });
   }
-}
-
-function catchError(
-  error: unknown,
-  spinner: ReturnType<typeof ora>,
-  componentName: string
-) {
-  logger.error(``);
-  logger.error(error);
-
-  spinner.fail(`Error copying ${chalk.cyan(componentName)}`);
 }

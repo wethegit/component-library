@@ -12,16 +12,22 @@ import { promptForConfig } from "./promptForConfig";
 import { resolveConfigPaths } from "./resolveConfigPaths";
 
 interface BuildAndParseConfigOptions {
-  skipPrompt: boolean;
+  skipPrompt?: boolean;
+  errorIfNotFound?: boolean;
 }
 
 type BuildAndParseConfigReturn = Config;
 
+/**
+ * Builds and parses the config file.
+ * If a config file is found, it will be merged with the default config.
+ * If no config file is found, it will prompt the user for config options.
+ */
 export async function buildAndParseConfig(
   root: string,
   options?: BuildAndParseConfigOptions
 ): Promise<BuildAndParseConfigReturn> {
-  const { skipPrompt = false } = options || {};
+  const { skipPrompt = false, errorIfNotFound = false } = options || {};
 
   const spinner = ora("Determining config options...").start();
 
@@ -31,10 +37,25 @@ export async function buildAndParseConfig(
 
   const localConfigFile = resolve(cwd, DEFAULT_CONFIG_FILE_NAME);
 
-  if (await fse.pathExists(localConfigFile)) {
+  const doesConfigFileExist = await fse.pathExists(localConfigFile);
+
+  if (!doesConfigFileExist && errorIfNotFound) {
+    await spinner.fail(
+      `No ${chalk.red.bold(
+        DEFAULT_CONFIG_FILE_NAME
+      )} file found. Run ${chalk.red.bold(
+        "init"
+      )} first before adding components.`
+    );
+
+    process.exit(1);
+  }
+
+  if (doesConfigFileExist) {
     await spinner.info(`Found ${chalk.cyan(DEFAULT_CONFIG_FILE_NAME)} file`);
 
     try {
+      // if we found a local config file, we want to merge it with the default config
       const localConfig = await fse.readJson(localConfigFile);
 
       config = {
@@ -49,13 +70,17 @@ export async function buildAndParseConfig(
   } else {
     await spinner.succeed();
 
+    // Prompt for config
     const configFromPrompt = await promptForConfig(cwd, skipPrompt);
 
+    // merge with defaults
     config = {
       ...config,
       ...configFromPrompt,
     };
   }
+
+  // Resolve paths so we can work with them internally
   const resolvedConfig = await resolveConfigPaths({
     cwd,
     config,

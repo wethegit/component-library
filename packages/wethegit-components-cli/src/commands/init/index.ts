@@ -1,6 +1,13 @@
 import chalk from "chalk";
 
-import { buildAndParseConfig, logger, ensureCwd } from "../../utils";
+import {
+  buildAndParseConfig,
+  logger,
+  ensureCwd,
+  handleError,
+} from "../../utils";
+
+import { copyGlobalStyles } from "./utils";
 
 interface Options {
   root: string;
@@ -13,7 +20,17 @@ export async function init({ root, skip }: Options) {
     const cwd = await ensureCwd(root, { createIfNotExist: true });
 
     // Read config and prompt for config if can't find it, optionally skip it and return default
-    await buildAndParseConfig(cwd, { skipPrompt: skip });
+    const config = await buildAndParseConfig(cwd, { skipPrompt: skip });
+
+    // copy styles
+    try {
+      await copyGlobalStyles({ config });
+    } catch (error) {
+      handleError({
+        error,
+        exit: true,
+      });
+    }
 
     /*
       NOTE: in the future we might wanna install required/global dependencies

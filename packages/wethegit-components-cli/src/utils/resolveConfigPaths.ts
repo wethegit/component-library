@@ -9,19 +9,26 @@ interface ResolveConfigPathsOptions {
   config: Config;
 }
 
+/**
+ * Resolves the paths in the config with absolute paths so we can use them internally.
+ */
 export async function resolveConfigPaths({
   cwd,
   config,
 }: ResolveConfigPathsOptions) {
-  let { componentsRootDir } = config;
+  let { componentsRootDir, stylesRootDir } = config;
 
   // resolve required paths
   if (!componentsRootDir) componentsRootDir = DEFAULT_CONFIG.componentsRootDir;
 
+  if (!stylesRootDir) stylesRootDir = DEFAULT_CONFIG.stylesRootDir;
+
   componentsRootDir = resolve(cwd, componentsRootDir);
+  stylesRootDir = resolve(cwd, stylesRootDir);
 
   return {
     ...config,
     componentsRootDir,
+    stylesRootDir,
   };
 }

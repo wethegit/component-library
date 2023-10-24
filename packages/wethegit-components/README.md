@@ -1,6 +1,6 @@
 # @wethegit/components
 
-Set of primitive components for React. Unstyled. Accessible.
+Set of primitive components for React. Minimally styled. Accessible.
 The goal of these component is to provide a solid base for your own components.
 
 ### Getting started
@@ -11,7 +11,9 @@ It's **important** to know that this library is **never** compiled. The source f
 
 That being said, you can **still** use this library as a dependency if you want to, you most likely already have a bundler in place to handle your React codebase.
 
-To do so, first make sure you are using `typescript` and that you include `node_modules/@wethegit/components/src` in your `tsconfig.json`'s `include` array.
+1. Make sure you are using `typescript` and that you include `node_modules/@wethegit/components/src` in your `tsconfig.json`'s `include` array and also make sure yourbundler also process these files.
+
+2. Ensure that you have `sass` installed and configured in your bundler.
 
 Then install the library:
 
@@ -19,7 +21,13 @@ Then install the library:
 npm install @wethegit/components
 ```
 
-And import the components you need:
+Import the global styles:
+
+```tsx
+import "@wethegit/components/src/styles/global.scss";
+```
+
+And use the components you need as you would any other React component:
 
 ```tsx
 import { Button } from "@wethegit/components";
@@ -42,17 +50,17 @@ This will start Storybook and watch for changes in the components' source files.
 
 ### Adding components
 
-When adding a new file, ensure the component is also exported from the main `src/index.tsx` file:
+When adding a new file, ensure the component is also exported from the main `src/components/index.tsx` file:
 
 ```tsx
-// src/index.tsx
+// src/components/index.tsx
 export * from "./button";
 ```
 
 Export only the necessary pieces of the component and their types from the component directory's `index.tsx` file.
 
 ```tsx
-// src/button/index.tsx
+// src/components/button/index.tsx
 export { Button } from "./button";
 export type { ButtonProps } from "./button";
 ```

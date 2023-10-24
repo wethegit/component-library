@@ -1,5 +1,16 @@
 # @wethegit/components-cli
 
+## 2.4.0
+
+### Minor Changes
+
+- Adds global styles
+
+### Patch Changes
+
+- Updated dependencies
+  - @wethegit/components@2.2.0
+
 ## 2.3.0
 
 ### Minor Changes
