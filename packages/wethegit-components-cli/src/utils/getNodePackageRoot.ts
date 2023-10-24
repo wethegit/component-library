@@ -7,7 +7,6 @@ import resolvePackagePath from "resolve-package-path";
  * Note: this doesn't work for packages that are not installed in the current project.
  */
 export function getNodePackageRoot(packageName: string, cwd?: string) {
-  console.log({ cwd, d: appRootPath.toString() });
   let componentsPackageRoot = resolvePackagePath(
     packageName,
     cwd ?? appRootPath.toString()
