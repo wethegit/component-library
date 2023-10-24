@@ -11,9 +11,9 @@ It's **important** to know that this library is **never** compiled. The source f
 
 That being said, you can **still** use this library as a dependency if you want to, you most likely already have a bundler in place to handle your React codebase.
 
-To do so, first make sure you are using `typescript` and that you include `node_modules/@wethegit/components/src` in your `tsconfig.json`'s `include` array.
+1. Make sure you are using `typescript` and that you include `node_modules/@wethegit/components/src` in your `tsconfig.json`'s `include` array and also make sure yourbundler also process these files.
 
-Also, ensure that you have `sass` installed and configured in your bundler.
+2. Ensure that you have `sass` installed and configured in your bundler.
 
 Then install the library:
 

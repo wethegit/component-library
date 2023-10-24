@@ -12,7 +12,8 @@ import { promptForConfig } from "./promptForConfig";
 import { resolveConfigPaths } from "./resolveConfigPaths";
 
 interface BuildAndParseConfigOptions {
-  skipPrompt: boolean;
+  skipPrompt?: boolean;
+  errorIfNotFound?: boolean;
 }
 
 type BuildAndParseConfigReturn = Config;
@@ -26,7 +27,7 @@ export async function buildAndParseConfig(
   root: string,
   options?: BuildAndParseConfigOptions
 ): Promise<BuildAndParseConfigReturn> {
-  const { skipPrompt = false } = options || {};
+  const { skipPrompt = false, errorIfNotFound = false } = options || {};
 
   const spinner = ora("Determining config options...").start();
 
@@ -36,7 +37,21 @@ export async function buildAndParseConfig(
 
   const localConfigFile = resolve(cwd, DEFAULT_CONFIG_FILE_NAME);
 
-  if (await fse.pathExists(localConfigFile)) {
+  const doesConfigFileExist = await fse.pathExists(localConfigFile);
+
+  if (!doesConfigFileExist && errorIfNotFound) {
+    await spinner.fail(
+      `No ${chalk.red.bold(
+        DEFAULT_CONFIG_FILE_NAME
+      )} file found. Run ${chalk.red.bold(
+        "init"
+      )} first before adding components.`
+    );
+
+    process.exit(1);
+  }
+
+  if (doesConfigFileExist) {
     await spinner.info(`Found ${chalk.cyan(DEFAULT_CONFIG_FILE_NAME)} file`);
 
     try {

@@ -69,6 +69,8 @@ export async function formatComponentFilesWithPrettier({
     }
 
     await Promise.all(formattedFiles);
+
+    await formatSpinner.succeed();
   } catch (error) {
     handleError({
       error,

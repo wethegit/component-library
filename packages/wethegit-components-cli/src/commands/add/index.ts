@@ -20,7 +20,7 @@ interface Options {
 
 export async function add(options: Options) {
   try {
-    const componentsPackageRoot = ensureComponentsPackageIsInstalled();
+    ensureComponentsPackageIsInstalled();
 
     const { root } = options;
 
@@ -28,7 +28,7 @@ export async function add(options: Options) {
     const cwd = await ensureCwd(root);
 
     // get our config
-    const config = await buildAndParseConfig(cwd);
+    const config = await buildAndParseConfig(cwd, { errorIfNotFound: true });
 
     // ask what components to install
     const { selectedComponentNames, proceed } = await promptForComponents();
