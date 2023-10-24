@@ -1,15 +1,17 @@
+import { relative, resolve } from "node:path";
 import fse from "fs-extra";
 import chalk from "chalk";
 import prompts from "prompts";
 import ora from "ora";
-import { glob } from "glob";
+import { execa } from "execa";
 
 import type { Config } from "../../../index.d";
-import { getNodePackageRoot, handleError } from "../../../utils";
+import { handleError } from "../../../utils";
 
 interface FormatFilesWithPrettierOptions {
   selectedComponentNames: string[];
   config: Config;
+  cwd: string;
 }
 
 /**
@@ -18,18 +20,13 @@ interface FormatFilesWithPrettierOptions {
 export async function formatComponentFilesWithPrettier({
   selectedComponentNames,
   config,
+  cwd,
 }: FormatFilesWithPrettierOptions) {
   if (selectedComponentNames.length <= 0) return;
 
-  // don't even ask if there are no files to format
-  const files = await glob(
-    selectedComponentNames.map((name) => `${name}/**/*.jsx`),
-    { cwd: config.componentsRootDir, absolute: true }
+  const isPrettierInstalled = await fse.exists(
+    resolve(cwd, "node_modules", "prettier")
   );
-
-  if (!files.length) return;
-
-  const isPrettierInstalled = getNodePackageRoot("prettier");
 
   if (!isPrettierInstalled) return;
 
@@ -55,27 +52,20 @@ export async function formatComponentFilesWithPrettier({
   const formatSpinner = ora("Formatting output files...").start();
 
   try {
-    const { resolveConfig, format } = await import("prettier");
+    // don't even ask if there are no files to format
+    const files = resolve(
+      config.componentsRootDir,
+      selectedComponentNames.length > 1
+        ? `{${selectedComponentNames.join(",")}}`
+        : selectedComponentNames[0],
+      "**/*"
+    );
 
-    let formattedFiles = [];
+    const rel = relative(cwd, files);
 
-    let options;
-
-    for (let file of files) {
-      const text = await fse.readFile(file, "utf8");
-
-      // only resolve config once
-      if (!options) options = await resolveConfig(file);
-
-      const formatted = await format(text, {
-        ...options,
-        parser: "babel",
-      });
-
-      formattedFiles.push(fse.outputFile(file, formatted));
-    }
-
-    await Promise.all(formattedFiles);
+    await execa(`npx`, [`prettier`, `${rel}`, `--write`], {
+      cwd: cwd,
+    });
 
     await formatSpinner.succeed();
   } catch (error) {

@@ -13,6 +13,7 @@ import {
   formatComponentFilesWithPrettier,
   promptForComponents,
 } from "./utils";
+import { resolve } from "path";
 
 interface Options {
   root: string;
@@ -54,6 +55,7 @@ export async function add(options: Options) {
       await formatComponentFilesWithPrettier({
         config,
         selectedComponentNames,
+        cwd,
       });
     } catch (error) {
       handleError({
