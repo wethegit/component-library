@@ -11,6 +11,7 @@ import {
   logger,
   COMPONENTS_PACKAGE_COMPONENTS_DIR,
   ensureComponentsPackageIsInstalled,
+  installDependencies,
 } from "../../../utils";
 
 import { transformTsToJs } from "./transformTsToJs";
@@ -40,34 +41,88 @@ export async function copyComponentsByName({
   const { componentsRootDir, typescript } = config;
 
   // create components dir if it doesnt exist
-  if (!(await fse.pathExists(componentsRootDir))) {
-    const spinner = ora(
-      `Components root directory ${chalk.cyan(
-        componentsRootDir
-      )} does not exist, creating...`
-    )?.start();
+  await ensureComponentsDir(componentsRootDir);
 
-    try {
-      await fse.ensureDir(componentsRootDir);
+  // build unique list of components and dependencies to copy
+  const [components, dependencies] = buildDepsTree(
+    selectedComponentNames,
+    new Set<string>(selectedComponentNames),
+    new Set<string>()
+  );
 
-      await spinner.succeed();
-    } catch (error) {
-      handleError({
-        error,
-        spinner,
-        exit: true,
-        spinnerText: `Error creating ${chalk.cyan(
-          componentsRootDir
-        )} directory`,
-      });
+  // wait for all files to be copied
+  const allFilesSpinner = ora("Copying files...").start();
+
+  try {
+    const allFilesOperations = await copyComponents({
+      components,
+      componentsPackageRoot,
+      componentsRootDir,
+      typescript,
+      cwd,
+    });
+
+    const allFilesPromise = Promise.all(allFilesOperations);
+
+    const dependenciesPromise = installDependencies(
+      Array.from(dependencies),
+      cwd
+    );
+
+    await Promise.all([allFilesPromise, dependenciesPromise]);
+
+    await allFilesSpinner.succeed();
+  } catch (error) {
+    handleError({ error, spinner: allFilesSpinner, exit: true });
+  }
+}
+
+/**
+ * Given an array of component names, builds a set of all components to copy and node dependencies to install.
+ */
+function buildDepsTree(
+  componentNames: string[],
+  componentsList: Set<string>,
+  dependenciesList: Set<string>
+) {
+  for (let componentName of componentNames) {
+    const { localDependencies, dependencies } = COMPONENTS_INDEX[componentName];
+
+    componentsList.add(componentName);
+
+    if (dependencies && dependencies.length) {
+      for (let dependency of dependencies) {
+        dependenciesList.add(dependency);
+      }
+    }
+
+    if (localDependencies && localDependencies.length) {
+      buildDepsTree(localDependencies, componentsList, dependenciesList);
     }
   }
 
-  const allFilesSpinner = ora("Copying files...").start();
+  return [componentsList, dependenciesList];
+}
 
-  const allFilesPromise = [];
+/**
+ * Copies components by name from the @wethegit/components package to the components directory
+ */
+async function copyComponents({
+  components,
+  componentsPackageRoot,
+  componentsRootDir,
+  typescript,
+  cwd,
+}: {
+  components: Set<string>;
+  componentsPackageRoot: string;
+  componentsRootDir: string;
+  typescript: boolean;
+  cwd: string;
+}) {
+  const allFilesOperations = [];
 
-  for (let componentName of selectedComponentNames) {
+  for (let [componentName] of components.entries()) {
     const componentSpinner = ora(
       `Copying ${chalk.cyan(componentName)}...`
     ).start();
@@ -90,13 +145,13 @@ export async function copyComponentsByName({
         destDir: dest,
       });
 
-      allFilesPromise.push(
+      allFilesOperations.push(
         filePromises
           .then(() => componentSpinner.succeed())
           .catch((error) => handleError({ error, spinner: componentSpinner }))
       );
     } else {
-      allFilesPromise.push(
+      allFilesOperations.push(
         fse
           .copy(src, dest)
           .then(() => componentSpinner.succeed())
@@ -105,12 +160,33 @@ export async function copyComponentsByName({
     }
   }
 
-  // wait for all files to be copied
-  try {
-    await Promise.all(allFilesPromise);
+  return allFilesOperations;
+}
 
-    await allFilesSpinner.succeed();
-  } catch (error) {
-    handleError({ error, spinner: allFilesSpinner, exit: true });
+/**
+ * Ensures the components directory exists
+ */
+async function ensureComponentsDir(componentsRootDir: string) {
+  if (!(await fse.pathExists(componentsRootDir))) {
+    const spinner = ora(
+      `Components root directory ${chalk.cyan(
+        componentsRootDir
+      )} does not exist, creating...`
+    )?.start();
+
+    try {
+      await fse.ensureDir(componentsRootDir);
+
+      await spinner.succeed();
+    } catch (error) {
+      handleError({
+        error,
+        spinner,
+        exit: true,
+        spinnerText: `Error creating ${chalk.cyan(
+          componentsRootDir
+        )} directory`,
+      });
+    }
   }
 }

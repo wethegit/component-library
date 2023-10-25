@@ -2,7 +2,7 @@ import { execa } from "execa";
 import ora from "ora";
 
 import { getPackageManager } from "./getPackageManager";
-import { logger } from "./logger";
+import { handleError } from "./handleError";
 
 export async function installDependencies(deps: string[], cwd: string) {
   const spinner = ora(`Installing dependencies...`)?.start();
@@ -10,6 +10,7 @@ export async function installDependencies(deps: string[], cwd: string) {
   const packageManager = await getPackageManager(cwd);
 
   try {
+    console.log("deps", deps);
     await execa(
       packageManager,
       [packageManager === "npm" ? "install" : "add", ...deps],
@@ -17,10 +18,9 @@ export async function installDependencies(deps: string[], cwd: string) {
         cwd,
       }
     );
+
     await spinner?.succeed();
-  } catch (e) {
-    await spinner?.fail();
-    logger.error("Error installing dependencies");
-    logger.error(e);
+  } catch (error) {
+    handleError({ error, spinner, exit: true });
   }
 }
