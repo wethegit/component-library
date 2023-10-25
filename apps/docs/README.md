@@ -15,4 +15,4 @@ Storybook provides us with an interactive UI playground for our components. This
 
 ## @wethegit/components with dependencies
 
-If you are writing a story for a component that has dependencies, you will need to install those dependencies in here. That is because not only we use the source code directly but they are designed to be copy/pasted, so dependencies are never bundled together.
+If you are writing a story for a component that has node dependencies, you will need to install those dependencies in here. That is because not only we use the source code directly but they are designed to be copy/pasted, so dependencies are never bundled together.
