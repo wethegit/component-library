@@ -66,7 +66,11 @@ We use [Changesets](https://github.com/changesets/changesets) to manage versions
 
 ### Generating the Changelog
 
-To generate your changelog, run `yarn changeset` locally:
+To generate your changelog, run:
+
+```sh
+yarn changeset
+```
 
 1. **Which packages would you like to include?** – This shows which packages changed and which have remained the same. By default, no packages are included. Press `space` to select the packages you want to include in the `changeset`.
 
@@ -87,7 +91,10 @@ Changeset will create a patch file and give you a link for it. Open it, make sur
 ### Versioning the packages
 
 After you created the `changeset` update, you need to generate the changelogs and bump the versions of the packages, to do so run:
-`yarn version-packages`
+
+```sh
+yarn version-packages
+```
 
 ### Releasing
 
