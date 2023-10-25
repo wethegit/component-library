@@ -98,6 +98,6 @@ yarn version-packages
 
 ### Releasing
 
-When you push your code to GitHub, the [GitHub Action](https://github.com/changesets/action) will run the `release` script defined in the root `package.json`.
+When you push your code to GitHub, to the `main` branch, the [GitHub Action](./.github/workflows/release.yml) will run the `release` script defined in the root `package.json`.
 
 Turborepo runs the `build` script for all publishable packages (excluding docs) and publishes the packages to npm.
