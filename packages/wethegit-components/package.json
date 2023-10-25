@@ -16,15 +16,16 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
-    "react": "^18.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "typescript": "5.1.6",
     "classnames": "^2.3.2"
   },
   "devDependencies": {
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "eslint": "^8.15.0",
     "eslint-config-custom": "*",
     "tsconfig": "*",
