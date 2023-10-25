@@ -46,7 +46,7 @@ export async function copyComponentsByName({
   // build unique list of components and dependencies to copy
   const [components, dependencies] = buildDepsTree(
     selectedComponentNames,
-    new Set<string>(selectedComponentNames),
+    new Set<string>(),
     new Set<string>()
   );
 
@@ -86,6 +86,9 @@ function buildDepsTree(
   dependenciesList: Set<string>
 ) {
   for (let componentName of componentNames) {
+    // trying to avoind infinite loops
+    if (componentsList.has(componentName)) continue;
+
     const { localDependencies, dependencies } = COMPONENTS_INDEX[componentName];
 
     componentsList.add(componentName);

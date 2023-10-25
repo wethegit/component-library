@@ -10,7 +10,6 @@ export async function installDependencies(deps: string[], cwd: string) {
   const packageManager = await getPackageManager(cwd);
 
   try {
-    console.log("deps", deps);
     await execa(
       packageManager,
       [packageManager === "npm" ? "install" : "add", ...deps],
