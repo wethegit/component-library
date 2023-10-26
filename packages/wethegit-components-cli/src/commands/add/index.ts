@@ -13,7 +13,6 @@ import {
   formatComponentFilesWithPrettier,
   promptForComponents,
 } from "./utils";
-import { resolve } from "path";
 
 interface Options {
   root: string;

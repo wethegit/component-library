@@ -3,7 +3,8 @@
     "lib": ["ES2023"],
     "module": "ESNext",
     "outDir": "./dist",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "downlevelIteration": true
   },
   "exclude": ["node_modules", "dist"],
   "extends": "tsconfig/base.json",

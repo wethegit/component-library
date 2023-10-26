@@ -1,6 +1,6 @@
 {
   "name": "@wethegit/components",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "main": "./src/index.ts",
   "sideEffects": false,
   "license": "MIT",
@@ -16,21 +16,23 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
-    "react": "^18.1.0",
-    "typescript": "5.1.6"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "5.1.6",
+    "classnames": "^2.3.2"
   },
   "devDependencies": {
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "eslint": "^8.15.0",
     "eslint-config-custom": "*",
     "tsconfig": "*",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "classnames": "^2.3.2"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {}
+  }
 }

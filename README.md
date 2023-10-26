@@ -66,29 +66,38 @@ We use [Changesets](https://github.com/changesets/changesets) to manage versions
 
 ### Generating the Changelog
 
-To generate your changelog, run `yarn changeset` locally:
+To generate your changelog, run:
+
+```sh
+yarn changeset
+```
 
 1. **Which packages would you like to include?** – This shows which packages changed and which have remained the same. By default, no packages are included. Press `space` to select the packages you want to include in the `changeset`.
 
-   1.1. Selected only the packages that changed and note that we **ONLY** publish the `@wethegit/components` and `@wethegit/component-cli` packages, everything else is used internally in the monorepo and the Storybook documentation is published separately to GitHub Pages.
+   1.1. Select only the packages that changed and note that we **ONLY** publish the `@wethegit/components` and `@wethegit/component-cli` packages, so even if others changed, never select them. Everything else is used internally in the monorepo and the Storybook documentation is published separately to GitHub Pages.
 
 2. **Which packages should have a major bump?** – Press `space` to select the packages you want to bump versions for or `enter` to skip.
 
-   2.1. If doing the first major version, confirm you want to release.
-
 3. **Which packages should have a minor bump?** – Press `space` to select the packages you want to bump versions for or `enter` to skip.
+
+   3.1 If you skip both 2 and 3, the changeset will be a **patch**.
 
 4. Write a summary for the changes.
 
 5. Confirm the changeset looks as expected.
 
-### Version the packages
+Changeset will create a patch file and give you a link for it. Open it, make sure everything is okay.
 
-To generate the changelogs and bump the versions of the packages, run:
-`yarn version-packages`
+### Versioning the packages
+
+After you created the `changeset` update, you need to generate the changelogs and bump the versions of the packages, to do so run:
+
+```sh
+yarn version-packages
+```
 
 ### Releasing
 
-When you push your code to GitHub, the [GitHub Action](https://github.com/changesets/action) will run the `release` script defined in the root `package.json`.
+When you push your code to GitHub, to the `main` branch, the [GitHub Action](./.github/workflows/release.yml) will run the `release` script defined in the root `package.json`.
 
 Turborepo runs the `build` script for all publishable packages (excluding docs) and publishes the packages to npm.

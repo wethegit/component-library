@@ -10,10 +10,12 @@ export function promptForComponents() {
         type: "multiselect",
         name: "selectedComponentNames",
         message: "What components would you like to add?",
-        choices: Object.values(COMPONENTS_INDEX).map(({ name }) => ({
-          title: name,
-          value: name,
-        })),
+        choices: Object.values(COMPONENTS_INDEX)
+          .filter(({ dontShowOnPrompt }) => !dontShowOnPrompt)
+          .map(({ name }) => ({
+            title: name,
+            value: name,
+          })),
       },
       {
         type: (val) => (val.length > 0 ? "confirm" : null),

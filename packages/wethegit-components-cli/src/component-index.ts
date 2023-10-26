@@ -5,6 +5,12 @@ export interface ComponentConfig {
    * @default "*"
    */
   files?: string;
+  /** List of local components */
+  localDependencies?: string[];
+  /** List of node packages */
+  dependencies?: string[];
+  /** Should this component appear as an option when running the add command. Default is true  */
+  dontShowOnPrompt?: boolean;
 }
 
 export type ComponentsIndex = {
@@ -14,6 +20,12 @@ export type ComponentsIndex = {
 const COMPONENTS_INDEX: ComponentsIndex = {
   button: {
     name: "button",
+    localDependencies: ["button-dep"],
+  },
+  "button-dep": {
+    name: "button-dep",
+    dependencies: ["classnames"],
+    dontShowOnPrompt: true,
   },
 };
 
