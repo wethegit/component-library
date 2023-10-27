@@ -27,6 +27,10 @@ const COMPONENTS_INDEX: ComponentsIndex = {
     dependencies: ["classnames"],
     dontShowOnPrompt: true,
   },
+  row: {
+    name: "row",
+    dependencies: ["classnames"],
+  },
 };
 
 export default COMPONENTS_INDEX;

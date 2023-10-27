@@ -21,7 +21,7 @@ type Story = StoryObj<typeof Button>;
  * to learn how to use render functions.
  */
 export const Primary: Story = {
-  render: (props) => (
+  render: ({ children, ...props }) => (
     <Button
       {...props}
       onClick={(): void => {
@@ -29,7 +29,7 @@ export const Primary: Story = {
         alert("Hello!");
       }}
     >
-      Hello
+      {children}
     </Button>
   ),
   name: "Button",
