@@ -6,6 +6,9 @@ export interface ButtonProps
   children: React.ReactNode;
 }
 
+/**
+ * Example of a component description!
+ */
 export function Button({ children, ...other }: ButtonProps): JSX.Element {
   return (
     <ButtonDep>
