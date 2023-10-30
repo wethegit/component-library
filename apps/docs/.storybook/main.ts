@@ -29,6 +29,13 @@ const config = {
               "../../../packages/wethegit-components/"
             ),
           },
+          {
+            find: "@local",
+            replacement: resolve(
+              __dirname,
+              "../../../packages/wethegit-components/src/"
+            ),
+          },
         ],
       },
     };
