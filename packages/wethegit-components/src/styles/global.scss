@@ -1,5 +1,6 @@
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
+// Global settings and variables
+@import "@local/styles/settings/settings-layout";
+
+// Global style declarations:
+@import "@local/styles/base/resets.scss";
+@import "@local/styles/base/layout.scss";
