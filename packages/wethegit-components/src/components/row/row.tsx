@@ -16,7 +16,9 @@ export interface RowProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 /**
- * Allows an element to behave as a container in the component library's flex layout system.
+ * A container within the component library's flex layout system. Most often used with `<Column>` components as children.
+ *
+ * The flex layout system does not apply to the small breakpoint.
  */
 export function Row({
   as = "div",
@@ -32,12 +34,12 @@ export function Row({
   const Tag = as || "div";
 
   const classes = classNames(
-    styles.wrap,
+    styles.row,
     { [styles[`align-${align}`]]: align },
     { [styles[`justify-${justify}`]]: justify },
-    { [styles.noWrap]: noWrap },
-    { [styles.reverse]: reverse },
-    { [styles.stackMedium]: stackMedium },
+    noWrap && styles.noWrap,
+    reverse && styles.reverse,
+    stackMedium && styles.stackMedium,
     className
   );
 
