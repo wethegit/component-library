@@ -15,6 +15,9 @@ export interface RowProps extends React.HTMLAttributes<HTMLElement> {
   stackMedium?: boolean;
 }
 
+/**
+ * Allows an element to behave as a container in the component library's flex layout system.
+ */
 export function Row({
   as = "div",
   align = "center",
@@ -26,7 +29,7 @@ export function Row({
   children,
   ...other
 }: RowProps): JSX.Element {
-  const Tag = as;
+  const Tag = as || "div";
 
   const classes = classNames(
     styles.wrap,

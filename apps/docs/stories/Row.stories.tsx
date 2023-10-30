@@ -3,6 +3,17 @@ import { Row } from "@wethegit/components";
 
 const meta: Meta<typeof Row> = {
   component: Row,
+  argTypes: {
+    as: {
+      control: { type: "text" },
+    },
+    align: {
+      control: { type: "select" },
+    },
+    justify: {
+      control: { type: "select" },
+    },
+  },
 };
 
 export default meta;
