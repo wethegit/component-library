@@ -1,0 +1,42 @@
+@use "@local/styles/settings/settings-breakpoints" as *;
+@use "@local/styles/helpers/helpers-layout" as *;
+
+@mixin make-column-classnames($breakpoint: false) {
+  $base-class: "span";
+
+  @if $breakpoint {
+    $base-class: "span-#{$breakpoint}";
+  }
+
+  @for $i from 1 through 12 {
+    .#{$base-class}-#{$i} {
+      flex: 0 0 grid-calc($i);
+    }
+  }
+}
+
+.column {
+  list-style: none;
+  margin: 0;
+  padding-inline: calc(var(--gutter-width, 24px) * 0.5);
+}
+
+.deep {
+  padding-inline: 0;
+}
+
+@media #{$medium-up} {
+  @include make-column-classnames;
+}
+
+@media #{$large-up} {
+  @include make-column-classnames(large);
+}
+
+@media #{$xlarge-up} {
+  @include make-column-classnames(xlarge);
+}
+
+@media #{$xxlarge-up} {
+  @include make-column-classnames(xxlarge);
+}
