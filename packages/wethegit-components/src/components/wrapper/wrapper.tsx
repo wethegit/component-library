@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import styles from "./row.module.scss";
+import styles from "./wrapper.module.scss";
 
 export interface WrapperProps extends React.HTMLAttributes<HTMLElement> {
   as?: React.ElementType;

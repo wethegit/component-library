@@ -1,7 +1,7 @@
-@mixin gutter-highlight($color: blue) {
+@mixin gutter-highlight($color: blue, $size) {
   box-shadow:
-    $color calc(var(--gutter-width) * -0.5) 0 0 0 inset,
-    $color calc(var(--gutter-width) * 0.5) 0 0 0 inset;
+    $color $size 0 0 0 inset,
+    $color calc(#{$size} * -1) 0 0 0 inset;
 }
 
 @mixin dashed-outline {
@@ -34,5 +34,12 @@ code {
 
 .gutter-visualizer {
   @include dashed-outline;
-  @include gutter-highlight(rgb(83 198 82 / 34%));
+  @include gutter-highlight(
+    rgb(83 198 82 / 34%),
+    calc(var(--gutter-width) * 0.5)
+  );
+}
+
+.gutter-visualizer--full {
+  @include gutter-highlight(rgb(83 198 82 / 34%), var(--gutter-width));
 }
