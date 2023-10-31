@@ -2,8 +2,8 @@
 
 .row {
   list-style: none;
-  margin: 0 auto;
-  padding: 0 calc(var(--gutter-width, 24px) * 0.5);
+  margin-inline: auto;
+  padding-inline: calc(var(--gutter-width, 24px) * 0.5);
   width: min(var(--row-width, 1440px), 100%);
 }
 
