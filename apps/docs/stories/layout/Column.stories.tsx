@@ -39,27 +39,13 @@ export default meta;
 
 type Story = StoryObj<typeof Column>;
 
-const rowDebugStyle = {
-  outline: "1px solid blue",
-  boxShadow:
-    "rgb(83 198 82 / 34%) -12px 0 0 0 inset, rgb(83 198 82 / 34%) 12px 0 0 0 inset",
-};
-
-const columnDebugStyle = {
-  backgroundColor: "#eee",
-  backgroundClip: "content-box",
-  outline: "1px solid hotpink",
-  boxShadow:
-    "rgb(83 198 82 / 34%) -12px 0 0 0 inset, rgb(83 198 82 / 34%) 12px 0 0 0 inset",
-};
-
 export const Default: Story = {
-  render: ({ span = 6, ...props }) => (
-    <Row>
-      <Column span={span} {...props}>
-        <p>
-          This <code>{"<Column>"}</code> spans {span} grid columns.
-        </p>
+  render: ({ span = 6, ...args }) => (
+    <Row className="outline">
+      <Column className="outline" span={span} {...args}>
+        <h3>
+          {span} column{span !== 1 ? "s" : ""}
+        </h3>
         <p>
           Qui incididunt ullamco sunt eiusmod et. Do sit incididunt laborum
           laboris. Consequat velit officia magna sit dolore ullamco et
@@ -74,18 +60,28 @@ export const Default: Story = {
 };
 
 export const GutterVisualizer: Story = {
-  render: (props) => (
-    <Row style={rowDebugStyle}>
-      <Column style={columnDebugStyle} {...props}>
-        <span>
-          Qui incididunt ullamco sunt eiusmod et. Do sit incididunt laborum
-          laboris. Consequat velit officia magna sit dolore ullamco et
-          incididunt. Sunt Lorem excepteur Lorem aliquip fugiat ea dolore
-          ullamco. Laboris anim ea enim est magna sint qui. Occaecat ullamco
-          mollit nostrud dolore. Fugiat nostrud dolor ipsum aute eiusmod.
-        </span>
+  render: ({ span = 6, ...args }) => (
+    <Row className="gutter-visualizer">
+      <Column className="gutter-visualizer" span={span} {...args}>
+        <p>
+          The left or right padding on a <code>Row</code> or a{" "}
+          <code>Column</code> is equivalent to half of a gutter's width, within
+          your flex-layout. As shown here, when these components butt-up against
+          one another, they form a gap of exactly one gutter's width.
+        </p>
+        <p>Use the controls to adjust the width of this column.</p>
+        <p>
+          🚀 Note that the padding still applies at the <code>small</code>{" "}
+          breakpoint, despite the lack of a flex-layout there, creating
+          "automatic" gutters for your content.
+        </p>
+      </Column>
+      <Column className="gutter-visualizer" span={3}>
+        <p>
+          This column is set to a fixed span of <code>3</code>.
+        </p>
       </Column>
     </Row>
   ),
-  name: "Column gutter visualizer",
+  name: "Row + Column gutter visualizer",
 };

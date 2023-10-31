@@ -4,9 +4,6 @@ import styles from "./column.module.scss";
 export interface ColumnProps extends React.HTMLAttributes<HTMLElement> {
   as?: React.ElementType;
   deep?: boolean;
-  /**
-   * number of columns to span.
-   */
   span?: number;
   large?: number;
   xlarge?: number;
@@ -21,7 +18,6 @@ export interface ColumnProps extends React.HTMLAttributes<HTMLElement> {
 export function Column({
   as = "div",
   deep = false,
-  /** number of columns to span */
   span,
   large,
   xlarge,

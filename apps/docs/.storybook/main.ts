@@ -15,11 +15,6 @@ const config = {
     name: getAbsolutePath("@storybook/react-vite"),
     options: {},
   },
-  typescript: {
-    reactDocgen: "react-docgen",
-    skipBabel: true,
-    check: false,
-  },
   async viteFinal(config, { configType }) {
     // customize the Vite config here
     return {

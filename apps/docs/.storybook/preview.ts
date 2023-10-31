@@ -2,6 +2,7 @@ import type { Preview } from "@storybook/react";
 import { withThemeByClassName } from "@storybook/addon-themes";
 
 import "@wethegit/components/src/styles/global.scss";
+import "./styles/global-story-styles.scss";
 
 const preview: Preview = {
   parameters: {
