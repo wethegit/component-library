@@ -35,6 +35,10 @@ const COMPONENTS_INDEX: ComponentsIndex = {
     name: "column",
     dependencies: ["classnames"],
   },
+  wrapper: {
+    name: "wrapper",
+    dependencies: ["classnames"],
+  },
 };
 
 export default COMPONENTS_INDEX;

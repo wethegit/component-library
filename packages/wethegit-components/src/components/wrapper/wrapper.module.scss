@@ -1,0 +1,5 @@
+.wrapper {
+  margin-inline: auto;
+  padding-inline: calc(var(--gutter-width, 24px));
+  width: min(var(--row-width, 1440px), 100%);
+}
