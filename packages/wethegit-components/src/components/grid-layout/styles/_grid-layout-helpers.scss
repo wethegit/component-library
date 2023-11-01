@@ -1,0 +1,4 @@
+// Calculates the percentage value of n columns given
+@function grid-calc($n: 1) {
+  @return calc(100 / var(--wtc-number-of-columns) * #{$n} * 1%);
+}

@@ -6,7 +6,7 @@ export interface WrapperProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 /**
- * A container within the component library's layout system, which provides padding of one gutter-width on both the left and the right sides.
+ * A container within the component library's grid layout system, which provides padding of one gutter-width on both the left and the right sides.
  */
 export function Wrapper({
   as = "div",

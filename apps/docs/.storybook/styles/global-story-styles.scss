@@ -36,10 +36,10 @@ code {
   @include dashed-outline;
   @include gutter-highlight(
     rgb(83 198 82 / 34%),
-    calc(var(--gutter-width) * 0.5)
+    calc(var(--wtc-gutter-width) * 0.5)
   );
 }
 
 .gutter-visualizer--full {
-  @include gutter-highlight(rgb(83 198 82 / 34%), var(--gutter-width));
+  @include gutter-highlight(rgb(83 198 82 / 34%), var(--wtc-gutter-width));
 }

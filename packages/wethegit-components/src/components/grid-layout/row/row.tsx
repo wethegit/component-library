@@ -16,9 +16,9 @@ export interface RowProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 /**
- * A container within the component library's flex layout system. Most often used with `<Column>` components as children.
+ * A container within the component library's grid layout system. Most often used with `<Column>` components as children.
  *
- * The flex layout system does not apply to the `small` breakpoint.
+ * The grid layout system does not apply to the `small` breakpoint.
  */
 export function Row({
   as = "div",

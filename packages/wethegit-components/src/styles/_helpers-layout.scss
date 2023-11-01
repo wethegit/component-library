@@ -1,0 +1,28 @@
+// Absolutely positions an element, with an optional inset.
+@mixin full-absolute($inset: null) {
+  position: absolute;
+
+  // Note that zero 0 is considered truthy.
+  @if $inset {
+    bottom: $inset;
+    left: $inset;
+    right: $inset;
+    top: $inset;
+  } @else {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+// Creates a value which is a multiple of the --base-space property.
+@function space-by($multiplier: null) {
+  @if not $multiplier {
+    @return var(--wtc-base-space, 8px);
+  } @else if $multiplier == 1 {
+    @return var(--wtc-base-space, 8px);
+  } @else {
+    @return calc(var(--wtc-base-space, 8px) * #{$multiplier});
+  }
+}

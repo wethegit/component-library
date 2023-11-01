@@ -1,6 +1,9 @@
-// Global settings and variables
-@import "@local/styles/settings/settings-layout";
+// Grid layout system CSS custom properties
+@import "@local/components/grid-layout/styles/grid-layout.scss";
 
-// Global style declarations:
-@import "@local/styles/base/resets.scss";
-@import "@local/styles/base/layout.scss";
+// Global CSS resets
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}

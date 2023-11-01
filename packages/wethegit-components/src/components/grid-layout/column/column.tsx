@@ -11,9 +11,9 @@ export interface ColumnProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 /**
- * Spans the specified number of columns within the component library's flex layout system. Intended to be used as a child of the `<Row>` component. Supports mobile-first, breakpoint-specific settings.
+ * Spans the specified number of columns within the component library's grid layout system. Intended to be used as a child of the `<Row>` component. Supports mobile-first, breakpoint-specific settings.
  *
- * The flex layout system does not apply to the `small` breakpoint.
+ * The grid layout system does not apply to the `small` breakpoint.
  */
 export function Column({
   as = "div",

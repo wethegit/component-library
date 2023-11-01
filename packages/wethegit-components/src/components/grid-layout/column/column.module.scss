@@ -1,5 +1,5 @@
-@use "@local/styles/settings/settings-breakpoints" as *;
-@use "@local/styles/helpers/helpers-layout" as *;
+@use "@local/styles/settings-breakpoints" as *;
+@use "../styles/grid-layout-helpers" as layout;
 
 @mixin make-column-classnames($breakpoint: false) {
   $base-class: "span";
@@ -10,7 +10,7 @@
 
   @for $i from 1 through 12 {
     .#{$base-class}-#{$i} {
-      flex: 0 0 grid-calc($i);
+      flex: 0 0 layout.grid-calc($i);
     }
   }
 }
@@ -18,7 +18,7 @@
 .column {
   list-style: none;
   margin: 0;
-  padding-inline: calc(var(--gutter-width, 24px) * 0.5);
+  padding-inline: calc(var(--wtc-gutter-width, 24px) * 0.5);
 }
 
 .deep {
