@@ -27,16 +27,8 @@ const COMPONENTS_INDEX: ComponentsIndex = {
     dependencies: ["classnames"],
     dontShowOnPrompt: true,
   },
-  row: {
-    name: "row",
-    dependencies: ["classnames"],
-  },
-  column: {
-    name: "column",
-    dependencies: ["classnames"],
-  },
-  wrapper: {
-    name: "wrapper",
+  "grid-layout": {
+    name: "grid-layout",
     dependencies: ["classnames"],
   },
 };
