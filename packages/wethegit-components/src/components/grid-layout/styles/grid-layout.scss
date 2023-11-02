@@ -8,7 +8,6 @@
   --wtc-gutter-width: 16px;
   --wtc-gutter-width-medium-up: 24px;
   --wtc-row-width: calc(var(--wtc-total-width) + var(--wtc-gutter-width) * 2);
-  --wtc-base-space: 8px;
 }
 
 @media #{$medium-up} {

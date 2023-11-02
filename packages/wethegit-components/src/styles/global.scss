@@ -1,7 +1,7 @@
-// Grid layout system CSS custom properties
+@import "@local/styles/settings-layout";
 @import "@local/components/grid-layout/styles/grid-layout.scss";
 
-// Global CSS resets
+// Resets
 *,
 *::after,
 *::before {
