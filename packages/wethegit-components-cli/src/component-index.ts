@@ -18,18 +18,10 @@ export type ComponentsIndex = {
 };
 
 const COMPONENTS_INDEX: ComponentsIndex = {
-  button: {
-    name: "button",
-    localDependencies: ["button-dep"],
-  },
-  "button-dep": {
-    name: "button-dep",
-    dependencies: ["classnames"],
-    dontShowOnPrompt: true,
-  },
   "grid-layout": {
     name: "grid-layout",
     dependencies: ["classnames"],
+    localDependencies: ["tag"],
   },
 };
 
