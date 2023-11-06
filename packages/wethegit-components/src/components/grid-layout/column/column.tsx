@@ -1,32 +1,37 @@
 import classNames from "classnames";
+import { fixedForwardRef } from "@local/utilities";
+import { Tag } from "@local/components";
+import type { TagProps } from "@local/components";
 import styles from "./column.module.scss";
 
-export interface ColumnProps extends React.HTMLAttributes<HTMLElement> {
+export type ColumnProps<TAs extends React.ElementType> = TagProps<TAs> & {
   as?: React.ElementType;
   deep?: boolean;
   span?: number;
   large?: number;
   xlarge?: number;
   xxlarge?: number;
-}
+};
 
 /**
  * Spans the specified number of columns within the component library's grid layout system. Intended to be used as a child of the `<Row>` component. Supports mobile-first, breakpoint-specific settings.
  *
  * The grid layout system does not apply to the `small` breakpoint.
  */
-export function Column({
-  as = "div",
-  deep = false,
-  span,
-  large,
-  xlarge,
-  xxlarge,
-  className,
-  children,
-  ...other
-}: ColumnProps): JSX.Element {
-  const Tag = as || "div";
+function UnwrappedColumn<TAs extends React.ElementType = "div">(
+  {
+    deep = false,
+    span,
+    large,
+    xlarge,
+    xxlarge,
+    className,
+    children,
+    ...rest
+  }: ColumnProps<TAs>,
+  ref: React.ForwardedRef<unknown>
+): JSX.Element {
+  const { as = "div", ...props } = rest;
 
   const classes = classNames(
     styles.column,
@@ -39,8 +44,10 @@ export function Column({
   );
 
   return (
-    <Tag className={classes} {...other}>
+    <Tag className={classes} ref={ref} {...props}>
       {children}
     </Tag>
   );
 }
+
+export const Column = fixedForwardRef(UnwrappedColumn);
