@@ -12,21 +12,6 @@ export type TagProps<TAs extends ElementType> = {
   "as"
 >;
 
-/**
- * This is generic component that can be used to create any HTML tag and infer the type of the props.
- * Taken from the example by the TS wizard Matt Pocock
- * https://github.com/total-typescript/react-typescript-tutorial/blob/main/src/08-advanced-patterns/72-as-prop-with-forward-ref.solution.tsx
- * This should be used by other components that accept an `as` prop.
- *
- * @example Usage for components
- * export type BadgeProps<TAs extends ElementType> = TagProps<TAs>;
- * export function Badge<TAs extends ElementType>({ children }: BadgeProps<TAs>) {
- *   return <Tag className="">{children}</Tag>;
- * }
- *
- * @example Usage for elements
- * <Tag as="a" href="https://www.google.com">Google</Tag>
- */
 function UnwrappedTag<TAs extends ElementType>(
   props: TagProps<TAs>,
   ref: ForwardedRef<unknown>
@@ -35,4 +20,19 @@ function UnwrappedTag<TAs extends ElementType>(
   return <Comp {...rest} ref={ref} />;
 }
 
+/**
+ * This is generic component that can be used to create any HTML tag and infer the type of the props.
+ * Taken from the example by the TS wizard Matt Pocock
+ * https://github.com/total-typescript/react-typescript-tutorial/blob/main/src/08-advanced-patterns/72-as-prop-with-forward-ref.solution.tsx
+ * This should be used by other components that accept an `as` prop.
+ *
+ * @example Usage for components
+ * export type BadgeProps<TAs extends React.ElementType> = TagProps<TAs> & { prop: here };
+ * export function Badge<TAs extends ElementType = 'div/default-element'>({ children }: BadgeProps<TAs>) {
+ *   return <Tag className="">{children}</Tag>;
+ * }
+ *
+ * @example Regular usage
+ * <Tag as="a" href="https://www.google.com">Google</Tag>
+ */
 export const Tag = fixedForwardRef(UnwrappedTag);
