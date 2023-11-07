@@ -24,6 +24,14 @@ And finally, install any components you want to use:
 npx @wethegit/components-cli add
 ```
 
+## 💢 Important 💢
+
+Your project MUST have an alias named `@local/` that points to the root of your source files.
+
+Even with that, the aliases and directories might not match and you might have to tweak the imports manually.
+
+This is temporary and will be removed once we have a proper way to configure/remove aliases on the fly. Patience please 🙏
+
 ## Developing and testing
 
 Make sure you using the required Node version from [nvmrc](./.nvmrc).

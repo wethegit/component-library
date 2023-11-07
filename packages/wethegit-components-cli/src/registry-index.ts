@@ -30,6 +30,12 @@ const GRID_LAYOUT: Registry = {
   ],
 };
 
+const TAG: Registry = {
+  name: "tag",
+  type: "component",
+  dontShowOnPrompt: true,
+};
+
 const FIXED_FORWARD_REF: Registry = {
   name: "fixed-forward-ref",
   type: "utility",
@@ -37,7 +43,8 @@ const FIXED_FORWARD_REF: Registry = {
 };
 
 export const REGISTRY_INDEX: RegistryIndex = {
-  "grid-layout": GRID_LAYOUT,
-  "fixed-forward-ref": FIXED_FORWARD_REF,
+  [GRID_LAYOUT.name]: GRID_LAYOUT,
+  [TAG.name]: TAG,
+  [FIXED_FORWARD_REF.name]: FIXED_FORWARD_REF,
 };
 /* END REGISTRY INDEX */

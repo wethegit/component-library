@@ -92,10 +92,13 @@ function buildDepsTree(
     // trying to avoind infinite loops
     if (localDependenciesList.has(dependency)) continue;
 
+    const registryItem = REGISTRY_INDEX[dependency.name];
+
+    if (!registryItem) continue;
+
     localDependenciesList.add(dependency);
 
-    const { localDependencies, dependencies: nodeDependencies } =
-      REGISTRY_INDEX[dependency.name];
+    const { localDependencies, dependencies: nodeDependencies } = registryItem;
 
     if (nodeDependencies && nodeDependencies.length) {
       for (let packageName of nodeDependencies) {
