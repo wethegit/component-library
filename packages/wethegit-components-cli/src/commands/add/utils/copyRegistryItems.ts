@@ -5,11 +5,15 @@ import chalk from "chalk";
 import { glob } from "glob";
 
 import type { Config } from "../../../index.d";
-import COMPONENTS_INDEX from "../../../component-index";
+import {
+  REGISTRY_INDEX,
+  REGISTRY_TYPE_TO_ROOT_DIR_MAP,
+} from "../../../registry-index";
+import type { Registry } from "../../../registry-index";
+
 import {
   handleError,
   logger,
-  COMPONENTS_PACKAGE_COMPONENTS_DIR,
   ensureComponentsPackageIsInstalled,
   installDependencies,
 } from "../../../utils";
@@ -19,34 +23,34 @@ import { transformTsToJs } from "./transformTsToJs";
 interface CopyComponentsByNameOptions {
   cwd: string;
   config: Config;
-  selectedComponentNames: string[];
+  selectedItems: (keyof Registry)[];
 }
 
 /**
  * Copies components by name from the @wethegit/components package to the components directory.
  */
-export async function copyComponentsByName({
+export async function copyRegistryItems({
   cwd,
   config,
-  selectedComponentNames,
+  selectedItems,
 }: CopyComponentsByNameOptions) {
-  if (!selectedComponentNames.length) {
-    logger.info(`No components selected, exiting...`);
+  if (!selectedItems.length) {
+    logger.info(`No items selected, exiting...`);
 
     return;
   }
 
   const componentsPackageRoot = ensureComponentsPackageIsInstalled();
 
-  const { componentsRootDir, typescript } = config;
+  const { componentsRootDir, utilitiesRootDir, typescript } = config;
 
-  // create components dir if it doesnt exist
-  await ensureComponentsDir(componentsRootDir);
+  // find the registry items from selected names
+  const registryItems = selectedItems.map((name) => REGISTRY_INDEX[name]);
 
   // build unique list of components and dependencies to copy
-  const [components, dependencies] = buildDepsTree(
-    selectedComponentNames,
-    new Set<string>(),
+  const [localDependencies, dependencies] = buildDepsTree(
+    registryItems,
+    new Set<Registry>(),
     new Set<string>()
   );
 
@@ -54,10 +58,11 @@ export async function copyComponentsByName({
   const allFilesSpinner = ora("Copying files...").start();
 
   try {
-    const allFilesOperations = await copyComponents({
-      components,
+    const allFilesOperations = await copyLocalDependencies({
+      localDependencies,
       componentsPackageRoot,
       componentsRootDir,
+      utilitiesRootDir,
       typescript,
       cwd,
     });
@@ -81,63 +86,71 @@ export async function copyComponentsByName({
  * Given an array of component names, builds a set of all components to copy and node dependencies to install.
  */
 function buildDepsTree(
-  componentNames: string[],
-  componentsList: Set<string>,
+  dependencies: Registry[],
+  localDependenciesList: Set<Registry>,
   dependenciesList: Set<string>
-) {
-  for (let componentName of componentNames) {
+): [Set<Registry>, Set<string>] {
+  for (let dependency of dependencies) {
     // trying to avoind infinite loops
-    if (componentsList.has(componentName)) continue;
+    if (localDependenciesList.has(dependency)) continue;
 
-    const { localDependencies, dependencies } = COMPONENTS_INDEX[componentName];
+    localDependenciesList.add(dependency);
 
-    componentsList.add(componentName);
+    if (dependency.type !== "component") continue;
 
-    if (dependencies && dependencies.length) {
-      for (let dependency of dependencies) {
-        dependenciesList.add(dependency);
+    const { localDependencies, dependencies: nodeDependencies } =
+      REGISTRY_INDEX[dependency.name];
+
+    if (nodeDependencies && nodeDependencies.length) {
+      for (let packageName of nodeDependencies) {
+        dependenciesList.add(packageName);
       }
     }
 
     if (localDependencies && localDependencies.length) {
-      buildDepsTree(localDependencies, componentsList, dependenciesList);
+      buildDepsTree(localDependencies, localDependenciesList, dependenciesList);
     }
   }
 
-  return [componentsList, dependenciesList];
+  return [localDependenciesList, dependenciesList];
 }
 
 /**
  * Copies components by name from the @wethegit/components package to the components directory
  */
-async function copyComponents({
-  components,
+async function copyLocalDependencies({
+  localDependencies,
   componentsPackageRoot,
   componentsRootDir,
+  utilitiesRootDir,
   typescript,
   cwd,
 }: {
-  components: Set<string>;
+  localDependencies: Set<Registry>;
   componentsPackageRoot: string;
   componentsRootDir: string;
+  utilitiesRootDir: string;
   typescript: boolean;
   cwd: string;
 }) {
   const allFilesOperations = [];
+  const REGISTRY_TYPE_TO_DEST_DIR_MAP: Record<Registry["type"], string> = {
+    component: componentsRootDir,
+    utility: utilitiesRootDir,
+  };
 
-  for (let [componentName] of components.entries()) {
+  for (let [{ type, name }] of localDependencies.entries()) {
     const componentSpinner = ora(
-      `Copying ${chalk.cyan(componentName)}...`
+      `Copying ${chalk.yellow(type)} ${chalk.cyan(name)}...`
     ).start();
-
-    const { name } = COMPONENTS_INDEX[componentName];
 
     const src = resolve(
       componentsPackageRoot,
-      COMPONENTS_PACKAGE_COMPONENTS_DIR,
+      REGISTRY_TYPE_TO_ROOT_DIR_MAP[type],
       name
     );
-    const dest = resolve(componentsRootDir, name);
+
+    const dest = resolve(REGISTRY_TYPE_TO_DEST_DIR_MAP[type], name);
 
     if (!typescript) {
       const files = await glob("*", { cwd: src, absolute: true });
@@ -164,32 +177,4 @@ async function copyComponents({
   }
 
   return allFilesOperations;
-}
-
-/**
- * Ensures the components directory exists
- */
-async function ensureComponentsDir(componentsRootDir: string) {
-  if (!(await fse.pathExists(componentsRootDir))) {
-    const spinner = ora(
-      `Components root directory ${chalk.cyan(
-        componentsRootDir
-      )} does not exist, creating...`
-    )?.start();
-
-    try {
-      await fse.ensureDir(componentsRootDir);
-
-      await spinner.succeed();
-    } catch (error) {
-      handleError({
-        error,
-        spinner,
-        exit: true,
-        spinnerText: `Error creating ${chalk.cyan(
-          componentsRootDir
-        )} directory`,
-      });
-    }
-  }
 }

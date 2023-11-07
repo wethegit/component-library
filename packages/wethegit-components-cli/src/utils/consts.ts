@@ -12,8 +12,7 @@ export const DEFAULT_CONFIG_FILE_NAME = "components.config.json";
 
 export const DEFAULT_CONFIG: Config = {
   typescript: false,
-  rootDir: "src",
-  componentsRootDir: "components",
-  stylesRootDir: "styles",
-  utilitiesRootDir: "utilities",
+  componentsRootDir: "src/components",
+  stylesRootDir: "src/styles",
+  utilitiesRootDir: "src/utilities",
 };

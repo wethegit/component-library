@@ -16,25 +16,21 @@ export async function resolveConfigPaths({
   cwd,
   config,
 }: ResolveConfigPathsOptions) {
-  let { componentsRootDir, stylesRootDir, rootDir, utilitiesRootDir } = config;
+  let { componentsRootDir, stylesRootDir, utilitiesRootDir } = config;
 
   // resolve required paths
-  if (!rootDir) rootDir = DEFAULT_CONFIG.rootDir;
-
   if (!utilitiesRootDir) utilitiesRootDir = DEFAULT_CONFIG.utilitiesRootDir;
 
   if (!componentsRootDir) componentsRootDir = DEFAULT_CONFIG.componentsRootDir;
 
   if (!stylesRootDir) stylesRootDir = DEFAULT_CONFIG.stylesRootDir;
 
-  rootDir = resolve(cwd, rootDir);
-  componentsRootDir = resolve(rootDir, componentsRootDir);
-  stylesRootDir = resolve(rootDir, stylesRootDir);
-  utilitiesRootDir = resolve(rootDir, utilitiesRootDir);
+  componentsRootDir = resolve(cwd, componentsRootDir);
+  stylesRootDir = resolve(cwd, stylesRootDir);
+  utilitiesRootDir = resolve(cwd, utilitiesRootDir);
 
   return {
     ...config,
-    rootDir,
     utilitiesRootDir,
     componentsRootDir,
     stylesRootDir,

@@ -7,7 +7,7 @@ import {
   handleError,
 } from "../../utils";
 
-import { copyGlobalStyles, copyUtilities } from "./utils";
+import { copyGlobalStyles } from "./utils";
 
 interface Options {
   root: string;
@@ -25,16 +25,6 @@ export async function init({ root, skip }: Options) {
     // copy styles
     try {
       await copyGlobalStyles({ config });
-    } catch (error) {
-      handleError({
-        error,
-        exit: true,
-      });
-    }
-
-    // copy utilities
-    try {
-      await copyUtilities({ config });
     } catch (error) {
       handleError({
         error,

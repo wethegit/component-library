@@ -35,14 +35,20 @@ export async function promptForConfig(
         {
           type: "text",
           name: "componentsRootDir",
-          message: `What is your ${highlight("components")} root directory?`,
+          message: `What is your ${highlight("components")} directory?`,
           initial: DEFAULT_CONFIG.componentsRootDir,
         },
         {
           type: "text",
           name: "stylesRootDir",
-          message: `What is your ${highlight("styles")} root directory?`,
+          message: `What is your ${highlight("styles")} directory?`,
           initial: DEFAULT_CONFIG.stylesRootDir,
+        },
+        {
+          type: "text",
+          name: "utilitiesRootDir",
+          message: `What is your ${highlight("utilities")} directory?`,
+          initial: DEFAULT_CONFIG.utilitiesRootDir,
         },
       ],
       {

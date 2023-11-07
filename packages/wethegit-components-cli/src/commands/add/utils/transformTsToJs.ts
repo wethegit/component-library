@@ -21,6 +21,8 @@ export async function transformTsToJs({
   const defaultTsConfigPath = resolve(cwd, "./tsconfig.json");
   const isThereATsConfig = await fse.pathExists(defaultTsConfigPath);
 
+  await fse.ensureDir(destDir);
+
   const tsProject = new Project({
     ...(isThereATsConfig
       ? { tsConfigFilePath: defaultTsConfigPath }

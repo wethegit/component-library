@@ -9,10 +9,11 @@ import {
 } from "../../utils";
 
 import {
-  copyComponentsByName,
+  copyRegistryItems,
   formatComponentFilesWithPrettier,
   promptForComponents,
 } from "./utils";
+import { REGISTRY_INDEX } from "../../registry-index";
 
 interface Options {
   root: string;
@@ -37,10 +38,10 @@ export async function add(options: Options) {
 
     // copy components
     try {
-      await copyComponentsByName({
+      await copyRegistryItems({
         cwd,
         config,
-        selectedComponentNames,
+        selectedItems: selectedComponentNames,
       });
     } catch (error) {
       handleError({

@@ -1,7 +1,7 @@
 import prompts from "prompts";
 import chalk from "chalk";
 
-import COMPONENTS_INDEX from "../../../component-index";
+import { REGISTRY_INDEX } from "../../../registry-index";
 
 export function promptForComponents() {
   return prompts(
@@ -10,8 +10,11 @@ export function promptForComponents() {
         type: "multiselect",
         name: "selectedComponentNames",
         message: "What components would you like to add?",
-        choices: Object.values(COMPONENTS_INDEX)
-          .filter(({ dontShowOnPrompt }) => !dontShowOnPrompt)
+        choices: Object.values(REGISTRY_INDEX)
+          .filter(
+            ({ dontShowOnPrompt, type }) =>
+              type === "component" && !dontShowOnPrompt
+          )
           .map(({ name }) => ({
             title: name,
             value: name,
