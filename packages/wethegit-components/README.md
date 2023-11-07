@@ -1,6 +1,6 @@
 # @wethegit/components
 
-Set of primitive components for React. Minimally styled. Accessible.
+Set of primitive components built with React. Minimally styled. Accessible.
 The goal of these component is to provide a solid base for your own components.
 
 ### Getting started
@@ -59,26 +59,26 @@ yarn add <package-name> -D
 
 ### Types
 
-If a component is using a package without types add a declaration file with the name of the package, without special characters, to the `./types` directory:
+If a component is using a package without types, add a declaration file with the name of the package, without special characters, to the `./types` directory:
 
 ```ts
 // ./types/<package-name>.d.ts
 declare module "<package-name>";
 ```
 
-## 🧩 You are not done yet!
+### 🧩 You are not done yet!
 
 After you have added your component and is ready to release it, you need to add it to the CLI.
 
-Add an entry to [component-index.ts](../wethegit-components-cli/src/component-index.ts) following the required types described in that file.
+Add an entry to [registry-index.ts](../wethegit-components-cli/src/registry-index.ts) following the required types described in that file.
 
 After that's all done you can release a new version following the instructions in the [project's readme](../../README.md).
 
 ## Using as package
 
-That being said, you can **still** use this library as a dependency if you want to, you most likely already have a bundler in place to handle your React codebase.
+You can **still** use this library as a dependency if you want to, you most likely already have a bundler in place to handle your React codebase.
 
-1. Make sure you are using `typescript` and that you include `node_modules/@wethegit/components/src` in your `tsconfig.json`'s `include` array and also make sure yourbundler also process these files.
+1. Make sure you are using `typescript` and that you include `node_modules/@wethegit/components/src` in your `tsconfig.json`'s `include` array and also make sure your bundler also process these files.
 
 2. Ensure that you have `sass` installed and configured in your bundler.
 
@@ -100,4 +100,4 @@ And use the components you need as you would any other React component:
 import { Button } from "@wethegit/components";
 ```
 
-💡 If the component you want to use has node package dependencies you also have to install them in your project.
+💡 If the component you want to use has dependencies you also have to install them in your project.

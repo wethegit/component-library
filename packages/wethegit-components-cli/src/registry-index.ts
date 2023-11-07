@@ -1,13 +1,10 @@
-import {
-  COMPONENTS_PACKAGE_COMPONENTS_DIR,
-  COMPONENTS_PACKAGE_UTILITIES_DIR,
-} from "./utils";
+export type RegistryType = "component" | "utility";
 
 export interface Registry {
   /** Should be the same name as the item's directory */
   name: string;
   /** The type of item. If empty, component */
-  type: "component" | "utility";
+  type: RegistryType;
   /** A glob pattern to match files to copy from the item directory to the project
    * @default "*"
    */
@@ -21,11 +18,6 @@ export interface Registry {
 }
 
 export type RegistryIndex = Record<string, Registry>;
-
-export const REGISTRY_TYPE_TO_ROOT_DIR_MAP: Record<Registry["type"], string> = {
-  component: COMPONENTS_PACKAGE_COMPONENTS_DIR,
-  utility: COMPONENTS_PACKAGE_UTILITIES_DIR,
-};
 
 /* REGISTRY INDEX */
 const GRID_LAYOUT: Registry = {

@@ -5,10 +5,7 @@ import chalk from "chalk";
 import { glob } from "glob";
 
 import type { Config } from "../../../index.d";
-import {
-  REGISTRY_INDEX,
-  REGISTRY_TYPE_TO_ROOT_DIR_MAP,
-} from "../../../registry-index";
+import { REGISTRY_INDEX } from "../../../registry-index";
 import type { Registry } from "../../../registry-index";
 
 import {
@@ -16,6 +13,7 @@ import {
   logger,
   ensureComponentsPackageIsInstalled,
   installDependencies,
+  REGISTRY_TYPE_TO_ROOT_DIR_MAP,
 } from "../../../utils";
 
 import { transformTsToJs } from "./transformTsToJs";
@@ -95,8 +93,6 @@ function buildDepsTree(
     if (localDependenciesList.has(dependency)) continue;
 
     localDependenciesList.add(dependency);
-
-    if (dependency.type !== "component") continue;
 
     const { localDependencies, dependencies: nodeDependencies } =
       REGISTRY_INDEX[dependency.name];
