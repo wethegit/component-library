@@ -20,6 +20,15 @@ export interface Registry {
 export type RegistryIndex = Record<string, Registry>;
 
 /* REGISTRY INDEX */
+const FLEX: Registry = {
+  name: "flex",
+  category: "component",
+  localDependencies: [
+    { category: "utility", name: "classnames" },
+    { category: "utility", name: "fixed-forward-ref" },
+  ],
+};
+
 const GRID_LAYOUT: Registry = {
   name: "grid-layout",
   category: "component",
@@ -50,6 +59,7 @@ const FIXED_FORWARD_REF: Registry = {
 };
 
 export const REGISTRY_INDEX: RegistryIndex = {
+  [FLEX.name]: FLEX,
   [GRID_LAYOUT.name]: GRID_LAYOUT,
   [TAG.name]: TAG,
   [FIXED_FORWARD_REF.name]: FIXED_FORWARD_REF,
