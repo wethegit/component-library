@@ -6,14 +6,16 @@ import {
   ensureCwd,
   handleError,
   ensureComponentsPackageIsInstalled,
+  installDependencies,
 } from "../../utils";
+import { REGISTRY_INDEX, Registry } from "../../registry-index";
 
 import {
+  buildDepsTree,
   copyRegistryItems,
-  formatComponentFilesWithPrettier,
+  formatRegistryFilesWithPrettier,
   promptForComponents,
 } from "./utils";
-import { REGISTRY_INDEX } from "../../registry-index";
 
 interface Options {
   root: string;
@@ -36,12 +38,26 @@ export async function add(options: Options) {
 
     if (!proceed || selectedComponentNames.length <= 0) process.exit(1);
 
-    // copy components
+    // find the registry items from selected names
+    const registryItems = selectedComponentNames.map(
+      (name) => REGISTRY_INDEX[name]
+    );
+
+    // build unique list of components and dependencies to copy
+    const [localDependencies, dependencies] = buildDepsTree(
+      registryItems,
+      new Set<Registry>(),
+      new Set<string>()
+    );
+
+    const items = Array.from(localDependencies);
+
+    // copy items
     try {
       await copyRegistryItems({
         cwd,
         config,
-        selectedItems: selectedComponentNames,
+        items,
       });
     } catch (error) {
       handleError({
@@ -50,11 +66,21 @@ export async function add(options: Options) {
       });
     }
 
-    // format component files
+    // install dependencies
     try {
-      await formatComponentFilesWithPrettier({
+      await installDependencies(Array.from(dependencies), cwd);
+    } catch (error) {
+      handleError({
+        error,
+        exit: true,
+      });
+    }
+
+    // format items
+    try {
+      await formatRegistryFilesWithPrettier({
         config,
-        selectedComponentNames,
+        items,
         cwd,
       });
     } catch (error) {

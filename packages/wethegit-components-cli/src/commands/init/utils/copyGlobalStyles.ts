@@ -15,11 +15,13 @@ export interface CopyGlobalStylesOptions {
 }
 
 export async function copyGlobalStyles({ config }: CopyGlobalStylesOptions) {
-  if (!config.stylesRootDir) return;
+  if (!config.directories.style) return;
 
   const componentsPackageRoot = ensureComponentsPackageIsInstalled();
 
-  const { stylesRootDir } = config;
+  const {
+    directories: { style: stylesRootDir },
+  } = config;
 
   // create components dir if it doesnt exist
   if (!(await fse.pathExists(stylesRootDir))) {

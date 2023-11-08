@@ -1,4 +1,5 @@
+export * from "./buildDepsTree";
 export * from "./copyRegistryItems";
-export * from "./formatComponentFilesWithPrettier";
+export * from "./formatRegistryFilesWithPrettier";
 export * from "./promptForComponents";
 export * from "./transformTsToJs";

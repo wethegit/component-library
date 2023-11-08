@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 
-import type { Config } from "../index.d";
+import type { Config, ConfigDirectories } from "../index.d";
 
 import { DEFAULT_CONFIG } from "./consts";
 
@@ -16,23 +16,22 @@ export async function resolveConfigPaths({
   cwd,
   config,
 }: ResolveConfigPathsOptions) {
-  let { componentsRootDir, stylesRootDir, utilitiesRootDir } = config;
+  const resolvedDirectories: ConfigDirectories = {
+    ...DEFAULT_CONFIG.directories,
+  };
 
-  // resolve required paths
-  if (!utilitiesRootDir) utilitiesRootDir = DEFAULT_CONFIG.utilitiesRootDir;
-
-  if (!componentsRootDir) componentsRootDir = DEFAULT_CONFIG.componentsRootDir;
-
-  if (!stylesRootDir) stylesRootDir = DEFAULT_CONFIG.stylesRootDir;
-
-  componentsRootDir = resolve(cwd, componentsRootDir);
-  stylesRootDir = resolve(cwd, stylesRootDir);
-  utilitiesRootDir = resolve(cwd, utilitiesRootDir);
+  for (let [key, value] of Object.entries(config.directories) as [
+    keyof ConfigDirectories,
+    string,
+  ][]) {
+    resolvedDirectories[key] = resolve(
+      cwd,
+      value || DEFAULT_CONFIG.directories[key]
+    );
+  }
 
   return {
     ...config,
-    utilitiesRootDir,
-    componentsRootDir,
-    stylesRootDir,
+    directories: resolvedDirectories,
   };
 }

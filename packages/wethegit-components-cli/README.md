@@ -18,15 +18,25 @@ npx @wethegit/components-cli init
 
 As part of the initialization process, the global styles will be copied to the specified directory, `src/styles` by default. Make sure you import them in your project.
 
-Copied files use an alias named `@local/` to import other local files.
-
-Your project must have this alias setup _OR_ you can simply do a find/replace and change it.
-
 Finally, install any components you want to use:
 
 ```bash
 npx @wethegit/components-cli add
 ```
+
+### 💢 Important 💢
+
+Copied files use an alias named `@local/` to import other local files.
+
+It also assumes the following as paths to the local directories:
+
+1. `@local/components`
+2. `@local/styles`
+3. `@local/utilities`
+
+Your project must have these setup _OR_ you can simply do a find/replace and change it.
+
+We are working on a way to make this more flexible.
 
 ## Developing and testing
 

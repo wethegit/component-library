@@ -3,7 +3,10 @@ import chalk from "chalk";
 
 import { REGISTRY_INDEX } from "../../../registry-index";
 
-export function promptForComponents() {
+export function promptForComponents(): Promise<{
+  selectedComponentNames: (keyof typeof REGISTRY_INDEX)[];
+  proceed: boolean;
+}> {
   return prompts(
     [
       {

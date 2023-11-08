@@ -36,19 +36,19 @@ export async function promptForConfig(
           type: "text",
           name: "componentsRootDir",
           message: `What is your ${highlight("components")} directory?`,
-          initial: DEFAULT_CONFIG.componentsRootDir,
+          initial: DEFAULT_CONFIG.directories.component,
         },
         {
           type: "text",
           name: "stylesRootDir",
           message: `What is your ${highlight("styles")} directory?`,
-          initial: DEFAULT_CONFIG.stylesRootDir,
+          initial: DEFAULT_CONFIG.directories.style,
         },
         {
           type: "text",
           name: "utilitiesRootDir",
           message: `What is your ${highlight("utilities")} directory?`,
-          initial: DEFAULT_CONFIG.utilitiesRootDir,
+          initial: DEFAULT_CONFIG.directories.utility,
         },
       ],
       {
@@ -60,7 +60,12 @@ export async function promptForConfig(
 
     config = {
       ...DEFAULT_CONFIG,
-      ...response,
+      directories: {
+        ...DEFAULT_CONFIG.directories,
+        component: response.componentsRootDir,
+        style: response.stylesRootDir,
+        utility: response.utilitiesRootDir,
+      },
     };
 
     const { proceed } = await prompts({

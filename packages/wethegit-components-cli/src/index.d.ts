@@ -1,6 +1,8 @@
+import type { RegistryType } from "./registry-index";
+
+export type ConfigDirectories = Record<RegistryType, string>;
+
 export interface Config {
   typescript: boolean;
-  componentsRootDir: string;
-  stylesRootDir: string;
-  utilitiesRootDir: string;
+  directories: ConfigDirectories;
 }

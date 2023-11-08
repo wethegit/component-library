@@ -1,4 +1,4 @@
-export type RegistryType = "component" | "utility";
+export type RegistryType = "component" | "utility" | "style";
 
 export interface Registry {
   /** Should be the same name as the item's directory */
