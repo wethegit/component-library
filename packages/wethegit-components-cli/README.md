@@ -58,7 +58,7 @@ You should now be able to run `@wethegit/components-cli` from the command line.
 
 At the moment, the CLI only supports `components` and `utilities`. If you want to add a new type of registry item, you need to:
 
-1. Add a new type to [RegistryType](./src/registry-index.ts)
+1. Add a new type to [RegistryCategory](./src/registry-index.ts)
 2. Set the source directory for the new type in [consts](./src/utils/consts.ts)
 
 Those are the basic steps. If this new type require a new directory as destination from the user, we also need to set that up in the config:

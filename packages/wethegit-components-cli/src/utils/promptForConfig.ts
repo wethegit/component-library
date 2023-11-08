@@ -33,6 +33,12 @@ export async function promptForConfig(
           initial: isThereATsConfig,
         },
         {
+          type: (prev) => (prev ? "text" : null),
+          name: "typesRootDir",
+          message: `What is your global ${highlight("types")} directory?`,
+          initial: DEFAULT_CONFIG.directories.type,
+        },
+        {
           type: "text",
           name: "componentsRootDir",
           message: `What is your ${highlight("components")} directory?`,
@@ -58,13 +64,27 @@ export async function promptForConfig(
       }
     );
 
+    const {
+      typescript,
+      typesRootDir,
+      componentsRootDir,
+      stylesRootDir,
+      utilitiesRootDir,
+      ...responseConfig
+    } = response;
+
+    const { directories, ...defaultConfig } = DEFAULT_CONFIG;
+    const { type, ...defaultDirectories } = directories;
+
     config = {
-      ...DEFAULT_CONFIG,
+      ...defaultConfig,
+      ...responseConfig,
       directories: {
-        ...DEFAULT_CONFIG.directories,
-        component: response.componentsRootDir,
-        style: response.stylesRootDir,
-        utility: response.utilitiesRootDir,
+        ...defaultDirectories,
+        component: componentsRootDir,
+        style: stylesRootDir,
+        utility: utilitiesRootDir,
+        type: typesRootDir,
       },
     };
 

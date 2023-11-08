@@ -26,17 +26,14 @@ export async function transformTsToJs({
   await fse.ensureDir(destDir);
 
   const tsProject = new Project({
-    ...(isThereATsConfig
-      ? { tsConfigFilePath: defaultTsConfigPath }
-      : { undefined }),
+    ...(isThereATsConfig ? { tsConfigFilePath: defaultTsConfigPath } : {}),
     skipAddingFilesFromTsConfig: true,
     skipFileDependencyResolution: true,
     compilerOptions: {
       target: ScriptTarget.ESNext,
       outDir: destDir,
       jsx: ts.JsxEmit.Preserve,
-      declaration: true,
-      declarationDir: resolve(cwd, "types"),
+      declaration: false,
     },
   });
 

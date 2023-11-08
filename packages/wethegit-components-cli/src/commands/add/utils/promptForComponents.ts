@@ -15,8 +15,8 @@ export function promptForComponents(): Promise<{
         message: "What components would you like to add?",
         choices: Object.values(REGISTRY_INDEX)
           .filter(
-            ({ dontShowOnPrompt, type }) =>
-              type === "component" && !dontShowOnPrompt
+            ({ dontShowOnPrompt, category }) =>
+              category === "component" && !dontShowOnPrompt
           )
           .map(({ name }) => ({
             title: name,

@@ -47,37 +47,30 @@ export async function add(options: Options) {
     const [localDependencies, dependencies] = buildDepsTree(
       registryItems,
       new Set<Registry>(),
-      new Set<string>()
+      new Set<string>(),
+      !!config.directories.type
     );
 
     const items = Array.from(localDependencies);
 
-    // copy items
     try {
-      await copyRegistryItems({
-        cwd,
-        config,
-        items,
-      });
-    } catch (error) {
-      handleError({
-        error,
-        exit: true,
-      });
-    }
+      let promises: Promise<any>[] = [];
 
-    // install dependencies
-    try {
-      await installDependencies(Array.from(dependencies), cwd);
-    } catch (error) {
-      handleError({
-        error,
-        exit: true,
-      });
-    }
+      // copy items
+      promises.push(
+        copyRegistryItems({
+          cwd,
+          config,
+          items,
+        })
+      );
 
-    // format items
-    try {
+      // install dependencies
+      promises.push(installDependencies(Array.from(dependencies), cwd));
+
+      await Promise.all(promises);
+
+      // format items
       await formatRegistryFilesWithPrettier({
         config,
         items,

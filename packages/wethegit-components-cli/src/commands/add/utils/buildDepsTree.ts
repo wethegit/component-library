@@ -7,7 +7,8 @@ import type { Registry } from "../../../registry-index";
 export function buildDepsTree(
   dependencies: Registry[],
   localDependenciesList: Set<Registry>,
-  dependenciesList: Set<string>
+  dependenciesList: Set<string>,
+  useTypescript: boolean
 ): [Set<Registry>, Set<string>] {
   for (let dependency of dependencies) {
     // trying to avoind infinite loops
@@ -16,6 +17,8 @@ export function buildDepsTree(
     const registryItem = REGISTRY_INDEX[dependency.name];
 
     if (!registryItem) continue;
+
+    if (!useTypescript && registryItem.category === "type") continue;
 
     localDependenciesList.add(dependency);
 
@@ -28,7 +31,12 @@ export function buildDepsTree(
     }
 
     if (localDependencies && localDependencies.length) {
-      buildDepsTree(localDependencies, localDependenciesList, dependenciesList);
+      buildDepsTree(
+        localDependencies,
+        localDependenciesList,
+        dependenciesList,
+        useTypescript
+      );
     }
   }
 

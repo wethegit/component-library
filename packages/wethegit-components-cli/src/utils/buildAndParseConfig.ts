@@ -16,8 +16,6 @@ interface BuildAndParseConfigOptions {
   errorIfNotFound?: boolean;
 }
 
-type BuildAndParseConfigReturn = Config;
-
 /**
  * Builds and parses the config file.
  * If a config file is found, it will be merged with the default config.
@@ -26,14 +24,14 @@ type BuildAndParseConfigReturn = Config;
 export async function buildAndParseConfig(
   root: string,
   options?: BuildAndParseConfigOptions
-): Promise<BuildAndParseConfigReturn> {
+): Promise<Config> {
   const { skipPrompt = false, errorIfNotFound = false } = options || {};
 
   const spinner = ora("Determining config options...").start();
 
   const cwd = root || (await ensureCwd(root));
 
-  let config: Config = DEFAULT_CONFIG;
+  let config: Config;
 
   const localConfigFile = resolve(cwd, DEFAULT_CONFIG_FILE_NAME);
 
@@ -58,10 +56,7 @@ export async function buildAndParseConfig(
       // if we found a local config file, we want to merge it with the default config
       const localConfig = await fse.readJson(localConfigFile);
 
-      config = {
-        ...config,
-        ...localConfig,
-      };
+      config = localConfig;
     } catch (e) {
       await spinner.fail("Error parsing local config file");
       logger.error(e);
@@ -74,14 +69,11 @@ export async function buildAndParseConfig(
     const configFromPrompt = await promptForConfig(cwd, skipPrompt);
 
     // merge with defaults
-    config = {
-      ...config,
-      ...configFromPrompt,
-    };
+    config = configFromPrompt;
   }
 
   // Resolve paths so we can work with them internally
-  const resolvedConfig = await resolveConfigPaths({
+  const resolvedConfig = resolveConfigPaths({
     cwd,
     config,
   });

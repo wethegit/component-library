@@ -38,8 +38,6 @@ export async function copyRegistryItems({
 
   const componentsPackageRoot = ensureComponentsPackageIsInstalled();
 
-  const { typescript } = config;
-
   // wait for all files to be copied
   const allFilesSpinner = ora("Copying files...").start();
 
@@ -48,7 +46,6 @@ export async function copyRegistryItems({
       localDependencies: items,
       componentsPackageRoot,
       config,
-      typescript,
       cwd,
     });
 
@@ -67,30 +64,32 @@ async function copyLocalDependencies({
   localDependencies,
   componentsPackageRoot,
   config,
-  typescript,
   cwd,
 }: {
   localDependencies: Registry[];
   componentsPackageRoot: string;
   config: Config;
-  typescript: boolean;
   cwd: string;
 }) {
   const allFilesOperations = [];
+  const useTypescript = !!config.directories.type;
 
-  for (let { type, name } of localDependencies) {
+  for (let { category, name } of localDependencies) {
+    if (!useTypescript && category === "type") continue;
+
     const componentSpinner = ora(
-      `Copying ${chalk.yellow(type)} ${chalk.cyan(name)}...`
+      `Copying ${chalk.yellow(category)} ${chalk.cyan(name)}...`
     ).start();
 
     const src = resolve(
       componentsPackageRoot,
-      REGISTRY_TYPE_TO_ROOT_DIR_MAP[type]
+      REGISTRY_TYPE_TO_ROOT_DIR_MAP[category]
     );
 
-    const dest = resolve(config.directories[type], name);
+    const rootDestDir = config.directories[category] as string;
+    const dest = resolve(rootDestDir, name);
 
-    if (!typescript) {
+    if (!useTypescript) {
       const files = await glob(join(name, "**/*.*"), {
         cwd: src,
         absolute: true,

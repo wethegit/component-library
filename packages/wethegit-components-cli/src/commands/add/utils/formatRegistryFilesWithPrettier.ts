@@ -53,11 +53,16 @@ export async function formatRegistryFilesWithPrettier({
   const formatSpinner = ora("Formatting output files...").start();
 
   try {
-    const files = items.map(({ name, type }) => {
-      const files = join(config.directories[type], name, "**/*");
+    const files = items
+      .filter(({ category }) => category !== "type")
+      .map(({ name, category }) => {
+        const basePath = config.directories[category];
+        if (!basePath) return "";
 
-      return relative(cwd, files);
-    });
+        const files = join(basePath, name, "**/*");
+
+        return relative(cwd, files);
+      });
 
     await execa(`npx`, [`prettier`, ...files, `--write`], {
       cwd: cwd,

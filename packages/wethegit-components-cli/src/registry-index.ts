@@ -1,10 +1,10 @@
-export type RegistryType = "component" | "utility" | "style";
+export type RegistryCategory = "component" | "utility" | "style" | "type";
 
 export interface Registry {
   /** Should be the same name as the item's directory */
   name: string;
   /** The type of item. If empty, component */
-  type: RegistryType;
+  category: RegistryCategory;
   /** A glob pattern to match files to copy from the item directory to the project
    * @default "*"
    */
@@ -22,23 +22,30 @@ export type RegistryIndex = Record<string, Registry>;
 /* REGISTRY INDEX */
 const GRID_LAYOUT: Registry = {
   name: "grid-layout",
-  type: "component",
+  category: "component",
   dependencies: ["classnames"],
   localDependencies: [
-    { type: "component", name: "tag" },
-    { type: "utility", name: "fixed-forward-ref" },
+    { category: "component", name: "tag" },
+    { category: "utility", name: "fixed-forward-ref" },
+    { category: "type", name: "breakpoints" },
   ],
+};
+
+const BREAKPOINTS_TYPE: Registry = {
+  name: "breakpoints",
+  category: "type",
+  dontShowOnPrompt: true,
 };
 
 const TAG: Registry = {
   name: "tag",
-  type: "component",
+  category: "component",
   dontShowOnPrompt: true,
 };
 
 const FIXED_FORWARD_REF: Registry = {
   name: "fixed-forward-ref",
-  type: "utility",
+  category: "utility",
   dontShowOnPrompt: true,
 };
 
@@ -46,5 +53,6 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [GRID_LAYOUT.name]: GRID_LAYOUT,
   [TAG.name]: TAG,
   [FIXED_FORWARD_REF.name]: FIXED_FORWARD_REF,
+  [BREAKPOINTS_TYPE.name]: BREAKPOINTS_TYPE,
 };
 /* END REGISTRY INDEX */
