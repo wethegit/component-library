@@ -16,13 +16,27 @@ Initialize the project, this step will create the required directories and insta
 npx @wethegit/components-cli init
 ```
 
-As part of the initialization process, the global styles will be copied to specified directory, `src/styles` by default. Make sure you import them in your project.
+As part of the initialization process, the global styles will be copied to the specified directory, `src/styles` by default. Make sure you import them in your project.
 
-And finally, install any components you want to use:
+Finally, install any components you want to use:
 
 ```bash
 npx @wethegit/components-cli add
 ```
+
+### 💢 Important 💢
+
+Copied files use an alias named `@local/` to import other local files.
+
+It also assumes the following as paths to the local directories:
+
+1. `@local/components`
+2. `@local/styles`
+3. `@local/utilities`
+
+Your project must have these setup _OR_ you can simply do a find/replace and change it.
+
+We are working on a way to make this more flexible.
 
 ## Developing and testing
 
@@ -30,7 +44,7 @@ Make sure you using the required Node version from [nvmrc](./.nvmrc).
 
 1. Run `yarn install` from the **root of the monorepo**, not from this package's directory.
 2. `cd` into this package's directory and run `yarn dev`
-3. Run `npm link`. **Note:** it MUST be `npm link` and not `yarn link`
+3. In another terminal run `npm link` from this package's directory. **Note:** it MUST be `npm link` and not `yarn link`
 
 Now that we have a local version of the package available we need a node project to test on. If you have one already, skip to step 3.
 
@@ -39,6 +53,21 @@ Now that we have a local version of the package available we need a node project
 3. Run `npm link @wethegit/components-cli`
 
 You should now be able to run `@wethegit/components-cli` from the command line.
+
+### Adding new types of registry items
+
+At the moment, the CLI only supports `components` and `utilities`. If you want to add a new type of registry item, you need to:
+
+1. Add a new type to [RegistryType](./src/registry-index.ts)
+2. Set the source directory for the new type in [consts](./src/utils/consts.ts)
+
+Those are the basic steps. If this new type require a new directory as destination from the user, we also need to set that up in the config:
+
+1. Add a new property to [Config](./src/index.d.ts) and update [DEFAULT_CONFIG](./src/utils/consts.ts)
+2. Resolve the path during config parsing in [resolveConfigPath](./src/utils/resolveConfigPaths.ts)
+3. Prompt the user for the new path in [promptForConfig](./src/utils/promptForConfig.ts)
+
+That's the gist of it. If there are any other places that need tweaking, Typescript will let you know.
 
 ## Building
 

@@ -1,4 +1,4 @@
-import { relative, resolve } from "node:path";
+import { join, relative, resolve } from "node:path";
 import fse from "fs-extra";
 import chalk from "chalk";
 import prompts from "prompts";
@@ -7,22 +7,23 @@ import { execa } from "execa";
 
 import type { Config } from "../../../index.d";
 import { handleError } from "../../../utils";
+import type { Registry } from "../../../registry-index";
 
 interface FormatFilesWithPrettierOptions {
-  selectedComponentNames: string[];
+  items: Registry[];
   config: Config;
   cwd: string;
 }
 
 /**
- * Formats files in the components output directory with prettier.
+ * Formats files from the registry directories that were copied into the project with prettier.
  */
-export async function formatComponentFilesWithPrettier({
-  selectedComponentNames,
+export async function formatRegistryFilesWithPrettier({
+  items,
   config,
   cwd,
 }: FormatFilesWithPrettierOptions) {
-  if (selectedComponentNames.length <= 0) return;
+  if (items.length <= 0) return;
 
   const isPrettierInstalled = await fse.exists(
     resolve(cwd, "node_modules", "prettier")
@@ -52,18 +53,13 @@ export async function formatComponentFilesWithPrettier({
   const formatSpinner = ora("Formatting output files...").start();
 
   try {
-    // don't even ask if there are no files to format
-    const files = resolve(
-      config.componentsRootDir,
-      selectedComponentNames.length > 1
-        ? `{${selectedComponentNames.join(",")}}`
-        : selectedComponentNames[0],
-      "**/*"
-    );
+    const files = items.map(({ name, type }) => {
+      const files = join(config.directories[type], name, "**/*");
 
-    const rel = relative(cwd, files);
+      return relative(cwd, files);
+    });
 
-    await execa(`npx`, [`prettier`, `${rel}`, `--write`], {
+    await execa(`npx`, [`prettier`, ...files, `--write`], {
       cwd: cwd,
     });
 
