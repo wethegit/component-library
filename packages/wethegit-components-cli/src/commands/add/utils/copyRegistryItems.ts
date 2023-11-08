@@ -23,7 +23,7 @@ interface CopyComponentsByNameOptions {
 }
 
 /**
- * Copies components by name from the @wethegit/components package to the components directory.
+ * Copies elements of the registry from the @wethegit/components package to destination set in the config.
  */
 export async function copyRegistryItems({
   cwd,

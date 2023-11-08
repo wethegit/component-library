@@ -16,7 +16,7 @@ interface FormatFilesWithPrettierOptions {
 }
 
 /**
- * Formats files in the components output directory with prettier.
+ * Formats files from the registry directories that were copied into the project with prettier.
  */
 export async function formatRegistryFilesWithPrettier({
   items,
