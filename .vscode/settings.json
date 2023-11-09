@@ -12,5 +12,6 @@
   },
   "typescript.tsserver.log": "verbose",
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "eslint.codeActionsOnSave.mode": "all"
 }

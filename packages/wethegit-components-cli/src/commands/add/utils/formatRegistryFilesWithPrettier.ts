@@ -5,7 +5,7 @@ import prompts from "prompts";
 import ora from "ora";
 import { execa } from "execa";
 
-import type { Config } from "../../../index.d";
+import type { Config } from "../../../global";
 import { handleError } from "../../../utils";
 import type { Registry } from "../../../registry-index";
 

@@ -4,7 +4,7 @@ import ora from "ora";
 import chalk from "chalk";
 import { glob } from "glob";
 
-import type { Config } from "../../../index.d";
+import type { Config } from "../../../global";
 import type { Registry } from "../../../registry-index";
 
 import {

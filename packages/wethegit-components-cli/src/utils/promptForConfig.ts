@@ -3,7 +3,7 @@ import fse from "fs-extra";
 import chalk from "chalk";
 import prompts from "prompts";
 
-import type { Config } from "../index.d";
+import type { Config } from "../global";
 
 import { DEFAULT_CONFIG } from "./consts";
 

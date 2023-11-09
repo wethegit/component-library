@@ -1,4 +1,4 @@
-import type { Config } from "../index.d";
+import type { Config } from "../global";
 import type { RegistryCategory } from "../registry-index";
 
 export const COMPONENTS_PACKAGE_NAME = "@wethegit/components";

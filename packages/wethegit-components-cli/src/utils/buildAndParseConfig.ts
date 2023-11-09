@@ -3,7 +3,7 @@ import fse from "fs-extra";
 import chalk from "chalk";
 import ora from "ora";
 
-import type { Config } from "../index.d";
+import type { Config } from "../global";
 
 import { DEFAULT_CONFIG, DEFAULT_CONFIG_FILE_NAME } from "./consts";
 import { logger } from "./logger";

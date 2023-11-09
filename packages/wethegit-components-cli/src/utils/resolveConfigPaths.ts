@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 
-import type { Config, Entries } from "../index.d";
+import type { Config, Entries } from "../global";
 
 import { DEFAULT_CONFIG } from "./consts";
 

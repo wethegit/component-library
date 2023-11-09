@@ -3,7 +3,7 @@ import ora from "ora";
 import fse from "fs-extra";
 import chalk from "chalk";
 
-import type { Config } from "../../../index.d";
+import type { Config } from "../../../global";
 import {
   COMPONENTS_PACKAGE_STYLES_DIR,
   ensureComponentsPackageIsInstalled,
