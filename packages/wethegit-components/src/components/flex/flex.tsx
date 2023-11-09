@@ -1,7 +1,7 @@
 import { classnames, fixedForwardRef } from "@local/utilities";
 import { Tag } from "@local/components";
 import type { TagProps } from "@local/components";
-import styles from "./column.module.scss";
+import styles from "./flex.module.scss";
 
 export type FlexProps<TAs extends React.ElementType> = TagProps<TAs> & {
   as?: React.ElementType;
