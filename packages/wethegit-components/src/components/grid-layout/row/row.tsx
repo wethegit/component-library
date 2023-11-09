@@ -1,8 +1,12 @@
-import classNames from "classnames";
+import type { ElementType, ForwardedRef } from "react";
+
+import { classnames, fixedForwardRef } from "@local/utilities";
+import type { TagProps } from "@local/components";
+import { Tag } from "@local/components";
+
 import styles from "./row.module.scss";
 
-export interface RowProps extends React.HTMLAttributes<HTMLElement> {
-  as?: React.ElementType;
+export type RowProps<TAs extends ElementType> = TagProps<TAs> & {
   align?: "flex-start" | "center" | "flex-end" | "baseline" | "stretch";
   justify?:
     | "flex-start"
@@ -13,6 +17,31 @@ export interface RowProps extends React.HTMLAttributes<HTMLElement> {
   noWrap?: boolean;
   reverse?: boolean;
   stackMedium?: boolean;
+};
+
+export function UnwrappedRow<TAs extends React.ElementType>(
+  {
+    align = "center",
+    justify = "center",
+    noWrap = false,
+    reverse = false,
+    stackMedium = false,
+    className,
+    ...props
+  }: RowProps<TAs>,
+  ref: ForwardedRef<unknown>
+): JSX.Element {
+  const classes = classnames([
+    styles.row,
+    align && styles[`align-${align}`],
+    justify && styles[`justify-${justify}`],
+    noWrap && styles.noWrap,
+    reverse && styles.reverse,
+    stackMedium && styles.stackMedium,
+    className,
+  ]);
+
+  return <Tag ref={ref} className={classes} {...props} />;
 }
 
 /**
@@ -20,32 +49,4 @@ export interface RowProps extends React.HTMLAttributes<HTMLElement> {
  *
  * The grid layout system does not apply to the `small` breakpoint.
  */
-export function Row({
-  as = "div",
-  align = "center",
-  justify = "center",
-  noWrap = false,
-  reverse = false,
-  stackMedium = false,
-  className,
-  children,
-  ...other
-}: RowProps): JSX.Element {
-  const Tag = as || "div";
-
-  const classes = classNames(
-    styles.row,
-    { [styles[`align-${align}`]]: align },
-    { [styles[`justify-${justify}`]]: justify },
-    noWrap && styles.noWrap,
-    reverse && styles.reverse,
-    stackMedium && styles.stackMedium,
-    className
-  );
-
-  return (
-    <Tag className={classes} {...other}>
-      {children}
-    </Tag>
-  );
-}
+export const Row = fixedForwardRef(UnwrappedRow);

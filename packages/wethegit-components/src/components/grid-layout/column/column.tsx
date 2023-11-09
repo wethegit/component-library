@@ -1,25 +1,25 @@
-import classNames from "classnames";
+import type { ElementType, ForwardedRef } from "react";
 
+import { classnames } from "@local/utilities";
+import type { ClassnamesProps } from "@local/utilities";
 import { fixedForwardRef } from "@local/utilities";
 import { Tag } from "@local/components";
 import type { TagProps } from "@local/components";
 
 import styles from "./column.module.scss";
 
-export type ColumnProps<TAs extends React.ElementType> = TagProps<TAs> & {
-  as?: React.ElementType;
+export type ColumnProps<TAs extends ElementType> = TagProps<TAs> & {
   deep?: boolean;
-  span?: Record<Exclude<Breakpoint, "sm">, number> | number;
+  span?: Omit<Breakpoints<number>, "sm">;
 };
 
-function UnwrappedColumn<TAs extends React.ElementType = "div">(
-  { deep = false, span, className, children, ...rest }: ColumnProps<TAs>,
-  ref: React.ForwardedRef<unknown>
+function UnwrappedColumn<TAs extends ElementType>(
+  { deep = false, span, className, ...props }: ColumnProps<TAs>,
+  ref: ForwardedRef<unknown>
 ): JSX.Element {
-  const { as = "div", ...props } = rest;
-
   // build classnames from span prop
-  let breakpointClassNames: string[] = [];
+  let breakpointClassNames: ClassnamesProps = [];
+
   if (typeof span === "number") {
     breakpointClassNames.push(styles[`span-${span}`]);
   } else if (typeof span === "object") {
@@ -31,18 +31,14 @@ function UnwrappedColumn<TAs extends React.ElementType = "div">(
     if (xxl) breakpointClassNames.push(styles[`span-xlarge-${xxl}`]);
   }
 
-  const classes = classNames(
+  const classes = classnames([
     styles.column,
     deep && styles.deep,
     breakpointClassNames,
-    className
-  );
+    className,
+  ]);
 
-  return (
-    <Tag className={classes} ref={ref} {...props}>
-      {children}
-    </Tag>
-  );
+  return <Tag className={classes} ref={ref} {...props} />;
 }
 
 /**

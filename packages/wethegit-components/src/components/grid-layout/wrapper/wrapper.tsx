@@ -1,26 +1,19 @@
-import classNames from "classnames";
-import styles from "./wrapper.module.scss";
+import type { ElementType } from "react";
 
-export interface WrapperProps extends React.HTMLAttributes<HTMLElement> {
-  as?: React.ElementType;
-}
+import { classnames } from "@local/utilities";
+import { Tag } from "@local/components";
+import type { TagProps } from "@local/components";
+
+import styles from "./wrapper.module.scss";
 
 /**
  * A container within the component library's grid layout system, which provides padding of one gutter-width on both the left and the right sides.
  */
-export function Wrapper({
-  as = "div",
+export function Wrapper<TAs extends ElementType>({
   className,
-  children,
-  ...other
-}: WrapperProps): JSX.Element {
-  const Tag = as || "div";
+  ...props
+}: TagProps<TAs>): JSX.Element {
+  const classes = classnames([styles.wrapper, className]);
 
-  const classes = classNames(styles.wrapper, className);
-
-  return (
-    <Tag className={classes} {...other}>
-      {children}
-    </Tag>
-  );
+  return <Tag className={classes} {...props} />;
 }

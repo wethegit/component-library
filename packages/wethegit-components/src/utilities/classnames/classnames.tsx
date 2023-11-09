@@ -1,9 +1,8 @@
-type ClassNameValue = string | number | boolean | undefined | null;
+export type ClassnamesProps = string | undefined | null | ClassnamesProps[];
 
-type Argument = string | ClassNameValue[];
-
-export function classnames(classes: Argument): string {
-  if (typeof classes === "string") return classes;
+export function classnames(classes: ClassnamesProps): string {
+  if (!classes) return "";
+  if (!Array.isArray(classes)) return classes;
 
   return classes
     .flat()
