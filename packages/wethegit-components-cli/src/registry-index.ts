@@ -24,6 +24,7 @@ const FLEX: Registry = {
   name: "flex",
   category: "component",
   localDependencies: [
+    { category: "component", name: "tag" },
     { category: "utility", name: "classnames" },
     { category: "utility", name: "fixed-forward-ref" },
   ],
@@ -32,9 +33,9 @@ const FLEX: Registry = {
 const GRID_LAYOUT: Registry = {
   name: "grid-layout",
   category: "component",
-  dependencies: ["classnames"],
   localDependencies: [
-    { category: "component", name: "tag" },
+    { category: "component", name: "flex" },
+    { category: "utility", name: "classnames" },
     { category: "utility", name: "fixed-forward-ref" },
     { category: "type", name: "breakpoints" },
   ],

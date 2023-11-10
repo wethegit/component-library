@@ -1,47 +1,26 @@
 import type { ElementType, ForwardedRef } from "react";
 
 import { classnames, fixedForwardRef } from "@local/utilities";
-import type { TagProps } from "@local/components";
-import { Tag } from "@local/components";
+import type { FlexProps } from "@local/components";
+import { Flex } from "@local/components";
 
 import styles from "./row.module.scss";
 
-export type RowProps<TAs extends ElementType> = TagProps<TAs> & {
-  align?: "flex-start" | "center" | "flex-end" | "baseline" | "stretch";
-  justify?:
-    | "flex-start"
-    | "center"
-    | "flex-end"
-    | "space-between"
-    | "space-around";
-  noWrap?: boolean;
-  reverse?: boolean;
+export type RowProps<T extends ElementType> = FlexProps<T> & {
   stackMedium?: boolean;
 };
 
-export function UnwrappedRow<TAs extends React.ElementType>(
-  {
-    align = "center",
-    justify = "center",
-    noWrap = false,
-    reverse = false,
-    stackMedium = false,
-    className,
-    ...props
-  }: RowProps<TAs>,
+export function UnwrappedRow<T extends React.ElementType>(
+  { stackMedium = false, className, ...props }: RowProps<T>,
   ref: ForwardedRef<unknown>
 ): JSX.Element {
   const classes = classnames([
     styles.row,
-    align && styles[`align-${align}`],
-    justify && styles[`justify-${justify}`],
-    noWrap && styles.noWrap,
-    reverse && styles.reverse,
     stackMedium && styles.stackMedium,
     className,
   ]);
 
-  return <Tag ref={ref} className={classes} {...props} />;
+  return <Flex ref={ref} className={classes} {...props} />;
 }
 
 /**
