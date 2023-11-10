@@ -7,12 +7,6 @@ const meta: Meta<typeof Row> = {
     as: {
       control: { type: "text" },
     },
-    align: {
-      control: { type: "select" },
-    },
-    justify: {
-      control: { type: "select" },
-    },
   },
 };
 
@@ -34,7 +28,7 @@ export const Default: Story = {
           tempor commodo labore enim fugiat ut. Non eu eiusmod duis velit est.
         </p>
       </Column>
-      <Column span={8} xlarge={5}>
+      <Column span={{ md: 8, xl: 5 }}>
         <p>
           This column spans eight columns on medium and large, and five columns
           on xlarge+.

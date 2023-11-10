@@ -14,23 +14,7 @@ const meta: Meta<typeof Column> = {
       description: "Remove gutter padding. Useful for nested flex-layouts.",
     },
     span: {
-      ...columnRange,
       description: "Number of flex-layout columns to span.",
-    },
-    large: {
-      ...columnRange,
-      description:
-        "Number of flex-layout columns to span at the `large-up` breakpoint.",
-    },
-    xlarge: {
-      ...columnRange,
-      description:
-        "Number of flex-layout columns to span at the `xlarge-up` breakpoint.",
-    },
-    xxlarge: {
-      ...columnRange,
-      description:
-        "Number of flex-layout columns to span at the `xxlarge-up` breakpoint.",
     },
   },
 };
