@@ -1,2 +1,2 @@
-export { Column } from "./column";
-export type { ColumnProps } from "./column";
+export { Column } from "./column"
+export type { ColumnProps, ColumnBreakpoints } from "./column"

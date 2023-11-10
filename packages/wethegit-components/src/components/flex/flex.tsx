@@ -1,50 +1,59 @@
-import { classnames, fixedForwardRef } from "@local/utilities";
-import { Tag } from "@local/components";
-import type { TagProps } from "@local/components";
+import type { ElementType, ForwardedRef } from "react"
 
-import styles from "./flex.module.scss";
+import { buildBreakpointClassnames, classnames, fixedForwardRef } from "@local/utilities"
 
-export type FlexProps<TAs extends React.ElementType> = TagProps<TAs> & {
-  as?: React.ElementType;
-  align?: "flex-start" | "center" | "flex-end" | "baseline" | "stretch";
-  justify?:
-    | "flex-start"
-    | "center"
-    | "flex-end"
-    | "space-between"
-    | "space-around";
-  noWrap?: boolean;
-  reverse?: boolean;
-};
+import { Tag } from "../tag"
+import type { TagProps } from "../tag"
 
-function UnwrappedFlex<TAs extends React.ElementType = "div">(
+import styles from "./flex.module.scss"
+
+export type FlexAlign = "flex-start" | "center" | "flex-end" | "baseline" | "stretch"
+export type AlignBreakpoints = Partial<Omit<Breakpoints<FlexAlign>, "sm">>
+
+export type FlexJustify =
+  | "flex-start"
+  | "center"
+  | "flex-end"
+  | "space-between"
+  | "space-around"
+export type JustifyBreakpoints = Partial<Omit<Breakpoints<FlexJustify>, "sm">>
+
+export type FlexProps<TAs extends ElementType> = TagProps<TAs> & {
+  align?: FlexAlign | AlignBreakpoints
+  justify?: FlexJustify | JustifyBreakpoints
+  noWrap?: boolean
+  reverse?: boolean
+}
+
+function UnwrappedFlex<TAs extends ElementType = "div">(
   {
     align = "center",
     justify = "center",
     noWrap = false,
     reverse = false,
     className,
-    children,
-    ...rest
+    ...props
   }: FlexProps<TAs>,
-  ref: React.ForwardedRef<unknown>
+  ref: ForwardedRef<unknown>
 ): JSX.Element {
-  const { as = "div", ...props } = rest;
+  const alignClassnames = buildBreakpointClassnames<FlexAlign>(align, styles, "align")
+
+  const justifyClassnames = buildBreakpointClassnames<FlexJustify>(
+    justify,
+    styles,
+    "justify"
+  )
 
   const classes = classnames([
     styles.flex,
-    align && styles[`align-${align}`],
-    justify && styles[`justify-${justify}`],
+    alignClassnames,
+    justifyClassnames,
     noWrap && styles.noWrap,
     reverse && styles.reverse,
     className,
-  ]);
+  ])
 
-  return (
-    <Tag className={classes} ref={ref} {...props}>
-      {children}
-    </Tag>
-  );
+  return <Tag className={classes} ref={ref} {...props} />
 }
 
 /**
@@ -52,4 +61,4 @@ function UnwrappedFlex<TAs extends React.ElementType = "div">(
  *
  * The grid layout system does not apply to the `small` breakpoint.
  */
-export const Flex = fixedForwardRef(UnwrappedFlex);
+export const Flex = fixedForwardRef(UnwrappedFlex)

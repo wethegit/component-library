@@ -1,18 +1,25 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Row, Column } from "@wethegit/components";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Row, Column } from '@wethegit/components'
 
 const meta: Meta<typeof Row> = {
+  title: 'components/grid-layout/row',
   component: Row,
+  args: {
+    as: 'div',
+  },
   argTypes: {
     as: {
-      control: { type: "text" },
+      control: { type: 'text' },
+      table: {
+        defaultValue: { summary: 'div' },
+      },
     },
   },
-};
+}
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof Row>;
+type Story = StoryObj<typeof Row>
 
 export const Default: Story = {
   render: (args) => (
@@ -36,5 +43,5 @@ export const Default: Story = {
       </Column>
     </Row>
   ),
-  name: "Row",
-};
+  name: 'Row',
+}

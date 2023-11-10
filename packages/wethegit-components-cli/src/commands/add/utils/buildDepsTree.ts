@@ -1,5 +1,5 @@
-import { REGISTRY_INDEX } from "../../../registry-index";
-import type { Registry } from "../../../registry-index";
+import { REGISTRY_INDEX } from "../../../registry-index"
+import type { Registry } from "../../../registry-index"
 
 /**
  * Given an array of registry items, builds a unique set of all items to copy and node dependencies to install.
@@ -12,21 +12,19 @@ export function buildDepsTree(
 ): [Set<Registry>, Set<string>] {
   for (let dependency of dependencies) {
     // trying to avoind infinite loops
-    if (localDependenciesList.has(dependency)) continue;
+    if (localDependenciesList.has(dependency)) continue
 
-    const registryItem = REGISTRY_INDEX[dependency.name];
+    if (!REGISTRY_INDEX[dependency.name]) continue
 
-    if (!registryItem) continue;
+    if (!useTypescript && dependency.category === "type") continue
 
-    if (!useTypescript && registryItem.category === "type") continue;
+    localDependenciesList.add(dependency)
 
-    localDependenciesList.add(dependency);
-
-    const { localDependencies, dependencies: nodeDependencies } = registryItem;
+    const { localDependencies, dependencies: nodeDependencies } = dependency
 
     if (nodeDependencies && nodeDependencies.length) {
       for (let packageName of nodeDependencies) {
-        dependenciesList.add(packageName);
+        dependenciesList.add(packageName)
       }
     }
 
@@ -36,9 +34,9 @@ export function buildDepsTree(
         localDependenciesList,
         dependenciesList,
         useTypescript
-      );
+      )
     }
   }
 
-  return [localDependenciesList, dependenciesList];
+  return [localDependenciesList, dependenciesList]
 }

@@ -1,18 +1,19 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Wrapper } from "@wethegit/components";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Wrapper } from '@wethegit/components'
 
 const meta: Meta<typeof Wrapper> = {
   component: Wrapper,
+  title: 'components/grid-layout/wrapper',
   argTypes: {
     as: {
-      control: { type: "text" },
+      control: { type: 'text' },
     },
   },
-};
+}
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof Wrapper>;
+type Story = StoryObj<typeof Wrapper>
 
 export const Default: Story = {
   render: (args) => (
@@ -28,5 +29,5 @@ export const Default: Story = {
       </p>
     </Wrapper>
   ),
-  name: "Wrapper",
-};
+  name: 'Wrapper',
+}

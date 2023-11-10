@@ -1,23 +1,21 @@
-import type { ComponentPropsWithRef, ElementType, ForwardedRef } from "react";
-import { fixedForwardRef } from "@local/utilities";
+import type { ComponentPropsWithRef, ElementType, ForwardedRef } from "react"
+
+import { fixedForwardRef } from "@local/utilities"
 
 type DistributiveOmit<T, TOmitted extends PropertyKey> = T extends unknown
   ? Omit<T, TOmitted>
-  : never;
+  : never
 
 export type TagProps<TAs extends ElementType> = {
-  as?: TAs;
-} & DistributiveOmit<
-  ComponentPropsWithRef<ElementType extends TAs ? "div" : TAs>,
-  "as"
->;
+  as?: TAs
+} & DistributiveOmit<ComponentPropsWithRef<ElementType extends TAs ? "div" : TAs>, "as">
 
 function UnwrappedTag<TAs extends ElementType>(
   props: TagProps<TAs>,
   ref: ForwardedRef<unknown>
 ): JSX.Element {
-  const { as: Comp = "div", ...rest } = props;
-  return <Comp {...rest} ref={ref} />;
+  const { as: Comp = "div", ...rest } = props
+  return <Comp {...rest} ref={ref} />
 }
 
 /*
@@ -39,4 +37,4 @@ function UnwrappedTag<TAs extends ElementType>(
  * @example Regular usage
  * <Tag as="a" href="https://www.google.com">Google</Tag>
  */
-export const Tag = fixedForwardRef(UnwrappedTag);
+export const Tag = fixedForwardRef(UnwrappedTag)

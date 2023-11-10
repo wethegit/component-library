@@ -1,7 +1,8 @@
-import { forwardRef } from "react";
+import { forwardRef } from "react"
+import type { Ref, ReactNode, RefAttributes } from "react"
 
 type FixedForwardRef = <T, P = object>(
-  render: (props: P, ref: React.Ref<T>) => React.ReactNode
-) => (props: P & React.RefAttributes<T>) => JSX.Element;
+  render: (props: P, ref: Ref<T>) => ReactNode
+) => (props: P & RefAttributes<T>) => JSX.Element
 
-export const fixedForwardRef = forwardRef as FixedForwardRef;
+export const fixedForwardRef = forwardRef as FixedForwardRef
