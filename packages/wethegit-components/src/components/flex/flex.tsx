@@ -8,6 +8,7 @@ import type { TagProps } from "../tag"
 import styles from "./flex.module.scss"
 
 export type FlexAlign = "flex-start" | "center" | "flex-end" | "baseline" | "stretch"
+
 export type AlignBreakpoints = Partial<Omit<Breakpoints<FlexAlign>, "sm">>
 
 export type FlexJustify =
@@ -16,20 +17,23 @@ export type FlexJustify =
   | "flex-end"
   | "space-between"
   | "space-around"
+
 export type JustifyBreakpoints = Partial<Omit<Breakpoints<FlexJustify>, "sm">>
+
+export type BooleanBreakpoints = Partial<Omit<Breakpoints<boolean>, "sm">>
 
 export type FlexProps<TAs extends ElementType> = TagProps<TAs> & {
   align?: FlexAlign | AlignBreakpoints
   justify?: FlexJustify | JustifyBreakpoints
-  noWrap?: boolean
-  reverse?: boolean
+  wrap?: boolean | BooleanBreakpoints
+  reverse?: boolean | BooleanBreakpoints
 }
 
 function UnwrappedFlex<TAs extends ElementType = "div">(
   {
     align = "center",
     justify = "center",
-    noWrap = false,
+    wrap = true,
     reverse = false,
     className,
     ...props
@@ -44,12 +48,16 @@ function UnwrappedFlex<TAs extends ElementType = "div">(
     "justify"
   )
 
+  const wrapClassnames = buildBreakpointClassnames<boolean>(wrap, styles, "wrap")
+
+  const reverseClassnames = buildBreakpointClassnames<boolean>(reverse, styles, "reverse")
+
   const classes = classnames([
     styles.flex,
     alignClassnames,
     justifyClassnames,
-    noWrap && styles.noWrap,
-    reverse && styles.reverse,
+    wrapClassnames,
+    reverseClassnames,
     className,
   ])
 
