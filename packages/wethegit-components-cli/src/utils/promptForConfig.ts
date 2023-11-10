@@ -1,28 +1,23 @@
-import { resolve } from "node:path";
-import fse from "fs-extra";
-import chalk from "chalk";
-import prompts from "prompts";
+import { resolve } from "node:path"
+import fse from "fs-extra"
+import chalk from "chalk"
+import prompts from "prompts"
 
-import type { Config } from "../global";
+import type { Config } from "../global"
 
-import { DEFAULT_CONFIG } from "./consts";
+import { DEFAULT_CONFIG } from "./consts"
 
 /**
  * Prompts the user for config options.
  */
-export async function promptForConfig(
-  cwd: string,
-  skip: boolean
-): Promise<Config> {
-  let config: Config = DEFAULT_CONFIG;
+export async function promptForConfig(cwd: string, skip: boolean): Promise<Config> {
+  let config: Config = DEFAULT_CONFIG
+
+  const defaultTsConfigPath = "./tsconfig.json"
+  const isThereATsConfig = await fse.pathExists(resolve(cwd, defaultTsConfigPath))
 
   if (!skip) {
-    const highlight = (text: string) => chalk.cyan(text);
-
-    const defaultTsConfigPath = "./tsconfig.json";
-    const isThereATsConfig = await fse.pathExists(
-      resolve(cwd, defaultTsConfigPath)
-    );
+    const highlight = (text: string) => chalk.cyan(text)
 
     let response = await prompts(
       [
@@ -59,10 +54,10 @@ export async function promptForConfig(
       ],
       {
         onCancel: () => {
-          process.exit(1);
+          process.exit(1)
         },
       }
-    );
+    )
 
     const {
       typescript,
@@ -71,10 +66,10 @@ export async function promptForConfig(
       stylesRootDir,
       utilitiesRootDir,
       ...responseConfig
-    } = response;
+    } = response
 
-    const { directories, ...defaultConfig } = DEFAULT_CONFIG;
-    const { type, ...defaultDirectories } = directories;
+    const { directories, ...defaultConfig } = DEFAULT_CONFIG
+    const { type, ...defaultDirectories } = directories
 
     config = {
       ...defaultConfig,
@@ -86,17 +81,28 @@ export async function promptForConfig(
         utility: utilitiesRootDir,
         type: typesRootDir,
       },
-    };
+    }
+  } else {
+    const { directories, ...defaultConfig } = DEFAULT_CONFIG
+    const { type, ...defaultDirectories } = directories
 
-    const { proceed } = await prompts({
-      type: "confirm",
-      name: "proceed",
-      message: `Is this correct?\n${JSON.stringify(config, null, 2)}`,
-      initial: true,
-    });
-
-    if (!proceed) process.exit(0);
+    config = {
+      ...defaultConfig,
+      directories: {
+        ...defaultDirectories,
+        type: isThereATsConfig ? type : false,
+      },
+    }
   }
 
-  return config;
+  const { proceed } = await prompts({
+    type: "confirm",
+    name: "proceed",
+    message: `Is this correct?\n${JSON.stringify(config, null, 2)}`,
+    initial: true,
+  })
+
+  if (!proceed) process.exit(0)
+
+  return config
 }

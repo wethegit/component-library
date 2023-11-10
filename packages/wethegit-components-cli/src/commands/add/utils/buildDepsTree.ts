@@ -1,4 +1,3 @@
-import { REGISTRY_INDEX } from "../../../registry-index"
 import type { Registry } from "../../../registry-index"
 
 /**
@@ -13,8 +12,6 @@ export function buildDepsTree(
   for (let dependency of dependencies) {
     // trying to avoind infinite loops
     if (localDependenciesList.has(dependency)) continue
-
-    if (!REGISTRY_INDEX[dependency.name]) continue
 
     if (!useTypescript && dependency.category === "type") continue
 

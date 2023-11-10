@@ -2,43 +2,11 @@
 
 CLI companion for `@wethegit/components`. It allows you to initialize and add components to a project.
 
-## Usage
+For how to use the components in your project, see the [Documentation](https://wethegit.github.io/component-library/).
 
-Install:
+To learn how to contribute, continue reading.
 
-```bash
-yarn add -D @wethegit/components-cli
-```
-
-Initialize the project, this step will create the required directories and install the required dependencies:
-
-```bash
-npx @wethegit/components-cli init
-```
-
-As part of the initialization process, the global styles will be copied to the specified directory, `src/styles` by default. Make sure you import them in your project.
-
-Finally, install any components you want to use:
-
-```bash
-npx @wethegit/components-cli add
-```
-
-### 💢 Important 💢
-
-Copied files use an alias named `@local/` to import other local files.
-
-It also assumes the following as paths to the local directories:
-
-1. `@local/components`
-2. `@local/styles`
-3. `@local/utilities`
-
-Your project must have these setup _OR_ you can simply do a find/replace and change it.
-
-We are working on a way to make this more flexible.
-
-## Developing and testing
+## Developing
 
 Make sure you using the required Node version from [nvmrc](./.nvmrc).
 
@@ -52,16 +20,16 @@ Now that we have a local version of the package available we need a node project
 2. Run `yarn init -y`
 3. Run `npm link @wethegit/components-cli`
 
-You should now be able to run `@wethegit/components-cli` from the command line.
+You should now be able to run `npx @wethegit/components-cli init/add` from the command line.
 
-### Adding new types of registry items
+### Adding new category of registry items
 
-At the moment, the CLI only supports `components` and `utilities`. If you want to add a new type of registry item, you need to:
+If you'd like to add a new category of registry item, you need to:
 
-1. Add a new type to [RegistryCategory](./src/registry-index.ts)
-2. Set the source directory for the new type in [consts](./src/utils/consts.ts)
+1. Add a new category to [RegistryCategory](./src/registry-index.ts)
+2. Set the source directory for the new category in [consts](./src/utils/consts.ts)
 
-Those are the basic steps. If this new type require a new directory as destination from the user, we also need to set that up in the config:
+Those are the basic steps. If this new category require a new directory as destination from the user, we also need to set that up in the config:
 
 1. Add a new property to [Config](./src/index.d.ts) and update [DEFAULT_CONFIG](./src/utils/consts.ts)
 2. Resolve the path during config parsing in [resolveConfigPath](./src/utils/resolveConfigPaths.ts)

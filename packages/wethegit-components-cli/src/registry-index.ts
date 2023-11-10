@@ -20,30 +20,28 @@ export interface Registry {
 export type RegistryIndex = Record<string, Registry>
 
 /* REGISTRY INDEX */
-/* UTILITIES */
-const FIXED_FORWARD_REF: Registry = {
-  name: "fixed-forward-ref",
-  category: "utility",
-  dontShowOnPrompt: true,
-}
-
-const BUILD_BREAKPOINT_CLASSNAMES: Registry = {
-  name: "build-breakpoint-classnames",
-  category: "utility",
-  dontShowOnPrompt: true,
-}
-
-const CLASSNAMES: Registry = {
-  name: "classnames",
-  category: "utility",
-  dontShowOnPrompt: true,
-}
-
 /* TYPES */
 const BREAKPOINTS_TYPE: Registry = {
   name: "breakpoints",
   category: "type",
   dontShowOnPrompt: true,
+}
+
+/* UTILITIES */
+const FIXED_FORWARD_REF: Registry = {
+  name: "fixed-forward-ref",
+  category: "utility",
+}
+
+const BUILD_BREAKPOINT_CLASSNAMES: Registry = {
+  name: "build-breakpoint-classnames",
+  category: "utility",
+  localDependencies: [BREAKPOINTS_TYPE],
+}
+
+const CLASSNAMES: Registry = {
+  name: "classnames",
+  category: "utility",
 }
 
 /* COMPONENTS */
@@ -55,7 +53,13 @@ const TAG: Registry = {
 const FLEX: Registry = {
   name: "flex",
   category: "component",
-  localDependencies: [TAG, CLASSNAMES, FIXED_FORWARD_REF, BUILD_BREAKPOINT_CLASSNAMES],
+  localDependencies: [
+    TAG,
+    CLASSNAMES,
+    FIXED_FORWARD_REF,
+    BUILD_BREAKPOINT_CLASSNAMES,
+    BREAKPOINTS_TYPE,
+  ],
 }
 
 const GRID_LAYOUT: Registry = {
@@ -69,7 +73,5 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [FLEX.name]: FLEX,
   [GRID_LAYOUT.name]: GRID_LAYOUT,
   [TAG.name]: TAG,
-  [FIXED_FORWARD_REF.name]: FIXED_FORWARD_REF,
-  [BREAKPOINTS_TYPE.name]: BREAKPOINTS_TYPE,
 }
 /* END REGISTRY INDEX */
