@@ -15,6 +15,8 @@ module.exports = {
   extends: [
     "plugin:storybook/recommended",
     "plugin:mdx/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
     ...[
       "@vercel/style-guide/eslint/node",
       "@vercel/style-guide/eslint/typescript",
@@ -40,5 +42,6 @@ module.exports = {
   // add rules configurations here
   rules: {
     "import/no-default-export": "off",
+    "typescript-eslint/no-unsafe-assignment": "warning",
   },
 };

@@ -3,7 +3,7 @@ import ora from "ora";
 import fse from "fs-extra";
 import chalk from "chalk";
 
-import type { Config } from "../../../index.d";
+import type { Config } from "../../../global";
 import {
   COMPONENTS_PACKAGE_STYLES_DIR,
   ensureComponentsPackageIsInstalled,
@@ -15,11 +15,13 @@ export interface CopyGlobalStylesOptions {
 }
 
 export async function copyGlobalStyles({ config }: CopyGlobalStylesOptions) {
-  if (!config.stylesRootDir) return;
+  if (!config.directories.style) return;
 
   const componentsPackageRoot = ensureComponentsPackageIsInstalled();
 
-  const { stylesRootDir } = config;
+  const {
+    directories: { style: stylesRootDir },
+  } = config;
 
   // create components dir if it doesnt exist
   if (!(await fse.pathExists(stylesRootDir))) {

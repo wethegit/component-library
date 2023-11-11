@@ -13,6 +13,8 @@ const project = resolve(process.cwd(), "tsconfig.json");
 
 module.exports = {
   extends: [
+    "plugin:import/recommended",
+    "plugin:import/typescript",
     "@vercel/style-guide/eslint/browser",
     "@vercel/style-guide/eslint/typescript",
     "@vercel/style-guide/eslint/react",
@@ -34,5 +36,6 @@ module.exports = {
   // add rules configurations here
   rules: {
     "import/no-default-export": "off",
+    "typescript-eslint/no-unsafe-assignment": "warning",
   },
 };

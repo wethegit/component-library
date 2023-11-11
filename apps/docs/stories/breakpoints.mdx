@@ -1,0 +1,47 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="core/Breakpoints" />
+
+# Breakpoints
+
+**Location:** `<alias-to>/styles/_settings-breakpoints.scss`
+
+This file defines the breakpoints. A few components depend on this to ensure that they are responsive.
+
+Feel free to change the values but **do not delete the variables**.
+
+A lot of components will have props that accept a **breakpoint-object**. This object can be used to define the value for each breakpoint. And follows the following format:
+
+```ts
+type Breakpoints<T> = {
+  sm?: T;
+  md?: T;
+  lg?: T;
+  xl?: T;
+  xxl?: T;
+}
+```
+
+Where `T` is variable depending on the prop. For example, the `Row` component has the `align` prop which accepts a `Breakpoints<string>` object. This means that the `align` prop **breakpoints-object** is an object where each key is a breakpoint and the value is a string.
+
+At the same time, the `Row` component also has the `wrap` prop which accepts a `Breakpoints<boolean>` object. This means that the `wrap` prop **breakpoints-object** is an object where each key is a breakpoint and the value is a boolean.
+
+The keys of the breakpoints object are optional. If a breakpoint is not defined, the default value will be used.
+
+Example usage with the `Row` component:
+```jsx
+<Row
+  align={{
+    md: 'flex-end',
+    lg: 'space-between',
+    xl: 'space-around'
+    xxl: 'space-between'
+  }}
+  wrap={{
+    md: true,
+    lg: false,
+    xl: true,
+    xxl: false
+  }}
+/>
+```

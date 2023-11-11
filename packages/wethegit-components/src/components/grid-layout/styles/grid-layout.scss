@@ -1,0 +1,16 @@
+@use "@local/styles/settings-breakpoints" as *;
+
+// You can find most of these grid layout values in your design program's layout preferences.
+:root {
+  --wtc-total-width: 1392px;
+  --wtc-number-of-columns: 12;
+  --wtc-gutter-width: 16px;
+  --wtc-gutter-width-medium-up: 24px;
+  --wtc-row-width: calc(var(--wtc-total-width) + var(--wtc-gutter-width) * 2);
+}
+
+@media #{$medium-up} {
+  :root {
+    --wtc-gutter-width: var(--wtc-gutter-width-medium-up);
+  }
+}

@@ -5,6 +5,7 @@ import {
   logger,
   ensureCwd,
   handleError,
+  installDependencies,
 } from "../../utils";
 
 import { copyGlobalStyles } from "./utils";
@@ -22,31 +23,22 @@ export async function init({ root, skip }: Options) {
     // Read config and prompt for config if can't find it, optionally skip it and return default
     const config = await buildAndParseConfig(cwd, { skipPrompt: skip });
 
-    // copy styles
     try {
-      await copyGlobalStyles({ config });
+      let promises: Promise<any>[] = [];
+
+      // copy styles
+      promises.push(copyGlobalStyles({ config }));
+
+      // install global required dependencies
+      promises.push(installDependencies(["sass"], cwd));
+
+      await Promise.all(promises);
     } catch (error) {
       handleError({
         error,
         exit: true,
       });
     }
-
-    /*
-      NOTE: in the future we might wanna install required/global dependencies
-      // Install dependencies.
-      const dependenciesSpinner = ora(`Installing dependencies...`)?.start();
-
-      try {
-        await installDependencies(deps);
-        dependenciesSpinner?.succeed();
-      }
-      catch (e) {
-        dependenciesSpinner?.fail();
-        logger.error(e);
-        process.exit(1);
-      }
-    */
 
     logger.info("");
     logger.info(`${chalk.green("Success!")} Project initialization completed.`);

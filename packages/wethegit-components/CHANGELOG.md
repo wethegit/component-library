@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.2.2
+
+### Patch Changes
+
+- Fix recursive typescript transformation. Fix prettier check. Ties config and regitry with types. Adds Tag component for generic components.
+
 ## 2.2.1
 
 ### Patch Changes

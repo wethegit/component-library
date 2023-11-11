@@ -2,35 +2,7 @@
 
 Minally styled, accessible, React component primitives that can be copy and pasted into your project.
 
-### Philosophy
-
-At We The Collective our projects are always visually drastically different. Having a design system with a fixed API and styles doesn't make sense.
-
-These components are designed to be a foundation to be extended upon based on your project's requirements. They are meant to speed up work and provide easy of mind knowing that they are accessible and tested.
-
-To extend that even further this library is developed so that components are copied into your project instead of being imported from a package.
-
-## Getting Started
-
-Check required node version in [`.nvmrc`](./.nvmrc).
-
-Install:
-
-```bash
-npm install -D @wethegit/components-cli
-```
-
-Initialize the project with the CLI:
-
-```bash
-npx @wethegit/components-cli init
-```
-
-Install components:
-
-```bash
-npx @wethegit/components-cli add
-```
+[Documentation]()
 
 ## Development
 

@@ -1,19 +1,16 @@
 # @wethegit/components
 
-Set of primitive components for React. Minimally styled. Accessible.
-The goal of these component is to provide a solid base for your own components.
+For how to use the components, see the [Documentation](https://wethegit.github.io/component-library/).
 
-### Getting started
-
-It's **important** to know that this library is **never** compiled. The source files are provided as is. They are meant to be **copied** into your project.
-
-✨ For an optimal developer experience, use the [CLI](../wethegit-components-cli/README.md).
+To learn how to contribute, continue reading.
 
 ## Developing
 
+It's **important** to know that this library is **never** compiled. The source files are provided as is. They are meant to be **copied** into your project.
+
 Make sure you using the required Node version from [nvmrc](../../.nvmrc).
 
-You will develop and test the components with Storybook.
+You will develop and test the components with **Storybook**.
 
 From the **root** of the repository, run:
 
@@ -30,20 +27,22 @@ When adding a new file, ensure the component is also exported from the main `src
 
 ```tsx
 // src/components/index.tsx
-export * from "./button";
+export * from "./button"
 ```
 
-Export only the necessary pieces of the component and their types from the component directory's `index.tsx` file.
+Export only the necessary pieces of the component and their types from the component's `index.tsx` file.
 
 ```tsx
 // src/components/button/index.tsx
-export { Button } from "./button";
-export type { ButtonProps } from "./button";
+export { Button } from "./button"
+export type { ButtonProps } from "./button"
 ```
 
 ### Dependencies
 
 If your component requires node packages as dependencies, add them to the `peerDependencies` and `devDependencies`:
+
+Run these command from this directory, **not** from the root, otherwise they will be dependencies to the whole monorepo.
 
 First add as a **peer** dependency:
 
@@ -57,47 +56,19 @@ Then as a **dev** dependency:
 yarn add <package-name> -D
 ```
 
-### Types
+### Node dependencies and types
 
-If a component is using a package without types add a declaration file with the name of the package, without special characters, to the `./types` directory:
+If a component is using a node package without types, add a declaration file with the name of the package, without special characters, to the `./types` directory:
 
 ```ts
 // ./types/<package-name>.d.ts
-declare module "<package-name>";
+declare module "<package-name>"
 ```
 
-## 🧩 You are not done yet!
+### 🧩 You are not done yet!
 
 After you have added your component and is ready to release it, you need to add it to the CLI.
 
-Add an entry to [component-index.ts](../wethegit-components-cli/src/component-index.ts) following the required types described in that file.
+Add an entry to [registry-index.ts](../wethegit-components-cli/src/registry-index.ts) following the required types described in that file.
 
 After that's all done you can release a new version following the instructions in the [project's readme](../../README.md).
-
-## Using as package
-
-That being said, you can **still** use this library as a dependency if you want to, you most likely already have a bundler in place to handle your React codebase.
-
-1. Make sure you are using `typescript` and that you include `node_modules/@wethegit/components/src` in your `tsconfig.json`'s `include` array and also make sure yourbundler also process these files.
-
-2. Ensure that you have `sass` installed and configured in your bundler.
-
-Then install the library:
-
-```sh
-npm install @wethegit/components
-```
-
-Import the global styles:
-
-```tsx
-import "@wethegit/components/src/styles/global.scss";
-```
-
-And use the components you need as you would any other React component:
-
-```tsx
-import { Button } from "@wethegit/components";
-```
-
-💡 If the component you want to use has node package dependencies you also have to install them in your project.

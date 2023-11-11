@@ -1,20 +1,24 @@
-import prompts from "prompts";
-import chalk from "chalk";
+import prompts from "prompts"
+import chalk from "chalk"
 
-import COMPONENTS_INDEX from "../../../component-index";
+import { REGISTRY_INDEX } from "../../../registry-index"
+import type { Registry } from "../../../registry-index"
 
-export function promptForComponents() {
+export function promptForComponents(): Promise<{
+  selected: Registry[]
+  proceed: boolean
+}> {
   return prompts(
     [
       {
         type: "multiselect",
-        name: "selectedComponentNames",
+        name: "selected",
         message: "What components would you like to add?",
-        choices: Object.values(COMPONENTS_INDEX)
+        choices: Object.values(REGISTRY_INDEX)
           .filter(({ dontShowOnPrompt }) => !dontShowOnPrompt)
-          .map(({ name }) => ({
-            title: name,
-            value: name,
+          .map((a) => ({
+            title: `${chalk.yellow(a.category)}: ${a.name}`,
+            value: a,
           })),
       },
       {
@@ -28,8 +32,8 @@ export function promptForComponents() {
     ],
     {
       onCancel: () => {
-        process.exit(1);
+        process.exit(1)
       },
     }
-  );
+  )
 }

@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 
-import type { Config } from "../index.d";
+import type { Config, Entries } from "../global";
 
 import { DEFAULT_CONFIG } from "./consts";
 
@@ -9,26 +9,27 @@ interface ResolveConfigPathsOptions {
   config: Config;
 }
 
+type ConfigDirectories = Config["directories"];
+
 /**
  * Resolves the paths in the config with absolute paths so we can use them internally.
  */
-export async function resolveConfigPaths({
+export function resolveConfigPaths({
   cwd,
   config,
-}: ResolveConfigPathsOptions) {
-  let { componentsRootDir, stylesRootDir } = config;
+}: ResolveConfigPathsOptions): Config {
+  const resolvedDirectories: ConfigDirectories = { ...config.directories };
 
-  // resolve required paths
-  if (!componentsRootDir) componentsRootDir = DEFAULT_CONFIG.componentsRootDir;
+  for (let [key, value] of Object.entries(
+    config.directories
+  ) as Entries<ConfigDirectories>) {
+    if (!value) continue;
 
-  if (!stylesRootDir) stylesRootDir = DEFAULT_CONFIG.stylesRootDir;
-
-  componentsRootDir = resolve(cwd, componentsRootDir);
-  stylesRootDir = resolve(cwd, stylesRootDir);
+    resolvedDirectories[key] = resolve(cwd, value);
+  }
 
   return {
     ...config,
-    componentsRootDir,
-    stylesRootDir,
+    directories: resolvedDirectories,
   };
 }

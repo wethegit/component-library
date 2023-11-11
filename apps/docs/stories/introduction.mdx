@@ -1,0 +1,63 @@
+import { Meta } from "@storybook/blocks"
+import { Divider, Cta } from "../components"
+
+<Meta title="Introduction" />
+
+# Component Library
+
+Minally styled, accessible, React component primitives that can be copy and pasted into your project.
+
+### Philosophy
+
+At We The Collective our projects are always visually drastically different. Having a design system with a fixed API and styles doesn't make sense.
+
+These components are designed to be a foundation to be extended upon based on your project's requirements. They are meant to speed up work and provide easy of mind knowing that they are accessible and tested.
+
+To extend that even further this library is developed so that components are copied into your project instead of being imported from a package.
+
+## Getting Started
+
+Make sure you have **Node.js v18+** installed.
+
+Install:
+
+```bash
+npm install -D @wethegit/components-cli
+```
+
+Initialize the project, this step will create the required directories and install the mandatory dependencies.
+
+```bash
+npx @wethegit/components-cli init
+```
+
+After initializing, the global styles will be copied to the specified directory. Make sure you import them in your project.
+
+### Adding components
+
+Add components to your project by running the following command:
+
+```bash
+npx @wethegit/components-cli add
+```
+
+You can also adds components by providing the name as an argument:
+
+```bash
+npx @wethegit/components-cli add grid-layout flex ...etc
+```
+
+The copied files use an alias named `@local/` to import other local files.
+
+It also assumes the following as paths to local directories:
+
+1. `@local/components`
+2. `@local/styles`
+3. `@local/utilities`
+
+Your project must have these setup _OR_ you can simply do a find/replace and change it.
+
+We are working on a way to make this more flexible.
+
+<Divider />
+<Cta>[You should now familiarize yourself with the **Basics**](./?path=/docs/basics--docs)</Cta>
