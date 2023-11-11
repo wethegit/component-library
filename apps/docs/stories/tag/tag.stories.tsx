@@ -18,8 +18,10 @@ type Story = StoryObj<typeof Tag>
 export const Default: Story = {
   render: (args) => (
     <Tag as={Row} {...args}>
-      This <code>&lt;Tag /&gt;</code> component is rendering a <code>&lt;Row /&gt;</code>{" "}
-      component.
+      <span>
+        This <code>&lt;Tag /&gt;</code> component is rendering a{" "}
+        <code>&lt;Row /&gt;</code> component.
+      </span>
     </Tag>
   ),
   name: "Tag",
