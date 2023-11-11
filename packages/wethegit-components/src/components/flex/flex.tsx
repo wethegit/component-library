@@ -29,7 +29,7 @@ export type FlexProps<TAs extends ElementType> = TagProps<TAs> & {
   reverse?: boolean | BooleanBreakpoints
 }
 
-function UnwrappedFlex<TAs extends ElementType = "div">(
+export function UnwrappedFlex<TAs extends ElementType = "div">(
   {
     align = "center",
     justify = "center",

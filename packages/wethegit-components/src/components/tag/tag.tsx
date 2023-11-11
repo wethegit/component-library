@@ -24,7 +24,7 @@ function UnwrappedTag<TAs extends ElementType>(
 */
 
 /**
- * This is generic component that can be used to create any HTML tag and infer the type of the props.
+ * This is a generic component that can be used to create any HTML tag and infer the type of the props.
  * This should be used by other components that accept an `as` prop.
  *
  * @example Usage for components

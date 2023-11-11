@@ -5,10 +5,15 @@ function getAbsolutePath(value) {
 }
 
 const config = {
-  stories: ["../stories/**/*.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: [
+    "../stories/introduction.mdx", // adding this first so it's the default page when you load the docs
+    "../stories/**/*.mdx",
+    "../stories/**/*.stories.@(js|jsx|ts|tsx)",
+  ],
   addons: [
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-essentials"),
+    getAbsolutePath("@storybook/preset-scss"),
   ],
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),
@@ -36,6 +41,10 @@ const config = {
   docs: {
     autodocs: true,
   },
+  managerHead: (head) => `
+    ${head}
+    <style>.css-grrwae[data-selected="true"], .css-grrwae[data-selected="true"] svg { color: #101820 !important; } </style>
+  `,
 }
 
 export default config

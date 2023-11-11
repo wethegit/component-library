@@ -1,5 +1,7 @@
 ## Docs & Storybook
 
+Important: there is a bug with Storybook and Typescript at the moment that incorrectly generates docs if a component uses `forwardRef`. See [https://github.com/storybookjs/storybook/issues/23418](https://github.com/storybookjs/storybook/issues/23418)
+
 Storybook provides us with an interactive UI playground for our components. This allows us to preview our components in the browser and instantly see changes when developing locally. Storybook is configured to:
 
 - Use Vite to bundle stories in milliseconds

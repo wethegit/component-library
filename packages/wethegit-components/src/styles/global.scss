@@ -1,9 +1,1 @@
-@import "@local/styles/settings-layout";
-@import "@local/components/grid-layout/styles/grid-layout.scss";
-
-// Resets
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
+@import "./reset";

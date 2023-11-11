@@ -18,5 +18,7 @@ export function UnwrappedWrapper<TAs extends ElementType = "div">(
 
 /**
  * A container within the component library's grid layout system, which provides padding of one gutter-width on both the left and the right sides.
+ *
+ * Normally used to center content within the viewport.
  */
 export const Wrapper = fixedForwardRef(UnwrappedWrapper)
