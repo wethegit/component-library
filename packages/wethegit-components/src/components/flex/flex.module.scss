@@ -71,7 +71,7 @@
 }
 
 @media #{$xlarge-up} {
-  @include breakpoint-classnames(xlg);
+  @include breakpoint-classnames(xl);
 }
 
 @media #{$xxlarge-up} {
