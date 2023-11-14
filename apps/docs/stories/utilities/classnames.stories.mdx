@@ -29,3 +29,9 @@ The above example will return the following:
 ```typescript
 'button primary is-active'
 ```
+
+## Notes
+
+If the classes parameter is not provided or is `null` or `undefined`, the function returns an empty string.
+
+If a class name is an array or a nested structure of class names, the function flattens the structure and filters out non-string values before joining them.
