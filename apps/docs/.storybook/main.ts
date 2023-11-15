@@ -26,7 +26,7 @@ const config: StorybookConfig = {
     options: {},
   },
   typescript: {
-    reactDocgen: "react-docgen-typescript",
+    reactDocgen: "react-docgen",
   },
   async viteFinal(config) {
     // customize the Vite config here
