@@ -1,9 +1,10 @@
-import type { Preview } from "@storybook/react";
-import { withThemeByClassName } from "@storybook/addon-themes";
-import { wtcTheme } from './wtc-theme'
+import type { Preview } from "@storybook/react"
+import { withThemeByClassName } from "@storybook/addon-themes"
 
-import "@wethegit/components/src/styles/global.scss";
-import "./styles/global-story-styles.scss";
+import { wtcTheme } from "./wtc-theme"
+
+import "@wethegit/components/styles/global.scss"
+import "./styles/global-story-styles.scss"
 
 const preview: Preview = {
   parameters: {
@@ -18,11 +19,11 @@ const preview: Preview = {
       theme: wtcTheme,
     },
     backgrounds: {
-      default: 'wtc',
+      default: "wtc",
       values: [
         {
-          name: 'wtc',
-          value: '#151f29',
+          name: "wtc",
+          value: "#151f29",
         },
       ],
     },
@@ -36,6 +37,6 @@ const preview: Preview = {
       defaultTheme: "light",
     }),
   ],
-};
+}
 
-export default preview;
+export default preview

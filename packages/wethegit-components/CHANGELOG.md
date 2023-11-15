@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.2.3
+
+### Patch Changes
+
+- fix grid class names and improves reset
+
 ## 2.2.2
 
 ### Patch Changes

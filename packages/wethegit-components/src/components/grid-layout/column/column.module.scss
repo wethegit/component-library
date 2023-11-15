@@ -31,13 +31,13 @@
 }
 
 @media #{$large-up} {
-  @include make-column-classnames(large);
+  @include make-column-classnames(lg);
 }
 
 @media #{$xlarge-up} {
-  @include make-column-classnames(xlarge);
+  @include make-column-classnames(xl);
 }
 
 @media #{$xxlarge-up} {
-  @include make-column-classnames(xxlarge);
+  @include make-column-classnames(xxl);
 }

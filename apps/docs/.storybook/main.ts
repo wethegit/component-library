@@ -1,10 +1,16 @@
 import { dirname, join, resolve } from "path"
+import type { StorybookConfig } from "@storybook/react-vite"
+
+const COMPONENTS_PACKAGE_PATH = resolve(
+  __dirname,
+  "../../../packages/wethegit-components/src"
+)
 
 function getAbsolutePath(value) {
   return dirname(require.resolve(join(value, "package.json")))
 }
 
-const config = {
+const config: StorybookConfig = {
   stories: [
     "../stories/introduction.mdx", // adding this first so it's the default page when you load the docs
     "../stories/**/*.mdx",
@@ -16,8 +22,11 @@ const config = {
     getAbsolutePath("@storybook/preset-scss"),
   ],
   framework: {
-    name: getAbsolutePath("@storybook/react-vite"),
+    name: "@storybook/react-vite",
     options: {},
+  },
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
   },
   async viteFinal(config) {
     // customize the Vite config here
@@ -28,11 +37,11 @@ const config = {
         alias: [
           {
             find: "@wethegit/components",
-            replacement: resolve(__dirname, "../../../packages/wethegit-components/"),
+            replacement: COMPONENTS_PACKAGE_PATH,
           },
           {
             find: "@local",
-            replacement: resolve(__dirname, "../../../packages/wethegit-components/src/"),
+            replacement: COMPONENTS_PACKAGE_PATH,
           },
         ],
       },
@@ -41,10 +50,6 @@ const config = {
   docs: {
     autodocs: true,
   },
-  managerHead: (head) => `
-    ${head}
-    <style>.css-grrwae[data-selected="true"], .css-grrwae[data-selected="true"] svg { color: #101820 !important; } </style>
-  `,
 }
 
 export default config

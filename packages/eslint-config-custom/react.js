@@ -1,6 +1,6 @@
-const { resolve } = require("node:path");
+const { resolve } = require("node:path")
 
-const project = resolve(process.cwd(), "tsconfig.json");
+const project = resolve(process.cwd(), "tsconfig.json")
 
 /*
  * This is a custom ESLint configuration for use a library
@@ -32,10 +32,10 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: ["node_modules/", "dist/", ".eslintrc.js", "**/*.css"],
+  ignorePatterns: ["node_modules/", "dist/", ".eslintrc.js", "**/*.{css, scss}"],
   // add rules configurations here
   rules: {
     "import/no-default-export": "off",
     "typescript-eslint/no-unsafe-assignment": "warning",
   },
-};
+}
