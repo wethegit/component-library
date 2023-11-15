@@ -68,10 +68,17 @@ const GRID_LAYOUT: Registry = {
   localDependencies: [FLEX],
 }
 
+const VISUALLY_HIDDEN: Registry = {
+  name: "visually-hidden",
+  category: "component",
+  localDependencies: [TAG, CLASSNAMES],
+}
+
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
   [FLEX.name]: FLEX,
   [GRID_LAYOUT.name]: GRID_LAYOUT,
   [TAG.name]: TAG,
+  [VISUALLY_HIDDEN.name]: VISUALLY_HIDDEN,
 }
 /* END REGISTRY INDEX */
