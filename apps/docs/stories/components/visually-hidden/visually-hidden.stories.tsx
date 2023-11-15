@@ -5,6 +5,9 @@ const meta: Meta<typeof VisuallyHidden> = {
   title: "components/visually-hidden",
   component: VisuallyHidden,
   tags: ["autodocs"],
+  args: {
+    as: "span",
+  },
   argTypes: {
     as: {
       control: { type: "text" },
