@@ -1,4 +1,4 @@
-import { dirname, join, resolve } from "path"
+import { dirname, join, resolve, relative } from "node:path"
 import type { StorybookConfig } from "@storybook/react-vite"
 
 const COMPONENTS_PACKAGE_PATH = resolve(
@@ -6,6 +6,7 @@ const COMPONENTS_PACKAGE_PATH = resolve(
   "../../../packages/wethegit-components/src"
 )
 
+console.log(join(COMPONENTS_PACKAGE_PATH, "**/*.tsx"))
 function getAbsolutePath(value) {
   return dirname(require.resolve(join(value, "package.json")))
 }
@@ -27,6 +28,11 @@ const config: StorybookConfig = {
   },
   typescript: {
     reactDocgen: "react-docgen",
+    reactDocgenTypescriptOptions: {
+      include: [join(COMPONENTS_PACKAGE_PATH, "**/*.tsx")],
+    },
+    skipBabel: true,
+    check: false,
   },
   async viteFinal(config) {
     // customize the Vite config here

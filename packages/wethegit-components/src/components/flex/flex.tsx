@@ -1,9 +1,8 @@
 import type { ElementType, ForwardedRef } from "react"
 
+import { Tag } from "@local/components"
+import type { TagProps } from "@local/components"
 import { buildBreakpointClassnames, classnames, fixedForwardRef } from "@local/utilities"
-
-import { Tag } from "../tag"
-import type { TagProps } from "../tag"
 
 import styles from "./flex.module.scss"
 
@@ -23,13 +22,32 @@ export type JustifyBreakpoints = Partial<Omit<Breakpoints<FlexJustify>, "sm">>
 export type BooleanBreakpoints = Partial<Omit<Breakpoints<boolean>, "sm">>
 
 export type FlexProps<TAs extends ElementType> = TagProps<TAs> & {
+  /**
+   * Alignment on the cross axis. Accepts a `string` or a `breakpoint-object`
+   */
   align?: FlexAlign | AlignBreakpoints
+  /**
+   * Alignment on the main axis. Accepts a `string` or a `breakpoint-object`
+   */
   justify?: FlexJustify | JustifyBreakpoints
+  /**
+   * Whether or not to wrap children. Accepts a `boolean` or a `breakpoint-object`
+   */
   wrap?: boolean | BooleanBreakpoints
+  /**
+   * Whether or not to reverse the order of children. Accepts a `boolean` or a `breakpoint-object`
+   */
   reverse?: boolean | BooleanBreakpoints
 }
 
-export function UnwrappedFlex<TAs extends ElementType = "div">(
+/**
+ * Spans the specified number of columns within the component library's grid layout system. Intended to be used as a child of the `<Row>` component. Supports mobile-first, breakpoint-specific settings.
+ *
+ * The grid layout system does not apply to the `small` breakpoint.
+ *
+ * Learn more about [Breakpoints](https://wethegit.github.io/component-library/?path=/docs/core-breakpoints--docs).
+ */
+export const Flex = fixedForwardRef(function Flex<TAs extends ElementType = "div">(
   {
     align = "center",
     justify = "center",
@@ -39,7 +57,7 @@ export function UnwrappedFlex<TAs extends ElementType = "div">(
     ...props
   }: FlexProps<TAs>,
   ref: ForwardedRef<unknown>
-): JSX.Element {
+) {
   const alignClassnames = buildBreakpointClassnames<FlexAlign>(align, styles, "align")
 
   const justifyClassnames = buildBreakpointClassnames<FlexJustify>(
@@ -62,11 +80,4 @@ export function UnwrappedFlex<TAs extends ElementType = "div">(
   ])
 
   return <Tag className={classes} ref={ref} {...props} />
-}
-
-/**
- * Spans the specified number of columns within the component library's grid layout system. Intended to be used as a child of the `<Row>` component. Supports mobile-first, breakpoint-specific settings.
- *
- * The grid layout system does not apply to the `small` breakpoint.
- */
-export const Flex = fixedForwardRef(UnwrappedFlex)
+})

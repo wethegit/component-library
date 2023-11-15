@@ -8,30 +8,9 @@ const DEFAULT_SPAN: ColumnBreakpoints = { md: 4, lg: 8 }
 const meta = {
   title: "components/grid-layout/column",
   component: Column,
-  tags: ["autodocs"],
   args: {
     as: "div",
     span: DEFAULT_SPAN,
-  },
-  argTypes: {
-    as: {
-      control: { type: "text" },
-      description: "The HTMLElement to render.",
-      table: {
-        defaultValue: { summary: "div" },
-      },
-    },
-    deep: {
-      description: "Remove gutter padding. Useful for nested flex-layouts.",
-      control: { type: "boolean", default: false },
-    },
-    span: {
-      description:
-        "Number of flex-layout columns to span. Accepts a `number` or a `breakpoint-object`.",
-      control: {
-        type: "object",
-      },
-    },
   },
 } satisfies Meta<typeof Column>
 
@@ -57,7 +36,6 @@ function howManyColumns(span: ColumnBreakpoints | number) {
 }
 
 export const Default: Story = {
-  name: "Column",
   render: ({ span, ...args }) => (
     <Row>
       <Column span={span} {...args}>

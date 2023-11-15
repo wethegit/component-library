@@ -1,23 +1,16 @@
 import type { ElementType, ForwardedRef } from "react"
 
 import { classnames, fixedForwardRef } from "@local/utilities"
-
-import type { FlexProps } from "../../flex"
-import { Flex } from "../../flex"
+import { Flex } from "@local/components"
+import type { FlexProps } from "@local/components"
 
 import styles from "./row.module.scss"
 
 export type RowProps<T extends ElementType> = FlexProps<T> & {
+  /**
+   * Whether or not to stack children on the `md` breakpoint
+   */
   stackMedium?: boolean
-}
-
-export function UnwrappedRow<T extends ElementType = "div">(
-  { stackMedium = false, className, ...props }: RowProps<T>,
-  ref: ForwardedRef<unknown>
-): JSX.Element {
-  const classes = classnames([styles.row, stackMedium && styles.stackMedium, className])
-
-  return <Flex ref={ref} className={classes} {...props} />
 }
 
 /**
@@ -25,4 +18,11 @@ export function UnwrappedRow<T extends ElementType = "div">(
  *
  * The grid layout system does not apply to the `sm` breakpoint.
  */
-export const Row = fixedForwardRef(UnwrappedRow)
+export const Row = fixedForwardRef(function Row<T extends ElementType = "div">(
+  { stackMedium = false, className, ...props }: RowProps<T>,
+  ref: ForwardedRef<unknown>
+) {
+  const classes = classnames([styles.row, stackMedium && styles.stackMedium, className])
+
+  return <Flex ref={ref} className={classes} {...props} />
+})
