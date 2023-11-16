@@ -9,12 +9,15 @@
     "lint": "turbo run lint --no-cache",
     "release": "turbo run build --filter=^@wethegit/components-docs && changeset publish",
     "typecheck": "turbo run typecheck",
-    "version-packages": "changeset version"
+    "version-packages": "changeset version",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
     "eslint": "^8.48.0",
     "eslint-config-custom": "*",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
     "prettier": "^3.0.3",
     "tsconfig": "*",
     "turbo": "latest"
@@ -23,5 +26,13 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "lint-staged": {
+    "packages/**/*.{js,ts,jsx,tsx}": [
+      "eslint --fix"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
+  }
 }
