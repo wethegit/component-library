@@ -1,5 +1,6 @@
-@import "@wethegit/components/components/grid-layout/styles/grid-layout.scss";
-@import "@wethegit/components/components/text/styles/typography.scss";
+@import "@local/styles/global.scss";
+@import "@local/components/grid-layout/styles/grid-layout.scss";
+@import "@local/components/text/styles/typography.scss";
 
 @mixin gutter-highlight($color: blue, $size) {
   box-shadow:

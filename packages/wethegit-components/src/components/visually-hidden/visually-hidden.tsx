@@ -1,7 +1,7 @@
 import { ElementType } from "react"
 
-import { Tag } from "@local/components/tag"
-import type { TagProps } from "@local/components/tag"
+import { Tag } from "@local/components"
+import type { TagProps } from "@local/components"
 import { classnames } from "@local/utilities"
 
 import styles from "./visually-hidden.module.scss"

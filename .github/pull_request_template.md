@@ -1,4 +1,4 @@
-# (cli/components/docs/other) fix/release/feature/patch: title
+# (cli/components) fix/release/feature/patch: title
 
 ## Description
 

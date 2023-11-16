@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Row, Column } from "@wethegit/components"
-import type { ColumnBreakpoints } from "@wethegit/components"
+import { Row, Column } from "@local/components"
+import type { ColumnBreakpoints } from "@local/components"
 
 const DEFAULT_SPAN: ColumnBreakpoints = { md: 4, lg: 8 }
 
@@ -22,7 +22,9 @@ function plural(span: number) {
   return span !== 1 ? "s" : ""
 }
 
-function howManyColumns(span: ColumnBreakpoints | number) {
+function howManyColumns(span?: ColumnBreakpoints | number) {
+  if (!span) return null
+
   if (typeof span === "number")
     return (
       <h3>
