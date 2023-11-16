@@ -7,34 +7,48 @@ type DistributiveOmit<T, TOmitted extends PropertyKey> = T extends unknown
   : never
 
 export type TagProps<TAs extends ElementType> = {
+  /**
+   * The HTMLElement to render
+   */
   as?: TAs
 } & DistributiveOmit<ComponentPropsWithRef<ElementType extends TAs ? "div" : TAs>, "as">
 
-function UnwrappedTag<TAs extends ElementType>(
-  props: TagProps<TAs>,
-  ref: ForwardedRef<unknown>
-): JSX.Element {
-  const { as: Comp = "div", ...rest } = props
-  return <Comp {...rest} ref={ref} />
-}
-
 /*
-  Taken from the example by the TS wizard Matt Pocock
+  Adapted from the example by the TS wizard Matt Pocock
   https://github.com/total-typescript/react-typescript-tutorial/blob/main/src/08-advanced-patterns/72-as-prop-with-forward-ref.solution.tsx
 */
 
 /**
  * This is a generic component that can be used to create any HTML tag and infer the type of the props.
- * This should be used by other components that accept an `as` prop.
+ * This should be used by __other components__ that accept an `as` prop.
  *
- * @example Usage for components
- * export type BadgeProps<TAs extends React.ElementType> = TagProps<TAs> & { prop: here };
- * export function Badge<TAs extends ElementType = 'default-element'>({ children, ...rest }: BadgeProps<TAs>) {
- *   const { as = 'default-element', ...props } = rest;
- *   return <Tag as={a} ...props>{children}</Tag>;
- * }
+ * ✨ Only go through these steps if your component default tag isn't a `div`
  *
- * @example Regular usage
- * <Tag as="a" href="https://www.google.com">Google</Tag>
+ * ```tsx
+ * import { Tag } from "@locals/components"
+ * import type { TagProps } from "@locals/components"
+ *
+ * const DEFAULT_TAG = "article" as const;
+ *
+ * export type GenericSectionProps<TAs extends React.ElementType> = TagProps<TAs> & {
+ *   myprop: "here"
+ * };
+ *
+ * export function GenericSection<TAs extends ElementType = typeof DEFAULT_TAG>({
+ *   className,
+ *   myprop,
+ *   ...props
+ * }: GenericSectionProps<TAs>) {
+ *   const { as = DEFAULT_TAG, ...rest } = props
+ *
+ *   return <Tag as={as} {...rest} />
+ * })
+ * ```
  */
-export const Tag = fixedForwardRef(UnwrappedTag)
+export const Tag = fixedForwardRef(function Tag<TAs extends ElementType>(
+  props: TagProps<TAs>,
+  ref: ForwardedRef<unknown>
+): JSX.Element {
+  const { as: Comp = "div", ...rest } = props
+  return <Comp {...rest} ref={ref} />
+})

@@ -5,11 +5,6 @@ import { Tag } from "@wethegit/components"
 const meta: Meta<typeof Tag> = {
   title: "components/tag",
   component: Tag,
-  argTypes: {
-    as: {
-      control: { type: "text" },
-    },
-  },
 }
 
 export default meta

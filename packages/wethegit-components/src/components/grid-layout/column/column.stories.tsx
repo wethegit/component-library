@@ -1,37 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Row, Column } from "@wethegit/components"
-import type { ColumnBreakpoints } from "@wethegit/components"
+import { Row, Column } from "@local/components"
+import type { ColumnBreakpoints } from "@local/components"
 
 const DEFAULT_SPAN: ColumnBreakpoints = { md: 4, lg: 8 }
 
 const meta = {
   title: "components/grid-layout/column",
   component: Column,
-  tags: ["autodocs"],
   args: {
     as: "div",
     span: DEFAULT_SPAN,
-  },
-  argTypes: {
-    as: {
-      control: { type: "text" },
-      description: "The HTMLElement to render.",
-      table: {
-        defaultValue: { summary: "div" },
-      },
-    },
-    deep: {
-      description: "Remove gutter padding. Useful for nested flex-layouts.",
-      control: { type: "boolean", default: false },
-    },
-    span: {
-      description:
-        "Number of flex-layout columns to span. Accepts a `number` or a `breakpoint-object`.",
-      control: {
-        type: "object",
-      },
-    },
   },
 } satisfies Meta<typeof Column>
 
@@ -43,7 +22,9 @@ function plural(span: number) {
   return span !== 1 ? "s" : ""
 }
 
-function howManyColumns(span: ColumnBreakpoints | number) {
+function howManyColumns(span?: ColumnBreakpoints | number) {
+  if (!span) return null
+
   if (typeof span === "number")
     return (
       <h3>
@@ -57,7 +38,6 @@ function howManyColumns(span: ColumnBreakpoints | number) {
 }
 
 export const Default: Story = {
-  name: "Column",
   render: ({ span, ...args }) => (
     <Row>
       <Column span={span} {...args}>
