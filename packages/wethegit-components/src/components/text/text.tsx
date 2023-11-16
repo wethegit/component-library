@@ -1,0 +1,62 @@
+import { ElementType } from "react"
+
+import { Tag } from "@local/components/tag"
+import type { TagProps } from "@local/components/tag"
+import { classnames } from "@local/utilities"
+
+import styles from "./text.module.scss"
+
+type TextAlign = "start" | "center" | "end" | "justify"
+
+type TextVariant =
+  | "title-1"
+  | "title-2"
+  | "title-3"
+  | "title-4"
+  | "title-5"
+  | "title-6"
+  | "body"
+  | "body-smaller"
+  | "body-larger"
+  | "body-legal"
+
+type TextWeight = "light" | "regular" | "medium" | "semibold" | "bold" | "black"
+
+export type TextProps<TAs extends ElementType> = TagProps<TAs> & {
+  /**
+   * Specifies the inline text alignment. If omitted, inherits the parent alignment.
+   */
+  align?: TextAlign
+  /**
+   * The _visual_ hierarchy of the text. This is not the same as the semantic hierarchy.
+   */
+  variant?: TextVariant
+  /**
+   * Specifies the font weight. If omitted, inherits the parent weight.
+   */
+  weight?: TextWeight
+  /**
+   * Use default text-wrapping.
+   */
+  wordWrap?: boolean
+}
+
+export function Text<TAs extends ElementType = "p">({
+  align,
+  variant = "body",
+  weight,
+  wordWrap = true,
+  className,
+  ...props
+}: TextProps<TAs>) {
+  const classes = classnames([
+    styles[variant.startsWith("title-") ? "text-heading" : "text-body"],
+    align && styles[`align-${align}`],
+    variant && styles[`variant-${variant}`],
+    weight && styles[`weight-${weight}`],
+    !wordWrap && styles["no-wrap"],
+    className,
+  ])
+
+  return <Tag className={classes} {...props} />
+}

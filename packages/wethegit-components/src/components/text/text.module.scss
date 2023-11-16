@@ -1,0 +1,52 @@
+@use "./styles/typography-helpers" as *;
+
+$alignments: start, center, end, justify;
+
+$variants:
+  "title-1",
+  "title-2",
+  "title-3",
+  "title-4",
+  "title-5",
+  "title-6",
+  "body",
+  "body-smaller" "body-larger",
+  "body-legal";
+
+$weights: "light", "regular", "medium", "semibold", "bold", "black";
+
+.text-heading {
+  line-height: var(--wtc-line-height-heading);
+
+  // This default font weight can be overwritten by the `weight` prop.
+  font-weight: var(--wtc-font-weight-bold);
+}
+
+.text-body {
+  line-height: var(--wtc-line-height-body);
+
+  // This default font weight can be overwritten by the `weight` prop.
+  font-weight: var(--wtc-font-weight-regular);
+}
+
+@each $a in $alignments {
+  .align-#{$a} {
+    text-align: $a;
+  }
+}
+
+@each $v in $variants {
+  .variant-#{$v} {
+    font-size: calc-rem-css-var(--wtc-font-size-#{$v});
+  }
+}
+
+@each $w in $weights {
+  .weight-#{$w} {
+    font-weight: var(--wtc-font-weight-#{$w});
+  }
+}
+
+.no-wrap {
+  white-space: nowrap;
+}

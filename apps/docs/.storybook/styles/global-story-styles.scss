@@ -1,7 +1,10 @@
 @import "@wethegit/components/components/grid-layout/styles/grid-layout.scss";
+@import "@wethegit/components/components/text/styles/typography.scss";
 
 @mixin gutter-highlight($color: blue, $size) {
-  box-shadow: $color $size 0 0 0 inset, $color calc(#{$size} * -1) 0 0 0 inset;
+  box-shadow:
+    $color $size 0 0 0 inset,
+    $color calc(#{$size} * -1) 0 0 0 inset;
 }
 
 @mixin dashed-outline {
