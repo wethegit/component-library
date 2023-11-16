@@ -7,7 +7,7 @@
     "dev": "turbo run dev --no-cache --continue",
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
     "lint": "turbo run lint --no-cache",
-    "release": "turbo run build --filter=^@wethegit/components-docs && changeset publish",
+    "release": "turbo run build && changeset publish",
     "typecheck": "turbo run typecheck",
     "version-packages": "changeset version",
     "prepare": "husky install"
