@@ -3,7 +3,7 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "mikestead.dotenv",
-    "bradlc.vscode-tailwindcss",
+    "unifiedjs.vscode-mdx",
     "stylelint.vscode-stylelint"
   ]
 }
