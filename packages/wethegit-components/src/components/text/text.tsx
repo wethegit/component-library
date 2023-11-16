@@ -1,4 +1,3 @@
-import type { ElementType } from "react"
 import { Tag } from "@local/components/tag"
 import type { TagProps } from "@local/components/tag"
 import { classnames } from "@local/utilities"
@@ -23,7 +22,7 @@ type TextVariant =
 
 type TextWeight = "light" | "regular" | "medium" | "semibold" | "bold" | "black"
 
-export type TextProps<TAs extends ElementType> = TagProps<TAs> & {
+export type TextProps<TAs extends React.ElementType> = TagProps<TAs> & {
   /**
    * Specifies the inline text alignment. If omitted, inherits the parent alignment.
    */
@@ -43,7 +42,7 @@ export type TextProps<TAs extends ElementType> = TagProps<TAs> & {
   className?: string
 }
 
-export function Text<TAs extends ElementType = typeof DEFAULT_ELEMENT>({
+export function Text<TAs extends React.ElementType = typeof DEFAULT_ELEMENT>({
   align,
   variant = "body",
   weight,
