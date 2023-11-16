@@ -2,5 +2,4 @@
 [ -n "$CI" ] && exit 0
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn run lint
-yarn run stylelint
+turbo run lint stylelint
