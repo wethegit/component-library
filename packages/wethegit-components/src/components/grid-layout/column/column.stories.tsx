@@ -22,7 +22,9 @@ function plural(span: number) {
   return span !== 1 ? "s" : ""
 }
 
-function howManyColumns(span: ColumnBreakpoints | number) {
+function howManyColumns(span?: ColumnBreakpoints | number) {
+  if (!span) return null
+
   if (typeof span === "number")
     return (
       <h3>
