@@ -41,3 +41,46 @@ export const ParagraphHeading: Story = {
     </Text>
   ),
 }
+
+export const TypeSpectrum: Story = {
+  name: "Full typography spectrum",
+  render: () => (
+    <div className="child-spacing">
+      {/*
+        TODO: REMOVE THESE CHILD SPACING CLASSES.
+        Use the spacing components or utility class names we build, once they're ready.
+      */}
+
+      <Text>
+        All of the available variants are shown below, using their default sizes. These
+        sizes are customizable on a per-project basis, and can vary between different
+        responsive breakpoints.
+      </Text>
+
+      <div className="child-spacing child-spacing--less">
+        <Text as="h1" variant="title-1">
+          Title 1
+        </Text>
+        <Text as="h2" variant="title-2">
+          Title 2
+        </Text>
+        <Text as="h3" variant="title-3">
+          Title 3
+        </Text>
+        <Text as="h4" variant="title-4">
+          Title 4
+        </Text>
+        <Text as="h5" variant="title-5">
+          Title 5
+        </Text>
+        <Text as="h6" variant="title-6">
+          Title 6
+        </Text>
+        <Text variant="body-larger">Body larger</Text>
+        <Text variant="body">Body</Text>
+        <Text variant="body-smaller">Body smaller</Text>
+        <Text variant="body-legal">Body legal</Text>
+      </div>
+    </div>
+  ),
+}
