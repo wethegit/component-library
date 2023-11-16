@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Row, Column } from "@wethegit/components"
+import { Row, Column } from "@local/components"
 
 const meta = {
   title: "components/grid-layout/row",
