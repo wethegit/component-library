@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Row, Column } from "@wethegit/components"
-import type { ColumnBreakpoints } from "@wethegit/components"
+import { Row, Column } from "@local/components"
+import type { ColumnBreakpoints } from "@local/components"
 
 const DEFAULT_SPAN: ColumnBreakpoints = { md: 4, lg: 8 }
 

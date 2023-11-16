@@ -1,5 +1,5 @@
-@use "@local/styles/settings-breakpoints" as *;
-@use "../styles/grid-layout-helpers" as layout;
+@use "@local/styles/settings-breakpoints.scss" as *;
+@use "../styles/grid-layout-helpers.scss" as layout;
 
 @mixin make-column-classnames($breakpoint: false) {
   $base-class: "span";

@@ -6,7 +6,7 @@ import { fixedForwardRef, buildBreakpointClassnames, classnames } from "@local/u
 
 import styles from "./column.module.scss"
 
-export type ColumnBreakpoints = Omit<Breakpoints<number>, "sm">
+export type ColumnBreakpoints = Partial<Omit<Breakpoints<number>, "sm">>
 export type ColumnProps<TAs extends ElementType> = TagProps<TAs> & {
   /**
    * Remove gutter padding. Useful for nested flex-layouts
