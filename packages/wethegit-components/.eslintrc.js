@@ -1,3 +1,7 @@
 module.exports = {
-  extends: ["custom/react"],
-};
+  extends: ["custom/storybook"],
+  parserOptions: {
+    root: true,
+    tsconfigRootDir: __dirname,
+  },
+}

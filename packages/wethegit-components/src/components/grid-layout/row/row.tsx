@@ -1,10 +1,13 @@
 import type { ElementType, ForwardedRef } from "react"
 
-import { classnames, fixedForwardRef } from "@local/utilities"
-import { Flex } from "@local/components"
-import type { FlexProps } from "@local/components"
 
 import styles from "./row.module.scss"
+
+import { Flex } from "@local/components"
+import type { FlexProps } from "@local/components"
+import { classnames, fixedForwardRef } from "@local/utilities"
+
+
 
 export type RowProps<T extends ElementType> = FlexProps<T> & {
   /**
@@ -24,5 +27,5 @@ export const Row = fixedForwardRef(function Row<T extends ElementType = "div">(
 ) {
   const classes = classnames([styles.row, stackMedium && styles.stackMedium, className])
 
-  return <Flex ref={ref} className={classes} {...props} />
+  return <Flex className={classes} ref={ref} {...props} />
 })

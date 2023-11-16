@@ -1,7 +1,7 @@
 import type { ComponentPropsWithRef, ElementType, ForwardedRef } from "react"
-
 import { fixedForwardRef } from "@local/utilities"
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a utility type
 type DistributiveOmit<T, TOmitted extends PropertyKey> = T extends any
   ? Omit<T, TOmitted>
   : never
@@ -47,6 +47,7 @@ export type TagProps<TAs extends ElementType> = {
  */
 export const Tag = fixedForwardRef(function Tag<TAs extends ElementType>(
   props: TagProps<TAs>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a utility type
   ref: ForwardedRef<any>
 ) {
   const { as: Comp = "div", ...rest } = props

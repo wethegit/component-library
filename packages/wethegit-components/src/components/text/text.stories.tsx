@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { Text } from "@wethegit/components"
+import { Text } from "@local/components"
 
 const meta: Meta<typeof Text> = {
   component: Text,
   title: "components/text",
   tags: ["autodocs"],
   args: {
-    as: "p"
+    as: "p",
   },
   argTypes: {
     as: {
@@ -37,9 +37,9 @@ export const ParagraphHeading: Story = {
   render: ({ variant = "title-3", ...args }) => (
     <Text variant={variant} {...args}>
       The visual hierarchy does not always need to match the semantic heading hierarchy.
-      In this example, we're rendering a paragraph tag <code>{"<p>"}</code> in the{" "}
-      <em>style</em> of <code>{"title-3"}</code>. The important distinction to make here
-      is that it is <em>not</em> an <code>{"<h3>"}</code> tag.
+      In this example, we&apos;re rendering a paragraph tag <code>{"<p>"}</code> in the{" "}
+      <em>style</em> of <code>title-3</code>. The important distinction to make here is
+      that it is <em>not</em> an <code>{"<h3>"}</code> tag.
     </Text>
   ),
 }

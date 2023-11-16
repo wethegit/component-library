@@ -1,4 +1,5 @@
 import { resolve } from "node:path"
+
 import fse from "fs-extra"
 import chalk from "chalk"
 import prompts from "prompts"
@@ -17,13 +18,13 @@ export async function promptForConfig(cwd: string, skip: boolean): Promise<Confi
   const isThereATsConfig = await fse.pathExists(resolve(cwd, defaultTsConfigPath))
 
   if (!skip) {
-    const highlight = (text: string) => chalk.cyan(text)
+    const highlight = (text: string): string => chalk.cyan(text)
 
-    let response = await prompts(
+    const response: Record<string, string> = await prompts(
       [
         {
           type: "confirm",
-          name: "typescript",
+          name: "_typescript",
           message: `Are you using ${highlight("Typescript")}?`,
           initial: isThereATsConfig,
         },
@@ -60,7 +61,7 @@ export async function promptForConfig(cwd: string, skip: boolean): Promise<Confi
     )
 
     const {
-      typescript,
+      _typescript,
       typesRootDir,
       componentsRootDir,
       stylesRootDir,
@@ -69,13 +70,12 @@ export async function promptForConfig(cwd: string, skip: boolean): Promise<Confi
     } = response
 
     const { directories, ...defaultConfig } = DEFAULT_CONFIG
-    const { type, ...defaultDirectories } = directories
 
     config = {
       ...defaultConfig,
       ...responseConfig,
       directories: {
-        ...defaultDirectories,
+        ...directories,
         component: componentsRootDir,
         style: stylesRootDir,
         utility: utilitiesRootDir,
@@ -95,7 +95,7 @@ export async function promptForConfig(cwd: string, skip: boolean): Promise<Confi
     }
   }
 
-  const { proceed } = await prompts({
+  const { proceed }: Record<string, boolean> = await prompts({
     type: "confirm",
     name: "proceed",
     message: `Is this correct?\n${JSON.stringify(config, null, 2)}`,

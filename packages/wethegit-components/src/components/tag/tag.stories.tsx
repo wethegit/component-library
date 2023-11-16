@@ -6,7 +6,7 @@ const meta: Meta<typeof Tag> = {
   title: "components/tag",
   component: Tag,
   args: {
-    as: "p"
+    as: "p",
   },
   argTypes: {
     as: {

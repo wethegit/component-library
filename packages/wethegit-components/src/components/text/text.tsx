@@ -1,5 +1,4 @@
-import { ElementType } from "react"
-
+import type { ElementType } from "react"
 import { Tag } from "@local/components/tag"
 import type { TagProps } from "@local/components/tag"
 import { classnames } from "@local/utilities"
@@ -41,6 +40,7 @@ export type TextProps<TAs extends ElementType> = TagProps<TAs> & {
    * Use default text-wrapping.
    */
   wordWrap?: boolean
+  className?: string
 }
 
 export function Text<TAs extends ElementType = typeof DEFAULT_ELEMENT>({
@@ -50,13 +50,13 @@ export function Text<TAs extends ElementType = typeof DEFAULT_ELEMENT>({
   wordWrap = true,
   className,
   ...props
-}: TextProps<TAs>) {
+}: TextProps<TAs>): JSX.Element {
   const { as = DEFAULT_ELEMENT, ...rest } = props
 
   const classes = classnames([
     styles[variant.startsWith("title-") ? "text-heading" : "text-body"],
     align && styles[`align-${align}`],
-    variant && styles[`variant-${variant}`],
+    styles[`variant-${variant}`],
     weight && styles[`weight-${weight}`],
     !wordWrap && styles["no-wrap"],
     className,

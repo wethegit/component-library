@@ -1,5 +1,5 @@
 import chalk from "chalk"
-import type { Command } from "commander"
+import prompts from "prompts"
 
 import {
   logger,
@@ -17,18 +17,16 @@ import {
   formatRegistryFilesWithPrettier,
   promptForComponents,
 } from "./utils"
-import prompts from "prompts"
 
 interface Options {
-  root: string
-  names: string[]
+  root?: string
 }
 
-export async function add(names: string[], program: Command) {
+export async function add(names: string[], options: Options): Promise<void> {
   try {
     ensureComponentsPackageIsInstalled()
 
-    const { root } = program.opts() as Options
+    const { root }: Options = options
 
     // different than init if cwd doesnt exist this will throw, user should run init first to ensure deps and other requirements are met
     const cwd = await ensureCwd(root)
@@ -37,7 +35,7 @@ export async function add(names: string[], program: Command) {
     const config = await buildAndParseConfig(cwd, { errorIfNotFound: true })
 
     const { proceed, selected } =
-      names && names.length > 0
+      names.length > 0
         ? await getRegistryItemsFromNames(names)
         : await promptForComponents()
 
@@ -48,13 +46,13 @@ export async function add(names: string[], program: Command) {
       selected,
       new Set<Registry>(),
       new Set<string>(),
-      !!config.directories.type
+      Boolean(config.directories.type)
     )
 
     const items = Array.from(localDependencies)
 
     try {
-      let promises: Promise<any>[] = []
+      const promises: Promise<void>[] = []
 
       // copy items
       promises.push(
@@ -97,27 +95,27 @@ export async function add(names: string[], program: Command) {
 async function getRegistryItemsFromNames(
   names: string[]
 ): Promise<{ selected: Registry[]; proceed: boolean }> {
-  const selected = names.reduce((acc, name) => {
+  const selected = names.reduce<Registry[]>((acc, name) => {
     const registry = REGISTRY_INDEX[name]
 
     if (!registry) {
-      console.log(`${chalk.bold.yellow(name)} not found in registry. Skipping...`)
+      logger.log(`${chalk.bold.yellow(name)} not found in registry. Skipping...`)
     } else acc.push(registry)
 
     return acc
-  }, [] as Registry[])
+  }, [])
 
   if (selected.length <= 0) {
     logger.info(``)
     logger.error(`No valid components found. Make sure you're using the correct names.`)
-    console.log(
+    logger.log(
       `${chalk.cyan("Documentation")}: https://wethegit.github.io/component-library/`
     )
     logger.info(``)
     process.exit(1)
   }
 
-  const { proceed } = await prompts(
+  const { proceed }: Record<string, boolean> = await prompts(
     [
       {
         type: "confirm",
