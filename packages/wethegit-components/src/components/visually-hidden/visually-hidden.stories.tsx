@@ -7,6 +7,11 @@ const meta: Meta<typeof VisuallyHidden> = {
   args: {
     as: "span",
   },
+  argTypes: {
+    as: {
+      defaultValue: { summary: "span" },
+    },
+  },
 } satisfies Meta<typeof VisuallyHidden>
 
 export default meta
@@ -26,7 +31,7 @@ export const Default: Story = {
 
 export const RevealOnFocus: Story = {
   name: "Reveal on focus",
-  render: ({ revealOnFocus = true, ...args }) => (
+  render: () => (
     <>
       <p>
         The following link is invisible unless focused on. Try using the`tab` key on your

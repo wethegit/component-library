@@ -5,6 +5,14 @@ import { Wrapper } from "@wethegit/components"
 const meta: Meta<typeof Wrapper> = {
   component: Wrapper,
   title: "components/grid-layout/wrapper",
+  args: {
+    as: "div"
+  },
+  argTypes: {
+    as: {
+      defaultValue: { summary: "div" },
+    },
+  },
 }
 
 export default meta

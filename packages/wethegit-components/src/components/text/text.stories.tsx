@@ -5,9 +5,11 @@ const meta: Meta<typeof Text> = {
   component: Text,
   title: "components/text",
   tags: ["autodocs"],
+  args: {
+    as: "p"
+  },
   argTypes: {
     as: {
-      description: "HTMLElement tag name or React component to render",
       defaultValue: { summary: "p" },
     },
   },
@@ -20,7 +22,7 @@ type Story = StoryObj<typeof Text>
 export const Default: Story = {
   name: "Default",
   render: (args) => (
-    <Text as="p" {...args}>
+    <Text {...args}>
       Labore ullamco mollit aute esse enim laboris quis occaecat ipsum eu culpa deserunt
       ullamco. Quis duis pariatur eiusmod exercitation consectetur nostrud amet nostrud
       tempor consequat irure ut do non. In irure id veniam voluptate incididunt excepteur
@@ -32,8 +34,8 @@ export const Default: Story = {
 
 export const ParagraphHeading: Story = {
   name: "Paragraph as a visual heading",
-  render: ({ as = "p", variant = "title-3", ...args }) => (
-    <Text as="p" variant={variant} {...args}>
+  render: ({ variant = "title-3", ...args }) => (
+    <Text variant={variant} {...args}>
       The visual hierarchy does not always need to match the semantic heading hierarchy.
       In this example, we're rendering a paragraph tag <code>{"<p>"}</code> in the{" "}
       <em>style</em> of <code>{"title-3"}</code>. The important distinction to make here

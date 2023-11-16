@@ -2,7 +2,7 @@ import type { ComponentPropsWithRef, ElementType, ForwardedRef } from "react"
 
 import { fixedForwardRef } from "@local/utilities"
 
-type DistributiveOmit<T, TOmitted extends PropertyKey> = T extends unknown
+type DistributiveOmit<T, TOmitted extends PropertyKey> = T extends any
   ? Omit<T, TOmitted>
   : never
 
@@ -47,8 +47,8 @@ export type TagProps<TAs extends ElementType> = {
  */
 export const Tag = fixedForwardRef(function Tag<TAs extends ElementType>(
   props: TagProps<TAs>,
-  ref: ForwardedRef<unknown>
-): JSX.Element {
+  ref: ForwardedRef<any>
+) {
   const { as: Comp = "div", ...rest } = props
   return <Comp {...rest} ref={ref} />
 })

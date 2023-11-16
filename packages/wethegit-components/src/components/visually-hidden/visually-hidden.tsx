@@ -20,5 +20,5 @@ export function VisuallyHidden<TAs extends ElementType = typeof DEFAULT_ELEMENT>
   const { as = DEFAULT_ELEMENT, ...rest } = props
   const classes = revealOnFocus ? styles["reveal-on-focus"] : styles["standard"]
 
-  return <Tag as={as} className={classnames([classes, className])} {...rest} />
+  return <Tag {...rest} as={as} className={classnames([classes, className])}  />
 }

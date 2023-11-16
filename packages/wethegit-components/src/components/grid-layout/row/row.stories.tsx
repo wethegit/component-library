@@ -6,6 +6,7 @@ const meta = {
   title: "components/grid-layout/row",
   component: Row,
   args: {
+    as: "div",
     justify: {
       md: "center",
       xl: "space-between",
@@ -21,6 +22,11 @@ const meta = {
     reverse: {
       md: false,
       xl: true,
+    },
+  },
+  argTypes: {
+    as: {
+      defaultValue: { summary: "div" },
     },
   },
 } satisfies Meta<typeof Row>

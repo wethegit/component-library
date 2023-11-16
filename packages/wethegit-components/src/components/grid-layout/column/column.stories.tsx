@@ -12,6 +12,11 @@ const meta = {
     as: "div",
     span: DEFAULT_SPAN,
   },
+  argTypes: {
+    as: {
+      defaultValue: { summary: "div" },
+    },
+  },
 } satisfies Meta<typeof Column>
 
 export default meta
