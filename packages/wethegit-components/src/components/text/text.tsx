@@ -6,6 +6,8 @@ import { classnames } from "@local/utilities"
 
 import styles from "./text.module.scss"
 
+const DEFAULT_ELEMENT = "p"
+
 type TextAlign = "start" | "center" | "end" | "justify"
 
 type TextVariant =
@@ -41,7 +43,7 @@ export type TextProps<TAs extends ElementType> = TagProps<TAs> & {
   wordWrap?: boolean
 }
 
-export function Text<TAs extends ElementType = "p">({
+export function Text<TAs extends ElementType = typeof DEFAULT_ELEMENT>({
   align,
   variant = "body",
   weight,
@@ -49,6 +51,8 @@ export function Text<TAs extends ElementType = "p">({
   className,
   ...props
 }: TextProps<TAs>) {
+  const { as = DEFAULT_ELEMENT, ...rest } = props
+
   const classes = classnames([
     styles[variant.startsWith("title-") ? "text-heading" : "text-body"],
     align && styles[`align-${align}`],
@@ -58,5 +62,5 @@ export function Text<TAs extends ElementType = "p">({
     className,
   ])
 
-  return <Tag className={classes} {...props} />
+  return <Tag as={as} className={classes} {...rest} />
 }
