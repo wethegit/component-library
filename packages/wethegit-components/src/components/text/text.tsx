@@ -53,7 +53,8 @@ export function Text<TAs extends React.ElementType = typeof DEFAULT_ELEMENT>({
   const { as = DEFAULT_ELEMENT, ...rest } = props
 
   const classes = classnames([
-    styles[variant.startsWith("title-") ? "text-heading" : "text-body"],
+    styles.text,
+    styles[variant.startsWith("title-") ? "text--heading" : "text--body"],
     align && styles[`align-${align}`],
     styles[`variant-${variant}`],
     weight && styles[`weight-${weight}`],
