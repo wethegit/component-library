@@ -5,7 +5,9 @@
   "sideEffects": false,
   "license": "MIT",
   "files": [
-    "src/**"
+    "./src/**/*",
+    "./src/**/!(*.stories.*)",
+    "./src/**/!(.storybook)"
   ],
   "exports": {
     "./components/*": "./src/components/*",
