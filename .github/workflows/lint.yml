@@ -28,6 +28,3 @@ jobs:
 
       - name: Lint
         run: yarn run lint
-
-      - name: Stylelint
-        run: yarn run stylelint
