@@ -10,6 +10,8 @@ This file defines the breakpoints. A few components depend on this to ensure tha
 
 Feel free to change the values but **do not delete the variables**.
 
+## Types
+
 A lot of components will have props that accept a **breakpoint-object**. This object can be used to define the value for each breakpoint, and follows the following format:
 
 ```ts
@@ -29,6 +31,7 @@ At the same time, the `Row` component also has the `wrap` prop which accepts a `
 The keys of the breakpoints object are optional. If a breakpoint is not defined, the default value will be used.
 
 Example usage with the `Row` component:
+
 ```jsx
 <Row
   align={{
