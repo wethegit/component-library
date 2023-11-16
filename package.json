@@ -28,10 +28,10 @@
     "packages/*"
   ],
   "lint-staged": {
-    "packages/**/*.{js,ts,jsx,tsx}": [
+    "*.{js,ts,jsx,tsx}": [
       "eslint --fix"
     ],
-    "*.json": [
+    "*.{json,css,scss}": [
       "prettier --write"
     ]
   }
