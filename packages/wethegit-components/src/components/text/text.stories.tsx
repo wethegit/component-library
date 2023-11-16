@@ -4,10 +4,6 @@ import { Text } from "@wethegit/components"
 const meta: Meta<typeof Text> = {
   component: Text,
   title: "components/text",
-  tags: ["autodocs"],
-  args: {
-    as: "p"
-  },
   argTypes: {
     as: {
       defaultValue: { summary: "p" },
@@ -20,7 +16,6 @@ export default meta
 type Story = StoryObj<typeof Text>
 
 export const Default: Story = {
-  name: "Default",
   render: (args) => (
     <Text {...args}>
       Labore ullamco mollit aute esse enim laboris quis occaecat ipsum eu culpa deserunt
@@ -34,8 +29,8 @@ export const Default: Story = {
 
 export const ParagraphHeading: Story = {
   name: "Paragraph as a visual heading",
-  render: ({ variant = "title-3", ...args }) => (
-    <Text variant={variant} {...args}>
+  render: ({ as = "p", variant = "title-3", ...args }) => (
+    <Text as="p" variant={variant} {...args}>
       The visual hierarchy does not always need to match the semantic heading hierarchy.
       In this example, we're rendering a paragraph tag <code>{"<p>"}</code> in the{" "}
       <em>style</em> of <code>{"title-3"}</code>. The important distinction to make here
