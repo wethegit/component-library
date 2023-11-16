@@ -53,8 +53,7 @@
     "sass": "^1.69.5",
     "serve": "^13.0.4",
     "storybook": "^7.5.3",
-    "vite": "^4.4.9",
-    "vite-tsconfig-paths": "^4.2.1"
+    "vite": "^4.4.9"
   },
   "publishConfig": {
     "access": "public"
