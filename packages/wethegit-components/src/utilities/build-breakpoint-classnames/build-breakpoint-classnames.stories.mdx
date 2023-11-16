@@ -34,19 +34,18 @@ The function returns an array of class names [ClassnamesProps](/docs/utilities-c
 ## Example Usage
 
 ```typescript
-import { buildBreakpointClassnames } from 'path/to/buildBreakpointClassnames';
-import styles from 'path/to/styles.module.css';
+import { buildBreakpointClassnames } from "path/to/buildBreakpointClassnames"
+import styles from "path/to/styles.module.css"
 
-const breakpointClasses = buildBreakpointClassnames({ md: 2, lg: 3, xl: 4, xxl: 5 }, styles, 'container');
+const breakpointClasses = buildBreakpointClassnames(
+  { md: 2, lg: 3, xl: 4, xxl: 5 },
+  styles,
+  "container"
+)
 ```
 
 The above example will return the following array:
 
 ```typescript
-[
-  'container-2',
-  'container-lg-3',
-  'container-xl-4',
-  'container-xxl-5'
-]
+;["container-2", "container-lg-3", "container-xl-4", "container-xxl-5"]
 ```

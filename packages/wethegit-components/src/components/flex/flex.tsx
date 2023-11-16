@@ -1,13 +1,10 @@
 import type { ElementType, ForwardedRef } from "react"
 
-
-import styles from "./flex.module.scss"
-
 import { Tag } from "@local/components"
 import type { TagProps } from "@local/components"
 import { buildBreakpointClassnames, classnames, fixedForwardRef } from "@local/utilities"
 
-
+import styles from "./flex.module.scss"
 
 export type FlexAlign = "flex-start" | "center" | "flex-end" | "baseline" | "stretch"
 

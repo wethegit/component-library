@@ -18,11 +18,11 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "dev": "storybook dev -p 6006",
     "build": "storybook build --docs",
-    "preview-storybook": "serve storybook-static",
     "clean": "rm -rf .turbo node_modules dist storybook-static",
+    "dev": "storybook dev -p 6006",
     "lint": "eslint src/ --fix",
+    "preview-storybook": "serve storybook-static",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {

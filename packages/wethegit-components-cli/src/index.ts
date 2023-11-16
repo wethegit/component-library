@@ -14,7 +14,7 @@ const program = new Command()
 program
   .name("components-cli")
   .description("Add components and dependencies to your project")
-  .version((version ) || "1.0.0", "-v, --version")
+  .version(version || "1.0.0", "-v, --version")
 
 program
   .command("init")

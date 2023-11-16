@@ -1,4 +1,5 @@
 import type { ComponentPropsWithRef, ElementType, ForwardedRef } from "react"
+
 import { fixedForwardRef } from "@local/utilities"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a utility type

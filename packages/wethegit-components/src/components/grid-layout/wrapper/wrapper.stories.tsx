@@ -6,7 +6,7 @@ const meta: Meta<typeof Wrapper> = {
   component: Wrapper,
   title: "components/grid-layout/wrapper",
   args: {
-    as: "div"
+    as: "div",
   },
   argTypes: {
     as: {

@@ -1,13 +1,5 @@
 module.exports = {
-  extends: [
-    "plugin:storybook/recommended",
-    ...[
-      "@vercel/style-guide/eslint/node",
-      "@vercel/style-guide/eslint/browser",
-      "@vercel/style-guide/eslint/react",
-    ].map(require.resolve),
-    "./base.js",
-  ],
+  extends: ["./base.js", "plugin:storybook/recommended"],
   plugins: ["storybook"],
   globals: {
     React: true,
@@ -19,7 +11,7 @@ module.exports = {
       extends: "plugin:mdx/recommended",
       plugins: ["mdx"],
       settings: {
-        "mdx/code-blocks": true,
+        "mdx/code-blocks": false,
       },
     },
   ],

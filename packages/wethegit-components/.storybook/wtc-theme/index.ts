@@ -1,6 +1,6 @@
-import { create } from '@storybook/theming/create';
+import { create } from "@storybook/theming/create"
 // @ts-ignore
-import logo from './logo.svg'
+import logo from "./logo.svg"
 
 // --color-yellow: #f9ea35;
 // --color-green: #85de76;
@@ -13,14 +13,14 @@ import logo from './logo.svg'
 // --color-white: #fff;
 
 export const wtcTheme = create({
-  base: 'dark',
-  brandTitle: 'We The Collective',
-  brandUrl: 'https://wethecollective.com',
+  base: "dark",
+  brandTitle: "We The Collective",
+  brandUrl: "https://wethecollective.com",
   brandImage: logo,
-  brandTarget: '_self',
+  brandTarget: "_self",
 
-  colorPrimary: '#85de76',
-  colorSecondary: '#f9ea35',
+  colorPrimary: "#85de76",
+  colorSecondary: "#f9ea35",
 
   appBg: "#101820",
   appContentBg: "#101820",
@@ -48,4 +48,4 @@ export const wtcTheme = create({
   inputBorder: "#101820",
   // inputTextColor: "string",
   // inputBorderRadius: "number",
-});
+})

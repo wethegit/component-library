@@ -1,13 +1,10 @@
 import type { ElementType, ForwardedRef } from "react"
 
-
-import styles from "./wrapper.module.scss"
-
 import { Tag } from "@local/components"
 import type { TagProps } from "@local/components"
 import { classnames, fixedForwardRef } from "@local/utilities"
 
-
+import styles from "./wrapper.module.scss"
 
 export const Wrapper = fixedForwardRef(function Wrapper<TAs extends ElementType = "div">(
   { className, ...props }: TagProps<TAs>,

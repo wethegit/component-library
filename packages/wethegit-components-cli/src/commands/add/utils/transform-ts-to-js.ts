@@ -21,7 +21,7 @@ export async function transformTsToJs({
   destDir,
   files,
   srcDir,
-}: TransformTsToJsOptions): Promise<EmitResult[]> {
+}: TransformTsToJsOptions): Promise<(void | EmitResult)[]> {
   const defaultTsConfigPath = resolve(cwd, "./tsconfig.json")
   const isThereATsConfig = await fse.pathExists(defaultTsConfigPath)
 

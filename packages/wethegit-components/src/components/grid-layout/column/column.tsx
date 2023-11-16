@@ -1,13 +1,10 @@
 import type { ElementType, ForwardedRef } from "react"
 
-
-import styles from "./column.module.scss"
-
 import { Tag } from "@local/components"
 import type { TagProps } from "@local/components"
 import { fixedForwardRef, buildBreakpointClassnames, classnames } from "@local/utilities"
 
-
+import styles from "./column.module.scss"
 
 export type ColumnBreakpoints = Partial<Omit<Breakpoints<number>, "sm">>
 export type ColumnProps<TAs extends ElementType> = TagProps<TAs> & {

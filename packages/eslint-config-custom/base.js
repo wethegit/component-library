@@ -1,35 +1,6 @@
-const project = "./tsconfig.json"
-
-/*
- * This is a custom ESLint configuration for use with
- * typescript packages.
- *
- * This config extends the Vercel Engineering Style Guide.
- * For more information, see https://github.com/vercel/style-guide
- *
- */
-
 module.exports = {
-  extends: [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:import/typescript",
-    ...["@vercel/style-guide/eslint/typescript"].map(require.resolve),
-    "prettier",
-    "plugin:import/recommended",
-  ],
-  plugins: ["import", "@typescript-eslint"],
-  parserOptions: {
-    project,
-  },
-  parser: "@typescript-eslint/parser",
-  settings: {
-    "import/resolver": {
-      typescript: {
-        root: ["."],
-        project,
-      },
-    },
-  },
+  extends: ["plugin:import/recommended", "prettier"],
+  plugins: ["import"],
   ignorePatterns: [
     "node_modules/",
     "dist/",
@@ -40,7 +11,11 @@ module.exports = {
   ],
   rules: {
     "import/no-default-export": "off",
-    "@typescript-eslint/no-base-to-string": "off",
+    "import/no-named-as-default": "off",
+    "import/named": "off",
+    "import/namespace": "off",
+    "import/default": "off",
+    "import/no-named-as-default-member": "off",
     "import/order": [
       "error",
       {
@@ -48,16 +23,33 @@ module.exports = {
         pathGroups: [
           {
             pattern: "@local/**",
-            group: "internal",
-            position: "before",
+            group: "external",
+            position: "after",
           },
         ],
-        distinctGroup: false,
+        distinctGroup: true,
       },
     ],
-    "react/no-unescaped-entities": "off",
-    "import/no-named-as-default-member": "off",
-    "import/no-named-as-default": "off",
-    "@typescript-eslint/no-unnecessary-condition": "off",
   },
+  overrides: [
+    {
+      files: ["*.ts", "*.tsx"],
+      extends: ["plugin:@typescript-eslint/recommended", "plugin:import/typescript"],
+      plugins: ["@typescript-eslint"],
+      parser: "@typescript-eslint/parser",
+      settings: {
+        "import/resolver": {
+          typescript: {
+            root: ["."],
+            project: "./tsconfig.json",
+          },
+        },
+      },
+      rules: {
+        "@typescript-eslint/no-base-to-string": "off",
+        "@typescript-eslint/no-unnecessary-condition": "off",
+        "@typescript-eslint/indent": "off",
+      },
+    },
+  ],
 }

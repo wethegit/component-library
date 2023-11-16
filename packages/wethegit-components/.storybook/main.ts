@@ -7,10 +7,7 @@ const config: StorybookConfig = {
     "../src/**/*.stories.mdx",
     "../src/**/*.stories.{js,jsx,ts,tsx}",
   ],
-  addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-  ],
+  addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
   framework: {
     name: "@storybook/react-vite",
     options: {},
@@ -20,7 +17,7 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: true,
-  }
+  },
 }
 
 export default config

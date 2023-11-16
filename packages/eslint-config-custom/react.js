@@ -1,9 +1,5 @@
 module.exports = {
-  extends: [
-    "@vercel/style-guide/eslint/browser",
-    "@vercel/style-guide/eslint/react",
-    "./base",
-  ].map(require.resolve),
+  extends: ["./base"],
   globals: {
     JSX: true,
   },

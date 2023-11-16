@@ -60,26 +60,17 @@ export async function promptForConfig(cwd: string, skip: boolean): Promise<Confi
       }
     )
 
-    const {
-      _typescript,
-      typesRootDir,
-      componentsRootDir,
-      stylesRootDir,
-      utilitiesRootDir,
-      ...responseConfig
-    } = response
-
+    const { typesRootDir, componentsRootDir, stylesRootDir, utilitiesRootDir } = response
     const { directories, ...defaultConfig } = DEFAULT_CONFIG
 
     config = {
       ...defaultConfig,
-      ...responseConfig,
       directories: {
         ...directories,
         component: componentsRootDir,
         style: stylesRootDir,
         utility: utilitiesRootDir,
-        type: typesRootDir,
+        ...(typesRootDir ? { type: typesRootDir } : {}),
       },
     }
   } else {

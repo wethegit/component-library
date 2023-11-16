@@ -21,15 +21,21 @@ The function returns a string containing the concatenated and space-separated cl
 ## Example Usage
 
 ```typescript
-import { classnames } from 'path/to/classnames';
+import { classnames } from "path/to/classnames"
 
-const buttonClasses = classnames('button', 'primary', ['is-active', null, undefined], 1, "2");
+const buttonClasses = classnames(
+  "button",
+  "primary",
+  ["is-active", null, undefined],
+  1,
+  "2"
+)
 ```
 
 The above example will return the following:
 
 ```typescript
-'button primary is-active 2'
+"button primary is-active 2"
 ```
 
 ## Notes

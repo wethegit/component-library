@@ -1,5 +1,5 @@
 module.exports = {
-  extends: [...["@vercel/style-guide/eslint/node"].map(require.resolve), "./base"],
+  extends: ["./base"],
   env: {
     node: true,
   },
