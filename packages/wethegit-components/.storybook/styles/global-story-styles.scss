@@ -56,3 +56,16 @@ a {
 .gutter-visualizer--full {
   @include gutter-highlight(rgb(83 198 82 / 34%), var(--wtc-gutter-width));
 }
+
+// TODO:
+// THESE ARE TEMPORARY. Remove them once spacing component is set up.
+.child-spacing {
+  > * + * {
+    margin-top: 2rem !important;
+  }
+}
+.child-spacing--less {
+  > * + * {
+    margin-top: 1rem !important;
+  }
+}
