@@ -41,7 +41,7 @@ jobs:
         run: yarn
 
       - name: Build Storybook
-        run: npx turbo run build --filter=@wethegit/components-docs
+        run: npx turbo run build --filter=@wethegit/components
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
@@ -49,7 +49,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: "./apps/docs/storybook-static"
+          path: "./packages/wethegit-components/storybook-static"
 
       - name: Deploy to GitHub Pages
         id: deployment

@@ -12,7 +12,7 @@ const meta = {
     },
     align: {
       md: "center",
-      xl: "space-between",
+      xl: "flex-end",
     },
     wrap: {
       md: true,

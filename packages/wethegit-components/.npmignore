@@ -1,0 +1,6 @@
+./src/**/*.stories.*
+./src/.storybook
+styleguide.config.js
+vite.config.js
+turbo.json
+.eslintrc.js
