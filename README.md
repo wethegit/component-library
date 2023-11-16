@@ -2,7 +2,7 @@
 
 Minally styled, accessible, React component primitives that can be copy and pasted into your project.
 
-[Documentation]()
+[Documentation](https://wethegit.github.io/component-library/)
 
 ## Development
 
