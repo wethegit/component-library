@@ -6,11 +6,15 @@
       "dependsOn": ["^build"]
     },
     "lint": {},
+    "stylelint": {},
     "dev": {
       "cache": false,
       "persistent": true
     },
     "clean": {
+      "cache": false
+    },
+    "typecheck": {
       "cache": false
     }
   }

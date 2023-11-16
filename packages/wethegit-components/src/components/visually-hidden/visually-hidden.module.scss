@@ -12,6 +12,6 @@
   @extend %visually-hidden;
 }
 
-.reveal-on-focus:not(:focus, :active) {
+.revealOnFocus:not(:focus, :active) {
   @extend %visually-hidden;
 }

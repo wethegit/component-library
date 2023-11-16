@@ -21,7 +21,8 @@
     "build": "storybook build --docs",
     "clean": "rm -rf .turbo node_modules dist storybook-static",
     "dev": "storybook dev -p 6006",
-    "lint": "eslint src/ --fix",
+    "lint": "eslint src/",
+    "stylelint": "stylelint **/*.{css,scss}",
     "preview-storybook": "serve storybook-static",
     "typecheck": "tsc --noEmit"
   },
@@ -52,6 +53,8 @@
     "sass": "^1.69.5",
     "serve": "^13.0.4",
     "storybook": "^7.5.3",
+    "stylelint": "^15.11.0",
+    "stylelint-config-custom": "*",
     "tsconfig": "*",
     "typescript": "5.1.6",
     "vite": "^4.4.9"

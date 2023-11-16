@@ -38,7 +38,7 @@ jobs:
           node-version: 18
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn install --immutable
 
       - name: Build Storybook
         run: npx turbo run build --filter=@wethegit/components

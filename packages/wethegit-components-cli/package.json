@@ -2,6 +2,7 @@
   "name": "@wethegit/components-cli",
   "version": "2.4.3",
   "type": "module",
+  "license": "MIT",
   "exports": "./dist/index.js",
   "bin": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -15,7 +16,7 @@
     "build": "tsup",
     "clean": "rm -rf .turbo node_modules dist",
     "dev": "tsup --watch",
-    "lint": "eslint src/ --fix",
+    "lint": "eslint src/",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

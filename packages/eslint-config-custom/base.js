@@ -8,6 +8,7 @@ module.exports = {
     "**/*.{css, scss}",
     ".eslintrc.*",
     "dist/",
+    ".stylelintrc.js",
   ],
   rules: {
     "import/no-default-export": "off",

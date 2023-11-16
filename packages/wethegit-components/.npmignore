@@ -1,6 +1,7 @@
-./src/**/*.stories.*
-./src/.storybook
+.eslintrc.js
+.stylelintrc.js
 styleguide.config.js
 vite.config.js
 turbo.json
-.eslintrc.js
+./src/**/*.stories.*
+./src/.storybook

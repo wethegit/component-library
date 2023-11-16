@@ -6,7 +6,8 @@
     "clean": "turbo run clean && rm .turbo -rf node_modules .turbo-cookie",
     "dev": "turbo run dev --no-cache --continue",
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
-    "lint": "turbo run lint --no-cache",
+    "lint": "turbo run lint",
+    "stylelint": "turbo run stylelint",
     "release": "turbo run build && changeset publish",
     "typecheck": "turbo run typecheck",
     "version-packages": "changeset version",
@@ -17,8 +18,9 @@
     "eslint": "^8.48.0",
     "eslint-config-custom": "*",
     "husky": "^8.0.3",
-    "lint-staged": "^15.1.0",
     "prettier": "^3.0.3",
+    "stylelint": "^15.11.0",
+    "stylelint-config-custom": "*",
     "tsconfig": "*",
     "turbo": "latest"
   },
@@ -27,12 +29,5 @@
     "apps/*",
     "packages/*"
   ],
-  "lint-staged": {
-    "*.{js,ts,jsx,tsx}": [
-      "eslint --fix"
-    ],
-    "*.{json,css,scss}": [
-      "prettier --write"
-    ]
-  }
+  "license": "MIT"
 }
