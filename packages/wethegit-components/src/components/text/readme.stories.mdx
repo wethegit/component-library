@@ -11,7 +11,6 @@ import { Meta } from "@storybook/blocks"
   - [Font size](#font-size)
   - [Font weight](#font-weight)
   - [Line height](#line-height)
-- [Helpers](#helpers)
 
 ## Install
 
@@ -81,7 +80,7 @@ For example, these settings…
 /* and so on */
 ```
 
-This conversion is made possible thanks to the Sass helper, [calc-rem](#calc-rem), which is included as part of the `<Text>` component. The function receives a unitless pixel value, and converts it into a `rem` value.
+This conversion is made possible thanks to the Sass helper, [calc-rem](?path=/docs/components-text-utilities--docs#calc-rem), which is included as part of the `<Text>` component. The function receives a unitless pixel value, and converts it into a `rem` value.
 
 ### Font weight
 
@@ -113,48 +112,5 @@ Line height is inherited based on the `variant` prop. By default, `body-` varian
 :root {
   --wtc-line-height-heading: 1.2;
   --wtc-line-height-body: 1.4;
-}
-```
-
-## Helpers
-
-The `<Text>` component comes with some helpful Sass helper functions, which you can use throughout your codebase.
-
-### calc-rem
-
-Signature: `calc-rem(unitless-pixel-value, <base-unitless-size> = 16)`
-
-`calc-rem` Receives a unitless pixel value, and converts it into a `rem` value. This is accomplished by dividing the value by 16, which is the default font size in most browsers.
-
-#### Example
-
-```css
-@use "@local/components/text/styles/text-helpers" as *;
-
-.myTitle {
-  font-size: calc-rem(24); // evaluates to 1.5rem
-}
-
-.blueBorder {
-  border: calc-rem(8) solid blue; // 0.5rem border-width
-}
-```
-
-### calc-rem-css-var
-
-Accomplishes the same thing as [calc-rem](#calc-rem) but uses a CSS custom property key as the input value. For example:
-
-#### Example
-
-```css
-@use "@local/components/text/styles/text-helpers" as *;
-
-:root {
-  --my-custom-font-size: 60;
-}
-
-.myCustomTitle {
-  /* evaluates to 3.75rem */
-  font-size: calc-rem-css-var(--my-custom-font-size);
 }
 ```
