@@ -33,7 +33,8 @@ The `<Text>` component uses root-level CSS custom properties (i.e. `--property-n
 
 Font size is controlled by the `variant` prop on the `<Text>` component. Available variants are: `title-1`, `title-2`, `title-3`, `title-4`, `title-5`, `title-6`, `body`, `body-larger`, `body-smaller`, `body-legal`.
 
-```html
+{/* prettier-ignore */}
+```jsx
 import { Text } from "@local/components"
 
 <Text variant="title-1" as="h3">This is a heading</Text>
@@ -97,7 +98,8 @@ Font weight is controlled by the `weight` prop, and is also managed by CSS custo
 }
 ```
 
-```html
+{/* prettier-ignore */}
+```jsx
 import { Text } from "@local/components"
 
 <Text variant="body-larger" weight="bold">This is some bold text 😏</Text>
@@ -121,6 +123,7 @@ The `<Text>` component comes with some helpful Sass helper functions, which you 
 ### calc-rem
 
 Signature: `calc-rem(unitless-pixel-value, <base-unitless-size> = 16)`
+
 `calc-rem` Receives a unitless pixel value, and converts it into a `rem` value. This is accomplished by dividing the value by 16, which is the default font size in most browsers.
 
 #### Example
