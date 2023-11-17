@@ -1,0 +1,23 @@
+@use "@local/styles/settings-breakpoints" as *;
+
+.overlay {
+  background-color: black;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.overlayOpen {
+  opacity: 0.95;
+  pointer-events: auto;
+}
+
+@media #{$medium-up} {
+  .overlay {
+    display: none;
+  }
+}

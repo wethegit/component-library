@@ -80,6 +80,12 @@ const VISUALLY_HIDDEN: Registry = {
   localDependencies: [TAG, CLASSNAMES],
 }
 
+const NAVIGATION: Registry = {
+  name: "navigation",
+  category: "component",
+  localDependencies: [FLEX, CLASSNAMES, VISUALLY_HIDDEN, FIXED_FORWARD_REF],
+}
+
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
   [FLEX.name]: FLEX,
@@ -87,5 +93,6 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [TAG.name]: TAG,
   [TEXT.name]: TEXT,
   [VISUALLY_HIDDEN.name]: VISUALLY_HIDDEN,
+  [NAVIGATION.name]: NAVIGATION,
 }
 /* END REGISTRY INDEX */

@@ -58,12 +58,14 @@
   }
 }
 
-@media #{$medium-up} {
-  .flex {
-    display: flex;
-  }
+.flex {
+  display: flex;
+}
 
-  @include breakpoint-classnames;
+@include breakpoint-classnames;
+
+@media #{$medium-up} {
+  @include breakpoint-classnames(md);
 }
 
 @media #{$large-up} {

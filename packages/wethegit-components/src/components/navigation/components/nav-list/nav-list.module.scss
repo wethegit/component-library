@@ -1,0 +1,47 @@
+@use "@local/styles/settings-breakpoints" as *;
+
+.navList {
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.navListItem {
+  a {
+    color: white;
+    display: inline-block;
+    padding: 10px 20px;
+    text-underline-offset: 2px;
+  }
+
+  &[aria-current] {
+    a {
+      color: red;
+    }
+  }
+}
+
+@media (hover: hover) {
+  .navListItem {
+    a:hover {
+      color: red;
+    }
+  }
+}
+
+// Feel free to change the breakpoint to suit your needs
+// remember to also change the breakpoint in the Toggler component
+@media #{$medium-up} {
+  .navList {
+    background: black;
+    flex-direction: row;
+  }
+
+  .navListItem {
+    a {
+      display: block;
+    }
+  }
+}
