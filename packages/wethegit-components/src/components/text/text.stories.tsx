@@ -19,36 +19,11 @@ export default meta
 
 type Story = StoryObj<typeof Text>
 
-export const Default: Story = {
-  render: (args) => (
-    <Text {...args}>
-      Labore ullamco mollit aute esse enim laboris quis occaecat ipsum eu culpa deserunt
-      ullamco. Quis duis pariatur eiusmod exercitation consectetur nostrud amet nostrud
-      tempor consequat irure ut do non. In irure id veniam voluptate incididunt excepteur
-      occaecat culpa. Consectetur qui ipsum nostrud elit aute ut dolore et pariatur
-      cupidatat cupidatat reprehenderit.
-    </Text>
-  ),
-}
-
-export const ParagraphHeading: Story = {
-  name: "Paragraph as a visual heading",
-  render: ({ variant = "title-3", ...args }) => (
-    <Text variant={variant} {...args} as="p">
-      The visual hierarchy does not always need to match the semantic heading hierarchy.
-      In this example, we&apos;re rendering a paragraph tag <code>{"<p>"}</code> in the{" "}
-      <em>style</em> of <code>title-3</code>. The important distinction to make here is
-      that it is <em>not</em> an <code>{"<h3>"}</code> tag.
-    </Text>
-  ),
-}
-
 /**
  * All of the available variants are shown below, using their default sizes. These sizes are customizable on a per-project basis, and can vary between different responsive breakpoints.
  */
-export const TypeSpectrum: Story = {
-  name: "Full typography spectrum",
-  render: () => (
+export const Default: Story = {
+  render: (args) => (
     <div className="child-spacing">
       {/*
         TODO: REMOVE THESE CHILD SPACING CLASSES.
@@ -78,7 +53,21 @@ export const TypeSpectrum: Story = {
         <Text variant="body">Body</Text>
         <Text variant="body-smaller">Body smaller</Text>
         <Text variant="body-legal">Body legal</Text>
+        <hr />
+        <Text {...args}>You can control this component from the Controls bellow</Text>
       </div>
     </div>
+  ),
+}
+
+export const ParagraphHeading: Story = {
+  name: "Paragraph as a visual heading",
+  render: ({ variant = "title-3", ...args }) => (
+    <Text variant={variant} {...args} as="p">
+      The visual hierarchy does not always need to match the semantic heading hierarchy.
+      In this example, we&apos;re rendering a paragraph tag <code>{"<p>"}</code> in the{" "}
+      <em>style</em> of <code>title-3</code>. The important distinction to make here is
+      that it is <em>not</em> an <code>{"<h3>"}</code> tag.
+    </Text>
   ),
 }

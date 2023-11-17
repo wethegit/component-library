@@ -1,0 +1,55 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/text/styles/text-utilities" />
+
+# Text utilities
+
+`<Text>` provides Sass utilities you can use to help with various typography-related CSS tasks.
+
+- [calc-rem](#calc-rem)
+- [calc-rem-css-var](#calc-rem-css-var)
+
+## Usage
+
+`@use` the helpers within in a `.scss` stylesheet:
+
+```css filename="components/your-component/your-component.module.scss"
+@use "@local/components/text/styles/text-utilities" as *;
+```
+
+## calc-rem
+
+Signature: `calc-rem(unitless-pixel-value, <base-unitless-size> = 16)`
+
+`calc-rem` Receives a unitless pixel value, and converts it into a `rem` value. This is accomplished by dividing the value by 16, which is the default font size in most browsers.
+
+### Example
+
+```css
+.myTitle {
+  /* evaluates to 1.5rem */
+  font-size: calc-rem(24);
+}
+
+.blueBorder {
+  /* 0.5rem border-width */
+  border: calc-rem(8) solid blue;
+}
+```
+
+## calc-rem-css-var
+
+Accomplishes the same thing as [calc-rem](#calc-rem) but uses a CSS custom property key as the input value. For example:
+
+### Example
+
+```css
+:root {
+  --my-custom-font-size: 60;
+}
+
+.myCustomTitle {
+  /* evaluates to 3.75rem */
+  font-size: calc-rem-css-var(--my-custom-font-size);
+}
+```
