@@ -3315,6 +3315,14 @@
     magic-string "^0.27.0"
     react-refresh "^0.14.0"
 
+"@wethegit/react-hooks@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@wethegit/react-hooks/-/react-hooks-1.0.3.tgz#a26473bae7fbe7ad2f6611f860871ad44e4a17d1"
+  integrity sha512-4QS9kqXKbPbuGRK9/ZtdAl5MnkhQyWSJhdAjcsny0VkfG5SwtV7Bs9zFIpNnPHE1DEYOdj2b4ZDbmzhhKqnEMA==
+  dependencies:
+    react "^17.0.2"
+    react-dom "^17.0.2"
+
 "@yarnpkg/esbuild-plugin-pnp@^3.0.0-rc.10":
   version "3.0.0-rc.15"
   resolved "https://registry.yarnpkg.com/@yarnpkg/esbuild-plugin-pnp/-/esbuild-plugin-pnp-3.0.0-rc.15.tgz#4e40e7d2eb28825c9a35ab9d04c363931d7c0e67"

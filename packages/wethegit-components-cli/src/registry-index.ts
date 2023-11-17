@@ -86,6 +86,13 @@ const NAVIGATION: Registry = {
   localDependencies: [FLEX, CLASSNAMES, VISUALLY_HIDDEN, FIXED_FORWARD_REF],
 }
 
+const REDUCED_MOTION: Registry = {
+  name: "reduced-motion",
+  category: "component",
+  localDependencies: [CLASSNAMES],
+  dependencies: ["@wethegit/react-hooks"],
+}
+
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
   [FLEX.name]: FLEX,
@@ -94,5 +101,6 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [TEXT.name]: TEXT,
   [VISUALLY_HIDDEN.name]: VISUALLY_HIDDEN,
   [NAVIGATION.name]: NAVIGATION,
+  [REDUCED_MOTION.name]: REDUCED_MOTION,
 }
 /* END REGISTRY INDEX */

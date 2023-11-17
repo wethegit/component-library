@@ -1,0 +1,26 @@
+// Reduced motion helpers
+$reduced-motion-query: "(prefers-reduced-motion: reduce)";
+
+@mixin reduced-motion {
+  @include reduced-motion-query {
+    @content;
+  }
+
+  @include reduced-motion-class {
+    @content;
+  }
+}
+
+@mixin reduced-motion-query {
+  @media #{$reduced-motion-query} {
+    @content;
+  }
+}
+
+@mixin reduced-motion-class {
+  // This class name gets added to the body by the @wethegit/react-hooks library
+  /* stylelint-disable-next-line selector-class-pattern */
+  .is-reduced-motion {
+    @content;
+  }
+}
