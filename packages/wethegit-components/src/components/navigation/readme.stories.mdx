@@ -1,0 +1,49 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/navigation/Readme" />
+
+# Navigation
+
+In it's basic form, the `<Navigation>` component is a hamburger menu that opens a list of links on the `sm` breakpoint and from the `md` breakpoint and up, it's a horizontal list of links that is sticky to the top of the viewport.
+
+It also takes care of trapping the focus within the navigation when it's open on mobile.
+
+## Install
+
+```bash
+npx @wethegit/components-cli add navigation
+```
+
+## Navigation items
+
+Inside the `navigation.tsx` file, you'll find a `LINKS` object. This is where you can edit your navigation items.
+
+```tsx
+const LINKS = {
+  home: {
+    label: "Home",
+    href: "/",
+  },
+}
+```
+
+Highlighting the current page is done by passing a one of the **keys** from the `LINKS` object to the `currentPage` prop on the `<Navigation>` component.
+
+{/* prettier-ignore */}
+```tsx
+<Navigation currentPage="home" />
+```
+
+## Customizing
+
+The `<Navigation>` component is split into 3 main components:
+
+- `<Toggler>`: The hamburger menu that opens the navigation on mobile.
+- `<Overlay>`: The overlay that covers the viewport when the navigation is open on mobile. This can be simply removed if you don't intend on having a full screen overlay.
+- `<NavList>`: The list of links that is shown on mobile and desktop.
+
+One other minor components that is part of the `<Navigation>` component is:
+
+- `<NavListItem>`: The list item that wraps each link.
+
+Each of these components come with very simple and crude styles to just make things work. Customize them to your liking.

@@ -21,16 +21,16 @@ const LINKS = {
 
 export interface NavigationProps {
   /**
-   * The currently selected navigation item. This is used to highlight the selected item.
+   * The currently selected navigation item, used to highlight the selected item and to set the `aria-current` attribute.
    * This is based on the `key` of the `LINKS` object.
    */
-  selectedNav?: keyof typeof LINKS
+  currentPage?: keyof typeof LINKS
 }
 
 /**
- * At it's basic form, the navigation component is a hamburger menu that opens a list of links on the `sm` breakpoint and from the `md` breakpoint and up, it's a horizontal list of links.
+ * At it's basic form, the navigation component is a hamburger menu that opens a list of links on the `sm` breakpoint and from the `md` breakpoint and up, it's a horizontal list of links that is sticky to the top of the viewport.
  */
-export function Navigation({ selectedNav }: NavigationProps) {
+export function Navigation({ currentPage }: NavigationProps) {
   const [open, setOpen] = useState(false)
   const focusLoopEnd = useRef<HTMLSpanElement>(null)
   const menuToggler = useRef<HTMLButtonElement>(null)
@@ -49,14 +49,19 @@ export function Navigation({ selectedNav }: NavigationProps) {
 
   return (
     <div className={classnames([styles.navBar, open && styles.navBarOpen])}>
-      <Toggler open={open} aria-controls={MAIN_NAV_ID} onClick={toggle} />
+      <Toggler
+        ref={menuToggler}
+        open={open}
+        aria-controls={MAIN_NAV_ID}
+        onClick={toggle}
+      />
 
       <Overlay open={open} />
 
       <nav className={styles.mainNav} aria-label="Main Navigation" id={MAIN_NAV_ID}>
         <NavList>
           {Object.entries(LINKS).map(([key, { label, path }]) => (
-            <NavListItem key={key} selected={key === selectedNav}>
+            <NavListItem key={key} selected={key === currentPage}>
               <a href={path} onClick={handleLinkClick}>
                 {label}
               </a>

@@ -31,17 +31,11 @@
   }
 }
 
-// Feel free to change the breakpoint to suit your needs
-// remember to also change the breakpoint in the Toggler component
+// Feel free to change the breakpoint where the nav goes from hamburger to full
+// Also change the breakpoint in the Toggler and Navigation components
 @media #{$medium-up} {
   .navList {
     background: black;
     flex-direction: row;
-  }
-
-  .navListItem {
-    a {
-      display: block;
-    }
   }
 }
