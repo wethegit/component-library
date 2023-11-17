@@ -1,5 +1,13 @@
 # @wethegit/components-cli
 
+## 2.4.4
+
+### Patch Changes
+
+- Adds Text component
+- Updated dependencies
+  - @wethegit/components@2.2.4
+
 ## 2.4.3
 
 ### Patch Changes

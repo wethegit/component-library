@@ -6,6 +6,5 @@
   "linked": [],
   "access": "public",
   "updateInternalDependencies": "patch",
-  "ignore": ["@wethegit/components-docs"],
   "baseBranch": "main"
 }
