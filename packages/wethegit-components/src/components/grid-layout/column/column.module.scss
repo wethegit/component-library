@@ -1,5 +1,5 @@
 @use "@local/styles/settings-breakpoints.scss" as *;
-@use "../styles/grid-layout-helpers.scss" as layout;
+@use "../styles/grid-layout-utilities.scss" as layout;
 
 @mixin make-column-classnames($breakpoint: false) {
   $base-class: "span";
@@ -16,10 +16,10 @@
 }
 
 .column {
+  flex: 1;
   list-style: none;
   margin: 0;
   padding-inline: calc(var(--wtc-gutter-width, 24px) * 0.5);
-  flex: 1;
 }
 
 .deep {

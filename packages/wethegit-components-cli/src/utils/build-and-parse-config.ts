@@ -1,15 +1,16 @@
 import { resolve } from "node:path"
+
 import fse from "fs-extra"
 import chalk from "chalk"
 import ora from "ora"
 
 import type { Config } from "../global"
 
-import { DEFAULT_CONFIG, DEFAULT_CONFIG_FILE_NAME } from "./consts"
+import { DEFAULT_CONFIG_FILE_NAME } from "./consts"
 import { logger } from "./logger"
-import { ensureCwd } from "./ensureCwd"
-import { promptForConfig } from "./promptForConfig"
-import { resolveConfigPaths } from "./resolveConfigPaths"
+import { ensureCwd } from "./ensure-cwd"
+import { promptForConfig } from "./prompt-for-config"
+import { resolveConfigPaths } from "./resolve-config-paths"
 
 interface BuildAndParseConfigOptions {
   skipPrompt?: boolean
@@ -38,7 +39,7 @@ export async function buildAndParseConfig(
   const doesConfigFileExist = await fse.pathExists(localConfigFile)
 
   if (!doesConfigFileExist && errorIfNotFound) {
-    await spinner.fail(
+    spinner.fail(
       `No ${chalk.red.bold(DEFAULT_CONFIG_FILE_NAME)} file found. Run ${chalk.red.bold(
         "init"
       )} first before adding components.`
@@ -48,20 +49,20 @@ export async function buildAndParseConfig(
   }
 
   if (doesConfigFileExist) {
-    await spinner.info(`Found ${chalk.cyan(DEFAULT_CONFIG_FILE_NAME)} file`)
+    spinner.info(`Found ${chalk.cyan(DEFAULT_CONFIG_FILE_NAME)} file`)
 
     try {
       // if we found a local config file, we want to merge it with the default config
-      const localConfig = await fse.readJson(localConfigFile)
+      const localConfig = (await fse.readJson(localConfigFile)) as Config
 
       config = localConfig
     } catch (e) {
-      await spinner.fail("Error parsing local config file")
+      spinner.fail("Error parsing local config file")
       logger.error(e)
       process.exit(1)
     }
   } else {
-    await spinner.succeed()
+    spinner.succeed()
 
     // Prompt for config
     const configFromPrompt = await promptForConfig(cwd, skipPrompt)
@@ -85,13 +86,13 @@ export async function buildAndParseConfig(
     try {
       await fse.outputJson(targetPath, config, { spaces: 2 })
     } catch (error) {
-      await spinnerJson.fail()
+      spinnerJson.fail()
       logger.error(`Failed to write ${targetPath}.`)
       logger.error(error)
       process.exit(1)
     }
 
-    await spinnerJson.succeed()
+    spinnerJson.succeed()
   }
 
   return resolvedConfig

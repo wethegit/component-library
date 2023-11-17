@@ -6,7 +6,7 @@ export interface Registry {
   /** The type of item. If empty, component */
   category: RegistryCategory
   /** A glob pattern to match files to copy from the item directory to the project
-   * @default "*"
+   * @defaultValue "*"
    */
   files?: string
   /** List of local dependencies. Every listed dependency must also be part of the registry index. */
@@ -50,6 +50,12 @@ const TAG: Registry = {
   category: "component",
 }
 
+const TEXT: Registry = {
+  name: "text",
+  category: "component",
+  localDependencies: [TAG, CLASSNAMES],
+}
+
 const FLEX: Registry = {
   name: "flex",
   category: "component",
@@ -79,6 +85,7 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [FLEX.name]: FLEX,
   [GRID_LAYOUT.name]: GRID_LAYOUT,
   [TAG.name]: TAG,
+  [TEXT.name]: TEXT,
   [VISUALLY_HIDDEN.name]: VISUALLY_HIDDEN,
 }
 /* END REGISTRY INDEX */

@@ -32,7 +32,7 @@ If you'd like to add a new category of registry item, you need to:
 Those are the basic steps. If this new category require a new directory as destination from the user, we also need to set that up in the config:
 
 1. Add a new property to [Config](./src/index.d.ts) and update [DEFAULT_CONFIG](./src/utils/consts.ts)
-2. Resolve the path during config parsing in [resolveConfigPath](./src/utils/resolveConfigPaths.ts)
+2. Resolve the path during config parsing in [resolveConfigPath](./src/utils/resolve-config-paths.ts)
 3. Prompt the user for the new path in [promptForConfig](./src/utils/promptForConfig.ts)
 
 That's the gist of it. If there are any other places that need tweaking, Typescript will let you know.

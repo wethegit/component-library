@@ -9,7 +9,7 @@ export function buildDepsTree(
   dependenciesList: Set<string>,
   useTypescript: boolean
 ): [Set<Registry>, Set<string>] {
-  for (let dependency of dependencies) {
+  for (const dependency of dependencies) {
     // trying to avoind infinite loops
     if (localDependenciesList.has(dependency)) continue
 
@@ -19,13 +19,13 @@ export function buildDepsTree(
 
     const { localDependencies, dependencies: nodeDependencies } = dependency
 
-    if (nodeDependencies && nodeDependencies.length) {
-      for (let packageName of nodeDependencies) {
+    if (nodeDependencies?.length) {
+      for (const packageName of nodeDependencies) {
         dependenciesList.add(packageName)
       }
     }
 
-    if (localDependencies && localDependencies.length) {
+    if (localDependencies?.length) {
       buildDepsTree(
         localDependencies,
         localDependenciesList,

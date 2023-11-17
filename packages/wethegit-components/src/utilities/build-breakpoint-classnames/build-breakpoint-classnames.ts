@@ -1,11 +1,11 @@
-import { ClassnamesProps } from "../classnames"
+import type { ClassnamesProps } from "../classnames"
 
 export function buildBreakpointClassnames<T extends string | number | boolean>(
   prop: T | Partial<Omit<Breakpoints<T>, "sm">> | undefined,
   styles: Record<string, string>,
   styleName: string
 ): ClassnamesProps {
-  let allClassnames: ClassnamesProps = []
+  const allClassnames: ClassnamesProps = []
 
   if (typeof prop === "object") {
     const { md, lg, xl, xxl } = prop

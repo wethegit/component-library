@@ -1,1 +1,1 @@
-export * from "./copyGlobalStyles";
+export * from "./copy-global-styles"

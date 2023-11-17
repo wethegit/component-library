@@ -1,4 +1,4 @@
-import { ElementType } from "react"
+import type { ElementType } from "react"
 
 import { Tag } from "@local/components"
 import type { TagProps } from "@local/components"
@@ -16,9 +16,9 @@ export function VisuallyHidden<TAs extends ElementType = typeof DEFAULT_ELEMENT>
   revealOnFocus = false,
   className,
   ...props
-}: VisuallyHiddenProps<TAs>) {
+}: VisuallyHiddenProps<TAs>): JSX.Element {
   const { as = DEFAULT_ELEMENT, ...rest } = props
-  const classes = revealOnFocus ? styles["reveal-on-focus"] : styles["standard"]
+  const classes = revealOnFocus ? styles.revealOnFocus : styles.standard
 
-  return <Tag as={as} className={classnames([classes, className])} {...rest} />
+  return <Tag {...rest} as={as} className={classnames([classes, className])} />
 }

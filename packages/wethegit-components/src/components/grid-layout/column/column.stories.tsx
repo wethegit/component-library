@@ -12,17 +12,24 @@ const meta = {
     as: "div",
     span: DEFAULT_SPAN,
   },
+  argTypes: {
+    as: {
+      defaultValue: { summary: "div" },
+    },
+  },
 } satisfies Meta<typeof Column>
 
 export default meta
 
 type Story = StoryObj<typeof Column>
 
-function plural(span: number) {
+function plural(span: number): string {
   return span !== 1 ? "s" : ""
 }
 
-function howManyColumns(span?: ColumnBreakpoints | number) {
+function howManyColumns(
+  span?: ColumnBreakpoints | number
+): JSX.Element | null | JSX.Element[] {
   if (!span) return null
 
   if (typeof span === "number")
@@ -33,7 +40,7 @@ function howManyColumns(span?: ColumnBreakpoints | number) {
     )
 
   return Object.entries(span).map(([key, val]) => (
-    <p>{`${val} column${plural(val as number)} on '${key}' breakpoint`}</p>
+    <p key={key}>{`${val} column${plural(val)} on '${key}' breakpoint`}</p>
   ))
 }
 
@@ -100,13 +107,13 @@ export const NestedColumns: Story = {
           This spans <code>7</code> columns
         </p>
         <Row className="gutter-visualizer">
-          <Column deep className="gutter-visualizer">
+          <Column className="gutter-visualizer" deep>
             <p>
               Notice how the text touches the edge and they don't have an internal
               padding.
             </p>
           </Column>
-          <Column deep className="gutter-visualizer">
+          <Column className="gutter-visualizer" deep>
             <p>
               Notice how the text touches the edge and they don't have an internal
               padding.

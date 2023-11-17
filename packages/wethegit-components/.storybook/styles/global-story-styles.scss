@@ -1,8 +1,11 @@
 @import "@local/styles/global.scss";
 @import "@local/components/grid-layout/styles/grid-layout.scss";
+@import "@local/components/text/styles/text.scss";
 
 @mixin gutter-highlight($color: blue, $size) {
-  box-shadow: $color $size 0 0 0 inset, $color calc(#{$size} * -1) 0 0 0 inset;
+  box-shadow:
+    $color $size 0 0 0 inset,
+    $color calc(#{$size} * -1) 0 0 0 inset;
 }
 
 @mixin dashed-outline {
@@ -52,4 +55,17 @@ a {
 
 .gutter-visualizer--full {
   @include gutter-highlight(rgb(83 198 82 / 34%), var(--wtc-gutter-width));
+}
+
+// TODO:
+// THESE ARE TEMPORARY. Remove them once spacing component is set up.
+.child-spacing {
+  > * + * {
+    margin-top: 2rem !important;
+  }
+}
+.child-spacing--less {
+  > * + * {
+    margin-top: 1rem !important;
+  }
 }

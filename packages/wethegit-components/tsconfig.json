@@ -2,6 +2,7 @@
   "extends": "tsconfig/react-library.json",
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"],
+  "jsx": "preserve",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

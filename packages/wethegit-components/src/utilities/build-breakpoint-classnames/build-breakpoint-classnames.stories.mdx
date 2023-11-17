@@ -4,7 +4,7 @@ import { Meta } from "@storybook/blocks"
 
 # buildBreakpointClassnames
 
-The `buildBreakpointClassnames` function is designed to generate class names based on breakpoints for responsive design. It takes a [breakpoint-object](/docs/core-breakpoints--docs) property, a styles object, and a style name as input and returns an array of class names.
+The `buildBreakpointClassnames` function is designed to generate class names based on breakpoints for responsive design. It takes a [breakpoint-object](/docs/styles-breakpoints--docs) property, a CSS-modules styles object, and a style name as input and returns an array of class names.
 
 ## Parameters
 
@@ -16,9 +16,7 @@ The `buildBreakpointClassnames` function is designed to generate class names bas
 
 #### `styles: Record<string, string>`
 
-- The `styles` parameter is an object that maps breakpoint values to corresponding class names.
-
-The function will look for the following format in the styles object:
+- Default CSS modules `styles`. It is used to generate the breakpoint class names and should contain the following classes:
 
 1. `md`: `${styleName}-${value}`
 2. `lg`: `${styleName}-lg-${value}`
@@ -31,24 +29,23 @@ The function will look for the following format in the styles object:
 
 ## Return Value
 
-The function returns an array of class names [ClassnamesProps](/docs/utilities-classnames--docs#parameters), representing the generated breakpoint class names.
+The function returns an array of class names [ClassnamesProps](/docs/utilities-classnames--docs), representing the generated breakpoint class names.
 
 ## Example Usage
 
 ```typescript
-import { buildBreakpointClassnames } from 'path/to/buildBreakpointClassnames';
-import styles from 'path/to/styles.module.css';
+import { buildBreakpointClassnames } from "path/to/buildBreakpointClassnames"
+import styles from "path/to/styles.module.css"
 
-const breakpointClasses = buildBreakpointClassnames({md: 2, lg: 3, xl: 4, xxl: 5 }, styles, 'container');
+const breakpointClasses = buildBreakpointClassnames(
+  { md: 2, lg: 3, xl: 4, xxl: 5 },
+  styles,
+  "container"
+)
 ```
 
 The above example will return the following array:
 
 ```typescript
-[
-  'container-2',
-  'container-lg-3',
-  'container-xl-4',
-  'container-xxl-5'
-]
+const result = ["container-2", "container-lg-3", "container-xl-4", "container-xxl-5"]
 ```

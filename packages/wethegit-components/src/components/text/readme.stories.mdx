@@ -1,0 +1,25 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/text/Readme" />
+
+# Text
+
+`<Text>` provides a componentized solution to typography styling in a project. It gives us a predictible API to work with for styling purposes, and it allows us to separate _semantic_ hierarchy from _visual_ hierarchy in our typography.
+
+## Install
+
+```bash
+npx @wethegit/components-cli add text
+```
+
+Then add the required typography styles to your global stylesheet:
+
+```css filename="global.scss"
+@import "<path-to>/components/text/styles/text.scss";
+```
+
+### Customize
+
+To customize the text styles, you can override the variables inside the `text.scss` file.
+
+For more information about the options, check the [text styles docs](/docs/components-text-styles-text--docs).

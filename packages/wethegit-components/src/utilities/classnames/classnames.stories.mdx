@@ -10,7 +10,9 @@ The `classnames` function is a utility for conditionally joining class names tog
 
 `classes: ClassnamesProps`
 
-- The `classes` parameter represents the class names to be joined. It can be a string, an array of strings, or a nested structure of class names.
+`ClassnamesProps = string | undefined | null | ClassnamesProps[];`
+
+- The `classes` parameter represents the class names to be joined. It can be a string, or a nested structure of class names.
 
 ## Return Value
 
@@ -19,15 +21,21 @@ The function returns a string containing the concatenated and space-separated cl
 ## Example Usage
 
 ```typescript
-import { classnames } from 'path/to/classnames';
+import { classnames } from "path/to/classnames"
 
-const buttonClasses = classnames('button', 'primary', ['is-active', null, undefined], 1);
+const buttonClasses = classnames(
+  "button",
+  "primary",
+  ["is-active", null, undefined],
+  1,
+  "2"
+)
 ```
 
 The above example will return the following:
 
 ```typescript
-'button primary is-active'
+"button primary is-active 2"
 ```
 
 ## Notes

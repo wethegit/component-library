@@ -22,7 +22,7 @@ export function promptForComponents(): Promise<{
           })),
       },
       {
-        type: (val) => (val.length > 0 ? "confirm" : null),
+        type: (val: string[]) => (val.length > 0 ? "confirm" : null),
         name: "proceed",
         message: `This operation will ${chalk.yellow(
           "overwrite"
@@ -32,7 +32,7 @@ export function promptForComponents(): Promise<{
     ],
     {
       onCancel: () => {
-        process.exit(1)
+        process.exit(0)
       },
     }
   )

@@ -12,5 +12,5 @@ export const Wrapper = fixedForwardRef(function Wrapper<TAs extends ElementType 
 ): JSX.Element {
   const classes = classnames([styles.wrapper, className])
 
-  return <Tag ref={ref} className={classes} {...props} />
+  return <Tag className={classes} ref={ref} {...props} />
 })

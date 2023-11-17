@@ -1,4 +1,5 @@
-import { resolve } from 'node:path'
+import { resolve } from "node:path"
+
 import { defineConfig } from "vite"
 
 export default defineConfig({
@@ -7,7 +8,7 @@ export default defineConfig({
       {
         find: "@local",
         replacement: resolve(__dirname, "./src/"),
-      }
+      },
     ],
   },
 })

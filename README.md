@@ -2,7 +2,7 @@
 
 Minally styled, accessible, React component primitives that can be copy and pasted into your project.
 
-[Documentation]()
+[Documentation](https://wethegit.github.io/component-library/)
 
 ## Development
 
@@ -18,9 +18,8 @@ Minally styled, accessible, React component primitives that can be copy and past
 
 This monorepo includes the following packages and applications:
 
-- [`apps/docs`](./apps/docs/README.md): Component documentation site with Storybook
 - [`packages/wethegit-components-cli`](./packages/wethegit-components-cli/README.md): CLI companion for `@wethegit/components`
-- [`packages/wethegit-components`](./packages/wethegit-components/README.md): Core React components
+- [`packages/wethegit-components`](./packages/wethegit-components/README.md): Core React components and documentation with Storybook
 - [`packages/tsconfig`](./packages/tsconfig/README.md): Shared `tsconfig.json`s used throughout the monorepo
 - [`packages/eslint-config-custom`](./packages/eslint-config-custom/README.md): ESLint config used throughout the monorepo
 
