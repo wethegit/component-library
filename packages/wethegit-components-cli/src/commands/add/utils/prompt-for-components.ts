@@ -32,7 +32,7 @@ export function promptForComponents(): Promise<{
     ],
     {
       onCancel: () => {
-        process.exit(1)
+        process.exit(0)
       },
     }
   )

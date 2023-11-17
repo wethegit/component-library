@@ -39,7 +39,7 @@ export async function add(names: string[], options: Options): Promise<void> {
         ? await getRegistryItemsFromNames(names)
         : await promptForComponents()
 
-    if (!proceed || selected.length <= 0) process.exit(1)
+    if (!proceed || selected.length <= 0) process.exit(0)
 
     // build unique list of components and dependencies to copy
     const [localDependencies, dependencies] = buildDepsTree(
@@ -112,7 +112,7 @@ async function getRegistryItemsFromNames(
       `${chalk.cyan("Documentation")}: https://wethegit.github.io/component-library/`
     )
     logger.info(``)
-    process.exit(1)
+    process.exit(0)
   }
 
   const { proceed }: Record<string, boolean> = await prompts(
@@ -128,7 +128,7 @@ async function getRegistryItemsFromNames(
     ],
     {
       onCancel: () => {
-        process.exit(1)
+        process.exit(0)
       },
     }
   )

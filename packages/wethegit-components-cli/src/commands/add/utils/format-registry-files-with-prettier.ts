@@ -42,7 +42,7 @@ export async function formatRegistryFilesWithPrettier({
     },
     {
       onCancel: () => {
-        process.exit(1)
+        process.exit(0)
       },
     }
   )

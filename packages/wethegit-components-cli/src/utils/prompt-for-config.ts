@@ -55,7 +55,7 @@ export async function promptForConfig(cwd: string, skip: boolean): Promise<Confi
       ],
       {
         onCancel: () => {
-          process.exit(1)
+          process.exit(0)
         },
       }
     )
