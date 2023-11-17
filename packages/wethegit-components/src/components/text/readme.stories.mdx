@@ -6,12 +6,6 @@ import { Meta } from "@storybook/blocks"
 
 `<Text>` provides a componentized solution to typography styling in a project. It gives us a predictible API to work with for styling purposes, and it allows us to separate _semantic_ hierarchy from _visual_ hierarchy in our typography.
 
-- [Install](#install)
-- [Usage](#usage)
-  - [Font size](#font-size)
-  - [Font weight](#font-weight)
-  - [Line height](#line-height)
-
 ## Install
 
 ```bash
@@ -24,93 +18,8 @@ Then add the required typography styles to your global stylesheet:
 @import "<path-to>/components/text/styles/text.scss";
 ```
 
-## Usage
+### Customize
 
-The `<Text>` component uses root-level CSS custom properties (i.e. `--property-name`) to handle concerns such as size, weight, and line-height. All of these settings are exposed via the `text.scss` stylesheet for easy adjustment.
+To customize the text styles, you can override the variables inside the `text.scss` file.
 
-### Font size
-
-Font size is controlled by the `variant` prop on the `<Text>` component. Available variants are: `title-1`, `title-2`, `title-3`, `title-4`, `title-5`, `title-6`, `body`, `body-larger`, `body-smaller`, `body-legal`.
-
-{/* prettier-ignore */}
-```jsx
-import { Text } from "@local/components"
-
-<Text variant="title-1" as="h3">This is a heading</Text>
-```
-
-The `<Text>` component is intended to work with pixel-based font-sizes, as most design software follows this same convention. Thus, all of the CSS custom properties related to the variant prop must take in a _unitless_ pixel value. This value is then converted it to a `rem` value at build time.
-
-For example, these settings…
-
-```css
-:root {
-  --wtc-font-size-title-1: 42; /* 42px */
-  --wtc-font-size-title-2: 33; /* 33px */
-  --wtc-font-size-title-3: 26; /* 26px */
-  --wtc-font-size-title-4: 20; /* 20px */
-  --wtc-font-size-title-5: 16; /* 16px */
-  --wtc-font-size-title-6: 13; /* 13px */
-  --wtc-font-size-body: 16; /* 16px */
-  --wtc-font-size-body-smaller: 13; /* 13px */
-  --wtc-font-size-body-larger: 20; /* 20px */
-  --wtc-font-size-body-legal: 10; /* 10px */
-}
-```
-
-…compile to these values:
-
-```css
-.variant-title-1 {
-  font-size: 2.625rem;
-}
-
-.variant-title-2 {
-  font-size: 2.0625rem;
-}
-
-.variant-title-3 {
-  font-size: 1.625rem;
-}
-
-.variant-body {
-  font-size: 1rem;
-}
-
-/* and so on */
-```
-
-This conversion is made possible thanks to the Sass helper, [calc-rem](?path=/docs/components-text-utilities--docs#calc-rem), which is included as part of the `<Text>` component. The function receives a unitless pixel value, and converts it into a `rem` value.
-
-### Font weight
-
-Font weight is controlled by the `weight` prop, and is also managed by CSS custom properties which can be found in the `text.scss` file. The available weights are as follows, and can be adjust however you need, based on your font files.
-
-```css
-:root {
-  --wtc-font-weight-light: 300;
-  --wtc-font-weight-regular: 400;
-  --wtc-font-weight-medium: 500;
-  --wtc-font-weight-semibold: 600;
-  --wtc-font-weight-bold: 700;
-  --wtc-font-weight-black: 900;
-}
-```
-
-{/* prettier-ignore */}
-```jsx
-import { Text } from "@local/components"
-
-<Text variant="body-larger" weight="bold">This is some bold text 😏</Text>
-```
-
-### Line height
-
-Line height is inherited based on the `variant` prop. By default, `body-` variants receive a general "body" line height, and `title-` variants receive a general "heading" line height. These are managed by CSS custom properties which can be found in the `text.scss` file.
-
-```css
-:root {
-  --wtc-line-height-heading: 1.2;
-  --wtc-line-height-body: 1.4;
-}
-```
+For more information about the options, check the [text styles docs](/docs/components-text-styles-text--docs).

@@ -6,8 +6,6 @@ import { Meta } from "@storybook/blocks"
 
 The grid-layout component is the foundation of the grid system. It is used to create a grid container and its columns.
 
-One thing that's important to note is that the none of the **breakpoint-object** properties will accept the `sm` breakpoint. This is because the grid-layout component will span the full width of the viewport on the `sm` breakpoint.
-
 ### Install
 
 ```bash
@@ -19,3 +17,9 @@ After that, add the grid required styles to your global styles:
 ```scss filename="global.scss"
 @import "<path-to>/components/grid-layout/styles/grid-layout.scss";
 ```
+
+### Customize
+
+To customize the grid, you can override the variables inside the `grid-layout.scss` file.
+
+For more information about the variables, check the [grid layout styles docs](/docs/components-grid-layout-styles-grid-layout--docs).

@@ -1,0 +1,31 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/grid-layout/styles/grid-layout-utilities" />
+
+# Grid utilities
+
+The grid layout comes with some Sass utilities to help you size elements based on the grid's configuration.
+
+- [grid-calc](#grid-calc)
+
+## Usage
+
+`@use` the helpers within in a `.scss` stylesheet:
+
+```css filename="components/your-component/your-component.module.scss"
+@use "@local/components/grid-layout/styles/grid-layout-utilities" as *;
+```
+
+## grid-calc
+
+Signature: `grid-calc(number-of-columns)`
+
+`grid-calc` Receives a number, and returns a CSS calc expression that evaluates to the number of columns multiplied by the grid's column width.
+
+### Example
+
+```css
+.customComponent {
+  width: grid-calc(6);
+}
+```
