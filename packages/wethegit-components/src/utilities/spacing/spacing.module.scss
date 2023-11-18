@@ -1,32 +1,35 @@
 @use "@local/styles/settings/settings-breakpoints.scss" as *;
 
+$space-by: 8px;
+$total-space-classes: 10;
+
 /**
-  * @file Utility classes for margin and padding.
-  * Classes are generated for each size based on the --base-space property.
+  * Utility classes for margin and padding.
+  * Classes are generated for each size based on the $base-space variable.
   *
   * Format for class names is:
   * {margin/padding}-{x/y/top/right/bottom/left[optional]}{-breakpoint[optional]}-{size}
   *
   * Examples:
   * margin-0, padding-x-2, margin-x-auto, margin-bottom-medium-3, padding-x-large-4
-  */
+*/
 
-// Creates a value which is a multiple of the --base-space property.
+// Creates a value which is a multiple of the $base-space property.
 @function space-by($multiplier: false) {
   @if not $multiplier {
-    @return var(--base-space, 8px);
+    @return $space-by;
   } @else if $multiplier == 1 {
-    @return var(--base-space, 8px);
+    @return $space-by;
   } @else {
-    @return calc(var(--base-space, 8px) * #{$multiplier});
+    @return $space-by * $multiplier;
   }
 }
 
 /**
-    * Generates a set of utility classes for margin and padding.
-    * @param {Number} $total - The total number of classes to generate (0 through $total). Sizes are based on the --base-space property.
-    * @param {String} $suffix - An optional suffix to append to the class name.
-    */
+  * Generates a set of utility classes for margin and padding.
+  * @param {Number} $total - The total number of classes to generate (0 through $total). Sizes are based on the $base-space property.
+  * @param {String} $suffix - An optional suffix to append to the class name.
+  */
 @mixin generate-spacer-classes($total, $suffix: "") {
   @for $i from 0 through $total {
     $directions: "left-", "right-", "top-", "bottom-", "x-", "y-", "";
@@ -69,8 +72,6 @@
     }
   }
 }
-
-$total-space-classes: 10;
 
 @include generate-spacer-classes($total-space-classes);
 
