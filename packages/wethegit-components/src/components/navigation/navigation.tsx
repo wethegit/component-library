@@ -3,7 +3,6 @@
 import { useRef, useState } from "react"
 
 import { classnames } from "@local/utilities"
-import { spacing } from "@local/utilities/spacing"
 
 import { NavList, NavListItem, Overlay, Toggler } from "./components"
 import styles from "./navigation.module.scss"
@@ -49,14 +48,7 @@ export function Navigation({ currentPage }: NavigationProps) {
   }
 
   return (
-    <div
-      className={classnames([
-        styles.navBar,
-        open && styles.navBarOpen,
-        spacing.margin.left[4],
-        spacing.padding.x[3],
-      ])}
-    >
+    <div className={classnames([styles.navBar, open && styles.navBarOpen])}>
       <Toggler
         ref={menuToggler}
         open={open}

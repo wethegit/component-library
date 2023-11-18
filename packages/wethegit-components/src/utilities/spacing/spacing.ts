@@ -7,6 +7,12 @@ const BREAKPOINTS: Exclude<Breakpoint, "sm">[] = ["md", "lg", "xl", "xxl"]
 // This should be the same amount as TOTAL_SPACE_CLASSES
 type SpacingRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
 
+/**
+ * @description
+ * Spacing range from 1 to 10
+ * @example
+ * 1 = 8px
+ */
 type SpacingMargin = Record<SpacingRange, string> & {
   left: Record<SpacingRange, string> & { auto: string }
   right: Record<SpacingRange, string> & { auto: string }
