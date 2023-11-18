@@ -11,7 +11,6 @@ interface SpacingStops {
     bottom: Record<SpacingRange, string>
     x: Record<SpacingRange, string> & { auto: string }
     y: Record<SpacingRange, string>
-    auto: Record<SpacingRange, string>
   }
   padding: {
     [key: number]: string
@@ -66,5 +65,7 @@ const directions = ["left", "right", "x"] as const
 for (const dir of directions) {
   spacing.margin[dir].auto = styles[`margin-${dir}-auto`]
 }
+
+console.log(spacing)
 
 export { spacing }
