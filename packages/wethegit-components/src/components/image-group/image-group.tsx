@@ -6,9 +6,6 @@ import styles from "./image-group.module.scss"
 
 export type ImageGroupProps<TAs extends React.ElementType> = TagProps<TAs>
 
-/**
- * Docs about ImageGroup coming soon
- */
 export const ImageGroup = fixedForwardRef(function ImageGroup<
   TAs extends React.ElementType = "div",
 >({ className, ...props }: ImageGroupProps<TAs>, ref: React.ForwardedRef<unknown>) {
