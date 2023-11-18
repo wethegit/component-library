@@ -1,4 +1,4 @@
-@use "@local/styles/settings-breakpoints.scss" as *;
+@use "@local/styles/settings/settings-breakpoints.scss" as *;
 @use "../styles/grid-layout-utilities.scss" as layout;
 
 @mixin make-column-classnames($breakpoint: false) {
