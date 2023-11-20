@@ -1,6 +1,6 @@
 "use client"
 
-import { useId, useRef, useState } from "react"
+import { useRef, useState } from "react"
 
 import { classnames } from "@local/utilities"
 
@@ -30,6 +30,8 @@ export interface NavigationProps {
   links: NavigationLinks
 }
 
+const MAIN_NAV_ID = "main-nav"
+
 /**
  * At it's basic form, the navigation component is a hamburger menu that opens a list of links on the `sm` breakpoint and from the `md` breakpoint and up, it's a horizontal list of links that is sticky to the top of the viewport.
  */
@@ -37,7 +39,6 @@ export function Navigation({ currentPage, links, ...props }: NavigationProps) {
   const [open, setOpen] = useState(false)
   const focusLoopEnd = useRef<HTMLSpanElement>(null)
   const menuToggler = useRef<HTMLButtonElement>(null)
-  const id = useId()
 
   const toggle = () => {
     setOpen(!open)
@@ -56,14 +57,14 @@ export function Navigation({ currentPage, links, ...props }: NavigationProps) {
       <Toggler
         ref={menuToggler}
         open={open}
-        aria-controls={id}
+        aria-controls={MAIN_NAV_ID}
         onClick={toggle}
         className={styles.toggler}
       />
 
       <Overlay open={open} onClick={toggle} className={styles.overlay} />
 
-      <nav className={styles.mainNav} aria-label={props["aria-label"]} id={id}>
+      <nav className={styles.mainNav} aria-label={props["aria-label"]} id={MAIN_NAV_ID}>
         <NavList>
           {Object.entries(links).map(([key, { label, path }]) => (
             <NavListItem key={key} selected={key === currentPage}>
