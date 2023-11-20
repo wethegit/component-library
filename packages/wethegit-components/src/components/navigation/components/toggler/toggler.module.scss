@@ -1,0 +1,64 @@
+@use "@local/styles/settings-breakpoints" as *;
+
+.toggler {
+  --toggler-size: 40px;
+
+  aspect-ratio: 1 / 1;
+  background-color: black;
+  border-radius: 50%;
+  color: white;
+  display: grid;
+  left: 0;
+  place-content: center;
+  position: fixed;
+  top: 0;
+  width: var(--toggler-size);
+  z-index: 1;
+}
+
+// The icon is a hamburger menu with 3 lines
+.togglerIcon {
+  --line-width: calc(var(--toggler-size) - var(--toggler-size) / 2);
+  --line-height: 3px;
+  --line-space: 2;
+
+  background-color: white;
+  display: block;
+  height: var(--line-height);
+  position: relative;
+  width: var(--line-width);
+
+  &::before,
+  &::after {
+    --line-y: calc(var(--line-height) * (var(--line-space) * -1));
+
+    background-color: white;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translateY(var(--line-y)) rotate(var(--line-rotation, 0deg));
+    width: 100%;
+  }
+
+  &::after {
+    --line-y: calc(var(--line-height) * var(--line-space));
+  }
+}
+
+.togglerPressed {
+  .togglerIcon {
+    background-color: transparent;
+
+    &::before {
+      --line-y: 0;
+      --line-rotation: 45deg;
+    }
+
+    &::after {
+      --line-y: 0;
+      --line-rotation: -45deg;
+    }
+  }
+}
