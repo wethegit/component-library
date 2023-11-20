@@ -12,23 +12,42 @@ So for example if you wanted `16px` of margin you would simply use `spacing.marg
 
 ## Usage
 
-A `div` with `16px` of margin on all sides and `24px` of padding on all sides.
+A `div` with `16px` of margin on all sides and `24px` of padding on all sides:
 
 ```jsx
 import { classnames, spacing } from "@local/utilities"
 
 function Comp() {
-  return <div className={classnames([spacing.margin[2], spading.padding[3]])} />
+  return <div className={classnames([spacing.margin[2], spacing.padding[3]])} />
 }
 ```
 
-A `div` that is centered with `16px` of padding on `left` and `right`
+A `div` that is centered with `16px` of padding on `left` and `right`:
 
 ```jsx
 import { classnames, spacing } from "@local/utilities"
 
 function Comp() {
-  return <div className={classnames([spacing.margin.x.auto, spading.padding.x[2]])} />
+  return <div className={classnames([spacing.margin.x.auto, spacing.padding.x[2]])} />
+}
+```
+
+A `div` with `16px` margin on the `top`, `8px` on the `right`, `24px` on the `bottom` and `32px` on the `left`:
+
+```jsx
+import { classnames, spacing } from "@local/utilities"
+
+function Comp() {
+  return (
+    <div
+      className={classnames([
+        spacing.margin.top[2],
+        spacing.margin.right[1],
+        spacing.margin.bottom[3],
+        spacing.margin.left[4],
+      ])}
+    />
+  )
 }
 ```
 
@@ -42,6 +61,6 @@ So for example if you wanted `16px` of margin on all sides at `sm` but `24px` on
 import { classnames, spacing } from "@local/utilities"
 
 function Comp() {
-  return <div className={classnames([spacing.margin[2], spading.md.margin[3]])} />
+  return <div className={classnames([spacing.margin[2], spacing.md.margin[3]])} />
 }
 ```
