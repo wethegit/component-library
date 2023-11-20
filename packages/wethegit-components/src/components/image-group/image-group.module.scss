@@ -1,0 +1,12 @@
+.wrap {
+  --parent-width: 0;
+  --parent-height: 0;
+
+  position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    padding-top: calc(var(--parent-height) / var(--parent-width) * 100%);
+  }
+}

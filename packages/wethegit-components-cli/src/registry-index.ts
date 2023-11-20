@@ -74,6 +74,12 @@ const GRID_LAYOUT: Registry = {
   localDependencies: [FLEX],
 }
 
+const IMAGE_GROUP: Registry = {
+  name: "image-group",
+  category: "component",
+  localDependencies: [CLASSNAMES, FIXED_FORWARD_REF, TAG],
+}
+
 const VISUALLY_HIDDEN: Registry = {
   name: "visually-hidden",
   category: "component",
@@ -90,6 +96,7 @@ const NAVIGATION: Registry = {
 export const REGISTRY_INDEX: RegistryIndex = {
   [FLEX.name]: FLEX,
   [GRID_LAYOUT.name]: GRID_LAYOUT,
+  [IMAGE_GROUP.name]: IMAGE_GROUP,
   [TAG.name]: TAG,
   [TEXT.name]: TEXT,
   [VISUALLY_HIDDEN.name]: VISUALLY_HIDDEN,
