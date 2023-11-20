@@ -1,22 +1,17 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useId, useRef, useState } from "react"
 
 import { classnames } from "@local/utilities"
 
 import { NavList, NavListItem, Overlay, Toggler } from "./components"
 import styles from "./navigation.module.scss"
 
-const MAIN_NAV_ID = "main-site-nav"
-const LINKS = {
-  home: {
-    label: "Home",
-    path: "/",
-  },
-  about: {
-    label: "About",
-    path: "/about",
-  },
+export type NavigationLinks = {
+  [key: string]: {
+    label: string
+    path: string
+  }
 }
 
 export interface NavigationProps {
@@ -24,16 +19,25 @@ export interface NavigationProps {
    * The currently selected navigation item, used to highlight the selected item and to set the `aria-current` attribute.
    * This is based on the `key` of the `LINKS` object.
    */
-  currentPage?: keyof typeof LINKS
+  currentPage?: keyof NavigationProps["links"]
+  /**
+   * Mandatory `aria-label` attribute.
+   */
+  "aria-label": string
+  /**
+   * The links to display in the navigation.
+   */
+  links: NavigationLinks
 }
 
 /**
  * At it's basic form, the navigation component is a hamburger menu that opens a list of links on the `sm` breakpoint and from the `md` breakpoint and up, it's a horizontal list of links that is sticky to the top of the viewport.
  */
-export function Navigation({ currentPage }: NavigationProps) {
+export function Navigation({ currentPage, links, ...props }: NavigationProps) {
   const [open, setOpen] = useState(false)
   const focusLoopEnd = useRef<HTMLSpanElement>(null)
   const menuToggler = useRef<HTMLButtonElement>(null)
+  const id = useId()
 
   const toggle = () => {
     setOpen(!open)
@@ -52,15 +56,16 @@ export function Navigation({ currentPage }: NavigationProps) {
       <Toggler
         ref={menuToggler}
         open={open}
-        aria-controls={MAIN_NAV_ID}
+        aria-controls={id}
         onClick={toggle}
+        className={styles.toggler}
       />
 
-      <Overlay open={open} />
+      <Overlay open={open} onClick={toggle} className={styles.overlay} />
 
-      <nav className={styles.mainNav} aria-label="Main Navigation" id={MAIN_NAV_ID}>
+      <nav className={styles.mainNav} aria-label={props["aria-label"]} id={id}>
         <NavList>
-          {Object.entries(LINKS).map(([key, { label, path }]) => (
+          {Object.entries(links).map(([key, { label, path }]) => (
             <NavListItem key={key} selected={key === currentPage}>
               <a href={path} onClick={handleLinkClick}>
                 {label}

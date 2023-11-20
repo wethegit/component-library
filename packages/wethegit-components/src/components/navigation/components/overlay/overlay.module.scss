@@ -15,9 +15,3 @@
   opacity: 0.95;
   pointer-events: auto;
 }
-
-@media #{$medium-up} {
-  .overlay {
-    display: none;
-  }
-}

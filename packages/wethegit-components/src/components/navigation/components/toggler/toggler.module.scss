@@ -62,11 +62,3 @@
     }
   }
 }
-
-// Feel free to change the breakpoint where the nav goes from hamburger to full
-// Also change the breakpoint in the Navigation and NavList components
-@media #{$medium-up} {
-  .toggler {
-    display: none;
-  }
-}

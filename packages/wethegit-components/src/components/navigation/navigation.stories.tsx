@@ -2,9 +2,24 @@ import type { Meta, StoryObj } from "@storybook/react"
 
 import { Navigation } from "."
 
+const LINKS = {
+  home: {
+    label: "Home",
+    path: "/",
+  },
+  about: {
+    label: "About",
+    path: "/about",
+  },
+}
+
 const meta: Meta<typeof Navigation> = {
   title: "components/navigation",
   component: Navigation,
+  args: {
+    links: LINKS,
+    "aria-label": "Main navigation",
+  },
   decorators: [
     (Story) => (
       <div

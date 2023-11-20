@@ -20,7 +20,7 @@ export const Toggler = fixedForwardRef<HTMLButtonElement, TogglerProps>(function
       {...props}
     >
       <span className={styles.togglerIcon} />
-      <VisuallyHidden>{open ? "Close" : "Open"}</VisuallyHidden>
+      <VisuallyHidden>{open ? "Close menu" : "Open menu"}</VisuallyHidden>
     </button>
   )
 })

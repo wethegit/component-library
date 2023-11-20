@@ -16,7 +16,7 @@
 }
 
 // Feel free to change the breakpoint where the nav goes from hamburger to full
-// Also change the breakpoint in the Toggler and NavList components
+// Also change the breakpoint in the NavList component
 @media #{$medium-up} {
   .navBar {
     left: 0;
@@ -33,5 +33,10 @@
       height: auto;
       position: relative;
     }
+  }
+
+  .overlay,
+  .toggler {
+    display: none;
   }
 }
