@@ -1,7 +1,7 @@
 import type { Preview } from "@storybook/react"
 import { withThemeByClassName } from "@storybook/addon-themes"
 
-import { wtcTheme } from "./wtc-theme"
+import { wtcTheme } from "./static/wtc-theme"
 
 import "./styles/global-story-styles.scss"
 

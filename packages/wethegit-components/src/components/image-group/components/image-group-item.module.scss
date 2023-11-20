@@ -1,0 +1,14 @@
+.item {
+  --left: 0;
+  --top: 0;
+  --width: 0;
+
+  inline-size: calc(var(--width) / var(--parent-width) * 100%);
+  inset-block-start: calc(var(--top) / var(--parent-height) * 100%);
+  inset-inline-start: calc(var(--left) / var(--parent-width) * 100%);
+  position: absolute;
+
+  > * {
+    inline-size: 100%;
+  }
+}

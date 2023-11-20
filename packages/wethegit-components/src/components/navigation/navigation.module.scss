@@ -1,0 +1,42 @@
+@use "@local/styles/settings/settings-breakpoints" as *;
+
+.mainNav {
+  display: none;
+}
+
+.navBarOpen {
+  .mainNav {
+    display: block;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+}
+
+// Feel free to change the breakpoint where the nav goes from hamburger to full
+// Also change the breakpoint in the NavList component
+@media #{$medium-up} {
+  .navBar {
+    left: 0;
+    position: sticky;
+    top: 0;
+  }
+
+  .mainNav {
+    display: block;
+  }
+
+  .navBarOpen {
+    .mainNav {
+      height: auto;
+      position: relative;
+    }
+  }
+
+  .overlay,
+  .toggler {
+    display: none;
+  }
+}

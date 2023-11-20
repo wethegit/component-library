@@ -32,6 +32,10 @@ module.exports = {
       },
     ],
   },
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: "module",
+  },
   overrides: [
     {
       files: ["*.ts", "*.tsx"],
