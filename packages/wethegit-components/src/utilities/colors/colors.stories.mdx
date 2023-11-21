@@ -35,3 +35,17 @@ Read more about the function [here](/docs/utilities-colors-styles-colors-utiliti
   background-color: get-color("black", 0.5);
 }
 ```
+
+## No JS
+
+If you do not want to use the JS version of the colors utility you can easily do so by:
+
+1. Remove any imports of `colors` from your code
+2. Rename `colors.module.scss` to `colors.scss`
+3. Import `colors.scss` in your global styles
+
+And then proceed to use the classes as you would normally do.
+
+```html
+<div class="text-black bg-white" />
+```
