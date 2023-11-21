@@ -14,7 +14,8 @@ export type NavigationLinks = {
   }
 }
 
-export interface NavigationProps {
+export interface NavigationProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "aria-label"> {
   /**
    * The currently selected navigation item, used to highlight the selected item and to set the `aria-current` attribute.
    * This is based on the `key` of the `LINKS` object.
@@ -35,7 +36,7 @@ const MAIN_NAV_ID = "main-nav"
 /**
  * At it's basic form, the navigation component is a hamburger menu that opens a list of links on the `sm` breakpoint and from the `md` breakpoint and up, it's a horizontal list of links that is sticky to the top of the viewport.
  */
-export function Navigation({ currentPage, links, ...props }: NavigationProps) {
+export function Navigation({ currentPage, links, className, ...props }: NavigationProps) {
   const [open, setOpen] = useState(false)
   const focusLoopEnd = useRef<HTMLSpanElement>(null)
   const menuToggler = useRef<HTMLButtonElement>(null)
@@ -53,7 +54,7 @@ export function Navigation({ currentPage, links, ...props }: NavigationProps) {
   }
 
   return (
-    <div className={classnames([styles.navBar, open && styles.navBarOpen])}>
+    <div className={classnames([styles.navBar, open && styles.navBarOpen, className])}>
       <Toggler
         ref={menuToggler}
         open={open}

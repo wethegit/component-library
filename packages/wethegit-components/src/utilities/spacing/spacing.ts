@@ -36,7 +36,7 @@ interface SpacingStops {
   padding: SpacingPadding
 }
 
-type Spacing = SpacingStops & Omit<Breakpoints<SpacingStops>, "sm">
+export type Spacing = SpacingStops & Omit<Breakpoints<SpacingStops>, "sm">
 
 const spacing = {} as Spacing
 

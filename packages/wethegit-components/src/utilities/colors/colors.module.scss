@@ -1,0 +1,12 @@
+@use "./styles/colors-utilities.scss" as *;
+
+// define utility classes:
+@each $color, $rgb in $colors {
+  .bg-#{$color} {
+    background-color: rgba($rgb, 1);
+  }
+
+  .text-#{$color} {
+    color: rgba($rgb, 1);
+  }
+}
