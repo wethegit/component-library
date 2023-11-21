@@ -1,6 +1,6 @@
 @use "@local/styles/settings/settings-breakpoints.scss" as *;
+@use "./styles/spacing-utilities" as *;
 
-$space-by: 8px;
 $total-space-classes: 10;
 
 /**
@@ -12,21 +12,7 @@ $total-space-classes: 10;
   *
   * Examples:
   * margin-0, padding-x-2, margin-x-auto, margin-bottom-medium-3, padding-x-large-4
-*/
-
-// Creates a value which is a multiple of the $base-space property.
-@function space-by($multiplier: false) {
-  @if not $multiplier {
-    @return $space-by;
-  } @else if $multiplier == 1 {
-    @return $space-by;
-  } @else {
-    @return $space-by * $multiplier;
-  }
-}
-
-/**
-  * Generates a set of utility classes for margin and padding.
+  *
   * @param {Number} $total - The total number of classes to generate (0 through $total). Sizes are based on the $base-space property.
   * @param {String} $suffix - An optional suffix to append to the class name.
   */
