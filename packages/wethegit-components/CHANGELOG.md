@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.2.5
+
+### Patch Changes
+
+- Adds color utilities
+
 ## 2.2.4
 
 ### Patch Changes
