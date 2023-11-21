@@ -8,12 +8,12 @@ export interface TogglerProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 export const Toggler = fixedForwardRef<HTMLButtonElement, TogglerProps>(function Toggler(
-  { open = false, ...props }: TogglerProps,
+  { open = false, className, ...props }: TogglerProps,
   ref
 ) {
   return (
     <button
-      className={classnames([styles.toggler, open && styles.togglerPressed])}
+      className={classnames([styles.toggler, open && styles.togglerPressed, className])}
       aria-live="polite"
       aria-expanded={open}
       ref={ref}

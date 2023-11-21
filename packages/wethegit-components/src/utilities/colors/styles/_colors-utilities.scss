@@ -1,0 +1,17 @@
+@use "sass:map";
+
+$colors: (
+  "black": #000,
+  "white": #fff,
+);
+
+/**
+ * Get a color from the color map.
+ *
+ * @param {string} $name - The name of the color.
+ * @param {number} [$opacity=1] - The opacity of the color.
+ * @return {color} The color in rgba format.
+ */
+@function get-color($name, $opacity: 1) {
+  @return rgba(map.get($colors, $name), $opacity);
+}
