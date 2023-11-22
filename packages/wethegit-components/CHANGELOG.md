@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.2.6
+
+### Patch Changes
+
+- Adds `Icon` component
+
 ## 2.2.5
 
 ### Patch Changes
