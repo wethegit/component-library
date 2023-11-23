@@ -3485,6 +3485,21 @@
     magic-string "^0.27.0"
     react-refresh "^0.14.0"
 
+"@wethegit/react-hooks@^1.0.0", "@wethegit/react-hooks@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@wethegit/react-hooks/-/react-hooks-1.0.3.tgz#a26473bae7fbe7ad2f6611f860871ad44e4a17d1"
+  integrity sha512-4QS9kqXKbPbuGRK9/ZtdAl5MnkhQyWSJhdAjcsny0VkfG5SwtV7Bs9zFIpNnPHE1DEYOdj2b4ZDbmzhhKqnEMA==
+  dependencies:
+    react "^17.0.2"
+    react-dom "^17.0.2"
+
+"@wethegit/react-modal@^2.0.0-beta.2":
+  version "2.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@wethegit/react-modal/-/react-modal-2.0.0-beta.2.tgz#bab51ca6e931b973c1647f82f39e481a8b3bc878"
+  integrity sha512-0q2FRGg6s0CSx5F1hhuTkanOfiEsAPOlfGAE6d9e9g8pVk1BhWjb+QRV9n2h4lwxpnH9aG2h2fNKzqi1QYea4Q==
+  dependencies:
+    "@wethegit/react-hooks" "^1.0.0"
+
 "@yarnpkg/esbuild-plugin-pnp@^3.0.0-rc.10":
   version "3.0.0-rc.15"
   resolved "https://registry.yarnpkg.com/@yarnpkg/esbuild-plugin-pnp/-/esbuild-plugin-pnp-3.0.0-rc.15.tgz#4e40e7d2eb28825c9a35ab9d04c363931d7c0e67"

@@ -92,6 +92,19 @@ const NAVIGATION: Registry = {
   localDependencies: [FLEX, CLASSNAMES, VISUALLY_HIDDEN, FIXED_FORWARD_REF],
 }
 
+const ICON: Registry = {
+  name: "icon",
+  category: "component",
+  localDependencies: [CLASSNAMES],
+}
+
+const MODAL: Registry = {
+  name: "modal",
+  category: "component",
+  localDependencies: [CLASSNAMES],
+  dependencies: ["@wethegit/react-modal@beta-2", "@wethegit/react-hooks"],
+}
+
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
   [FLEX.name]: FLEX,
@@ -101,5 +114,7 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [TEXT.name]: TEXT,
   [VISUALLY_HIDDEN.name]: VISUALLY_HIDDEN,
   [NAVIGATION.name]: NAVIGATION,
+  [ICON.name]: ICON,
+  [MODAL.name]: MODAL,
 }
 /* END REGISTRY INDEX */

@@ -1,0 +1,35 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/modal/Readme" />
+
+# modal
+
+The `<Modal>` component is a wrapper around [@wethegit/react-modal](https://github.com/wethegit/react-modal) with some default styles and added functionality to handle reduce motion.
+
+### Install
+
+```bash
+npx @wethegit/components-cli add modal
+```
+
+### Usage
+
+Most of the time all you need is a button that toggles a modal. The `<Modal>` component takes a `trigger` prop that is a function which receives a `toggle` function as its only argument and returns the element that will trigger the modal.
+
+```tsx
+import { Modal } from "@local/components"
+
+function Page() {
+  return (
+    <main>
+      <Modal trigger={(toggle) => <button onClick={toggle}>Open Modal</button>}>
+        <h1>Modal Content</h1>
+        <p>
+          Pariatur occaecat quis aliquip excepteur adipisicing minim ipsum qui proident
+          qui voluptate ut sunt.
+        </p>
+      </Modal>
+    </main>
+  )
+}
+```
