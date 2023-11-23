@@ -1,0 +1,77 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/icon/Readme" />
+
+# icon
+
+### Install
+
+```bash
+npx @wethegit/components-cli add icon
+```
+
+### Usage
+
+First import and add the `IconDefs` to your app. Make sure it's only added once.
+
+```tsx
+import { IconDefs } from "@local/components"
+
+function RootLayout() {
+  return (
+    <html lang="en">
+      <body>
+        <IconDefs />
+        {children}
+      </body>
+    </html>
+  )
+}
+```
+
+Then you can use the `Icon` component anywhere in your app.
+
+```tsx
+import { Icon } from "@local/components"
+
+function Page() {
+  return (
+    <main>
+      <button>
+        <Icon id="play" />
+        Play video
+      </button>
+    </main>
+  )
+}
+```
+
+## Adding new icons
+
+First add your SVG markup to `./icon/icons/your-icon.tsx` extending the `IconSymbol` component.
+
+Example from the `play-icon.tsx`:
+
+```tsx file=icon/icons/play-icon.tsx
+import { IconSymbol } from "../icon-symbol"
+
+export function PlayIcon() {
+  return (
+    <IconSymbol id="play" size={27}>
+      <path d="M27 13.2396L5.6875 26.4792L5.6875 -9.31519e-07L27 13.2396Z" />
+    </IconSymbol>
+  )
+}
+```
+
+Then import and add the icon to the `icons` object in `./icon/icons/index.tsx`.
+
+```tsx file=icon/icons/index.tsx
+import { PlayIcon } from "./play-icon"
+
+export const icons = {
+  play: PlayIcon,
+}
+```
+
+After these steps you can use the icon in your app.
