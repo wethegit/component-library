@@ -61,5 +61,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@wethegit/react-hooks": "~1.0.3"
   }
 }
