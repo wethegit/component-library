@@ -1,0 +1,163 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="hooks/useAnimatePresence/Readme" />
+
+# useAnimatePresence
+
+useAnimatePresence is a very simple hook that helps you animate components that are added or removed from the DOM.
+
+Use it for things like modals, tooltips, dropdowns, etc.
+
+You are in full control of the animation and the hook only provides you with the current state and the current duration of the animation.
+
+It also takes care of accessibility by forcing `duration` to `0` if the user has enabled reduced motion.
+
+- [Install](#install)
+- [Usage](#usage)
+- [Basic example](#basic-example)
+- [Custom animation](#custom-animation)
+- [Don't animate on mount](#dont-animate-on-mount)
+
+## Install
+
+```bash
+npx @wethegit/components-cli add use-animate-presence
+```
+
+## Usage
+
+## Basic example
+
+By default all you need to provide is a boolean that determines whether the element should be visible or not. The hook will return a `shouldRender` boolean that you can use to conditionally render the element.
+
+It will also return a `reveal` boolean, which is a shorthand that you can use to conditionally apply your animation.
+
+Finally, it will return a `runningDuration` number that you can use to set the duration of the animation.
+
+[Story demo](/story/hooks-useanimatepresence--default)
+
+```jsx
+import { useAnimatePresence } from "@local/hooks"
+import { classnames } from "@local/utilities"
+
+function MyComponent() {
+  const [isVisible, setIsVisible] = useState(false)
+
+  const { shouldRender, reveal, runningDuration } = useAnimatePresence({
+    isVisible,
+  })
+
+  return (
+    <>
+      <button onClick={() => setIsVisible(!isVisible)}>Toggle visibility</button>
+
+      {shouldRender && (
+        <div
+          className={classnames(["my-component", reveal && "is-visible"])}
+          style={{
+            "--transition-duration": `${runningDuration}ms`,
+          }}
+        >
+          Hey! I animate in and out!
+        </div>
+      )}
+    </>
+  )
+}
+```
+
+And then in your styles:
+
+```css
+.my-component {
+  opacity: 0;
+  transition: opacity var(--transition-duration) ease-out;
+
+  &.is-visible {
+    opacity: 1;
+  }
+}
+```
+
+## Custom animation
+
+[Demo](/story/hooks-useanimatepresence--custom-animation)
+
+```jsx
+import { useAnimatePresence, AnimatePresenceStates } from "@local/hooks"
+
+function MyComponent() {
+  // ... shortened for brevity
+  const { shouldRender, reveal, runningDuration } = useAnimatePresence({
+    state,
+    isVisible,
+    duration: {
+      // different durations for enter and exit
+      enter: 1000,
+      exit: 500,
+    },
+  })
+
+  // you can control the animation in every step too
+  let className
+  if (
+    state === AnimatePresenceStates.ENTERING ||
+    state === AnimatePresenceStates.ENTERED
+  ) {
+    className = "is-in"
+  } else if (
+    state === AnimatePresenceStates.EXITED ||
+    state === AnimatePresenceStates.EXITING
+  ) {
+    className = "is-out"
+  }
+
+  return (
+    <>
+      {/* render it the same way, the hook takes care of updating the duration */}
+      {shouldRender && (
+        <div
+          className={classnames(["my-component", className])}
+          style={{
+            "--transition-duration": `${runningDuration}ms`,
+          }}
+        >
+          Hey! I animate in and out!
+        </div>
+      )}
+    </>
+  )
+}
+```
+
+And then in your styles:
+
+```css
+.my-component {
+  transition: all var(--transition-duration) ease-out;
+
+  &.is-in {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &.is-out {
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+    transition-timing-function: ease-in;
+  }
+}
+```
+
+## Don't animate on mount
+
+Set `initial` to `true` to have the element start out visible.
+
+[Story demo](/story/hooks-useanimatepresence--do-not-animate-on-mount)
+
+```ts
+const { shouldRender, reveal, runningDuration } = useAnimatePresence({
+  initial: true,
+  isVisible,
+})
+```
