@@ -1,3 +1,54 @@
-.wrap {
+.item {
   outline: 1px solid red;
+}
+
+.withAnimation {
+  --start-x: 0;
+  --start-y: 0;
+  --start-alpha: 1;
+  --start-rotate: 0deg;
+  --start-scale: 1;
+  --end-x: 0;
+  --end-y: 0;
+  --end-alpha: 1;
+  --end-rotate: 0deg;
+  --end-scale: 1;
+
+  opacity: var(--start-alpha);
+  transform: translate(var(--start-x), var(--start-y)) rotate(var(--start-rotate))
+    scale(var(--start-scale));
+
+  &.wrapInView {
+    opacity: var(--end-alpha);
+    transform: translate(var(--end-x), var(--end-y)) rotate(var(--end-rotate))
+      scale(var(--end-scale));
+  }
+}
+
+.fade {
+  --start-alpha: 0;
+}
+
+.scaleUp {
+  --start-scale: 0;
+}
+
+.fromLeft {
+  --start-x: -50%;
+}
+
+.fromRight {
+  --start-x: 50%;
+}
+
+.fromTop {
+  --start-y: -50%;
+}
+
+.fromBottom {
+  --start-y: 50%;
+}
+
+.fromBottomShort {
+  --start-y: 2rem;
 }

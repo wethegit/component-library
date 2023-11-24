@@ -13,10 +13,10 @@ type Story = StoryObj<typeof InView>
 
 export const Default: Story = {
   render: (args) => (
-    <InView {...args}>
-      <InViewItem test>Item 1</InViewItem>
-      <InViewItem test>Item 2</InViewItem>
-      <InViewItem test>Item 3</InViewItem>
+    <InView as="ul" {...args} staggerChildren={{ animation: "fade", stagger: 0.2 }}>
+      <InViewItem as="li">Item 1</InViewItem>
+      <InViewItem as="li">Item 2</InViewItem>
+      <InViewItem as="li">Item 3</InViewItem>
     </InView>
   ),
 }

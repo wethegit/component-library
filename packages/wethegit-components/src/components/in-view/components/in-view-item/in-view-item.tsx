@@ -12,7 +12,7 @@ export type InViewItemProps<TAs extends React.ElementType> = TagProps<TAs> & {
 }
 
 export const InViewItem = fixedForwardRef(function InViewItem<
-  TAs extends React.ElementType = "div",
+  TAs extends React.ElementType,
 >({ className, ...props }: InViewItemProps<TAs>, ref: React.ForwardedRef<unknown>) {
   const context = useContext(InViewContext)
   if (!context) throw new Error("<InViewItem> must be a descendent of <InView>.")
