@@ -23,5 +23,11 @@ export default meta
 type Story = StoryObj<typeof Modal>
 
 export const Default: Story = {
-  render: (args) => <Modal {...args} />,
+  render: (args) => (
+    <Modal {...args}>
+      <p style={{ color: "black", margin: 0 }}>
+        Excepteur mollit laboris culpa commodo ex.
+      </p>
+    </Modal>
+  ),
 }

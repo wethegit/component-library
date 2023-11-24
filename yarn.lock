@@ -1129,7 +1129,7 @@
   dependencies:
     "@changesets/types" "^5.2.1"
 
-"@changesets/cli@^2.25.2":
+"@changesets/cli@^2.25.2", "@changesets/cli@~2.26.2":
   version "2.26.2"
   resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-2.26.2.tgz#8914dd6ef3ea425a7d5935f6c35a8b7ccde54e45"
   integrity sha512-dnWrJTmRR8bCHikJHl9b9HW3gXACCehz4OasrXpMp7sx97ECuBGGNjJhjPhdZNCvMy9mn4BWdplI323IbqsRig==
@@ -3493,11 +3493,12 @@
     react "^17.0.2"
     react-dom "^17.0.2"
 
-"@wethegit/react-modal@^2.0.0-beta.2":
-  version "2.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@wethegit/react-modal/-/react-modal-2.0.0-beta.2.tgz#bab51ca6e931b973c1647f82f39e481a8b3bc878"
-  integrity sha512-0q2FRGg6s0CSx5F1hhuTkanOfiEsAPOlfGAE6d9e9g8pVk1BhWjb+QRV9n2h4lwxpnH9aG2h2fNKzqi1QYea4Q==
+"@wethegit/react-modal@^2.0.0-beta.4":
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@wethegit/react-modal/-/react-modal-2.0.0-beta.4.tgz#ae0f2fe46707f33009c53cf8128653e5f5fb29ab"
+  integrity sha512-KIVbAzsBqx42LzZVLJMUFnooY/1+FWZqqxfGwufSfdrVvxmsPG0Th4TUTsrcuiP8N2YIzJoti4w7ulw3FmfOpQ==
   dependencies:
+    "@changesets/cli" "~2.26.2"
     "@wethegit/react-hooks" "^1.0.0"
 
 "@yarnpkg/esbuild-plugin-pnp@^3.0.0-rc.10":
