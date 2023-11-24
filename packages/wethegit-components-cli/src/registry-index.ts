@@ -1,4 +1,4 @@
-export type RegistryCategory = "component" | "utility" | "style" | "type"
+export type RegistryCategory = "component" | "utility" | "style" | "type" | "hook"
 
 export interface Registry {
   /** Should be the same name as the item's directory */
@@ -105,6 +105,12 @@ const MODAL: Registry = {
   dependencies: ["@wethegit/react-modal@beta-2", "@wethegit/react-hooks"],
 }
 
+const USE_ANIMATE_PRESENCE: Registry = {
+  name: "use-animate-presence",
+  category: "hook",
+  dependencies: ["@wethegit/react-hooks"],
+}
+
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
   [FLEX.name]: FLEX,
@@ -116,5 +122,6 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [NAVIGATION.name]: NAVIGATION,
   [ICON.name]: ICON,
   [MODAL.name]: MODAL,
+  [USE_ANIMATE_PRESENCE.name]: USE_ANIMATE_PRESENCE,
 }
 /* END REGISTRY INDEX */
