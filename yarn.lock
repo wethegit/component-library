@@ -1129,6 +1129,15 @@
   dependencies:
     "@changesets/types" "^5.2.1"
 
+"@changesets/changelog-github@~0.4.8":
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/@changesets/changelog-github/-/changelog-github-0.4.8.tgz#b7f8ae85d0c0ff08028d924c5e59a1cbd3742634"
+  integrity sha512-jR1DHibkMAb5v/8ym77E4AMNWZKB5NPzw5a5Wtqm1JepAuIF+hrKp2u04NKM14oBZhHglkCfrla9uq8ORnK/dw==
+  dependencies:
+    "@changesets/get-github-info" "^0.5.2"
+    "@changesets/types" "^5.2.1"
+    dotenv "^8.1.0"
+
 "@changesets/cli@^2.25.2", "@changesets/cli@~2.26.2":
   version "2.26.2"
   resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-2.26.2.tgz#8914dd6ef3ea425a7d5935f6c35a8b7ccde54e45"
@@ -1198,6 +1207,14 @@
     chalk "^2.1.0"
     fs-extra "^7.0.1"
     semver "^7.5.3"
+
+"@changesets/get-github-info@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@changesets/get-github-info/-/get-github-info-0.5.2.tgz#0cde2cadba57db85c714dc303c077da919a574e5"
+  integrity sha512-JppheLu7S114aEs157fOZDjFqUDpm7eHdq5E8SSR0gUBTEK0cNSHsrSR5a66xs0z3RWuo46QvA3vawp8BxDHvg==
+  dependencies:
+    dataloader "^1.4.0"
+    node-fetch "^2.5.0"
 
 "@changesets/get-release-plan@^3.0.17":
   version "3.0.17"
@@ -3485,21 +3502,19 @@
     magic-string "^0.27.0"
     react-refresh "^0.14.0"
 
-"@wethegit/react-hooks@^1.0.0", "@wethegit/react-hooks@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@wethegit/react-hooks/-/react-hooks-1.0.3.tgz#a26473bae7fbe7ad2f6611f860871ad44e4a17d1"
-  integrity sha512-4QS9kqXKbPbuGRK9/ZtdAl5MnkhQyWSJhdAjcsny0VkfG5SwtV7Bs9zFIpNnPHE1DEYOdj2b4ZDbmzhhKqnEMA==
-  dependencies:
-    react "^17.0.2"
-    react-dom "^17.0.2"
+"@wethegit/react-hooks@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@wethegit/react-hooks/-/react-hooks-2.0.0.tgz#ac4668cdbe860c5fb730fdcb884932c3a4e5b53a"
+  integrity sha512-6SiARtkVTCMD9vhHrNbJ6yNYLYGWslUyBiAIyChMhJDff48o+G8VXLH9ab2fKC40c0c03YbTRpJ0xGgqI4k9lQ==
 
-"@wethegit/react-modal@^2.0.0-beta.4":
-  version "2.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/@wethegit/react-modal/-/react-modal-2.0.0-beta.4.tgz#ae0f2fe46707f33009c53cf8128653e5f5fb29ab"
-  integrity sha512-KIVbAzsBqx42LzZVLJMUFnooY/1+FWZqqxfGwufSfdrVvxmsPG0Th4TUTsrcuiP8N2YIzJoti4w7ulw3FmfOpQ==
+"@wethegit/react-modal@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@wethegit/react-modal/-/react-modal-2.0.0.tgz#7f9ced1627e12cc12eba5a0b0fe2ab7edc4d6c4a"
+  integrity sha512-ESkxhqe5rHPC+bw2XD79QbIjFmmJ8AQD4jyg5C30cFV66s4KiF1nBh03axN1DMElvkrY0DK/DD7GmETKLoTXig==
   dependencies:
+    "@changesets/changelog-github" "~0.4.8"
     "@changesets/cli" "~2.26.2"
-    "@wethegit/react-hooks" "^1.0.0"
+    "@wethegit/react-hooks" "^2.0.0"
 
 "@yarnpkg/esbuild-plugin-pnp@^3.0.0-rc.10":
   version "3.0.0-rc.15"
@@ -4593,6 +4608,11 @@ csv@^5.5.3:
     csv-stringify "^5.6.5"
     stream-transform "^2.1.3"
 
+dataloader@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/dataloader/-/dataloader-1.4.0.tgz#bca11d867f5d3f1b9ed9f737bd15970c65dff5c8"
+  integrity sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw==
+
 debug@2.6.9, debug@^2.6.9:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -4806,6 +4826,11 @@ dotenv@^16.0.0:
   version "16.3.1"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.3.1.tgz#369034de7d7e5b120972693352a3bf112172cc3e"
   integrity sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==
+
+dotenv@^8.1.0:
+  version "8.6.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.6.0.tgz#061af664d19f7f4d8fc6e4ff9b584ce237adcb8b"
+  integrity sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==
 
 duplexify@^3.5.0, duplexify@^3.6.0:
   version "3.7.1"
@@ -7853,7 +7878,7 @@ node-fetch-native@^1.4.0:
   resolved "https://registry.yarnpkg.com/node-fetch-native/-/node-fetch-native-1.4.1.tgz#5a336e55b4e1b1e72b9927da09fecd2b374c9be5"
   integrity sha512-NsXBU0UgBxo2rQLOeWNZqS3fvflWePMECr8CoSWoSTqCqGbVVsvl9vZu1HfQicYN0g5piV9Gh8RTEvo/uP752w==
 
-node-fetch@^2.0.0:
+node-fetch@^2.0.0, node-fetch@^2.5.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.7.0.tgz#d0f0fa6e3e2dc1d27efcd8ad99d550bda94d187d"
   integrity sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==

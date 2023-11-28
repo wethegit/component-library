@@ -7,7 +7,7 @@
     },
     "lint": {},
     "stylelint": {},
-    "dev": {
+    "start": {
       "cache": false,
       "persistent": true
     },

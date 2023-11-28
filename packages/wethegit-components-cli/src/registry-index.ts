@@ -102,13 +102,7 @@ const MODAL: Registry = {
   name: "modal",
   category: "component",
   localDependencies: [CLASSNAMES],
-  dependencies: ["@wethegit/react-modal@beta-2", "@wethegit/react-hooks"],
-}
-
-const USE_ANIMATE_PRESENCE: Registry = {
-  name: "use-animate-presence",
-  category: "hook",
-  dependencies: ["@wethegit/react-hooks"],
+  dependencies: ["@wethegit/react-modal", "@wethegit/react-hooks"],
 }
 
 /* INDEX */
@@ -122,6 +116,5 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [NAVIGATION.name]: NAVIGATION,
   [ICON.name]: ICON,
   [MODAL.name]: MODAL,
-  [USE_ANIMATE_PRESENCE.name]: USE_ANIMATE_PRESENCE,
 }
 /* END REGISTRY INDEX */
