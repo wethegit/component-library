@@ -33,7 +33,7 @@ export interface ModalProps extends WTCModalProps {
  * Wrapper around the `@wethegit/react-modal` component that adds a trigger and takes care of reducing motion.
  * For more information, see the [modal documentation](https://github.com/wethegit/react-modal).
  */
-export function Modal({ hash, children, appendToBody = true, trigger }: ModalProps) {
+export function Modal({ hash, children, trigger, ...props }: ModalProps) {
   const triggerButton = useRef(null)
   const { isOpen, toggle } = useModal({
     triggerRef: triggerButton,
@@ -55,9 +55,9 @@ export function Modal({ hash, children, appendToBody = true, trigger }: ModalPro
 
       {render && (
         <WTCModal
-          appendToBody={appendToBody}
           style={stylesVars}
           className={classnames([styles.modal, animate && styles.modalOpen])}
+          {...props}
         >
           <ModalBackdrop className={styles.modalBackdrop} onClick={toggle} />
           <ModalContent className={styles.modalContent}>

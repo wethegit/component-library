@@ -20,9 +20,7 @@ First, import the global modal styles from `@wethegit/react-modal` into your glo
 @import "@wethegit/react-modal/style.css";
 ```
 
-Most of the time all you need is a button that toggles a modal.
-
-The `<Modal>` component takes a `trigger` prop that is a function which receives a `toggle` function as its only argument and returns the element that will trigger the modal.
+The `<Modal>` component takes a `trigger` prop that is a function which receives a `toggle` function as its only argument and should return the element that will trigger the modal.
 
 It also handles reduced motion by default and because of that you are required to make sure that the modal component renders inside the [UserPreferencesProvider](https://wethegit.github.io/react-hooks/user-preferences-provider).
 
