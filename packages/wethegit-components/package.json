@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build": "storybook build --docs",
-    "clean": "rm -rf .turbo node_modules dist storybook-static",
+    "clean": "rm -rf ./.turbo ./node_modules ./dist ./storybook-static",
     "start": "storybook dev -p 6006",
     "lint": "eslint src/",
     "stylelint": "stylelint **/*.{css,scss}",
