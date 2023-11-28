@@ -3,4 +3,4 @@
 "@wethegit/components": patch
 ---
 
-Adds Modal component and useAnimatePresence hook
+Adds `<Modal />` component
