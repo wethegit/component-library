@@ -10,8 +10,6 @@ import {
 import type { ModalProps as WTCModalProps } from "@wethegit/react-modal"
 import { useAnimatePresence, useUserPrefs } from "@wethegit/react-hooks"
 
-import "@wethegit/react-modal/style.css"
-
 import { classnames } from "@local/utilities"
 
 import styles from "./modal.module.scss"

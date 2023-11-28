@@ -14,6 +14,12 @@ npx @wethegit/components-cli add modal
 
 ### Usage
 
+First, import the global modal styles from `@wethegit/react-modal` into your global stylesheet or root layout:
+
+```scss
+@import "@wethegit/react-modal/style.css";
+```
+
 Most of the time all you need is a button that toggles a modal.
 
 The `<Modal>` component takes a `trigger` prop that is a function which receives a `toggle` function as its only argument and returns the element that will trigger the modal.
