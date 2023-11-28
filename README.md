@@ -9,7 +9,7 @@ Minally styled, accessible, React component primitives that can be copy and past
 ## Useful Commands
 
 - `yarn build` - Build all packages, including the Storybook site
-- `yarn dev` - Run all packages locally and preview with Storybook
+- `yarn start` - Run all packages locally and preview with Storybook
 - `yarn lint` - Lint all packages
 - `yarn changeset` - Generate a changeset
 - `yarn clean` - Clean up all `node_modules` and `dist` folders (runs each package's clean script)
