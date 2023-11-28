@@ -15,17 +15,20 @@ export type InViewContextType = {
 export const DEFAULT_IN_VIEW_PRESETS = [
   "fade",
   "fromBottom",
-  "fromBottomShort",
+  "fromBottomFixed",
   "fromLeft",
   "fromRight",
   "fromTop",
   "scaleUp",
 ] as const
 
-export type Animation = (typeof DEFAULT_IN_VIEW_PRESETS)[number] | boolean
+export type Animation = (typeof DEFAULT_IN_VIEW_PRESETS)[number]
 
-export type StaggerChildrenOptions = {
-  animation: Animation
+export type AnimationOptions = {
+  /**
+   * Either an animation preset (string) to use, or a boolean.
+   */
+  animation?: Animation
   delay?: number
   duration?: number
   stagger?: number
@@ -34,7 +37,7 @@ export type StaggerChildrenOptions = {
 export type InViewProps<TAs extends ElementType> = TagProps<TAs> & {
   /**
    * Percentage of the entry within the viewport for it to be considered
-   * "in view". Expects a number between 0 and 1.
+   * in view; a number between 0 and 1.
    */
   threshold: number
   /**
@@ -42,7 +45,7 @@ export type InViewProps<TAs extends ElementType> = TagProps<TAs> & {
    */
   once: boolean
   /**
-   * Consider the entry as "in view" if it is above the viewport. This is
+   * Consider the entry "in view" if it is above the viewport. This is
    * most often used for ensuring that content is already animated in, when
    * loading a document from a scroll position _other than_ the top.
    */
@@ -52,18 +55,12 @@ export type InViewProps<TAs extends ElementType> = TagProps<TAs> & {
    * viewport, regardless of the threshold.
    */
   matchRootMarginToThreshold: boolean
-  staggerChildren?: StaggerChildrenOptions
   /**
-   * Array of class names corresponding to the InView instance's animation
-   * presets.
+   * Settings for stagger-animating the immediate children of the component.
+   * Default animation properties include `fade`, `scaleUp`, `fromBottom`,
+   * `fromBottomFixed`, `fromTop`, `fromRight`, and `fromLeft`
    */
-  // animationPresets: string[]
-  /**
-   * Either an animation preset (string) to use, or a boolean. If `true`, allows
-   * you to pass custom animation properties via CSS; if `false`, no animation will
-   * be included.
-   */
-  // animation: Animation
+  staggerChildren?: AnimationOptions
 }
 
 export const InViewContext = createContext<InViewContextType>({
@@ -73,13 +70,10 @@ export const InViewContext = createContext<InViewContextType>({
 
 /**
  * Returns a class name string with the float value multiplied by 10
- * appended to it.
+ * appended to it, because class names cannot have decimals.
  *
  * @param name The property to prepend the class name with.
- * @param value Float value corresponding to seconds. Since we can't
- * have decimals in CSS classNames, this number is multiplied by 10 for
- * a nice, whole-number class name. SASS will take care of parsing this
- * to ensure we still get fractions of a second.
+ * @param value Float value corresponding to seconds.
  *
  * @example
  * generateStaggerClassName("delay", 0.2) // => styles.delay2
@@ -110,29 +104,35 @@ export function InView<TAs extends ElementType>({
     setInViewIfScrolledPast
   )
 
+  const {
+    animation = "fade",
+    stagger = 0.2,
+    delay = 0,
+    duration = 0.4,
+  } = staggerChildren || {}
+
+  const staggerChildrenClasses = staggerChildren
+    ? classnames([
+        styles.staggerChildren,
+        animation && styles[animation],
+        !isNaN(stagger) && generateFloatClassName("staggerAmount", stagger),
+        !isNaN(delay) && generateFloatClassName("staggerDelay", delay),
+        !isNaN(duration) && generateFloatClassName("staggerDuration", duration),
+      ])
+    : null
+
+  const baseClasses = classnames([styles.wrap, isInView && styles.wrapInView])
+
+  const mergedClasses = classnames([baseClasses, staggerChildrenClasses, className])
+
   const value = {
     isInView,
     domNode,
   }
 
-  // const animationPresetClassNames = animationPresets.map((preset) => styles[preset])
-
-  const { animation, stagger = 0.2, duration = 0.4, delay = 0 } = staggerChildren || {}
-
-  const classes = classnames([
-    styles.wrap,
-    isInView && styles.wrapInView,
-    animation && styles.staggerChildren,
-    animation && typeof animation === "string" && styles[animation],
-    !isNaN(stagger) && generateFloatClassName("staggerAmount", stagger),
-    !isNaN(delay) && generateFloatClassName("staggerDelay", delay),
-    !isNaN(duration) && generateFloatClassName("staggerDuration", duration),
-    className,
-  ])
-
   return (
     <InViewContext.Provider value={value}>
-      <Tag as={as} ref={setRef} className={classes} {...rest} />
+      <Tag as={as} ref={setRef} className={mergedClasses} {...rest} />
     </InViewContext.Provider>
   )
 }

@@ -17,9 +17,6 @@
   --end-alpha: 1;
   --end-rotate: 0deg;
   --end-scale: 1;
-  --stagger-amount: 0.2s;
-  --delay: 0s;
-  --duration: 0.4s;
   --ease: ease-in-out;
 
   > * {
@@ -30,7 +27,7 @@
     transition-property: transform, opacity;
 
     @for $i from 0 through 20 {
-      &:nth-child(#{$i}) {
+      &:nth-child(#{$i + 1}) {
         transition-delay: calc(var(--delay) + #{$i} * var(--stagger-amount));
       }
     }
@@ -56,7 +53,7 @@
     --start-rotate: 0deg;
   }
 
-  &.scaleup {
+  &.scaleUp {
     --start-alpha: 0;
     --start-x: 0;
     --start-y: 0;
@@ -64,43 +61,44 @@
     --start-rotate: 0deg;
   }
 
-  &.fromleft {
+  &.fromLeft {
     --start-alpha: 0;
     --start-x: -50%;
     --start-y: 0;
-    --start-scale: 0;
+    --start-scale: 1;
     --start-rotate: 0deg;
   }
 
-  &.fromright {
+  &.fromRight {
     --start-alpha: 0;
     --start-x: 50%;
     --start-y: 0;
-    --start-scale: 0;
+    --start-scale: 1;
     --start-rotate: 0deg;
   }
 
-  &.fromtop {
+  &.fromTop {
     --start-alpha: 0;
     --start-x: 0;
     --start-y: -50%;
-    --start-scale: 0;
+    --start-scale: 1;
     --start-rotate: 0deg;
   }
 
-  &.frombottom {
+  &.fromBottom {
     --start-alpha: 0;
     --start-x: 0;
     --start-y: 50%;
-    --start-scale: 0;
+    --start-scale: 1;
     --start-rotate: 0deg;
   }
 
-  &.frombottomshort {
+  // Same as fromBottom but uses a fixed value for --start-y
+  &.fromBottomFixed {
     --start-alpha: 0;
     --start-x: 0;
     --start-y: 2rem;
-    --start-scale: 0;
+    --start-scale: 1;
     --start-rotate: 0deg;
   }
 }
@@ -108,7 +106,7 @@
 // We are opting to use actual selectors to generate the variations
 // on stagger delays, amounts, and durations; rather than passing
 // the CSS custom properties directly as inline styles. This helps
-// keep our CSS more easily overrideable (is that a word?) if needed.
+// keep our CSS easier to override if needed.
 
 // "Stagger amount" and "stagger delay" options range from
 // 0s through 1s, in increments of 0.1s
