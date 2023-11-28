@@ -7,7 +7,7 @@ import {
   ModalBackdrop,
   useModal,
 } from "@wethegit/react-modal"
-import { useAnimatePresence } from "@wethegit/react-hooks"
+import { useAnimatePresence, useUserPrefs } from "@wethegit/react-hooks"
 
 import "@wethegit/react-modal/style.css"
 
@@ -45,12 +45,14 @@ export function Modal({ hash, children, appendToBody = true, trigger }: ModalPro
     triggerRef: triggerButton,
     hash,
   })
+  const { prefersReducedMotion } = useUserPrefs()
   const { render, animate, currentDuration } = useAnimatePresence({
     isVisible: isOpen,
+    duration: prefersReducedMotion ? 0 : 500,
   })
 
   const stylesVars = {
-    "--transition-duration": `${currentDuration}ms`,
+    "--duration": `${currentDuration}ms`,
   } as React.CSSProperties
 
   return (
@@ -58,14 +60,13 @@ export function Modal({ hash, children, appendToBody = true, trigger }: ModalPro
       {trigger && trigger(toggle)}
 
       {render && (
-        <WTCModal appendToBody={appendToBody} style={stylesVars}>
+        <WTCModal
+          appendToBody={appendToBody}
+          style={stylesVars}
+          className={classnames([styles.modal, animate && styles.modalOpen])}
+        >
           <ModalBackdrop className={styles.modalBackdrop} onClick={toggle} />
-          <ModalContent
-            className={classnames([
-              styles.modalContent,
-              animate && styles.modalContentOpen,
-            ])}
-          >
+          <ModalContent className={styles.modalContent}>
             <button className={styles.modalCloseButton} onClick={toggle}>
               Close
             </button>

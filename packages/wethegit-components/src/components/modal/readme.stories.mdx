@@ -18,6 +18,8 @@ Most of the time all you need is a button that toggles a modal.
 
 The `<Modal>` component takes a `trigger` prop that is a function which receives a `toggle` function as its only argument and returns the element that will trigger the modal.
 
+It also handles reduced motion by default and because of that you are required to make sure that the modal component renders inside the [UserPreferencesProvider](https://wethegit.github.io/react-hooks/user-preferences-provider).
+
 ```tsx
 import { useCallback } from "react"
 
@@ -30,15 +32,17 @@ function Page() {
   )
 
   return (
-    <main>
-      <Modal trigger={trigger}>
-        <h1>Modal Content</h1>
-        <p>
-          Pariatur occaecat quis aliquip excepteur adipisicing minim ipsum qui proident
-          qui voluptate ut sunt.
-        </p>
-      </Modal>
-    </main>
+    <UserPreferencesProvider>
+      <main>
+        <Modal trigger={trigger}>
+          <h1>Modal Content</h1>
+          <p>
+            Pariatur occaecat quis aliquip excepteur adipisicing minim ipsum qui proident
+            qui voluptate ut sunt.
+          </p>
+        </Modal>
+      </main>
+    </UserPreferencesProvider>
   )
 }
 ```

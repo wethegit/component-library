@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
+import { UserPreferencesProvider } from "@wethegit/react-hooks"
 
 import { Modal } from "./modal"
 
@@ -11,9 +12,11 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <div style={{ height: 500 }}>
-        <Story />
-      </div>
+      <UserPreferencesProvider>
+        <div style={{ height: 500 }}>
+          <Story />
+        </div>
+      </UserPreferencesProvider>
     ),
   ],
 } satisfies Meta<typeof Modal>
