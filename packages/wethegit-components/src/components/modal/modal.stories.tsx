@@ -10,6 +10,13 @@ const meta = {
     trigger: (toggle) => <button onClick={toggle}>Open Modal</button>,
     appendToBody: false,
   },
+  argTypes: {
+    appendToBody: {
+      description:
+        "If true the modal will be appended to the body instead of the parent element.",
+      defaultValue: { summary: false },
+    },
+  },
   decorators: [
     (Story) => (
       <UserPreferencesProvider>

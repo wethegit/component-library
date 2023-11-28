@@ -7,6 +7,7 @@ import {
   ModalBackdrop,
   useModal,
 } from "@wethegit/react-modal"
+import type { ModalProps as WTCModalProps } from "@wethegit/react-modal"
 import { useAnimatePresence, useUserPrefs } from "@wethegit/react-hooks"
 
 import "@wethegit/react-modal/style.css"
@@ -15,12 +16,7 @@ import { classnames } from "@local/utilities"
 
 import styles from "./modal.module.scss"
 
-export interface ModalProps {
-  /**
-   * If true the modal will be appended to the body instead of the parent element.
-   * @defaultValue true
-   */
-  appendToBody?: boolean
+export interface ModalProps extends WTCModalProps {
   /**
    * If provided, the modal state will be controlled by the hash in the URL.
    */
