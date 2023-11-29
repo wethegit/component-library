@@ -1,12 +1,6 @@
 "use client"
 
-import { useRef } from "react"
-import {
-  Modal as WTCModal,
-  ModalContent,
-  ModalBackdrop,
-  useModal,
-} from "@wethegit/react-modal"
+import { Modal as WTCModal, ModalContent, ModalBackdrop } from "@wethegit/react-modal"
 import type { ModalProps as WTCModalProps } from "@wethegit/react-modal"
 import { useAnimatePresence, useUserPrefs } from "@wethegit/react-hooks"
 
@@ -16,13 +10,13 @@ import styles from "./modal.module.scss"
 
 export interface ModalProps extends WTCModalProps {
   /**
-   * If provided, the modal state will be controlled by the hash in the URL.
+   * Whether the modal is open or not.
    */
-  hash?: string
+  isOpen: boolean
   /**
-   * A function that returns the trigger element for the modal.
+   * A function that toggles the modal.
    */
-  trigger: (toggleModal: () => void) => React.ReactNode
+  toggle: () => void
   /**
    * The modal content.
    */
@@ -33,12 +27,7 @@ export interface ModalProps extends WTCModalProps {
  * Wrapper around the `@wethegit/react-modal` component that adds a trigger and takes care of reducing motion.
  * For more information, see the [modal documentation](https://github.com/wethegit/react-modal).
  */
-export function Modal({ hash, children, trigger, ...props }: ModalProps) {
-  const triggerButton = useRef(null)
-  const { isOpen, toggle } = useModal({
-    triggerRef: triggerButton,
-    hash,
-  })
+export function Modal({ children, isOpen, toggle, ...props }: ModalProps) {
   const { prefersReducedMotion } = useUserPrefs()
   const { render, animate, currentDuration } = useAnimatePresence({
     isVisible: isOpen,
@@ -49,25 +38,21 @@ export function Modal({ hash, children, trigger, ...props }: ModalProps) {
     "--duration": `${currentDuration}ms`,
   } as React.CSSProperties
 
-  return (
-    <>
-      {trigger && trigger(toggle)}
+  if (!render) return null
 
-      {render && (
-        <WTCModal
-          style={stylesVars}
-          className={classnames([styles.modal, animate && styles.modalOpen])}
-          {...props}
-        >
-          <ModalBackdrop className={styles.modalBackdrop} onClick={toggle} />
-          <ModalContent className={styles.modalContent}>
-            <button className={styles.modalCloseButton} onClick={toggle}>
-              Close
-            </button>
-            {children}
-          </ModalContent>
-        </WTCModal>
-      )}
-    </>
+  return (
+    <WTCModal
+      style={stylesVars}
+      className={classnames([styles.modal, animate && styles.modalOpen])}
+      {...props}
+    >
+      <ModalBackdrop className={styles.modalBackdrop} onClick={toggle} />
+      <ModalContent className={styles.modalContent}>
+        <button className={styles.modalCloseButton} onClick={toggle}>
+          Close
+        </button>
+        {children}
+      </ModalContent>
+    </WTCModal>
   )
 }

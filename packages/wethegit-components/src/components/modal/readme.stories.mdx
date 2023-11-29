@@ -25,28 +25,33 @@ The `<Modal>` component takes a `trigger` prop that is a function which receives
 It also handles reduced motion by default and because of that you are required to make sure that the modal component renders inside the [UserPreferencesProvider](https://wethegit.github.io/react-hooks/user-preferences-provider).
 
 ```tsx
-import { useCallback } from "react"
+import { useRef } from "react"
+import { useModal } from "@wethegit/react-modal"
+import { UserPreferencesProvider } from "@wethegit/react-hooks"
 
 import { Modal } from "@local/components"
 
 function Page() {
-  const trigger = useCallback(
-    (toggle) => <button onClick={toggle}>Open Modal</button>,
-    []
-  )
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const props = useModal({
+    triggerRef,
+  })
 
   return (
-    <UserPreferencesProvider>
-      <main>
-        <Modal trigger={trigger}>
+    <>
+      <button ref={triggerRef} onClick={toggle}>
+        Open Modal
+      </button>
+      <UserPreferencesProvider>
+        <Modal {...props}>
           <h1>Modal Content</h1>
           <p>
             Pariatur occaecat quis aliquip excepteur adipisicing minim ipsum qui proident
             qui voluptate ut sunt.
           </p>
         </Modal>
-      </main>
-    </UserPreferencesProvider>
+      </UserPreferencesProvider>
+    </>
   )
 }
 ```

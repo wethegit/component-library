@@ -7,23 +7,15 @@ const meta = {
   title: "components/modal",
   component: Modal,
   args: {
-    trigger: (toggle) => <button onClick={toggle}>Open Modal</button>,
-    appendToBody: false,
-  },
-  argTypes: {
-    appendToBody: {
-      description:
-        "If true the modal will be appended to the body instead of the parent element.",
-      defaultValue: { summary: false },
-    },
+    isOpen: true,
   },
   decorators: [
     (Story) => (
-      <UserPreferencesProvider>
-        <div style={{ height: 500 }}>
+      <div style={{ height: 500 }}>
+        <UserPreferencesProvider>
           <Story />
-        </div>
-      </UserPreferencesProvider>
+        </UserPreferencesProvider>
+      </div>
     ),
   ],
 } satisfies Meta<typeof Modal>
@@ -33,11 +25,14 @@ export default meta
 type Story = StoryObj<typeof Modal>
 
 export const Default: Story = {
-  render: (args) => (
-    <Modal {...args}>
-      <p style={{ color: "black", margin: 0 }}>
-        Excepteur mollit laboris culpa commodo ex.
-      </p>
-    </Modal>
-  ),
+  render: (args) => {
+    return (
+      <Modal {...args}>
+        <p style={{ color: "black", margin: 0 }}>
+          <strong>Close</strong> button doesn't work becayse inside the story we use the{" "}
+          <code>isOpen</code> control.
+        </p>
+      </Modal>
+    )
+  },
 }
