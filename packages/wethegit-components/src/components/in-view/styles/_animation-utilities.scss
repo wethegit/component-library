@@ -1,0 +1,79 @@
+@use "sass:math";
+
+$animations: (
+  "fade": (
+    "start-alpha": 0,
+    "start-rotate": 0deg,
+    "start-scale": 1,
+    "start-x": 0,
+    "start-y": 0,
+  ),
+  "fromBottom": (
+    "start-alpha": 0,
+    "start-rotate": 0deg,
+    "start-scale": 1,
+    "start-x": 0,
+    "start-y": 50%,
+  ),
+  "fromBottomFixed": (
+    "start-alpha": 0,
+    "start-rotate": 0deg,
+    "start-scale": 1,
+    "start-x": 0,
+    "start-y": 2em,
+  ),
+  "fromLeft": (
+    "start-alpha": 0,
+    "start-rotate": 0deg,
+    "start-scale": 1,
+    "start-x": -50%,
+    "start-y": 0,
+  ),
+  "fromRight": (
+    "start-alpha": 0,
+    "start-rotate": 0deg,
+    "start-scale": 1,
+    "start-x": 50%,
+    "start-y": 0,
+  ),
+  "fromTop": (
+    "start-alpha": 0,
+    "start-rotate": 0deg,
+    "start-scale": 1,
+    "start-x": 0,
+    "start-y": -50%,
+  ),
+  "scaleUp": (
+    "start-alpha": 0,
+    "start-rotate": 0deg,
+    "start-scale": 0,
+    "start-x": 0,
+    "start-y": 0,
+  ),
+);
+
+@function get-duration($i, $subDivisions: 10) {
+  // TODO: remember to add duration factor
+  @return math.div($i, $subDivisions) * 1s;
+}
+
+@function get-stagger-delay($i) {
+  // TODO: remember to add duration factor
+  @return calc(#{$i} * var(--stagger-amount, 0.2s) + var(--stagger-delay, 0s));
+}
+
+@mixin state-hidden {
+  opacity: var(--start-alpha, 0);
+  transform: translate(var(--start-x, 0), var(--start-y, 0))
+    rotate(var(--start-rotate, 0deg)) scale(var(--start-scale, 1));
+  transition-delay: var(--delay, 0s);
+  transition-duration: var(--duration, 0.4s);
+  transition-property: transform, opacity;
+  transition-timing-function: var(--ease, ease-out);
+}
+
+@mixin state-visible {
+  opacity: var(--end-alpha, 1);
+  transform: translate(var(--end-x, 0), var(--end-y, 0)) rotate(var(--end-rotate, 0deg))
+    scale(var(--end-scale, 1));
+}

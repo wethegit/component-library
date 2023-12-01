@@ -1,13 +1,17 @@
-import { createContext, ElementType } from "react"
+import { createContext, ElementType, useMemo } from "react"
 import { useInView } from "@wethegit/react-hooks"
 
+import {
+  composeAnimateClassnames,
+  composeStaggerClassnames,
+} from "@local/components/in-view/utilities"
 import { Tag } from "@local/components"
 import type { TagProps } from "@local/components"
 import { classnames } from "@local/utilities"
 
 import styles from "./in-view.module.scss"
 
-export type InViewContextType = {
+export type InViewContext = {
   isInView: boolean
   domNode: HTMLElement | undefined
 }
@@ -23,21 +27,20 @@ export const DEFAULT_IN_VIEW_PRESETS = [
 ] as const
 
 export type Animation = (typeof DEFAULT_IN_VIEW_PRESETS)[number]
+export type AnimationDelay = number
+export type AnimationDuration = number
 
-export type AnimationOptions = {
-  /**
-   * Either an animation preset (string) to use, or a boolean.
-   */
+export type StaggerOptions = {
   animation?: Animation
-  delay?: number
-  duration?: number
+  delay?: AnimationDelay
+  duration?: AnimationDuration
   stagger?: number
 }
 
 export type InViewProps<TAs extends ElementType> = TagProps<TAs> & {
   /**
-   * Percentage of the entry within the viewport for it to be considered
-   * in view; a number between 0 and 1.
+   * Percentage of the entry within the viewport for it to be considered in
+   * view; a number between 0 and 1.
    */
   threshold: number
   /**
@@ -45,48 +48,51 @@ export type InViewProps<TAs extends ElementType> = TagProps<TAs> & {
    */
   once: boolean
   /**
-   * Consider the entry "in view" if it is above the viewport. This is
-   * most often used for ensuring that content is already animated in, when
-   * loading a document from a scroll position _other than_ the top.
+   * Consider the entry "in view" if it is above the viewport. This is most
+   * often used for ensuring that content is already animated in, when loading
+   * a document from a scroll position _other than_ the top.
    */
   setInViewIfScrolledPast: boolean
   /**
-   * Ensure that the entry remains in view until it fully exits the
-   * viewport, regardless of the threshold.
+   * Ensure that the entry remains in view until it fully exits the viewport,
+   * regardless of the threshold.
    */
   matchRootMarginToThreshold: boolean
   /**
-   * Settings for stagger-animating the immediate children of the component.
-   * Default animation properties include `fade`, `scaleUp`, `fromBottom`,
-   * `fromBottomFixed`, `fromTop`, `fromRight`, and `fromLeft`
+   * Animation to apply to the component itself.
    */
-  staggerChildren?: AnimationOptions
+  animation?: Animation
+  /**
+   * Delay of the main element's animation, if one was provided. The
+   * `staggerChildren` option will inherit this delay value if it was specified
+   * without one of its own.
+   */
+  delay?: AnimationDelay
+  /**
+   * Duration of the main element's animation, if one was provided. The
+   * `staggerChildren` option will inherit this duration value if it was
+   * specified without one of its own.
+   */
+  duration?: AnimationDuration
+  /**
+   * Settings for stagger-animating the immediate children of the component.
+   */
+  staggerChildren?: StaggerOptions | boolean
 }
 
-export const InViewContext = createContext<InViewContextType>({
+export const InViewContext = createContext<InViewContext>({
   isInView: false,
   domNode: undefined,
 })
-
-/**
- * Returns a class name string with the float value multiplied by 10
- * appended to it, because class names cannot have decimals.
- *
- * @param name The property to prepend the class name with.
- * @param value Float value corresponding to seconds.
- *
- * @example
- * generateStaggerClassName("delay", 0.2) // => styles.delay2
- */
-const generateFloatClassName = (name: string, value: number) => {
-  return styles[name + Math.floor(value * 10)]
-}
 
 export function InView<TAs extends ElementType>({
   threshold = 0.3,
   once = false,
   setInViewIfScrolledPast = false,
   matchRootMarginToThreshold = true,
+  animation,
+  delay,
+  duration,
   staggerChildren,
   ...props
 }: InViewProps<TAs>) {
@@ -104,26 +110,26 @@ export function InView<TAs extends ElementType>({
     setInViewIfScrolledPast
   )
 
-  const {
-    animation = "fade",
-    stagger = 0.2,
-    delay = 0,
-    duration = 0.4,
-  } = staggerChildren || {}
+  const baseClasses = isInView && styles.inView
 
-  const staggerChildrenClasses = staggerChildren
-    ? classnames([
-        styles.staggerChildren,
-        animation && styles[animation],
-        !isNaN(stagger) && generateFloatClassName("staggerAmount", stagger),
-        !isNaN(delay) && generateFloatClassName("staggerDelay", delay),
-        !isNaN(duration) && generateFloatClassName("staggerDuration", duration),
-      ])
-    : null
+  // Compose any CSS class names for animating the InView element *itself*:
+  const animateClasses = useMemo(
+    () => composeAnimateClassnames({ animation, delay, duration }),
+    [animation, duration, delay]
+  )
 
-  const baseClasses = classnames([styles.wrap, isInView && styles.wrapInView])
+  // Compose any CSS class names for stagger-animating the *children*:
+  const staggerChildrenClasses = useMemo(
+    () => composeStaggerClassnames(staggerChildren),
+    [staggerChildren]
+  )
 
-  const mergedClasses = classnames([baseClasses, staggerChildrenClasses, className])
+  const mergedClasses = classnames([
+    baseClasses,
+    animateClasses,
+    staggerChildrenClasses,
+    className,
+  ])
 
   const value = {
     isInView,

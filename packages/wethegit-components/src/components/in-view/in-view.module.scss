@@ -1,129 +1,82 @@
-@use "sass:math";
+@use "./styles/animation-utilities" as *;
 
-.wrap {
-  outline: 1px solid red;
+.animate {
+  @include state-hidden;
+
+  &.inView {
+    @include state-visible;
+  }
+
+  @each $preset, $props in $animations {
+    &.#{$preset} {
+      @each $prop, $value in $props {
+        --#{$prop}: #{$value};
+      }
+    }
+  }
 }
 
 .staggerChildren {
-  // Defaults. You probably don't need to change these too much.
-  // Instead, try editing the "preset" selectors further down.
-  --start-x: 0;
-  --start-y: 0;
-  --start-alpha: 1;
-  --start-rotate: 0deg;
-  --start-scale: 1;
-  --end-x: 0;
-  --end-y: 0;
-  --end-alpha: 1;
-  --end-rotate: 0deg;
-  --end-scale: 1;
-  --ease: ease-in-out;
-
   > * {
-    opacity: var(--start-alpha);
-    transform: translate(var(--start-x), var(--start-y)) rotate(var(--start-rotate))
-      scale(var(--start-scale));
-    transition-duration: var(--duration);
-    transition-property: transform, opacity;
+    @include state-hidden;
+
+    transition-duration: var(--stagger-duration);
 
     @for $i from 0 through 20 {
       &:nth-child(#{$i + 1}) {
-        transition-delay: calc(var(--delay) + #{$i} * var(--stagger-amount));
+        transition-delay: get-stagger-delay($i);
       }
     }
   }
 
-  &.wrapInView {
+  &.inView {
     > * {
-      opacity: var(--end-alpha);
-      transform: translate(var(--end-x), var(--end-y)) rotate(var(--end-rotate))
-        scale(var(--end-scale));
+      @include state-visible;
     }
   }
 
-  // Animation presets
-
-  // We must set _all_ of the properties — even if we're only animating
-  // one of them — in order to avoid scope clashing.
-  &.fade {
-    --start-alpha: 0;
-    --start-x: 0;
-    --start-y: 0;
-    --start-scale: 1;
-    --start-rotate: 0deg;
-  }
-
-  &.scaleUp {
-    --start-alpha: 0;
-    --start-x: 0;
-    --start-y: 0;
-    --start-scale: 0;
-    --start-rotate: 0deg;
-  }
-
-  &.fromLeft {
-    --start-alpha: 0;
-    --start-x: -50%;
-    --start-y: 0;
-    --start-scale: 1;
-    --start-rotate: 0deg;
-  }
-
-  &.fromRight {
-    --start-alpha: 0;
-    --start-x: 50%;
-    --start-y: 0;
-    --start-scale: 1;
-    --start-rotate: 0deg;
-  }
-
-  &.fromTop {
-    --start-alpha: 0;
-    --start-x: 0;
-    --start-y: -50%;
-    --start-scale: 1;
-    --start-rotate: 0deg;
-  }
-
-  &.fromBottom {
-    --start-alpha: 0;
-    --start-x: 0;
-    --start-y: 50%;
-    --start-scale: 1;
-    --start-rotate: 0deg;
-  }
-
-  // Same as fromBottom but uses a fixed value for --start-y
-  &.fromBottomFixed {
-    --start-alpha: 0;
-    --start-x: 0;
-    --start-y: 2rem;
-    --start-scale: 1;
-    --start-rotate: 0deg;
+  @each $preset, $props in $animations {
+    &.#{$preset}Child {
+      > * {
+        @each $prop, $value in $props {
+          --#{$prop}: #{$value};
+        }
+      }
+    }
   }
 }
 
 // We are opting to use actual selectors to generate the variations
-// on stagger delays, amounts, and durations; rather than passing
+// on delays, stagger amounts, durations, etc.; rather than passing
 // the CSS custom properties directly as inline styles. This helps
 // keep our CSS easier to override if needed.
 
-// "Stagger amount" and "stagger delay" options range from
-// 0s through 1s, in increments of 0.1s
+// Generate the options for delay, stagger amount, and stagger delay.
+// These range from 0s to 1s, in increments of 0.1s.
+// Example: `.delay2` is a 0.2s delay.
 @for $i from 0 through 10 {
+  .delay#{$i} {
+    --delay: #{get-duration($i, 10)};
+  }
+
   .staggerAmount#{$i} {
-    --stagger-amount: #{math.div($i, 10) * 1s};
+    --stagger-amount: #{get-duration($i, 10)};
   }
 
   .staggerDelay#{$i} {
-    --delay: #{math.div($i, 10) * 1s};
+    --stagger-delay: #{get-duration($i, 10)};
   }
 }
 
-// "Stagger duration" options range from 0s through 20s, in
-// increments of 0.1s
+// Generate the options for duration and stagger duration.
+// These range from 0s to 2s, in increments of 0.1s.
+// Example: `.duration15` is a 1.5s duration.
 @for $i from 0 through 20 {
+  .duration#{$i} {
+    --duration: #{get-duration($i, 20)};
+  }
+
   .staggerDuration#{$i} {
-    --duration: #{math.div($i, 10) * 1s};
+    --stagger-duration: #{get-duration($i, 20)};
   }
 }
