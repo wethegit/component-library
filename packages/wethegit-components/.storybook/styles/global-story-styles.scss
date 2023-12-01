@@ -1,6 +1,6 @@
-@import "@local/styles/global.scss";
-@import "@local/components/grid-layout/styles/grid-layout.scss";
-@import "@local/components/text/styles/text.scss";
+@import "@local/styles/global";
+@import "@local/components/grid-layout/styles/grid-layout";
+@import "@local/components/text/styles/text";
 
 @mixin gutter-highlight($color: blue, $size) {
   box-shadow:
@@ -13,8 +13,8 @@
 }
 
 html {
-  font-size: 16px;
   color: white;
+  font-size: 16px;
 }
 
 h1,
@@ -26,18 +26,19 @@ h6,
 p,
 li,
 span,
-a {
+a,
+button {
   font-family: sans-serif;
   line-height: 1.6;
 }
 
 code {
-  font-family: monospace;
   background: #d8d8d8;
-  padding: 0.1em 0.2em;
   border-radius: 0.25em;
-  font-size: 0.92em;
   color: black;
+  font-family: monospace;
+  font-size: 0.92em;
+  padding: 0.1em 0.2em;
 }
 
 a {
@@ -48,23 +49,24 @@ a {
   @include dashed-outline;
 }
 
-.gutter-visualizer {
+.gutterVisualizer {
   @include dashed-outline;
   @include gutter-highlight(rgb(83 198 82 / 34%), calc(var(--wtc-gutter-width) * 0.5));
 }
 
-.gutter-visualizer--full {
+.gutterVisualizerFull {
   @include gutter-highlight(rgb(83 198 82 / 34%), var(--wtc-gutter-width));
 }
 
 // TODO:
 // THESE ARE TEMPORARY. Remove them once spacing component is set up.
-.child-spacing {
+.childSpacing {
   > * + * {
     margin-top: 2rem !important;
   }
 }
-.child-spacing--less {
+
+.childSpacingLess {
   > * + * {
     margin-top: 1rem !important;
   }
