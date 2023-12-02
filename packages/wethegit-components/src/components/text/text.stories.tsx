@@ -54,7 +54,7 @@ export const Default: Story = {
         <Text variant="body-smaller">Body smaller</Text>
         <Text variant="body-legal">Body legal</Text>
         <hr />
-        <Text {...args}>You can control this component from the Controls bellow</Text>
+        <Text {...args}>You can control this component from the Controls below</Text>
       </div>
     </div>
   ),

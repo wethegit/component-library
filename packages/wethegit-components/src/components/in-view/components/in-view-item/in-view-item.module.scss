@@ -1,17 +1,17 @@
-@use "./styles/animation-utilities" as *;
+@use "@local/components/in-view/styles/animation-utilities" as *;
 
-.animate {
+.wrap {
   @include state-hidden;
+}
 
-  &.inView {
-    @include state-visible;
-  }
+.inView {
+  @include state-visible;
+}
 
-  @each $preset, $props in $animations {
-    &.#{$preset} {
-      @each $prop, $value in $props {
-        --#{$prop}: #{$value};
-      }
+@each $preset, $props in $animations {
+  .#{$preset} {
+    @each $prop, $value in $props {
+      --#{$prop}: #{$value};
     }
   }
 }
@@ -32,16 +32,6 @@
   &.inView {
     > * {
       @include state-visible;
-    }
-  }
-
-  @each $preset, $props in $animations {
-    &.#{$preset}Child {
-      > * {
-        @each $prop, $value in $props {
-          --#{$prop}: #{$value};
-        }
-      }
     }
   }
 }

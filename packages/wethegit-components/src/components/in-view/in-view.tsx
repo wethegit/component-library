@@ -1,40 +1,12 @@
-import { createContext, ElementType, useMemo } from "react"
+import { createContext, ElementType } from "react"
 import { useInView } from "@wethegit/react-hooks"
 
-import {
-  composeAnimateClassnames,
-  composeStaggerClassnames,
-} from "@local/components/in-view/utilities"
 import { Tag } from "@local/components"
 import type { TagProps } from "@local/components"
-import { classnames } from "@local/utilities"
-
-import styles from "./in-view.module.scss"
 
 export type InViewContext = {
   isInView: boolean
   domNode: HTMLElement | undefined
-}
-
-export const DEFAULT_IN_VIEW_PRESETS = [
-  "fade",
-  "fromBottom",
-  "fromBottomFixed",
-  "fromLeft",
-  "fromRight",
-  "fromTop",
-  "scaleUp",
-] as const
-
-export type Animation = (typeof DEFAULT_IN_VIEW_PRESETS)[number]
-export type AnimationDelay = number
-export type AnimationDuration = number
-
-export type StaggerOptions = {
-  animation?: Animation
-  delay?: AnimationDelay
-  duration?: AnimationDuration
-  stagger?: number
 }
 
 export type InViewProps<TAs extends ElementType> = TagProps<TAs> & {
@@ -42,42 +14,23 @@ export type InViewProps<TAs extends ElementType> = TagProps<TAs> & {
    * Percentage of the entry within the viewport for it to be considered in
    * view; a number between 0 and 1.
    */
-  threshold: number
+  threshold?: number
   /**
    * Unobserve the entry once it is considered to be in view.
    */
-  once: boolean
+  once?: boolean
   /**
    * Consider the entry "in view" if it is above the viewport. This is most
    * often used for ensuring that content is already animated in, when loading
    * a document from a scroll position _other than_ the top.
    */
-  setInViewIfScrolledPast: boolean
+  setInViewIfScrolledPast?: boolean
   /**
    * Ensure that the entry remains in view until it fully exits the viewport,
-   * regardless of the threshold.
+   * regardless of the threshold. Note that this will not have any effect within
+   * an `<iframe>`.
    */
-  matchRootMarginToThreshold: boolean
-  /**
-   * Animation to apply to the component itself.
-   */
-  animation?: Animation
-  /**
-   * Delay of the main element's animation, if one was provided. The
-   * `staggerChildren` option will inherit this delay value if it was specified
-   * without one of its own.
-   */
-  delay?: AnimationDelay
-  /**
-   * Duration of the main element's animation, if one was provided. The
-   * `staggerChildren` option will inherit this duration value if it was
-   * specified without one of its own.
-   */
-  duration?: AnimationDuration
-  /**
-   * Settings for stagger-animating the immediate children of the component.
-   */
-  staggerChildren?: StaggerOptions | boolean
+  matchRootMarginToThreshold?: boolean
 }
 
 export const InViewContext = createContext<InViewContext>({
@@ -90,10 +43,6 @@ export function InView<TAs extends ElementType>({
   once = false,
   setInViewIfScrolledPast = false,
   matchRootMarginToThreshold = true,
-  animation,
-  delay,
-  duration,
-  staggerChildren,
   ...props
 }: InViewProps<TAs>) {
   const { as = "div", className, ...rest } = props
@@ -104,32 +53,14 @@ export function InView<TAs extends ElementType>({
       rootMargin: `${threshold * 100}% 0px 0px 0px`,
     }),
   }
+
+  console.log(observerOptions)
+
   const [setRef, isInView, domNode] = useInView(
     observerOptions,
     once,
     setInViewIfScrolledPast
   )
-
-  const baseClasses = isInView && styles.inView
-
-  // Compose any CSS class names for animating the InView element *itself*:
-  const animateClasses = useMemo(
-    () => composeAnimateClassnames({ animation, delay, duration }),
-    [animation, duration, delay]
-  )
-
-  // Compose any CSS class names for stagger-animating the *children*:
-  const staggerChildrenClasses = useMemo(
-    () => composeStaggerClassnames(staggerChildren),
-    [staggerChildren]
-  )
-
-  const mergedClasses = classnames([
-    baseClasses,
-    animateClasses,
-    staggerChildrenClasses,
-    className,
-  ])
 
   const value = {
     isInView,
@@ -138,7 +69,7 @@ export function InView<TAs extends ElementType>({
 
   return (
     <InViewContext.Provider value={value}>
-      <Tag as={as} ref={setRef} className={mergedClasses} {...rest} />
+      <Tag as={as} ref={setRef} className={className} {...rest} />
     </InViewContext.Provider>
   )
 }

@@ -1,36 +1,38 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { InView, InViewItem } from "."
+import { InView, InViewItem, Text } from "@local/components"
 
 const meta: Meta<typeof InView> = {
   title: "components/in-view",
   component: InView,
   args: {
-    animation: "fromLeft",
-    duration: 0.5,
-    delay: 0,
-    staggerChildren: {
-      animation: "scaleUp",
-      delay: 0,
-      duration: 0.4,
-      stagger: 0.2,
-    },
+    threshold: 0.3,
+    once: false,
+    setInViewIfScrolledPast: false,
+    matchRootMarginToThreshold: true,
   },
-  argTypes: {
-    delay: { control: { type: "number", max: 1, min: 0, step: 0.1 } },
-    duration: { control: { type: "number", max: 2, min: 0, step: 0.1 } },
-  },
+  argTypes: {},
   decorators: [
     (Story) => (
-      <div
-        style={{
-          backgroundColor: "blue",
-          height: "200px",
-          overflow: "auto",
-        }}
-      >
-        <Story />
-      </div>
+      <>
+        <div
+          style={{
+            height: "200px",
+            textAlign: "center",
+          }}
+        >
+          <div
+            className="childSpacing"
+            style={{
+              overflow: "scroll",
+              height: "500px",
+            }}
+          >
+            <Text>Scroll down and then back up, to re-trigger the transition.</Text>
+            <Story />
+          </div>
+        </div>
+      </>
     ),
   ],
 }
@@ -41,12 +43,14 @@ type Story = StoryObj<typeof InView>
 
 export const Default: Story = {
   render: (args) => (
-    <InView as="ul" {...args}>
-      <InViewItem as="li">Item 1</InViewItem>
-      <InViewItem as="li" animation="fromLeft">
-        Item 2
+    <InView as="section" {...args}>
+      <InViewItem as="ul" staggerChildren={{ animation: "fromBottom" }}>
+        <li>Ipsum ullamco sit velit elit.</li>
+        <li>Fugiat quis sit minim ipsum amet non excepteur eiusmod.</li>
+        <InViewItem animation="scaleUp">
+          Sunt adipisicing ullamco aliquip fugiat enim.
+        </InViewItem>
       </InViewItem>
-      <InViewItem as="li">Item 3</InViewItem>
     </InView>
   ),
 }

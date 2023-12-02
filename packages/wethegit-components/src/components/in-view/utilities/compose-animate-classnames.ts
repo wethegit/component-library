@@ -1,6 +1,10 @@
-import type { Animation, AnimationDelay, AnimationDuration } from "@local/components"
+import type {
+  Animation,
+  AnimationDelay,
+  AnimationDuration,
+} from "@local/components/in-view/"
 import { buildFloatClassname } from "@local/components/in-view/utilities"
-import styles from "@local/components/in-view/in-view.module.scss"
+import styles from "@local/components/in-view/components/in-view-item/in-view-item.module.scss"
 
 export type ComposeAnimateClassnamesArgs = {
   animation?: Animation
@@ -13,7 +17,7 @@ export function composeAnimateClassnames({
   delay,
   duration,
 }: ComposeAnimateClassnamesArgs) {
-  if (!animation) return ""
+  const animClass = animation ? styles[animation] : ""
 
   const delayClass =
     typeof delay === "number" &&
@@ -25,5 +29,5 @@ export function composeAnimateClassnames({
     !isNaN(duration) &&
     styles[buildFloatClassname("duration", duration)]
 
-  return [styles.animate, styles[animation], delayClass, durationClass]
+  return [animClass, delayClass, durationClass]
 }

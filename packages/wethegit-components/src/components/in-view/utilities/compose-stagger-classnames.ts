@@ -1,14 +1,12 @@
 import type { StaggerOptions } from "@local/components"
 import { buildFloatClassname } from "@local/components/in-view/utilities"
-import styles from "@local/components/in-view/in-view.module.scss"
+import styles from "@local/components/in-view/components/in-view-item/in-view-item.module.scss"
 
 export function composeStaggerClassnames(staggerChildren?: StaggerOptions | boolean) {
   if (!staggerChildren) return ""
 
   const isBool = typeof staggerChildren === "boolean"
 
-  // Keep in mind that these values are scoped, and are thus unrelated to
-  // the component props of the same names:
   const animation = isBool ? "fade" : staggerChildren?.animation || "fade"
   const delay = isBool ? 0 : staggerChildren?.delay || 0
   const duration = isBool ? 0.4 : staggerChildren?.duration || 0.4
@@ -16,7 +14,7 @@ export function composeStaggerClassnames(staggerChildren?: StaggerOptions | bool
 
   return [
     styles.staggerChildren,
-    styles[`${animation}Child`],
+    styles[animation],
     !isNaN(stagger) && styles[buildFloatClassname("staggerAmount", stagger)],
     !isNaN(delay) && styles[buildFloatClassname("staggerDelay", delay)],
     !isNaN(duration) && styles[buildFloatClassname("staggerDuration", duration)],
