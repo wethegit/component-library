@@ -13,8 +13,8 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.25.2",
     "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.25.2",
     "eslint": "^8.48.0",
     "eslint-config-custom": "*",
     "husky": "^8.0.3",
@@ -30,5 +30,6 @@
     "packages/*"
   ],
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {},
+  "version": "0.0.0"
 }

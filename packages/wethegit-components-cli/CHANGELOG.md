@@ -1,5 +1,14 @@
 # @wethegit/components-cli
 
+## 2.4.7
+
+### Patch Changes
+
+- [#63](https://github.com/wethegit/component-library/pull/63) [`5e1fb2f`](https://github.com/wethegit/component-library/commit/5e1fb2f583258f1e5983ee5a135da2bc0d5bd232) Thanks [@marlonmarcello](https://github.com/marlonmarcello)! - Adds `<Modal />` component
+
+- Updated dependencies [[`5e1fb2f`](https://github.com/wethegit/component-library/commit/5e1fb2f583258f1e5983ee5a135da2bc0d5bd232)]:
+  - @wethegit/components@2.2.7
+
 ## 2.4.6
 
 ### Patch Changes
