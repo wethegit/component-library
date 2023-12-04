@@ -9,6 +9,8 @@ export const COMPONENTS_PACKAGE_STYLES_DIR = "src/styles"
 
 export const COMPONENTS_PACKAGE_UTILITIES_DIR = "src/utilities"
 
+export const COMPONENTS_PACKAGE_HOOKS_DIR = "src/hooks"
+
 export const COMPONENTS_PACKAGE_TYPES_DIR = "src/types"
 
 export const DEFAULT_CONFIG_FILE_NAME = "components.config.json"
@@ -18,6 +20,7 @@ export const DEFAULT_CONFIG: Config = {
     component: "src/components",
     style: "src/styles",
     utility: "src/utilities",
+    hook: "src/hooks",
     type: "types",
   },
 }
@@ -26,5 +29,6 @@ export const REGISTRY_TYPE_TO_ROOT_DIR_MAP: Record<RegistryCategory, string> = {
   component: COMPONENTS_PACKAGE_COMPONENTS_DIR,
   utility: COMPONENTS_PACKAGE_UTILITIES_DIR,
   style: COMPONENTS_PACKAGE_STYLES_DIR,
+  hook: COMPONENTS_PACKAGE_HOOKS_DIR,
   type: COMPONENTS_PACKAGE_TYPES_DIR,
 }

@@ -15,8 +15,8 @@ You will develop and test the components with **Storybook**.
 From the **root** of the repository, run:
 
 ```sh
-yarn install
-yarn dev
+yarn
+yarn start
 ```
 
 This will start Storybook and watch for changes in the components' source files.
