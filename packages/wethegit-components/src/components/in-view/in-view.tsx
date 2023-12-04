@@ -1,4 +1,4 @@
-import { createContext, ElementType } from "react"
+import { createContext, ElementType, useMemo } from "react"
 import { useInView } from "@wethegit/react-hooks"
 
 import { Tag } from "@local/components"
@@ -47,20 +47,21 @@ export function InView<TAs extends ElementType>({
 }: InViewProps<TAs>) {
   const { as = "div", className, ...rest } = props
 
-  const observerOptions = {
-    threshold,
-    ...(matchRootMarginToThreshold && {
-      rootMargin: `${threshold * 100}% 0px 0px 0px`,
+  const observerOptions = useMemo(
+    () => ({
+      threshold,
+      ...(matchRootMarginToThreshold && {
+        rootMargin: `${threshold * 100}% 0px 0px 0px`,
+      }),
     }),
-  }
+    []
+  )
 
   const [setRef, isInView, domNode] = useInView(
     observerOptions,
     once,
     setInViewIfScrolledPast
   )
-
-  console.log(isInView)
 
   const value = {
     isInView,
