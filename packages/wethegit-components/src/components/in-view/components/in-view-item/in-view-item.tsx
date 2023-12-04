@@ -38,13 +38,13 @@ export type InViewItemProps<TAs extends React.ElementType> = TagProps<TAs> & {
    */
   animation?: Animation
   /**
-   * Delay of the component's animation. The `staggerChildren` option will
-   * inherit this delay value if it was specified without one of its own.
+   * Delay of the component's animation. If the `staggerChildren` option on a
+   * parent InViewItem was provided with a delay, it will take priority over this.
    */
   delay?: AnimationDelay
   /**
-   * Duration of the component's animation. The `staggerChildren` option will
-   * inherit this duration value if it was specified without one of its own.
+   * Duration of the component's animation. If the `staggerChildren` option on a
+   * parent InViewItem was provided with a duration, it will take priority over this.
    */
   duration?: AnimationDuration
   /**
