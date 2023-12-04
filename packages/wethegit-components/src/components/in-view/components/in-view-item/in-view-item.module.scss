@@ -1,24 +1,16 @@
-@use "@local/components/in-view/styles/animation-utilities" as *;
+@use "@local/utilities/animation/styles/animation-utilities" as *;
 
 .wrap {
-  @include state-hidden;
+  @include animation-state-hidden;
 }
 
 .inView {
-  @include state-visible;
-}
-
-@each $preset, $props in $animations {
-  .#{$preset} {
-    @each $prop, $value in $props {
-      --#{$prop}: #{$value};
-    }
-  }
+  @include animation-state-visible;
 }
 
 .staggerChildren {
   > * {
-    @include state-hidden;
+    @include animation-state-hidden;
 
     transition-duration: var(--stagger-duration);
 
@@ -31,7 +23,7 @@
 
   &.inView {
     > * {
-      @include state-visible;
+      @include animation-state-visible;
     }
   }
 }

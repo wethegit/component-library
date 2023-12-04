@@ -1,6 +1,6 @@
 @use "sass:math";
 
-$animations: (
+$animation: (
   "fade": (
     "start-alpha": 0,
     "start-rotate": 0deg,
@@ -53,16 +53,17 @@ $animations: (
 );
 
 @function get-duration($i, $subDivisions: 10) {
-  // TODO: remember to add duration factor
-  @return math.div($i, $subDivisions) * 1s;
+  @return calc(#{$i} / #{$subDivisions} * 1s * var(--duration-factor, 1));
 }
 
 @function get-stagger-delay($i) {
-  // TODO: remember to add duration factor
-  @return calc(#{$i} * var(--stagger-amount, 0.2s) + var(--stagger-delay, 0s));
+  /* prettier-ignore */
+  @return calc(
+    (#{$i} * var(--stagger-amount, 0.2s) + var(--stagger-delay, 0s)) * var(--duration-factor, 1)
+  );
 }
 
-@mixin state-hidden {
+@mixin animation-state-hidden {
   opacity: var(--start-alpha, 0);
   transform: translate(var(--start-x, 0), var(--start-y, 0))
     rotate(var(--start-rotate, 0deg)) scale(var(--start-scale, 1));
@@ -72,7 +73,7 @@ $animations: (
   transition-timing-function: var(--ease, ease-out);
 }
 
-@mixin state-visible {
+@mixin animation-state-visible {
   opacity: var(--end-alpha, 1);
   transform: translate(var(--end-x, 0), var(--end-y, 0)) rotate(var(--end-rotate, 0deg))
     scale(var(--end-scale, 1));

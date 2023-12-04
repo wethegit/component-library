@@ -1,3 +1,4 @@
+export * from "./animation"
 export * from "./build-breakpoint-classnames"
 export * from "./classnames"
 export * from "./colors"

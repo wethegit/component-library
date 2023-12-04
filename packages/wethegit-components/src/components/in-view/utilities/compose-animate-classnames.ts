@@ -1,13 +1,11 @@
-import type {
-  Animation,
-  AnimationDelay,
-  AnimationDuration,
-} from "@local/components/in-view/"
+import type { AnimationPreset } from "@local/utilities"
+import type { AnimationDelay, AnimationDuration } from "@local/components/in-view/"
 import { buildFloatClassname } from "@local/components/in-view/utilities"
 import styles from "@local/components/in-view/components/in-view-item/in-view-item.module.scss"
 
 export type ComposeAnimateClassnamesArgs = {
-  animation?: Animation
+  /** CSS module className for the animation */
+  animation?: AnimationPreset | string
   delay?: AnimationDelay
   duration?: AnimationDuration
 }
@@ -17,7 +15,7 @@ export function composeAnimateClassnames({
   delay,
   duration,
 }: ComposeAnimateClassnamesArgs) {
-  const animClass = animation ? styles[animation] : ""
+  const animClass = animation || ""
 
   const delayClass =
     typeof delay === "number" &&

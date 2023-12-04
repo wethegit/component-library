@@ -54,13 +54,13 @@ export function InView<TAs extends ElementType>({
     }),
   }
 
-  console.log(observerOptions)
-
   const [setRef, isInView, domNode] = useInView(
     observerOptions,
     once,
     setInViewIfScrolledPast
   )
+
+  console.log(isInView)
 
   const value = {
     isInView,

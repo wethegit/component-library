@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
 import { InView, InViewItem, Text } from "@local/components"
+import { animation } from "@local/utilities"
 
 const meta: Meta<typeof InView> = {
   title: "components/in-view",
@@ -49,9 +50,10 @@ type Story = StoryObj<typeof InView>
 export const Default: Story = {
   render: (args) => (
     <InView as="section" {...args}>
-      <InViewItem as="ul" animation="scaleUp">
+      <InViewItem as="ul" animation={animation.scaleUp}>
         <li>
-          This entire list is animated in using the <strong>"scaleUp"</strong> option.
+          This entire list is animated in using the <strong>"animation.scaleUp"</strong>{" "}
+          option.
         </li>
         <li>Fugiat quis sit minim ipsum amet non excepteur eiusmod.</li>
         <li>Sunt adipisicing ullamco aliquip fugiat enim.</li>
@@ -66,25 +68,25 @@ export const AnimationExamples: Story = {
     <>
       <InView as="section" {...args}>
         <ul>
-          <InViewItem as="li" duration={1} animation="fromLeft">
+          <InViewItem as="li" duration={1} animation={animation.fromLeft}>
             The individual list items are animated in. This uses the{" "}
-            <strong>"fromLeft"</strong> option.
+            <strong>"animation.fromLeft"</strong> option.
           </InViewItem>
-          <InViewItem as="li" duration={1} animation="fromRight">
-            This uses the <strong>"fromRight"</strong> option.
+          <InViewItem as="li" duration={1} animation={animation.fromRight}>
+            This uses the <strong>"animation.fromRight"</strong> option.
           </InViewItem>
-          <InViewItem as="li" duration={1} animation="fromBottom">
-            This uses the <strong>"fromTop"</strong> option.
+          <InViewItem as="li" duration={1} animation={animation.fromBottom}>
+            This uses the <strong>"animation.fromTop"</strong> option.
           </InViewItem>
         </ul>
       </InView>
 
       <InView as="ul" {...args}>
-        <InViewItem as="li" animation="scaleUp">
-          This uses "scaleUp"
+        <InViewItem as="li" animation={animation.scaleUp}>
+          This uses "animation.scaleUp"
         </InViewItem>
-        <InViewItem as="li" animation="fade" delay={0.3}>
-          This uses "fade"
+        <InViewItem as="li" animation={animation.fade} delay={0.3}>
+          This uses "animation.fade"
         </InViewItem>
       </InView>
     </>
@@ -97,12 +99,12 @@ export const StaggerChildren: Story = {
     <InView as="section" {...args}>
       <InViewItem
         as="ul"
-        staggerChildren={{ animation: "fromBottomFixed", stagger: 0.2, delay: 0 }}
+        staggerChildren={{ animation: animation.fromBottomFixed, stagger: 0.2, delay: 0 }}
       >
         <li>
           Each list item is automatically sequenced, using the{" "}
-          <strong>staggerChildren</strong> option with a <strong>fromBottomFixed</strong>{" "}
-          preset.
+          <strong>staggerChildren</strong> option with a{" "}
+          <strong>animation.fromBottomFixed</strong> preset.
         </li>
         <li>Fugiat quis sit minim ipsum amet non excepteur eiusmod.</li>
         <li>Sunt adipisicing ullamco aliquip fugiat enim.</li>

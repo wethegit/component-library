@@ -7,26 +7,15 @@ import {
   composeAnimateClassnames,
   composeStaggerClassnames,
 } from "@local/components/in-view/utilities"
-import { classnames, fixedForwardRef } from "@local/utilities"
+import { classnames, fixedForwardRef, AnimationPreset } from "@local/utilities"
 
 import styles from "./in-view-item.module.scss"
 
-export const DEFAULT_IN_VIEW_PRESETS = [
-  "fade",
-  "fromBottom",
-  "fromBottomFixed",
-  "fromLeft",
-  "fromRight",
-  "fromTop",
-  "scaleUp",
-] as const
-
-export type Animation = (typeof DEFAULT_IN_VIEW_PRESETS)[number]
 export type AnimationDelay = number
 export type AnimationDuration = number
 
 export type StaggerOptions = {
-  animation?: Animation
+  animation?: AnimationPreset | string
   delay?: AnimationDelay
   duration?: AnimationDuration
   stagger?: number
@@ -34,9 +23,13 @@ export type StaggerOptions = {
 
 export type InViewItemProps<TAs extends React.ElementType> = TagProps<TAs> & {
   /**
-   * Animation to apply to the component.
+   * Animation to apply to the component, passed as a CSS module.
+   * @example
+   * import { animation } from "@local/utilities"
+   * <InViewItem animation={animation.scaleUp}>
+   * <InViewItem animation={styles.myCustomAnimation}>
    */
-  animation?: Animation
+  animation?: AnimationPreset | string
   /**
    * Delay of the component's animation. If the `staggerChildren` option on a
    * parent InViewItem was provided with a delay, it will take priority over this.
