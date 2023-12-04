@@ -1,6 +1,6 @@
 {
   "name": "@wethegit/components-cli",
-  "version": "2.4.6",
+  "version": "2.4.7",
   "type": "module",
   "license": "MIT",
   "exports": "./dist/index.js",
@@ -14,8 +14,8 @@
   },
   "scripts": {
     "build": "tsup",
-    "clean": "rm -rf node_modules dist",
-    "dev": "tsup --watch",
+    "clean": "rm -rf ./node_modules ./dist ./.turbo",
+    "start": "tsup --watch",
     "lint": "eslint src/",
     "typecheck": "tsc --noEmit"
   },
@@ -45,6 +45,6 @@
     "ts-morph": "^20.0.0"
   },
   "peerDependencies": {
-    "@wethegit/components": "2.2.6"
+    "@wethegit/components": "2.2.7"
   }
 }
