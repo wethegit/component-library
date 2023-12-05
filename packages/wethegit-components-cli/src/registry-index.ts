@@ -44,6 +44,11 @@ const CLASSNAMES: Registry = {
   category: "utility",
 }
 
+const ANIMATION: Registry = {
+  name: "animation",
+  category: "utility",
+}
+
 /* COMPONENTS */
 const TAG: Registry = {
   name: "tag",
@@ -105,16 +110,24 @@ const MODAL: Registry = {
   dependencies: ["@wethegit/react-modal", "@wethegit/react-hooks"],
 }
 
+const IN_VIEW: Registry = {
+  name: "in-view",
+  category: "component",
+  localDependencies: [ANIMATION, CLASSNAMES, FIXED_FORWARD_REF, TAG],
+  dependencies: ["@wethegit/react-hooks"],
+}
+
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
   [FLEX.name]: FLEX,
   [GRID_LAYOUT.name]: GRID_LAYOUT,
+  [ICON.name]: ICON,
   [IMAGE_GROUP.name]: IMAGE_GROUP,
+  [IN_VIEW.name]: IN_VIEW,
+  [MODAL.name]: MODAL,
+  [NAVIGATION.name]: NAVIGATION,
   [TAG.name]: TAG,
   [TEXT.name]: TEXT,
   [VISUALLY_HIDDEN.name]: VISUALLY_HIDDEN,
-  [NAVIGATION.name]: NAVIGATION,
-  [ICON.name]: ICON,
-  [MODAL.name]: MODAL,
 }
 /* END REGISTRY INDEX */
