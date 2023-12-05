@@ -1,16 +1,16 @@
 @use "@local/utilities/animation/styles/animation-utilities" as *;
 
 .wrap {
-  @include animation-state-hidden;
+  @include animation-state-initial;
 }
 
 .inView {
-  @include animation-state-visible;
+  @include animation-state-final;
 }
 
 .staggerChildren {
   > * {
-    @include animation-state-hidden;
+    @include animation-state-initial;
 
     transition-duration: var(--stagger-duration);
 
@@ -23,7 +23,7 @@
 
   &.inView {
     > * {
-      @include animation-state-visible;
+      @include animation-state-final;
     }
   }
 }

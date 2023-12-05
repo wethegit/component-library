@@ -52,6 +52,10 @@ $animation: (
   ),
 );
 
+@function duration($value) {
+  @return calc(var(--duration-factor, 1) * #{$value});
+}
+
 @function get-duration($i, $subDivisions: 10) {
   @return calc(#{$i} / #{$subDivisions} * 1s * var(--duration-factor, 1));
 }
@@ -63,7 +67,7 @@ $animation: (
   );
 }
 
-@mixin animation-state-hidden {
+@mixin animation-state-initial {
   opacity: var(--start-alpha, 0);
   transform: translate(var(--start-x, 0), var(--start-y, 0))
     rotate(var(--start-rotate, 0deg)) scale(var(--start-scale, 1));
@@ -73,7 +77,7 @@ $animation: (
   transition-timing-function: var(--ease, ease-out);
 }
 
-@mixin animation-state-visible {
+@mixin animation-state-final {
   opacity: var(--end-alpha, 1);
   transform: translate(var(--end-x, 0), var(--end-y, 0)) rotate(var(--end-rotate, 0deg))
     scale(var(--end-scale, 1));

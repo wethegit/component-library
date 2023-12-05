@@ -1,0 +1,71 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/in-view/Readme" />
+
+# InView, InViewItem
+
+- [Install](#install)
+- [Usage](#usage)
+- [How it works](#how-it-works)
+
+`<InView>` and `<InViewItem>` help you to create viewport-triggered CSS transitions on your React components. There are a handful of useful animation presets you can use, but you can also provide entirely custom ones.
+
+## Install
+
+```bash
+npx @wethegit/components-cli add in-view
+```
+
+## Usage
+
+```jsx
+import { InView, InViewItem } from "@local/components/in-view"
+import { animation } from "@local/utilities/animation"
+...
+
+<InView>
+  <InViewItem as="h2" animation={animation.fromBottom}>
+    Eiusmod incididunt ad ex id.
+  </InViewItem>
+  <InViewItem animation={animation.scaleUp} delay={0.2} duration={1}>
+    <img src="skydiving-spider.png" alt="A skydiving spider bares its fangs." />
+  </InViewItem>
+</InView>
+```
+
+## How it works
+
+For viewport detection, the `<InView>` component extends the `useInView` hook from [@wethegit/react-hooks](https://wethegit.github.io/react-hooks/). It then creates a React context for any children to subscribe to.
+
+The `<InViewItem>` component is one such child, and it accepts various props relating to animation when its parent is condsidered to be "in view" — `animation`, `delay`, `duration`, and `staggerChildren`.
+
+### Custom animation
+
+As shown in the example above, you can use animation presets by importing the `animation` object from the [animation utilities](). Behind the scenes, these preset animation properties just point to CSS modules, so you're free to pass in your own CSS modules to the `animation` prop instead! Animation modules should look something like this, below.
+
+```css
+.spinFromRight {
+  --start-alpha: 0;
+  --start-rotate: 360deg;
+  --start-scale: 0.5;
+  --start-x: 50%;
+  --start-y: 0;
+}
+```
+
+These are some of the available options for animating your component. These CSS custom properties are mapped to "in view" and "not in view" `transform` and `opacity` values, and are handled by the component for you. It is assumed that your "end" values are just browser defaults: `--end-alpha` is `1`, for example. That said, you _can_ add custom `end` counterparts as well, if needed. Once you've written your CSS module, you just pass it in as the animation prop, like so:
+
+```jsx
+import { InView, InViewItem } from "@local/components/in-view"
+import styles from "./your-component-styles.module.scss"
+
+function Component() {
+  return (
+    <InView>
+      <InViewItem animation={styles.spinFromRight} duration={0.5}>
+        <img src="spinning-spider.jpg" alt="A very dizzy-looking spider." />
+      </InViewItem>
+    </InView>
+  )
+}
+```

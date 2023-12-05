@@ -1,0 +1,101 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="utilities/animation/styles/animation-utilities" />
+
+# Animation utilities
+
+The animation utilities provide you with helpful Sass mixins, functions, and a list of definitions for your animation presets.
+
+- [Sass functions](#functions)
+- [Sass mixins](#mixins)
+- [Animation definitions](#animation-definitions)
+
+## Usage
+
+`@use` the animation utils within in a `.scss` stylesheet:
+
+```css
+@use "@local/utilities/animation/styles/animation-utilities" as *;
+```
+
+## Functions
+
+### duration
+
+Signature: `duration($cssDuration)`
+
+`duration` Receives either a milliseconds or a seconds value, and returns the same value multiplied by the global `--duration-factor`. This is useful for removing animations when a user prefers reduced motion.
+
+#### Example
+
+```css
+@use "@local/utilities/animation/styles/animation-utilities" as *;
+
+.customComponent {
+  /*
+   * If --duration-factor is 1, this will be 1 second.
+   * If --duration-factor is 0, this will be 0 seconds.
+   */
+  transition: transform duration(1s);
+}
+```
+
+## mixins
+
+### animation-state-initial
+
+Contains a block of CSS declarations which define an element's initial state. These use the `--start-xxxx` properties. See the example below.
+
+### animation-state-final
+
+Contains a block of CSS declarations which define an element's active or final state. These use the `--end-xxxx` properties.
+
+#### Example
+
+Providing a mouse-hover state which rotates the element 360º.
+
+```css
+@use "@local/utilities/animation/styles/animation-utilities" as *;
+
+.spinningElement {
+  --start-rotate: 0deg;
+  --end-rotate: 360deg;
+
+  @include animation-state-initial;
+}
+
+@media (hover: hover) {
+  .spinningElement:hover {
+    @include animation-state-final;
+  }
+}
+```
+
+## Animation definitions
+
+Signature:
+
+```
+$animation: (
+  "key": (
+    "start-alpha": 0,
+    "start-rotate": 0deg,
+    "start-scale": 1,
+    "start-x": 0,
+    "start-y": 0,
+  ),
+  // etc.
+);
+```
+
+The `$animation` variable is a map of `animation-preset` keys to `transform` and `opacity` values. Each animation definition will generate a **CSS module** with the className corresponding to the `key` defined here. These will be available on the `animation` object within your JSX files.
+
+### Example
+
+```jsx
+import { animation } from "@local/utilities/animation"
+
+function Component() {
+  return <div className={animation.scaleUp} />
+}
+```
