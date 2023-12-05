@@ -73,6 +73,8 @@ Providing a mouse-hover state which rotates the element 360º.
 
 ## Animation definitions
 
+⚠️ If using TypeScript, Please ensure that any animations added to this list are also added to the avaialable list of animation keys within the `utilities/animation.ts` file.
+
 Signature:
 
 ```
@@ -88,7 +90,7 @@ $animation: (
 );
 ```
 
-The `$animation` variable is a map of `animation-preset` keys to `transform` and `opacity` values. Each animation definition will generate a **CSS module** with the className corresponding to the `key` defined here. These will be available on the `animation` object within your JSX files.
+The `$animation` variable is a SASS map of `animation-preset` keys to `transform` and `opacity` values. Each animation definition will generate a **CSS module** with the className corresponding to the `key` defined here. These will be available on the `animation` object within your JSX files.
 
 ### Example
 
