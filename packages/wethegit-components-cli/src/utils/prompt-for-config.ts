@@ -24,7 +24,7 @@ export async function promptForConfig(cwd: string, skip: boolean): Promise<Confi
       [
         {
           type: "confirm",
-          name: "_typescript",
+          name: "useTypescript",
           message: `Are you using ${highlight("Typescript")}?`,
           initial: isThereATsConfig,
         },
@@ -72,6 +72,7 @@ export async function promptForConfig(cwd: string, skip: boolean): Promise<Confi
       stylesRootDir,
       utilitiesRootDir,
       hooksRootDir,
+      useTypescript,
     } = response
     const { directories, ...defaultConfig } = DEFAULT_CONFIG
 
@@ -83,7 +84,7 @@ export async function promptForConfig(cwd: string, skip: boolean): Promise<Confi
         style: stylesRootDir,
         utility: utilitiesRootDir,
         hook: hooksRootDir,
-        ...(typesRootDir ? { type: typesRootDir } : {}),
+        type: useTypescript ? typesRootDir : false,
       },
     }
   } else {

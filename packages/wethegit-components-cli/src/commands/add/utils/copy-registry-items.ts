@@ -88,7 +88,8 @@ function copyLocalDependencies({
 
     if (!useTypescript) {
       allFilesOperations.push(
-        glob(join(name, "**/*.*"), {
+        glob(join(name, "**/*.{ts,tsx,scss}"), {
+          ignore: ["**/*.stories*"],
           cwd: src,
           absolute: true,
         })
