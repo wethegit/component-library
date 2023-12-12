@@ -1,5 +1,6 @@
 export * from "./build-deps-tree"
 export * from "./copy-registry-items"
 export * from "./format-registry-files-with-prettier"
+export * from "./log-docs-urls"
 export * from "./prompt-for-components"
 export * from "./transform-ts-to-js"
