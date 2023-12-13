@@ -24,7 +24,7 @@ export async function promptForConfig(cwd: string, skip: boolean): Promise<Confi
       [
         {
           type: "confirm",
-          name: "_typescript",
+          name: "useTypescript",
           message: `Are you using ${highlight("Typescript")}?`,
           initial: isThereATsConfig,
         },
@@ -52,6 +52,12 @@ export async function promptForConfig(cwd: string, skip: boolean): Promise<Confi
           message: `What is your ${highlight("utilities")} directory?`,
           initial: DEFAULT_CONFIG.directories.utility,
         },
+        {
+          type: "text",
+          name: "hooksRootDir",
+          message: `What is your ${highlight("hooks")} directory?`,
+          initial: DEFAULT_CONFIG.directories.hook,
+        },
       ],
       {
         onCancel: () => {
@@ -60,7 +66,14 @@ export async function promptForConfig(cwd: string, skip: boolean): Promise<Confi
       }
     )
 
-    const { typesRootDir, componentsRootDir, stylesRootDir, utilitiesRootDir } = response
+    const {
+      typesRootDir,
+      componentsRootDir,
+      stylesRootDir,
+      utilitiesRootDir,
+      hooksRootDir,
+      useTypescript,
+    } = response
     const { directories, ...defaultConfig } = DEFAULT_CONFIG
 
     config = {
@@ -70,7 +83,8 @@ export async function promptForConfig(cwd: string, skip: boolean): Promise<Confi
         component: componentsRootDir,
         style: stylesRootDir,
         utility: utilitiesRootDir,
-        ...(typesRootDir ? { type: typesRootDir } : {}),
+        hook: hooksRootDir,
+        type: useTypescript ? typesRootDir : false,
       },
     }
   } else {

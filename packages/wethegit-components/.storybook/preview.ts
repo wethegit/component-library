@@ -3,6 +3,7 @@ import { withThemeByClassName } from "@storybook/addon-themes"
 
 import { wtcTheme } from "./static/wtc-theme"
 
+import "@wethegit/react-modal/style.css"
 import "./styles/global-story-styles.scss"
 
 const preview: Preview = {

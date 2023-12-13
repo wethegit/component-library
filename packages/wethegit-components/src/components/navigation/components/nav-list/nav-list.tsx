@@ -1,4 +1,5 @@
 import { Flex } from "@local/components"
+import { classnames } from "@local/utilities"
 
 import styles from "./nav-list.module.scss"
 
@@ -6,9 +7,9 @@ export interface NavListProps extends React.HTMLAttributes<HTMLUListElement> {
   children?: React.ReactNode
 }
 
-export function NavList({ children, ...props }: NavListProps) {
+export function NavList({ children, className, ...props }: NavListProps) {
   return (
-    <Flex as="ul" className={styles.navList} {...props}>
+    <Flex as="ul" className={classnames([styles.navList, className])} {...props}>
       {children}
     </Flex>
   )
@@ -19,10 +20,15 @@ export interface NavListItemProps extends React.HTMLAttributes<HTMLLIElement> {
   children?: React.ReactNode
 }
 
-export function NavListItem({ selected = false, children, ...props }: NavListItemProps) {
+export function NavListItem({
+  selected = false,
+  children,
+  className,
+  ...props
+}: NavListItemProps) {
   return (
     <li
-      className={styles.navListItem}
+      className={classnames([styles.navListItem, className])}
       aria-current={selected ? "page" : undefined}
       {...props}
     >

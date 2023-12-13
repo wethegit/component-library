@@ -11,7 +11,7 @@ To learn how to contribute, continue reading.
 Make sure you using the required Node version from [nvmrc](./.nvmrc).
 
 1. Run `yarn install` from the **root of the monorepo**, not from this package's directory.
-2. `cd` into this package's directory and run `yarn dev`
+2. `cd` into this package's directory and run `yarn start`
 3. In another terminal run `npm link` from this package's directory. **Note:** it MUST be `npm link` and not `yarn link`
 
 Now that we have a local version of the package available we need a node project to test on. If you have one already, skip to step 3.

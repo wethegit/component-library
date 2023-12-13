@@ -6,7 +6,7 @@ import { Meta } from "@storybook/blocks"
 
 The spacing utility exposes a set of classes that can be used to add margin and padding to elements.
 
-By default it's based on a `8px` grid but can be configured to use any value by simply changing the `$space-by` variable inside `spacing.module.scss`.
+By default it's based on a `8px` grid but can be configured to use any value by simply changing the `$spacing-unit` variable inside `styles/_spacing-utilities.scss`.
 
 So for example if you wanted `16px` of margin you would simply use `spacing.margin[2]`.
 
@@ -63,4 +63,41 @@ import { classnames, spacing } from "@local/utilities"
 function Comp() {
   return <div className={classnames([spacing.margin[2], spacing.md.margin[3]])} />
 }
+```
+
+### Styles and Sass
+
+You can also use the Sass function `space-by()` to get the value of a spacing unit.
+Read more about the function [here](/docs/utilities-spacing-styles-spacing-utilities--docs).
+
+```css
+@use "@local/utilities/spacing/styles/spacing-utilities" as *;
+
+.my-class {
+  margin: space-by(2);
+}
+```
+
+## No JS
+
+If you do not want to use the JS version of the spacing utility you can easily do so by:
+
+1. Remove any imports of `spacing` from your code
+2. Rename `spacing.module.scss` to `spacing.scss`
+3. Import `spacing.scss` in your global styles
+
+And then proceed to use the classes as you would normally do.
+
+```html
+<div class="margin-top-2 padding-x-3" />
+```
+
+The biggest difference from the CSS classes to the JS classes is that in the JS classes the **breakpoint comes first**:
+
+```jsx
+<div className={spacing.large.margin.right[2]} />
+```
+
+```html
+<div class="margin-right-large-2" />
 ```

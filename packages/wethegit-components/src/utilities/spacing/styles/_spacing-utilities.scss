@@ -1,0 +1,13 @@
+// Baseline spacing unit.
+$spacing-unit: 8px;
+
+// Creates a value which is a multiple of the $base-space property.
+@function space-by($multiplier: false) {
+  @if not $multiplier {
+    @return $spacing-unit;
+  } @else if $multiplier == 1 {
+    @return $spacing-unit;
+  } @else {
+    @return $spacing-unit * $multiplier;
+  }
+}
