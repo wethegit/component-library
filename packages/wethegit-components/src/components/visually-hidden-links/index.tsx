@@ -1,1 +1,1 @@
-export { VisuallyHiddenLinks } from "./visually-hidden-links"
+export { VisuallyHiddenLinks, VisuallyHiddenLinkItem } from "./visually-hidden-links"

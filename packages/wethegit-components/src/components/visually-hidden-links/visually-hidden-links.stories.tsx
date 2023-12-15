@@ -1,34 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { VisuallyHiddenLinks } from "@local/components"
+import { VisuallyHiddenLinks, VisuallyHiddenLinkItem } from "@local/components"
 
-const DEFAULT_AS = "ul"
+const items = [
+  {
+    label: "Skip to main content",
+    href: "#main-content",
+  },
+  {
+    label: "Skip to news",
+    href: "#news",
+  },
+  {
+    label: "Skip to footer",
+    href: "#footer",
+  },
+]
 
 const meta: Meta<typeof VisuallyHiddenLinks> = {
   title: "components/visually-hidden-links",
   component: VisuallyHiddenLinks,
-  args: {
-    as: DEFAULT_AS,
-    items: [
-      {
-        label: "Skip to main navigation",
-        href: "#main-navigation",
-      },
-      {
-        label: "Skip to content",
-        href: "#main-content",
-      },
-      {
-        label: "Skip to footer",
-        href: "#footer",
-      },
-    ],
-  },
-  argTypes: {
-    as: {
-      defaultValue: { summary: DEFAULT_AS },
-    },
-  },
 } satisfies Meta<typeof VisuallyHiddenLinks>
 
 export default meta
@@ -36,10 +27,21 @@ export default meta
 type Story = StoryObj<typeof VisuallyHiddenLinks>
 
 export const Default: Story = {
-  render: (args) => (
+  render: () => (
     <>
-      <p>TODO: Explain why nothing is shown here, and what to do</p>
-      <VisuallyHiddenLinks {...args} />
+      <p>
+        Below is a list of `VisuallyHidden` anchor elements. They only appear when
+        focussed upon. Try using the`tab` key on your keyboard within this frame.
+      </p>
+      <VisuallyHiddenLinks>
+        {items.map((item) => {
+          return (
+            <VisuallyHiddenLinkItem key={item.href} href={item.href}>
+              {item.label}
+            </VisuallyHiddenLinkItem>
+          )
+        })}
+      </VisuallyHiddenLinks>
     </>
   ),
 }

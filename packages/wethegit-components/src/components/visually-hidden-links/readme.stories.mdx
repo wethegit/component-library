@@ -4,4 +4,18 @@ import { Meta } from "@storybook/blocks"
 
 # VisuallyHiddenLinks
 
-TODO: Document usage
+The intended use of this component is to provide a list of visually hidden links that help users who rely on screen-reader-assisted technologies to navigate landmarks on a page faster, removing the need to tab through large sections of content. The links themselves are only visible when focussed on.
+
+This component is split into two items; `VisuallyHiddenLinks` and `VisuallyHiddenLinkItem`.
+
+The `VisuallyHiddenLinks` component renders out a `ul`. The `VisuallyHiddenLinkItem` renders out a `li`, which wraps a `VisuallyHidden` component that accepts an `href`. `VisuallyHiddenLinkItem` allows for any children to be passed to it, giving the user an unrestricted experience when using the component.
+
+## Install
+
+```bash
+npx @wethegit/components-cli add visually-hidden-links
+```
+
+## Use-cases
+
+A great example of when one might use `VisuallyHiddenLinks` would be to list out a set of navigatable landmarks at the start of a page. For instance; `skip to main content`, `skip to news` and `skip to footer`. This would essentially provide options for users to navigate to any of those sections without trolling through redundant content.

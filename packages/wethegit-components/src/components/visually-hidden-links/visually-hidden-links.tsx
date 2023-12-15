@@ -1,38 +1,36 @@
-import { Tag, VisuallyHidden } from "@local/components"
-import type { TagProps } from "@local/components"
+import { VisuallyHidden } from "@local/components"
 import { classnames } from "@local/utilities"
 
 import styles from "./visually-hidden-links.module.scss"
 
-const DEFAULT_ELEMENT = "ul"
+export interface VisuallyHiddenLinkProps extends React.HTMLAttributes<HTMLUListElement> {}
 
-interface Item {
-  href: string
-  label: string
-}
-
-export type ItemProps<TAs extends React.ElementType> = TagProps<TAs> & {
-  items: Item[]
-}
-
-export function VisuallyHiddenLinks<TAs extends React.ElementType = "ul">({
-  items,
+export function VisuallyHiddenLinks({
+  children,
   className,
   ...props
-}: ItemProps<TAs>) {
-  const { as = DEFAULT_ELEMENT, ...rest } = props
-
+}: VisuallyHiddenLinkProps) {
   return (
-    <Tag as={as} className={classnames([styles.list, className])} {...rest}>
-      {items.map((item, i) => {
-        return (
-          <li key={`${item.label}-${i}`}>
-            <VisuallyHidden revealOnFocus href={item.href} as="a">
-              <span>{item.label}</span>
-            </VisuallyHidden>
-          </li>
-        )
-      })}
-    </Tag>
+    <ul className={classnames([styles.list, className])} {...props}>
+      {children}
+    </ul>
+  )
+}
+
+export interface VisuallyHiddenLinkItemProps extends React.HTMLAttributes<HTMLLIElement> {
+  href: string
+}
+
+export function VisuallyHiddenLinkItem({
+  href,
+  children,
+  ...props
+}: VisuallyHiddenLinkItemProps) {
+  return (
+    <li {...props}>
+      <VisuallyHidden revealOnFocus href={href} as="a">
+        {children}
+      </VisuallyHidden>
+    </li>
   )
 }
