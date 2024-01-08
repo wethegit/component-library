@@ -56,17 +56,6 @@ $animation: (
   @return calc(var(--duration-factor, 1) * #{$value});
 }
 
-@function get-duration($i, $subDivisions: 10) {
-  @return calc(#{$i} / #{$subDivisions} * 1s * var(--duration-factor, 1));
-}
-
-@function get-stagger-delay($i) {
-  /* prettier-ignore */
-  @return calc(
-    (#{$i} * var(--stagger-amount, 0.2s) + var(--stagger-delay, 0s)) * var(--duration-factor, 1)
-  );
-}
-
 @mixin animation-state-initial {
   opacity: var(--start-alpha, 0);
   transform: translate(var(--start-x, 0), var(--start-y, 0))

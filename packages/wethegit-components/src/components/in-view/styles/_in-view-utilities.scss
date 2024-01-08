@@ -1,0 +1,18 @@
+/**
+ * Returns a value in seconds, equal to the number passed divided by 10. (2 => 0.2s)
+ * Useful when generating duration or delay classnames. 
+ */
+@function get-duration($i, $subDivisions: 10) {
+  @return calc(#{$i} / #{$subDivisions} * 1s * var(--duration-factor, 1));
+}
+
+/**
+ * Returns a value in seconds, based on the locally-scoped --stagger-amount and
+ * --stagger-delay values.
+ */
+@function get-stagger-delay($i) {
+  /* prettier-ignore */
+  @return calc(
+    (#{$i} * var(--stagger-amount, 0.2s) + var(--stagger-delay, 0s)) * var(--duration-factor, 1)
+  );
+}

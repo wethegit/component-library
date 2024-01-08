@@ -1,4 +1,5 @@
 @use "@local/utilities/animation/styles/animation-utilities" as *;
+@use "../../styles/in-view-utilities" as *;
 
 .wrap {
   @include animation-state-initial;
