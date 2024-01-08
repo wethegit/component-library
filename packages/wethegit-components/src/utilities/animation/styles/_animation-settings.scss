@@ -11,9 +11,8 @@
   --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-// ? This might be too opinionated to enforce — maybe duration-factor is up to you to override
-// @media (prefers-reduced-motion: reduce) {
-//   :root {
-//     --duration-factor: 0;
-//   }
-// }
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-factor: 0;
+  }
+}
