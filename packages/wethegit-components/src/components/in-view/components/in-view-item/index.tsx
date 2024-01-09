@@ -1,8 +1,9 @@
 export { InViewItem } from "./in-view-item"
 export type { InViewItemProps } from "./in-view-item"
+export { animation } from "./animation/animation"
 export type {
-  Animation,
+  AnimationPreset,
   AnimationDelay,
   AnimationDuration,
   StaggerOptions,
-} from "./in-view-item"
+} from "./animation/animation"

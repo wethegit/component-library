@@ -19,8 +19,7 @@ npx @wethegit/components-cli add in-view
 ## Usage
 
 ```jsx
-import { InView, InViewItem } from "@local/components/in-view"
-import { animation } from "@local/utilities/animation"
+import { InView, InViewItem, animation } from "@local/components/in-view"
 ...
 
 <InView>
@@ -41,7 +40,7 @@ The `<InViewItem>` component is one such child, and it accepts various props rel
 
 ### Custom animation
 
-As shown in the example above, you can use animation presets by importing the `animation` object from the [animation utilities](). Behind the scenes, these preset animation properties just point to CSS modules, so you're free to pass in your own CSS modules to the `animation` prop instead! Animation modules should look something like this, below.
+As shown in the example above, you can use animation presets by importing the `animation` object. Behind the scenes, these preset animation properties just point to CSS modules, so you're free to pass in your own CSS modules to the `animation` prop instead! Animation modules should look something like this, below.
 
 ```css
 .spinFromRight {

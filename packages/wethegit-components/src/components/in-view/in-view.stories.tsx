@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
 import { InView, InViewItem, Text } from "@local/components"
-import { animation } from "@local/utilities"
+
+import { animation } from "./components"
 
 const meta: Meta<typeof InView> = {
   title: "components/in-view",

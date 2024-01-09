@@ -1,0 +1,51 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/in-view/Animation Presets" />
+
+# Animation presets
+
+The animation presets allow you create presets for your `<InView>` animations.
+
+## Animation definitions
+
+The `<InView>` component's animation definitions are set up as a Sass variable which you can customize as needed.
+
+⚠️ If using TypeScript, Please ensure that any animations added to this list are also added to the avaialable list of animation keys within the `./in-view/components/in-view-item/animation/animation.ts` file.
+
+Signature:
+
+```
+$animation: (
+  "key": (
+    "start-alpha": 0,
+    "start-rotate": 0deg,
+    "start-scale": 1,
+    "start-x": 0,
+    "start-y": 0,
+    "end-alpha": 1,
+    "end-rotate": 0deg,
+    "end-scale": 1,
+    "end-x": 0,
+    "end-y": 0,
+  ),
+  // etc.
+);
+```
+
+The `$animation` variable is a SASS map of `animation-preset` keys to `transform` and `opacity` values. Each animation definition will generate a **CSS module** with the className corresponding to the `key` defined here. These will be available on the `animation` object within your JSX files.
+
+### Example
+
+Using the `scaleUp` preset with the `<InViewItem>` component:
+
+```jsx
+import { InView, InViewItem, animation } from "@local/components/in-view"
+
+function Component() {
+  return (
+    <InView>
+      <InViewItem animation={animation.scaleUp}>Watch me scale!</InViewItem>
+    </InView>
+  )
+}
+```

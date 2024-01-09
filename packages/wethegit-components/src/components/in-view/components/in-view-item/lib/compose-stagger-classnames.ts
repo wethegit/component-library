@@ -1,7 +1,8 @@
-import { animation } from "@local/utilities"
-import type { StaggerOptions } from "@local/components"
-import { buildFloatClassname } from "@local/components/in-view/utilities"
-import styles from "@local/components/in-view/components/in-view-item/in-view-item.module.scss"
+import type { StaggerOptions } from "../animation/animation"
+import { animation } from "../animation/animation"
+import styles from "../styles/in-view-item.module.scss"
+
+import { buildFloatClassname } from "./"
 
 export function composeStaggerClassnames(staggerChildren?: StaggerOptions | boolean) {
   if (!staggerChildren) return ""

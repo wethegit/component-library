@@ -1,7 +1,11 @@
-import type { AnimationPreset } from "@local/utilities"
-import type { AnimationDelay, AnimationDuration } from "@local/components/in-view/"
-import { buildFloatClassname } from "@local/components/in-view/utilities"
-import styles from "@local/components/in-view/components/in-view-item/in-view-item.module.scss"
+import type {
+  AnimationDelay,
+  AnimationDuration,
+  AnimationPreset,
+} from "../animation/animation"
+import styles from "../styles/in-view-item.module.scss"
+
+import { buildFloatClassname } from "./"
 
 export type ComposeAnimateClassnamesArgs = {
   /** CSS module className for the animation */

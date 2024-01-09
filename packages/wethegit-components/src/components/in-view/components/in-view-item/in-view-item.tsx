@@ -3,23 +3,16 @@ import { useContext, useMemo } from "react"
 import { Tag } from "@local/components"
 import type { TagProps } from "@local/components"
 import { InViewContext } from "@local/components/in-view"
-import {
-  composeAnimateClassnames,
-  composeStaggerClassnames,
-} from "@local/components/in-view/utilities"
-import { classnames, fixedForwardRef, AnimationPreset } from "@local/utilities"
+import { classnames, fixedForwardRef } from "@local/utilities"
 
-import styles from "./in-view-item.module.scss"
-
-export type AnimationDelay = number
-export type AnimationDuration = number
-
-export type StaggerOptions = {
-  animation?: AnimationPreset | string
-  delay?: AnimationDelay
-  duration?: AnimationDuration
-  stagger?: number
-}
+import type {
+  AnimationPreset,
+  AnimationDelay,
+  AnimationDuration,
+  StaggerOptions,
+} from "./animation/animation"
+import { composeAnimateClassnames, composeStaggerClassnames } from "./lib"
+import styles from "./styles/in-view-item.module.scss"
 
 export type InViewItemProps<TAs extends React.ElementType> = TagProps<TAs> & {
   /**
