@@ -15,6 +15,10 @@ export interface Registry {
   dependencies?: string[]
   /** Should this item appear as an option when running the add command. Default is true  */
   dontShowOnPrompt?: boolean
+  /** Link to the Storybook documentation */
+  docsUrl?: string
+  /** Array of messages to be displayed after adding the component */
+  postInstallMessages?: string[]
 }
 
 export type RegistryIndex = Record<string, Registry>
@@ -59,6 +63,8 @@ const TEXT: Registry = {
   name: "text",
   category: "component",
   localDependencies: [TAG, CLASSNAMES],
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/components-text-readme--docs",
 }
 
 const FLEX: Registry = {
@@ -77,30 +83,44 @@ const GRID_LAYOUT: Registry = {
   name: "grid-layout",
   category: "component",
   localDependencies: [FLEX],
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/components-grid-layout-readme--docs",
+  postInstallMessages: [
+    "The grid requires a CSS file to work properly. Add the following line to your global styles:",
+    '@import "@local/components/grid-layout/styles/grid-layout.scss";',
+  ],
 }
 
 const IMAGE_GROUP: Registry = {
   name: "image-group",
   category: "component",
   localDependencies: [CLASSNAMES, FIXED_FORWARD_REF, TAG],
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/components-image-group-readme--docs",
 }
 
 const VISUALLY_HIDDEN: Registry = {
   name: "visually-hidden",
   category: "component",
   localDependencies: [TAG, CLASSNAMES],
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/components-visually-hidden-readme--docs",
 }
 
 const NAVIGATION: Registry = {
   name: "navigation",
   category: "component",
   localDependencies: [FLEX, CLASSNAMES, VISUALLY_HIDDEN, FIXED_FORWARD_REF],
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/components-navigation-readme--docs",
 }
 
 const ICON: Registry = {
   name: "icon",
   category: "component",
   localDependencies: [CLASSNAMES],
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/components-icon-readme--docs",
 }
 
 const MODAL: Registry = {
@@ -108,6 +128,8 @@ const MODAL: Registry = {
   category: "component",
   localDependencies: [CLASSNAMES],
   dependencies: ["@wethegit/react-modal", "@wethegit/react-hooks"],
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/components-modal-readme--docs",
 }
 
 const IN_VIEW: Registry = {

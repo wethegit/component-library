@@ -15,6 +15,7 @@ import {
   buildDepsTree,
   copyRegistryItems,
   formatRegistryFilesWithPrettier,
+  logDocsUrls,
   promptForComponents,
 } from "./utils"
 
@@ -81,8 +82,13 @@ export async function add(names: string[], options: Options): Promise<void> {
       })
     }
 
-    logger.info("")
+    logger.log("")
+    logger.log("")
     logger.success(`${chalk.green("Success!")} All done!`)
+    logger.log("")
+
+    logDocsUrls(selected)
+
     logger.info("")
   } catch (error) {
     handleError({
