@@ -7,6 +7,7 @@ import { Meta } from "@storybook/blocks"
 - [Install](#install)
 - [Usage](#usage)
 - [How it works](#how-it-works)
+- [Sequenced or staggered animations](#sequencing)
 
 `<InView>` and `<InViewItem>` help you to create viewport-triggered CSS transitions on your React components. There are a handful of useful animation presets you can use, but you can also provide entirely custom ones.
 
@@ -49,10 +50,17 @@ As shown in the example above, you can use animation presets by importing the `a
   --start-scale: 0.5;
   --start-x: 50%;
   --start-y: 0;
+
+  /* optional (defaults): */
+  --end-alpha: 1;
+  --end-rotate: 0deg;
+  --end-scale: 1;
+  --end-x: 0;
+  --end-y: 0;
 }
 ```
 
-These are some of the available options for animating your component. These CSS custom properties are mapped to "in view" and "not in view" `transform` and `opacity` values, and are handled by the component for you. It is assumed that your "end" values are just browser defaults: `--end-alpha` is `1`, for example. That said, you _can_ add custom `end` counterparts as well, if needed. Once you've written your CSS module, you just pass it in as the animation prop, like so:
+All of the `--start` values correspond to the initial state — i.e. when the component is not in view — and all of the `--end` values correspond to the component's "in view" state. Once you've written your CSS module, you just pass it in as the animation prop, like so:
 
 ```jsx
 import { InView, InViewItem } from "@local/components/in-view"
@@ -64,6 +72,46 @@ function Component() {
       <InViewItem animation={styles.spinFromRight} duration={0.5}>
         <img src="spinning-spider.jpg" alt="A very dizzy-looking spider." />
       </InViewItem>
+    </InView>
+  )
+}
+```
+
+See the [Animation Presets](/docs/components-in-view-animation-presets--overview#animation-presets) section for more on `<InView>` animation.
+
+## Sequenced (or staggered) animation
+
+The `<InView>` and `<InViewItem>` components also accept a `staggerChildren` prop, which allows you to easily specify a single animation for all immediate children to preform, in sequence, once they're in view. The properties passed to `staggerChildren` are the same as the top-level animation props (animation, duration, delay), and also include a new `stagger` property to specify the amount of time between sequenced children. See the example below.
+
+### Example
+
+```jsx
+import { InView, InViewItem } from "@local/components/in-view"
+import styles from "./your-component-styles.module.scss"
+
+function Component() {
+  return (
+    <InView
+      as="ul"
+      staggerChildren={{
+        animation: animation.fromBottomFixed,
+        duration: 0.3,
+        delay: 0,
+        stagger: 0.2, // Each item will be separated by 0.2 seconds
+      }}
+    >
+      <li>
+        <img src="image-01.jpg" alt="" />
+      </li>
+      <li>
+        <img src="image-02.jpg" alt="" />
+      </li>
+      <li>
+        <img src="image-03.jpg" alt="" />
+      </li>
+      <li>
+        <img src="image-04.jpg" alt="" />
+      </li>
     </InView>
   )
 }
