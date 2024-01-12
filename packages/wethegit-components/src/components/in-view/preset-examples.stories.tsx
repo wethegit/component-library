@@ -69,8 +69,9 @@ const makeBoxes = ({ args, animationKey = "fade" }) => {
     <>
       {Array(6)
         .fill("")
-        .map(() => (
+        .map((i) => (
           <InView
+            key={i}
             as="section"
             style={{
               display: "flex",
