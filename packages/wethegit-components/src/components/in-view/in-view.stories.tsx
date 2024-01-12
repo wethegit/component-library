@@ -5,7 +5,7 @@ import { InView, InViewItem, Text } from "@local/components"
 import { animation } from "./components"
 
 const meta: Meta<typeof InView> = {
-  title: "components/in-view",
+  title: "components/in-view/Example usage",
   component: InView,
   args: {
     threshold: 0.3,
@@ -140,13 +140,17 @@ export const AnimationExamples: Story = {
 }
 
 export const StaggerChildren: Story = {
-  name: "Auto-stagger children",
+  name: "Stagger children",
   render: (args) => (
     <>
       <InView as="section" {...args}>
         <InViewItem
           as="ul"
-          staggerChildren={{ animation: animation.fromBottomFixed, stagger: 0.2, delay: 0 }}
+          staggerChildren={{
+            animation: animation.fromBottomFixed,
+            stagger: 0.2,
+            delay: 0,
+          }}
         >
           <li>
             Each list item is automatically sequenced, using the{" "}
@@ -161,7 +165,11 @@ export const StaggerChildren: Story = {
       <InView as="section" {...args}>
         <InViewItem
           as="ul"
-          staggerChildren={{ animation: animation.fromBottomFixed, stagger: 0.2, delay: 0 }}
+          staggerChildren={{
+            animation: animation.fromBottomFixed,
+            stagger: 0.2,
+            delay: 0,
+          }}
         >
           <li>
             Each list item is automatically sequenced, using the{" "}
