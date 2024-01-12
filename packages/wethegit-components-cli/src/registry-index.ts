@@ -48,8 +48,18 @@ const CLASSNAMES: Registry = {
   category: "utility",
 }
 
-const ANIMATION: Registry = {
-  name: "animation",
+const COLOR: Registry = {
+  name: "color",
+  category: "utility",
+}
+
+const SPACING: Registry = {
+  name: "spacing",
+  category: "utility",
+}
+
+const VISIBILITY: Registry = {
+  name: "visibility",
   category: "utility",
 }
 
@@ -135,12 +145,13 @@ const MODAL: Registry = {
 const IN_VIEW: Registry = {
   name: "in-view",
   category: "component",
-  localDependencies: [ANIMATION, CLASSNAMES, FIXED_FORWARD_REF, TAG],
+  localDependencies: [CLASSNAMES, FIXED_FORWARD_REF, TAG],
   dependencies: ["@wethegit/react-hooks"],
 }
 
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
+  [COLOR.name]: COLOR,
   [FLEX.name]: FLEX,
   [GRID_LAYOUT.name]: GRID_LAYOUT,
   [ICON.name]: ICON,
@@ -148,8 +159,10 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [IN_VIEW.name]: IN_VIEW,
   [MODAL.name]: MODAL,
   [NAVIGATION.name]: NAVIGATION,
+  [SPACING.name]: SPACING,
   [TAG.name]: TAG,
   [TEXT.name]: TEXT,
+  [VISIBILITY.name]: VISIBILITY,
   [VISUALLY_HIDDEN.name]: VISUALLY_HIDDEN,
 }
 /* END REGISTRY INDEX */

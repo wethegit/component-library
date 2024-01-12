@@ -1,5 +1,5 @@
 export * from "./build-breakpoint-classnames"
 export * from "./classnames"
-export * from "./colors"
+export * from "./color"
 export * from "./fixed-forward-ref"
 export * from "./spacing"
