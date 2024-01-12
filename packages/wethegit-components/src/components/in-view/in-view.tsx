@@ -20,9 +20,9 @@ export type InViewProps<TAs extends ElementType> = TagProps<TAs> & {
    */
   once?: boolean
   /**
-   * Consider the entry "in view" if it is above the viewport. This is most
-   * often used for ensuring that content is already animated in, when loading
-   * a document from a scroll position _other than_ the top.
+   * Consider the entry "in view" if it is above the viewport when the page loads
+   * initially. This is most often used for ensuring that content is already
+   * animated in, when loading a document from a scroll position other than the top.
    */
   setInViewIfScrolledPast?: boolean
   /**
@@ -60,7 +60,8 @@ export function InView<TAs extends ElementType>({
   const [setRef, isInView, domNode] = useInView(
     observerOptions,
     once,
-    setInViewIfScrolledPast
+    // only honor "setInViewIfScrolledPast" if "once" is true:
+    once && setInViewIfScrolledPast ? setInViewIfScrolledPast : false
   )
 
   const value = {
