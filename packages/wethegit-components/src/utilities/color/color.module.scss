@@ -1,4 +1,4 @@
-@use "./styles/colors-utilities.scss" as *;
+@use "./styles/color-utilities" as *;
 
 // define utility classes:
 @each $color, $rgb in $colors {

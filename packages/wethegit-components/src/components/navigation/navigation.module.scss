@@ -17,7 +17,7 @@
 
 // Feel free to change the breakpoint where the nav goes from hamburger to full
 // Also change the breakpoint in the NavList component
-@media #{$medium-up} {
+@media #{$md-up} {
   .navBar {
     left: 0;
     position: sticky;

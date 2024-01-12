@@ -1,4 +1,4 @@
-@use "@local/styles/settings/settings-breakpoints.scss" as *;
+@use "@local/styles/settings/settings-breakpoints" as *;
 @use "./styles/spacing-utilities" as *;
 
 $total-space-classes: 10;
@@ -11,7 +11,7 @@ $total-space-classes: 10;
   * {margin/padding}-{x/y/top/right/bottom/left[optional]}{-breakpoint[optional]}-{size}
   *
   * Examples:
-  * margin-0, padding-x-2, margin-x-auto, margin-bottom-medium-3, padding-x-large-4
+  * margin-0, padding-x-2, margin-x-auto, margin-bottom-md-3, padding-x-lg-4
   *
   * @param {Number} $total - The total number of classes to generate (0 through $total). Sizes are based on the $base-space property.
   * @param {String} $suffix - An optional suffix to append to the class name.
@@ -61,18 +61,18 @@ $total-space-classes: 10;
 
 @include generate-spacer-classes($total-space-classes);
 
-@media #{$medium-up} {
+@media #{$md-up} {
   @include generate-spacer-classes($total-space-classes, "md-");
 }
 
-@media #{$large-up} {
+@media #{$lg-up} {
   @include generate-spacer-classes($total-space-classes, "lg-");
 }
 
-@media #{$xlarge-up} {
+@media #{$xlg-up} {
   @include generate-spacer-classes($total-space-classes, "xl-");
 }
 
-@media #{$xxlarge-up} {
+@media #{$xxlg-up} {
   @include generate-spacer-classes($total-space-classes, "xxl-");
 }
