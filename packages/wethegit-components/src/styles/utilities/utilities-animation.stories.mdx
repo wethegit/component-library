@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/blocks"
 
-<Meta title="styles/utilities/animation-utilities" />
+<Meta title="styles/utilities/utilities-animation" />
 
 # Animation utilities
 
@@ -11,29 +11,57 @@ The animation utilities provide you with helpful Sass functions for your custom 
 `@use` the animation utils within in a `.scss` stylesheet:
 
 ```css
-@use "@local/styles/utilities/animation-utilities" as *;
+@use "@local/styles/utilities/utilities-animation" as *;
 ```
 
 ## Functions
 
-### duration
+### focus-style
 
-Signature: `duration($cssDuration)`
+Signature: `focus-style()`
 
-`duration` Receives either a milliseconds or a seconds value, and returns the same value multiplied by the global `--duration-factor`. This is useful for removing animations when a user prefers reduced motion.
+Returns a CSS `box-shadow` value with two shadows to create a focus style that works on both light and dark backgrounds.
 
 #### Example
 
-```css
-@use "@local/styles/utilities/animation-utilities" as *;
+```scss
+@use "@local/styles/utilities/utilities-accessibility" as *;
 
 .customComponent {
-  /*
-   * If --duration-factor is 1, this will be 1 second.
-   * If --duration-factor is 0, this will be 0 seconds.
-   */
-  transition: transform duration(1s);
+  @include focus-style();
 }
 ```
 
-💡 `duration()` also has an alias, `delay()`. They are both identical, functionally.
+### focus-style-reverse
+
+Signature: `focus-style-reverse()`
+
+Returns a CSS `box-shadow` value with two shadows to create a focus style that works on both light and dark backgrounds. The reverse version reverts the order of the shadows.
+
+#### Example
+
+```scss
+@use "@local/styles/utilities/utilities-accessibility" as *;
+
+.customComponent {
+  @include focus-style-reverse();
+}
+```
+
+### reduced-motion
+
+Signature: `reduced-motion()`
+
+Handles the `prefers-reduced-motion` media query and also makes sure that the styles are replicated inside the reduced motion class selector that is added to the html by the [@wethegit/react-hooks](https://wethegit.github.io/react-hooks/user-preferences-provider) library.
+
+#### Example
+
+```scss
+@use "@local/styles/utilities/utilities-animation" as *;
+
+.customComponent {
+  @include reduced-motion() {
+    animation: none;
+  }
+}
+```
