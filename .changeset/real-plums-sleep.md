@@ -1,7 +1,7 @@
 ---
-"stylelint-config-custom": minor
-"@wethegit/components-cli": minor
-"@wethegit/components": minor
+"stylelint-config-custom": patch
+"@wethegit/components-cli": patch
+"@wethegit/components": patch
 ---
 
 Removes unnecessary @wethegit/react-hooks dependency.
