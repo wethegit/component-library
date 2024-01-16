@@ -45,7 +45,7 @@ export type FlexProps<TAs extends ElementType> = TagProps<TAs> & {
  *
  * The grid layout system does not apply to the `small` breakpoint.
  *
- * Learn more about [Breakpoints](https://wethegit.github.io/component-library/?path=/docs/core-breakpoints--docs).
+ * Learn more about [Breakpoints](https://wethegit.github.io/component-library/?path=/docs/core-breakpoints--overview).
  */
 export const Flex = fixedForwardRef(function Flex<TAs extends ElementType = "div">(
   {

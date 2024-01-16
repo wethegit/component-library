@@ -1,0 +1,67 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="styles/utilities/utilities-accessibility" />
+
+# Accessibility utilities
+
+The accessibility utilities provide you with helpful Sass functions so you can handle focus and reduce motion states.
+
+## Usage
+
+`@use` the accessibility utils within in a `.scss` stylesheet:
+
+```css
+@use "@local/styles/utilities/utilities-accessibility" as *;
+```
+
+## Functions
+
+### focus-style
+
+Signature: `focus-style()`
+
+Returns a CSS `box-shadow` value with two shadows to create a focus style that works on both light and dark backgrounds.
+
+#### Example
+
+```scss
+@use "@local/styles/utilities/utilities-accessibility" as *;
+
+.customComponent {
+  @include focus-style();
+}
+```
+
+### focus-style-reverse
+
+Signature: `focus-style-reverse()`
+
+Returns a CSS `box-shadow` value with two shadows to create a focus style that works on both light and dark backgrounds. The reverse version reverts the order of the shadows.
+
+#### Example
+
+```scss
+@use "@local/styles/utilities/utilities-accessibility" as *;
+
+.customComponent {
+  @include focus-style-reverse();
+}
+```
+
+### reduced-motion
+
+Signature: `reduced-motion()`
+
+Handles the `prefers-reduced-motion` media query and also makes sure that the styles are replicated inside the reduced motion class selector that is added to the html by the [@wethegit/react-hooks](https://wethegit.github.io/react-hooks/user-preferences-provider) library.
+
+#### Example
+
+```scss
+@use "@local/styles/utilities/utilities-animation" as *;
+
+.customComponent {
+  @include reduced-motion() {
+    animation: none;
+  }
+}
+```

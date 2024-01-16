@@ -1,0 +1,39 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="styles/utilities/utilities-animation" />
+
+# Animation utilities
+
+The animation utilities provide you with helpful Sass functions for your custom CSS animations.
+
+## Usage
+
+`@use` the animation utilities within a `.scss` stylesheet:
+
+```css
+@use "@local/styles/utilities/utilities-animation" as *;
+```
+
+## Functions
+
+### duration
+
+Signature: `duration($cssDuration)`
+
+`duration` Receives either a milliseconds or a seconds value, and returns the same value multiplied by the global `--duration-factor`. This is useful for removing animations when a user prefers reduced motion.
+
+#### Example
+
+```css
+@use "@local/styles/utilities/utilities-animation" as *;
+
+.customComponent {
+  /*
+   * If --duration-factor is 1, this will be 1 second.
+   * If --duration-factor is 0, this will be 0 seconds.
+   */
+  transition: transform duration(1s);
+}
+```
+
+💡 `duration()` also has an alias, `delay()`. They are both identical, functionally.

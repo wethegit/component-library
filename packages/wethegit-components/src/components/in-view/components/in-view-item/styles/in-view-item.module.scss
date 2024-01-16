@@ -1,0 +1,64 @@
+@use "./in-view-utilities" as *;
+
+.wrap {
+  @include animation-state-initial;
+}
+
+.inView {
+  @include animation-state-final;
+}
+
+.staggerChildren {
+  > * {
+    @include animation-state-initial;
+
+    transition-duration: var(--stagger-duration);
+
+    @for $i from 0 through 20 {
+      &:nth-child(#{$i + 1}) {
+        transition-delay: get-stagger-delay($i);
+      }
+    }
+  }
+
+  &.inView {
+    > * {
+      @include animation-state-final;
+    }
+  }
+}
+
+// We are opting to use actual selectors to generate the variations
+// on delays, stagger amounts, durations, etc.; rather than passing
+// the CSS custom properties directly as inline styles. This helps
+// keep our CSS easier to override if needed.
+
+// Generate the options for delay, stagger amount, and stagger delay.
+// These range from 0s to 1s, in increments of 0.1s.
+// Example: `.delay2` is a 0.2s delay.
+@for $i from 0 through 10 {
+  .delay#{$i} {
+    --delay: #{get-duration($i, 10)};
+  }
+
+  .staggerAmount#{$i} {
+    --stagger-amount: #{get-duration($i, 10)};
+  }
+
+  .staggerDelay#{$i} {
+    --stagger-delay: #{get-duration($i, 10)};
+  }
+}
+
+// Generate the options for duration and stagger duration.
+// These range from 0s to 2s, in increments of 0.1s.
+// Example: `.duration15` is a 1.5s duration.
+@for $i from 0 through 20 {
+  .duration#{$i} {
+    --duration: #{get-duration($i, 20)};
+  }
+
+  .staggerDuration#{$i} {
+    --stagger-duration: #{get-duration($i, 20)};
+  }
+}

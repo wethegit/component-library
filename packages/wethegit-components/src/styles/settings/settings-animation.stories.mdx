@@ -1,0 +1,21 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="styles/settings/settings-animation" />
+
+# Animation settings
+
+Provides some handy CSS custom properties which can be included in your app-level, global stylesheet. Check out the source file for all of the available settings `/styles/settings/_settings-animation.scss`.
+
+## --duration-factor
+
+An integer which acts as a multiplier for animation durations. Defaults to `1`. This is useful for removing transition time if a user prefers reduced motion: set this to `0` in that case. The animation utility, [duration](/docs/utilities-animation-animation-utilities--overview#duration), uses this in its duration calculation.
+
+## Easing
+
+A collection of root-level cubic-bezier curves, for use in your CSS animations.
+
+```css
+.myComponent {
+  transition: transform 0.2s var(--ease-back-out);
+}
+```

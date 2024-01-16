@@ -1,22 +1,22 @@
 import { Meta } from "@storybook/blocks"
 
-<Meta title="utilities/colors" />
+<Meta title="utilities/color" />
 
-# Colors
+# Color
 
-The colors utility exposes an object that maps to a CSS module which generates colors for background and text.
+The color utility exposes an object that maps to a CSS module which generates colors for background and text.
 
-To change the colors you can simply [update](/docs/utilities-colors-styles-colors-utilities--docs) the `styles/_colors-utilities.scss`.
+To change the colors you can simply [update](/docs/utilities-colors-styles-colors-utilities--overview) the `styles/_colors-utilities.scss`.
 
 ## Usage
 
 A `p` with `white` color and `black` background:
 
 ```jsx
-import { classnames, colors } from "@local/colors"
+import { classnames, color } from "@local/utilities"
 
 function Comp() {
-  return <div className={classnames([colors.bg.black, colors.text.white])} />
+  return <div className={classnames([color.bg.black, color.text.white])} />
 }
 ```
 
@@ -26,7 +26,7 @@ The utilities lack support for hover, focus and others states and also for alpha
 
 But for those use cases and for even further customization the colors utility expose a Sass function that can be used directly.
 
-Read more about the function [here](/docs/utilities-colors-styles-colors-utilities--docs).
+Read more about the function [here](/docs/utilities-colors-styles-colors-utilities--overview).
 
 ```css
 @use "@local/utilities/colors/styles/colors-utilities" as *;
@@ -40,9 +40,9 @@ Read more about the function [here](/docs/utilities-colors-styles-colors-utiliti
 
 If you do not want to use the JS version of the colors utility you can easily do so by:
 
-1. Remove any imports of `colors` from your code
-2. Rename `colors.module.scss` to `colors.scss`
-3. Import `colors.scss` in your global styles
+1. Remove any imports of `color` from your code
+2. Rename `color.module.scss` to `color.scss`
+3. Import `color.scss` in your global styles
 
 And then proceed to use the classes as you would normally do.
 

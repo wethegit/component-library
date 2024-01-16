@@ -1,4 +1,4 @@
-@use "@local/styles/settings/settings-breakpoints.scss" as *;
+@use "@local/styles/settings/settings-breakpoints" as *;
 
 @mixin breakpoint-classnames($prefix: "") {
   .align#{$prefix}-flex-start {
@@ -64,18 +64,18 @@
 
 @include breakpoint-classnames;
 
-@media #{$medium-up} {
+@media #{$md-up} {
   @include breakpoint-classnames(md);
 }
 
-@media #{$large-up} {
+@media #{$lg-up} {
   @include breakpoint-classnames(lg);
 }
 
-@media #{$xlarge-up} {
+@media #{$xlg-up} {
   @include breakpoint-classnames(xl);
 }
 
-@media #{$xxlarge-up} {
+@media #{$xxlg-up} {
   @include breakpoint-classnames(xxl);
 }

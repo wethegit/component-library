@@ -1,0 +1,18 @@
+:root {
+  // Multiplier for animation durations; Set to zero to remove animations.
+  --duration-factor: 1;
+
+  // Ease curves; just a bit nicer than what browsers give us out-of-the-box.
+  --ease-in: cubic-bezier(0.51, 0, 0.9, 0.43);
+  --ease-back-in: cubic-bezier(0.38, -0.37, 0.83, 0.23);
+  --ease-out: cubic-bezier(0.35, 0.91, 0.3, 0.99);
+  --ease-back-out: cubic-bezier(0.21, 0.12, 0.35, 1.43);
+  --ease-in-out: cubic-bezier(0.75, 0, 0.21, 0.99);
+  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-factor: 0;
+  }
+}

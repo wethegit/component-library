@@ -48,6 +48,21 @@ const CLASSNAMES: Registry = {
   category: "utility",
 }
 
+const COLOR: Registry = {
+  name: "color",
+  category: "utility",
+}
+
+const SPACING: Registry = {
+  name: "spacing",
+  category: "utility",
+}
+
+const VISIBILITY: Registry = {
+  name: "visibility",
+  category: "utility",
+}
+
 /* COMPONENTS */
 const TAG: Registry = {
   name: "tag",
@@ -127,16 +142,27 @@ const MODAL: Registry = {
     "https://wethegit.github.io/component-library/?path=/docs/components-modal-readme--docs",
 }
 
+const IN_VIEW: Registry = {
+  name: "in-view",
+  category: "component",
+  localDependencies: [CLASSNAMES, FIXED_FORWARD_REF, TAG],
+  dependencies: ["@wethegit/react-hooks"],
+}
+
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
+  [COLOR.name]: COLOR,
   [FLEX.name]: FLEX,
   [GRID_LAYOUT.name]: GRID_LAYOUT,
+  [ICON.name]: ICON,
   [IMAGE_GROUP.name]: IMAGE_GROUP,
+  [IN_VIEW.name]: IN_VIEW,
+  [MODAL.name]: MODAL,
+  [NAVIGATION.name]: NAVIGATION,
+  [SPACING.name]: SPACING,
   [TAG.name]: TAG,
   [TEXT.name]: TEXT,
+  [VISIBILITY.name]: VISIBILITY,
   [VISUALLY_HIDDEN.name]: VISUALLY_HIDDEN,
-  [NAVIGATION.name]: NAVIGATION,
-  [ICON.name]: ICON,
-  [MODAL.name]: MODAL,
 }
 /* END REGISTRY INDEX */

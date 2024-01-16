@@ -1,0 +1,43 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="utilities/visibility" />
+
+# Visibility
+
+The visibility utility exposes an object that maps to a CSS module which generates breakpoint based visibility classes.
+
+## Usage
+
+A `div` that is hidden on `small` screens only:
+
+```jsx
+import { classnames, visibility } from "@local/utilities"
+
+function Comp() {
+  return <div className={classnames([visibility.smOnly])} />
+}
+```
+
+A `div` that is hidden on `small` and `medium` screens:
+
+```jsx
+import { classnames, visibility } from "@local/utilities"
+
+function Comp() {
+  return <div className={classnames([visibility.lgUp])} />
+}
+```
+
+## No JS
+
+If you do not want to use the JS version of the visibility utility you can easily do so by:
+
+1. Remove any imports of `visibility` from your code
+2. Rename `visibility.module.scss` to `visibility.scss`
+3. Import `visibility.scss` in your global styles
+
+And then proceed to use the classes as you would normally do.
+
+```html
+<div class="text-black bg-white" />
+```

@@ -1,4 +1,4 @@
-@use "@local/styles/settings/settings-breakpoints.scss" as *;
+@use "@local/styles/settings/settings-breakpoints" as *;
 
 .row {
   display: block;
@@ -8,13 +8,13 @@
   padding-inline: calc(var(--wtc-gutter-width, 24px) * 0.5);
 }
 
-@media #{$medium-up} {
+@media #{$md-up} {
   .row:not(.stackMedium) {
     display: flex;
   }
 }
 
-@media #{$large-up} {
+@media #{$lg-up} {
   .stackMedium {
     display: flex;
   }
