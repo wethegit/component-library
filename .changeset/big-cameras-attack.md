@@ -4,4 +4,4 @@
 "stylelint-config-custom": patch
 ---
 
-V1 release
+Full set of components for WeTheGit
