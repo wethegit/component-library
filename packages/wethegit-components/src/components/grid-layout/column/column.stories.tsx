@@ -68,8 +68,8 @@ export const Default: Story = {
 export const GutterVisualizer: Story = {
   name: "Gutter visualizer",
   render: (args) => (
-    <Row className="gutter-visualizer">
-      <Column className="gutter-visualizer">
+    <Row className="gutterVisualizer">
+      <Column className="gutterVisualizer">
         <p>
           The left or right padding on a <code>Row</code> or a <code>Column</code> is
           equivalent to half of a gutter's width, within your flex-layout. As shown here,
@@ -83,7 +83,7 @@ export const GutterVisualizer: Story = {
           content.
         </p>
       </Column>
-      <Column className="gutter-visualizer" {...args}>
+      <Column className="gutterVisualizer" {...args}>
         {howManyColumns(args.span)}
       </Column>
     </Row>
@@ -93,8 +93,8 @@ export const GutterVisualizer: Story = {
 export const NestedColumns: Story = {
   name: "Nested columns",
   render: (args) => (
-    <Row className="gutter-visualizer">
-      <Column className="gutter-visualizer" {...args}>
+    <Row className="gutterVisualizer">
+      <Column className="gutterVisualizer" {...args}>
         <p>
           Nesting columns is easy. Just add another <code>Row</code>, more{" "}
           <code>Column</code> components and don't forget to set the <code>deep</code>{" "}
@@ -102,18 +102,18 @@ export const NestedColumns: Story = {
         </p>
         {howManyColumns(args.span)}
       </Column>
-      <Column className="gutter-visualizer" span={7}>
+      <Column className="gutterVisualizer" span={7}>
         <p>
           This spans <code>7</code> columns
         </p>
-        <Row className="gutter-visualizer">
-          <Column className="gutter-visualizer" deep>
+        <Row className="gutterVisualizer">
+          <Column className="gutterVisualizer" deep>
             <p>
               Notice how the text touches the edge and they don't have an internal
               padding.
             </p>
           </Column>
-          <Column className="gutter-visualizer" deep>
+          <Column className="gutterVisualizer" deep>
             <p>
               Notice how the text touches the edge and they don't have an internal
               padding.
