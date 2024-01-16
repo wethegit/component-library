@@ -18,6 +18,9 @@ export function VisuallyHiddenLinks({
 }
 
 export interface VisuallyHiddenLinkItemProps extends React.HTMLAttributes<HTMLLIElement> {
+  /**
+   * The ID of the element to focus when the link is clicked.
+   */
   href: string
 }
 
