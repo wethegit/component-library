@@ -36,6 +36,11 @@ const meta: Meta<typeof InView> = {
             <Text variant="body-legal">
               (scroll down and then back up, to re-trigger the transitions)
             </Text>
+            <Text variant="body-legal">
+              (Please note that some props will only work in a Story's "new tab" view (top
+              right of the toolbar), and can behave unexpectedly in the iframe-rendered
+              version)
+            </Text>
             <Story />
           </div>
         </div>
