@@ -1,18 +1,34 @@
 @use "sass:list";
+@use "sass:map";
 
 // ranges in pixels (min, max)
-$small: 0, 639;
-$medium: 640, 1023;
-$large: 1024, 1143;
-$xlarge: 1144, 1439;
-$xxlarge: 1440;
+$sm: 0, 639;
+$md: 640, 1023;
+$lg: 1024, 1143;
+$xlg: 1144, 1439;
+$xxlg: 1440;
+
+// map of media queries
+$breakpoints: (
+  "sm-only": "screen and (max-width: #{list.nth($sm, 2)}px)",
+  "md-up": "screen and (min-width: #{list.nth($md, 1)}px)",
+  "md-only":
+    "screen and (min-width: #{list.nth($md, 1)}px) and (max-width: #{list.nth($md, 2)}px)",
+  "lg-up": "screen and (min-width: #{list.nth($lg, 1)}px)",
+  "lg-only":
+    "screen and (min-width: #{list.nth($lg, 1)}px) and (max-width: #{list.nth($lg, 2)}px)",
+  "xlg-up": "screen and (min-width: #{list.nth($xlg, 1)}px)",
+  "xlg-only":
+    "screen and (min-width: #{list.nth($xlg, 1)}px) and (max-width: #{list.nth($xlg, 2)}px)",
+  "xxlg-up": "screen and (min-width: #{$xxlg}px)",
+);
 
 // media queries
-$small-only: "screen and (max-width: #{list.nth($small, 2)}px)";
-$medium-up: "screen and (min-width: #{list.nth($medium, 1)}px)";
-$medium-only: "screen and (min-width: #{list.nth($medium, 1)}px) and (max-width: #{list.nth($medium, 2)}px)";
-$large-up: "screen and (min-width: #{list.nth($large, 1)}px)";
-$large-only: "screen and (min-width: #{list.nth($large, 1)}px) and (max-width: #{list.nth($large, 2)}px)";
-$xlarge-up: "screen and (min-width: #{list.nth($xlarge, 1)}px)";
-$xlarge-only: "screen and (min-width: #{list.nth($xlarge, 1)}px) and (max-width: #{list.nth($xlarge, 2)}px)";
-$xxlarge-up: "screen and (min-width: #{$xxlarge}px)";
+$sm-only: map.get($breakpoints, "sm-only");
+$md-up: map.get($breakpoints, "md-up");
+$md-only: map.get($breakpoints, "md-only");
+$lg-up: map.get($breakpoints, "lg-up");
+$lg-only: map.get($breakpoints, "lg-only");
+$xlg-up: map.get($breakpoints, "xlg-up");
+$xlg-only: map.get($breakpoints, "xlg-only");
+$xxlg-up: map.get($breakpoints, "xxlg-up");

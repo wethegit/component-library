@@ -1,5 +1,5 @@
-@use "@local/styles/settings/settings-breakpoints.scss" as *;
-@use "../styles/grid-layout-utilities.scss" as layout;
+@use "@local/styles/settings/settings-breakpoints" as *;
+@use "../styles/grid-layout-utilities" as layout;
 
 @mixin make-column-classnames($breakpoint: false) {
   $base-class: "span";
@@ -26,18 +26,18 @@
   padding-inline: 0;
 }
 
-@media #{$medium-up} {
+@media #{$md-up} {
   @include make-column-classnames;
 }
 
-@media #{$large-up} {
+@media #{$lg-up} {
   @include make-column-classnames(lg);
 }
 
-@media #{$xlarge-up} {
+@media #{$xlg-up} {
   @include make-column-classnames(xl);
 }
 
-@media #{$xxlarge-up} {
+@media #{$xxlg-up} {
   @include make-column-classnames(xxl);
 }

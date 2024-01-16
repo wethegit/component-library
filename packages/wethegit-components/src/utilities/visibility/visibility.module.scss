@@ -1,0 +1,58 @@
+/* stylelint-disable selector-class-pattern */ // utility classes are not kebab-case
+
+@use "sass:map";
+@use "@local/styles/settings/settings-breakpoints" as *;
+
+.md-only,
+.md-up,
+.lg-only,
+.lg-up,
+.xlg-only,
+.xlg-up,
+.xxlg-only,
+.xxlg-up {
+  display: none;
+}
+
+@media #{$md-up} {
+  .sm-only {
+    display: none;
+  }
+
+  .md-only,
+  .md-up {
+    display: block;
+  }
+}
+
+@media #{$lg-up} {
+  .md-only {
+    display: none;
+  }
+
+  .lg-only,
+  .lg-up {
+    display: block;
+  }
+}
+
+@media #{$xlg-up} {
+  .lg-only {
+    display: none;
+  }
+
+  .xlg-only,
+  .xlg-up {
+    display: block;
+  }
+}
+
+@media #{$xxlg-up} {
+  .xlg-only {
+    display: none;
+  }
+
+  .xxlg-up {
+    display: block;
+  }
+}

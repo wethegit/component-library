@@ -1,8 +1,8 @@
 import { Meta } from "@storybook/blocks"
 
-<Meta title="utilities/colors/styles/colors-utilities" />
+<Meta title="utilities/color/styles/color-utilities" />
 
-# Colors utilities
+# Color utilities
 
 The color utility also comes with a Sass function that can be used to get any color from the palette with variable opacity.
 
@@ -13,7 +13,7 @@ It's in this file that you also define the color palette.
 `@use` the helpers within in a `.scss` stylesheet:
 
 ```css filename="utilities/your-component/your-component.module.scss"
-@use "@local/utilities/colors/styles/colors-utilities" as *;
+@use "@local/utilities/color/styles/color-utilities" as *;
 ```
 
 ## get-color
@@ -30,11 +30,11 @@ Signature: `get-color($color-name, $opacity: 1)`
 }
 ```
 
-## $colors
+## $color
 
-Signature: `$colors: (
+Signature: `$color: (
   "black": #000,
   "white": #fff,
 );`
 
-The `$colors` variable is a map of `color-name` to `hex` value. All the colors in the palette will be used to generate the utility classes.
+The `$color` variable is a map of `color-name` to `hex` value. All the color in the palette will be used to generate the utility classes.

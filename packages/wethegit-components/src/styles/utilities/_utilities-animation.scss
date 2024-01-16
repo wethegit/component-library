@@ -1,0 +1,9 @@
+@use "sass:math";
+
+@function duration($value) {
+  @return calc(var(--duration-factor, 1) * #{$value});
+}
+
+@function delay($value) {
+  @return duration($value);
+}
