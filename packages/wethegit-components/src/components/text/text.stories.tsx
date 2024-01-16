@@ -24,13 +24,13 @@ type Story = StoryObj<typeof Text>
  */
 export const Default: Story = {
   render: (args) => (
-    <div className="child-spacing">
+    <div className="childSpacing">
       {/*
         TODO: REMOVE THESE CHILD SPACING CLASSES.
         Use the spacing components or utility class names we build, once they're ready.
       */}
 
-      <div className="child-spacing child-spacing--less">
+      <div className="childSpacing childSpacingLess">
         <Text as="h1" variant="title-1">
           Title 1
         </Text>

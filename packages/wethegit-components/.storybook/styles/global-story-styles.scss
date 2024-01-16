@@ -1,7 +1,7 @@
 @import "@local/styles/global";
+@import "@local/styles/settings/settings-animation";
 @import "@local/components/grid-layout/styles/grid-layout";
 @import "@local/components/text/styles/text";
-@import "@local/styles/settings/settings-animation";
 
 @mixin gutter-highlight($color: blue, $size) {
   box-shadow:
@@ -59,12 +59,11 @@ a {
   @include gutter-highlight(rgb(83 198 82 / 34%), var(--wtc-gutter-width));
 }
 
-// TODO:
-// THESE ARE TEMPORARY. Remove them once spacing component is set up.
 .childSpacing {
   > * + * {
     margin-top: 2rem !important;
   }
+
   section {
     margin-bottom: 4rem !important;
   }

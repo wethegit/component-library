@@ -1,8 +1,10 @@
 module.exports = {
   extends: "stylelint-config-standard-scss",
   plugins: ["stylelint-order"],
+  ignoreFiles: ["../wethegit-components/storybook-static/**/*.css"],
   rules: {
     "at-rule-no-unknown": null,
+    "declaration-block-no-redundant-longhand-properties": null,
     "function-no-unknown": null,
     "scss/function-no-unknown": null,
     "scss/at-rule-no-unknown": true,
@@ -21,4 +23,16 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: [
+        "../wethegit-components/src/utilities/**/*.js",
+        "../wethegit-components/src/utilities/**/*.ts",
+      ],
+      rules: {
+        "order/properties-alphabetical-order": null,
+        "selector-class-pattern": null,
+      },
+    },
+  ],
 }
