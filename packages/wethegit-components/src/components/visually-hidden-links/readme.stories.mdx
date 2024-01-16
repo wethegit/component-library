@@ -16,6 +16,22 @@ The `VisuallyHiddenLinks` component renders out a `ul`. The `VisuallyHiddenLinkI
 npx @wethegit/components-cli add visually-hidden-links
 ```
 
-## Use-cases
+## Usage
 
-A great example of when one might use `VisuallyHiddenLinks` would be to list out a set of navigatable landmarks at the start of a page. For instance; `skip to main content`, `skip to news` and `skip to footer`. This would essentially provide options for users to navigate to any of those sections without trolling through redundant content.
+A great example of when one might use `VisuallyHiddenLinks` would be to list out a set of navigatable landmarks at the start of a page. For instance; `skip to main content` and `skip to navigation`. This would essentially provide options for users to navigate to any of those sections without scrolling through redundant content.
+
+```jsx
+function MyListOfHiddenLinks() {
+  return (
+    <VisuallyHiddenLinks>
+      <VisuallyHiddenLinkItem href="#main-nav">
+        Skip to main navigation
+      </VisuallyHiddenLinkItem>
+
+      <VisuallyHiddenLinkItem href="#main-content">
+        Skip to main content
+      </VisuallyHiddenLinkItem>
+    </VisuallyHiddenLinks>
+  )
+}
+```
