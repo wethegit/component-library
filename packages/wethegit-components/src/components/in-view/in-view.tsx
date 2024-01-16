@@ -54,7 +54,7 @@ export function InView<TAs extends ElementType>({
         rootMargin: `${threshold * 100}% 0px 0px 0px`,
       }),
     }),
-    []
+    [matchRootMarginToThreshold, threshold]
   )
 
   const [setRef, isInView, domNode] = useInView(
