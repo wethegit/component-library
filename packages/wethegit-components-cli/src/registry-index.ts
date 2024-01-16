@@ -149,6 +149,12 @@ const IN_VIEW: Registry = {
   dependencies: ["@wethegit/react-hooks"],
 }
 
+const VISUALLY_HIDDEN_LINKS: Registry = {
+  name: "visually-hidden-links",
+  category: "component",
+  localDependencies: [CLASSNAMES, VISUALLY_HIDDEN],
+}
+
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
   [COLOR.name]: COLOR,
@@ -164,5 +170,6 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [TEXT.name]: TEXT,
   [VISIBILITY.name]: VISIBILITY,
   [VISUALLY_HIDDEN.name]: VISUALLY_HIDDEN,
+  [VISUALLY_HIDDEN_LINKS.name]: VISUALLY_HIDDEN_LINKS,
 }
 /* END REGISTRY INDEX */
