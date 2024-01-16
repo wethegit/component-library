@@ -21,7 +21,7 @@ type Story = StoryObj<typeof Wrapper>
 
 export const Default: Story = {
   render: (args) => (
-    <Wrapper className="gutter-visualizer gutter-visualizer--full" {...args}>
+    <Wrapper className="gutterVisualizer gutterVisualizerFull" {...args}>
       <p>
         Tempor anim duis velit ut ea occaecat ullamco tempor elit elit ullamco id pariatur
         quis. Laboris incididunt aute ipsum pariatur. Et sit non et irure laboris
