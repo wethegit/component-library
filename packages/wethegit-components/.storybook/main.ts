@@ -7,7 +7,7 @@ const config: StorybookConfig = {
     "../src/**/*.stories.mdx",
     "../src/**/*.stories.{js,jsx,ts,tsx}",
   ],
-  staticDirs: ["./static"],
+  staticDirs: ["../public"],
   addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
   framework: {
     name: "@storybook/react-vite",
@@ -18,7 +18,7 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: true,
-    defaultName: "Overview"
+    defaultName: "Overview",
   },
 }
 
