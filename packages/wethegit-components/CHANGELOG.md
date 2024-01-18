@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.2.10
+
+### Patch Changes
+
+- 071f002: Normalize style file names and fix storybook static assets
+
 ## 2.2.9
 
 ### Patch Changes
