@@ -1,5 +1,6 @@
-@use "@local/styles/settings/settings-breakpoints" as *;
+@use "@local/styles/breakpoints/breakpoints-variables" as *;
 @use "./styles/spacing-utilities" as *;
+@use "./styles/spacing-variables" as *;
 
 $total-space-classes: 10;
 

@@ -6,7 +6,7 @@ import { Meta } from "@storybook/blocks"
 
 The color utility exposes an object that maps to a CSS module which generates colors for background and text.
 
-To change the colors you can simply [update](/docs/utilities-colors-styles-colors-utilities--overview) the `styles/_colors-utilities.scss`.
+To change the colors you can simply [update](/docs/utilities-color-styles-color-variables--overview) the `styles/_colors-utilities.scss`.
 
 ## Usage
 
@@ -26,19 +26,20 @@ The utilities lack support for hover, focus and others states and also for alpha
 
 But for those use cases and for even further customization the colors utility expose a Sass function that can be used directly.
 
-Read more about the function [here](/docs/utilities-colors-styles-colors-utilities--overview).
+Read more about the function [here](/docs/utilities-color-styles-color-utilities--overview).
 
 ```css
 @use "@local/utilities/colors/styles/colors-utilities" as *;
 
 .my-class {
+  /* if you need to change the opacity, use get-color */
   background-color: get-color("black", 0.5);
 }
 ```
 
 ## No JS
 
-If you do not want to use the JS version of the colors utility you can easily do so by:
+If you do not want to use the JS version of the colors utility you can easily do so.
 
 1. Remove any imports of `color` from your code
 2. Rename `color.module.scss` to `color.scss`

@@ -1,9 +1,5 @@
 @use "sass:map";
-
-$colors: (
-  "black": #000,
-  "white": #fff,
-);
+@use "./color-variables" as *;
 
 /**
  * Get a color from the color map.
