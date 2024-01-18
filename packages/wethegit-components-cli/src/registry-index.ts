@@ -1,3 +1,5 @@
+import chalk from "chalk"
+
 export type RegistryCategory = "component" | "utility" | "style" | "type" | "hook"
 
 export interface Registry {
@@ -75,6 +77,10 @@ const TEXT: Registry = {
   localDependencies: [TAG, CLASSNAMES],
   docsUrl:
     "https://wethegit.github.io/component-library/?path=/docs/components-text-readme--docs",
+  postInstallMessages: [
+    `The ${chalk.bold("Text")} component requires a ${chalk.italic("CSS")} file to work properly. Add the following line to your global styles:`,
+    '@import "@local/components/text/styles/text.scss";',
+  ],
 }
 
 const FLEX: Registry = {
