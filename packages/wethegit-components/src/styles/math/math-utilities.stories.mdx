@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/blocks"
 
-<Meta title="styles/utilities/utilities-math" />
+<Meta title="styles/math/math-utilities" />
 
 # Math utilities
 
@@ -11,7 +11,7 @@ The math utilities provide you with helpful Sass functions for common math and n
 `@use` the math utilities within a `.scss` stylesheet:
 
 ```css
-@use "@local/styles/utilities/utilities-math" as *;
+@use "@local/styles/math/math-utilities" as *;
 ```
 
 ## Functions
@@ -25,7 +25,7 @@ Removes the unit from a value.
 #### Example
 
 ```css
-@use "@local/styles/utilities/utilities-math" as *;
+@use "@local/styles/math/math-utilities" as *;
 
 .foo {
   width: strip-unit(100px) / 2rem;
@@ -41,7 +41,7 @@ Calculates the percentage ratio of two values.
 #### Example
 
 ```css
-@use "@local/styles/utilities/utilities-math" as *;
+@use "@local/styles/math/math-utilities" as *;
 
 .foo {
   width: percent-ratio(16px, 9px);
@@ -57,7 +57,7 @@ Calculates the percentage ratio of two CSS variable properties.
 #### Example
 
 ```css
-@use "@local/styles/utilities/utilities-math" as *;
+@use "@local/styles/math/math-utilities" as *;
 
 .foo {
   width: percent-ratio-css-vars(--css-var, --css-var-2);

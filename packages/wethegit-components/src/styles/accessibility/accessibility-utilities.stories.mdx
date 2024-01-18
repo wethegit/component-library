@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/blocks"
 
-<Meta title="styles/utilities/utilities-accessibility" />
+<Meta title="styles/accessibility/accessibility-utilities" />
 
 # Accessibility utilities
 
@@ -11,7 +11,7 @@ The accessibility utilities provide you with helpful Sass functions so you can h
 `@use` the accessibility utils within in a `.scss` stylesheet:
 
 ```css
-@use "@local/styles/utilities/utilities-accessibility" as *;
+@use "@local/styles/accessibility/accessibility-utilities" as *;
 ```
 
 ## Functions
@@ -25,7 +25,7 @@ Returns a CSS `box-shadow` value with two shadows to create a focus style that w
 #### Example
 
 ```scss
-@use "@local/styles/utilities/utilities-accessibility" as *;
+@use "@local/styles/accessibility/accessibility-utilities" as *;
 
 .customComponent {
   @include focus-style();
@@ -41,7 +41,7 @@ Returns a CSS `box-shadow` value with two shadows to create a focus style that w
 #### Example
 
 ```scss
-@use "@local/styles/utilities/utilities-accessibility" as *;
+@use "@local/styles/accessibility/accessibility-utilities" as *;
 
 .customComponent {
   @include focus-style-reverse();
@@ -57,7 +57,7 @@ Handles the `prefers-reduced-motion` media query and also makes sure that the st
 #### Example
 
 ```scss
-@use "@local/styles/utilities/utilities-animation" as *;
+@use "@local/styles/animation/animation-utilities" as *;
 
 .customComponent {
   @include reduced-motion() {

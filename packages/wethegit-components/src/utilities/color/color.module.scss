@@ -1,12 +1,13 @@
 @use "./styles/color-utilities" as *;
+@use "./styles/color-variables" as *;
 
 // define utility classes:
-@each $color, $rgb in $colors {
+@each $color, $h in $colors {
   .bg-#{$color} {
-    background-color: rgba($rgb, 1);
+    background-color: get-css-color($color);
   }
 
   .text-#{$color} {
-    color: rgba($rgb, 1);
+    color: get-css-color($color);
   }
 }

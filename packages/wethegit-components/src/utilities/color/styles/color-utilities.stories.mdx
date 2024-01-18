@@ -4,9 +4,7 @@ import { Meta } from "@storybook/blocks"
 
 # Color utilities
 
-The color utility also comes with a Sass function that can be used to get any color from the palette with variable opacity.
-
-It's in this file that you also define the color palette.
+A set of SASS functions that can be used to retrieve colors from the color palette.
 
 ## Usage
 
@@ -29,12 +27,3 @@ Signature: `get-color($color-name, $opacity: 1)`
   background-color: get-color("black", 0.5); /* 50% opacity black */
 }
 ```
-
-## $color
-
-Signature: `$color: (
-  "black": #000,
-  "white": #fff,
-);`
-
-The `$color` variable is a map of `color-name` to `hex` value. All the color in the palette will be used to generate the utility classes.
