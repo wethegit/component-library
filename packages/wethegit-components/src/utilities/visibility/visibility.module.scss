@@ -1,7 +1,7 @@
 /* stylelint-disable selector-class-pattern */ // utility classes are not kebab-case
 
 @use "sass:map";
-@use "@local/styles/settings/settings-breakpoints" as *;
+@use "@local/styles/breakpoints/breakpoints-variables" as *;
 
 .md-only,
 .md-up,

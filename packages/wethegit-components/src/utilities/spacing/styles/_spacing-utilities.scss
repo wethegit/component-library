@@ -1,5 +1,4 @@
-// Baseline spacing unit.
-$spacing-unit: 8px;
+@use "./spacing-variables" as *;
 
 // Creates a value which is a multiple of the $base-space property.
 @function space-by($multiplier: false) {

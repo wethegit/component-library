@@ -1,0 +1,21 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="utilities/spacing/styles/spacing-variables" />
+
+# Spacing variables
+
+It's in this file that you define the spacing unit, which is used by the [function](/docs/utilities-spacing-styles-spacing-utilities--overview) to generate the spacing classes. By default, the spacing unit is `8px`.
+
+## Usage
+
+`@use` the helpers within in a `.scss` stylesheet:
+
+```css filename="utilities/your-component/your-component.module.scss"
+@use "@local/utilities/spacing/styles/spacing-variables" as *;
+```
+
+## $spacing-unit
+
+Signature: `$spacing-unit: 8px !default;`
+
+The spacing unit is used by the `space-by` function.

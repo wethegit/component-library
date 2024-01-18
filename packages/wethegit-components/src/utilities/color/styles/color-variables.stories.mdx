@@ -1,0 +1,24 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="utilities/color/styles/color-variables" />
+
+# Color variables
+
+## Usage
+
+`@use` the variables within in a `.scss` stylesheet:
+
+```css filename="utilities/your-component/your-component.module.scss"
+@use "@local/utilities/color/styles/color-variables" as *;
+```
+
+## $color
+
+**Important** to note that you shouldn't be using this variable directly unless you need to manimulate these values somehow. Most likely what you want is one of the utilities from [`color-utilities`](/docs/utilities-color-styles-color-utilities--overview).
+
+Signature: `$color: (
+  "black": #000,
+  "white": #fff,
+);`
+
+The `$color` variable is a map of `color-name` to `hex` value. All the color in the palette will be used to generate the utility classes.
