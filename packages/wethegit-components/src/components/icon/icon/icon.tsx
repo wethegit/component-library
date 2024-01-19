@@ -1,15 +1,12 @@
 import { classnames } from "@local/utilities"
 
-import type { IconId } from "../icons"
-
 import styles from "./icon.module.scss"
 
 export interface IconProps {
   /**
-   * The available icons are defined in `icons/` directory. This will vary depending on the project.
-   * By default, there are `play` and `close` icons.
+   * A unique identifier for the icon, e.g. `play`. Same as the `id` attribute of the `<symbol>`.
    */
-  id: IconId
+  id: string
   /**
    * If not provided, `aria-hidden` will be set to `true`.
    */
@@ -18,7 +15,7 @@ export interface IconProps {
 }
 
 /**
- * To use the icons, import `IconDefs` only **ONCE** in your app and use the `Icon` component to render.
+ * To use the icons, import `IconDefs` only **ONCE** in your app, add your icons using `IconSymbol` as children of `IconDefs` and then use the `Icon` component to render them.
  */
 export function Icon({ id, alt, className }: IconProps) {
   return (
@@ -28,7 +25,7 @@ export function Icon({ id, alt, className }: IconProps) {
       aria-label={alt}
       aria-hidden={alt ? "false" : "true"}
     >
-      <use xlinkHref={`#icon-${id}`} />
+      <use xlinkHref={`#wtc-icon-${id}`} />
     </svg>
   )
 }

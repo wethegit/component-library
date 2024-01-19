@@ -1,19 +1,13 @@
-import { icons } from "../icons"
-
 import styles from "./icon-defs.module.scss"
 
 /**
  * IconDefs
  * Import ONCE in your app and use `Icon` component to render.
  */
-export function IconDefs() {
+export function IconDefs({ children }: { children: React.ReactNode }) {
   return (
     <svg className={styles.iconDefs}>
-      <defs>
-        {Object.entries(icons).map(([id, Symbol]) => (
-          <Symbol key={id} />
-        ))}
-      </defs>
+      <defs>{children}</defs>
     </svg>
   )
 }
