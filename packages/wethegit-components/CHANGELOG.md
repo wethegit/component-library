@@ -1,5 +1,12 @@
 # @wethegit/components
 
+## 2.2.12
+
+### Patch Changes
+
+- 0d53dba: Fix aria-current selector
+- 1167112: Add classnames to Modal
+
 ## 2.2.11
 
 ### Patch Changes
