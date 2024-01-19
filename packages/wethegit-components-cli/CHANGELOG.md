@@ -1,5 +1,11 @@
 # @wethegit/components-cli
 
+## 2.4.12
+
+### Patch Changes
+
+- 4dda56a: Fix `init` command copying `stories` files
+
 ## 2.4.11
 
 ### Patch Changes
