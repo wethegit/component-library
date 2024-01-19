@@ -22,7 +22,7 @@ export interface ModalProps extends WTCModalProps {
    */
   children?: React.ReactNode
   /**
-   * The modal class name.
+   * The modal content class name.
    */
   contentClassName?: string
   /**
