@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.2.11
+
+### Patch Changes
+
+- 17b750c: Expose classnames utility; Minor changes to Navigation component
+
 ## 2.2.10
 
 ### Patch Changes
