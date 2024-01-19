@@ -163,6 +163,7 @@ const VISUALLY_HIDDEN_LINKS: Registry = {
 
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
+  [CLASSNAMES.name]: CLASSNAMES,
   [COLOR.name]: COLOR,
   [FLEX.name]: FLEX,
   [GRID_LAYOUT.name]: GRID_LAYOUT,

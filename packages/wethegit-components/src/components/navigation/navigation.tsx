@@ -4,7 +4,7 @@ import { useRef, useState } from "react"
 
 import { classnames } from "@local/utilities"
 
-import { NavList, NavListItem, Overlay, Toggler } from "./components"
+import { NavList, Overlay, Toggler } from "./components"
 import styles from "./navigation.module.scss"
 
 export type NavigationLinks = {
@@ -36,17 +36,13 @@ const MAIN_NAV_ID = "main-nav"
 /**
  * At it's basic form, the navigation component is a hamburger menu that opens a list of links on the `sm` breakpoint and from the `md` breakpoint and up, it's a horizontal list of links that is sticky to the top of the viewport.
  */
-export function Navigation({ currentPage, links, className, ...props }: NavigationProps) {
+export function Navigation({ className, children, ...props }: NavigationProps) {
   const [open, setOpen] = useState(false)
   const focusLoopEnd = useRef<HTMLSpanElement>(null)
   const menuToggler = useRef<HTMLButtonElement>(null)
 
   const toggle = () => {
     setOpen(!open)
-  }
-
-  const handleLinkClick = () => {
-    setOpen(false)
   }
 
   const handleLoopFocus = () => {
@@ -66,15 +62,7 @@ export function Navigation({ currentPage, links, className, ...props }: Navigati
       <Overlay open={open} onClick={toggle} className={styles.overlay} />
 
       <nav className={styles.mainNav} aria-label={props["aria-label"]} id={MAIN_NAV_ID}>
-        <NavList>
-          {Object.entries(links).map(([key, { label, path }]) => (
-            <NavListItem key={key} selected={key === currentPage}>
-              <a href={path} onClick={handleLinkClick}>
-                {label}
-              </a>
-            </NavListItem>
-          ))}
-        </NavList>
+        <NavList>{children}</NavList>
 
         {/* Focus loop trigger -> takes us back to the menu toggler when tabbing */}
         <span
