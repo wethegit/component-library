@@ -1,5 +1,14 @@
 # @wethegit/components-cli
 
+## 2.4.13
+
+### Patch Changes
+
+- 0d53dba: Fix aria-current selector
+- Updated dependencies [0d53dba]
+- Updated dependencies [1167112]
+  - @wethegit/components@2.2.12
+
 ## 2.4.12
 
 ### Patch Changes
