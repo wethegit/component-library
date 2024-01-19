@@ -1,8 +1,9 @@
-import { resolve } from "node:path"
+import { relative, resolve } from "node:path"
 
 import ora from "ora"
 import fse from "fs-extra"
 import chalk from "chalk"
+import { glob } from "glob"
 
 import type { Config } from "../../../global"
 import {
@@ -51,7 +52,20 @@ export async function copyGlobalStyles({
   try {
     const src = resolve(componentsPackageRoot, COMPONENTS_PACKAGE_STYLES_DIR)
 
-    await fse.copy(src, stylesRootDir)
+    const files = await glob("**/*", {
+      ignore: ["**/*.stories*"],
+      cwd: src,
+      absolute: true,
+      nodir: true,
+    })
+
+    await Promise.all(
+      files.map((file) =>
+        fse.copy(file, resolve(stylesRootDir, relative(src, file)), {
+          overwrite: true,
+        })
+      )
+    )
 
     spinner.succeed()
   } catch (error) {
