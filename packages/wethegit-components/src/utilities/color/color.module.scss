@@ -4,10 +4,10 @@
 // define utility classes:
 @each $color, $h in $colors {
   .bg-#{$color} {
-    background-color: get-css-color($color);
+    background-color: $h;
   }
 
   .text-#{$color} {
-    color: get-css-color($color);
+    color: $h;
   }
 }

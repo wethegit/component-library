@@ -17,13 +17,14 @@ export interface IconProps {
 /**
  * To use the icons, import `IconDefs` only **ONCE** in your app, add your icons using `IconSymbol` as children of `IconDefs` and then use the `Icon` component to render them.
  */
-export function Icon({ id, alt, className }: IconProps) {
+export function Icon({ id, alt, className, ...props }: IconProps) {
   return (
     <svg
       role="img"
       className={classnames([styles.icon, className])}
       aria-label={alt}
       aria-hidden={alt ? "false" : "true"}
+      {...props}
     >
       <use xlinkHref={`#wtc-icon-${id}`} />
     </svg>
