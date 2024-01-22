@@ -1,5 +1,13 @@
 # @wethegit/components-cli
 
+## 2.4.14
+
+### Patch Changes
+
+- bee5f8b: Changes Icon to be more flexible
+- Updated dependencies [bee5f8b]
+  - @wethegit/components@2.2.13
+
 ## 2.4.13
 
 ### Patch Changes

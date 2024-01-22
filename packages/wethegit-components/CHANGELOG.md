@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.2.13
+
+### Patch Changes
+
+- bee5f8b: Changes Icon to be more flexible
+
 ## 2.2.12
 
 ### Patch Changes
