@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Icon, IconDefs } from "@local/components"
+import { Icon, IconDefs, IconSymbol } from "@local/components"
 
 const meta = {
   title: "components/icon",
@@ -11,7 +11,11 @@ const meta = {
   decorators: [
     (Story) => (
       <>
-        <IconDefs />
+        <IconDefs>
+          <IconSymbol id="play" size={27}>
+            <path d="M27 13.2396L5.6875 26.4792L5.6875 -9.31519e-07L27 13.2396Z" />
+          </IconSymbol>
+        </IconDefs>
         <Story />
       </>
     ),

@@ -53,16 +53,22 @@ const CLASSNAMES: Registry = {
 const COLOR: Registry = {
   name: "color",
   category: "utility",
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/utilities-color--overview",
 }
 
 const SPACING: Registry = {
   name: "spacing",
   category: "utility",
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/utilities-spacing--overview",
 }
 
 const VISIBILITY: Registry = {
   name: "visibility",
   category: "utility",
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/utilities-visibility--overview",
 }
 
 /* COMPONENTS */
@@ -102,7 +108,7 @@ const GRID_LAYOUT: Registry = {
   docsUrl:
     "https://wethegit.github.io/component-library/?path=/docs/components-grid-layout-readme--docs",
   postInstallMessages: [
-    "The grid requires a CSS file to work properly. Add the following line to your global styles:",
+    `The ${chalk.bold("grid")} requires a CSS file to work properly. Add the following line to your global styles:`,
     '@import "@local/components/grid-layout/styles/grid-layout.scss";',
   ],
 }
@@ -146,6 +152,11 @@ const MODAL: Registry = {
   dependencies: ["@wethegit/react-modal", "@wethegit/react-hooks"],
   docsUrl:
     "https://wethegit.github.io/component-library/?path=/docs/components-modal-readme--docs",
+  postInstallMessages: [
+    `The Modal requires the styles from ${chalk.italic("@wethegit/react-modal")} to work.`,
+    `It should be imported in your main ${chalk.bold("js")} file. In NextJS that would be the ${chalk.italic("_app.js")} file:`,
+    'import "@wethegit/react-modal/style.css";',
+  ],
 }
 
 const IN_VIEW: Registry = {

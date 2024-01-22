@@ -12,7 +12,7 @@ export interface IconSymbolProps extends React.SVGProps<SVGSVGElement> {
 
 export function IconSymbol({ id, size, children, ...props }: IconSymbolProps) {
   return (
-    <symbol {...props} id={`icon-${id}`} viewBox={`0 0 ${size} ${size}`}>
+    <symbol {...props} id={`wtc-icon-${id}`} viewBox={`0 0 ${size} ${size}`}>
       {children}
     </symbol>
   )

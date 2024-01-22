@@ -12,16 +12,24 @@ npx @wethegit/components-cli add icon
 
 ### Usage
 
-First import and add the `IconDefs` to your app. Make sure it's only added once.
+Add `IconDefs` to your app, make sure it's only added once, and place your `IconSymbol` components as children of `IconDefs`.
+
+`IconSymbol` takes an `id` prop, which is used to reference the icon later, and a `size` prop, which is used to scale the icon.
+
+You should use icons with a 1:1 aspect ratio, so they can be scaled relatively and without distortion.
 
 ```tsx
-import { IconDefs } from "@local/components"
+import { IconDefs, IconSymbol } from "@local/components"
 
 function RootLayout() {
   return (
     <html lang="en">
       <body>
-        <IconDefs />
+        <IconDefs>
+          <IconSymbol id="play" size={27}>
+            <path d="M27 13.2396L5.6875 26.4792L5.6875 -9.31519e-07L27 13.2396Z" />
+          </IconSymbol>
+        </IconDefs>
         {children}
       </body>
     </html>
@@ -45,33 +53,3 @@ function Page() {
   )
 }
 ```
-
-## Adding new icons
-
-First add your SVG markup to `./icon/icons/your-icon.tsx` extending the `IconSymbol` component.
-
-Example from the `play-icon.tsx`:
-
-```tsx file=icon/icons/play-icon.tsx
-import { IconSymbol } from "../icon-symbol"
-
-export function PlayIcon() {
-  return (
-    <IconSymbol id="play" size={27}>
-      <path d="M27 13.2396L5.6875 26.4792L5.6875 -9.31519e-07L27 13.2396Z" />
-    </IconSymbol>
-  )
-}
-```
-
-Then import and add the icon to the `icons` object in `./icon/icons/index.tsx`.
-
-```tsx file=icon/icons/index.tsx
-import { PlayIcon } from "./play-icon"
-
-export const icons = {
-  play: PlayIcon,
-}
-```
-
-After these steps you can use the icon in your app.
