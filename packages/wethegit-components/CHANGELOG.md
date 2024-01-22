@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.2.14
+
+### Patch Changes
+
+- de686ff: fix: spread props on `<Icon />`
+
 ## 2.2.13
 
 ### Patch Changes
