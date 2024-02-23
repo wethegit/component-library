@@ -1,0 +1,38 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/breakpoint-snipe/Readme" />
+
+# breakpoint-snipe
+
+The breakpoint-snipe component is a helper component to display the current breakpoint in the bottom right corner of the screen.
+
+### Install
+
+```bash
+npx @wethegit/components-cli add breakpoint-snipe
+```
+
+### Usage
+
+Import the `BreakpointSnipe` component and place it at the root of your application.
+
+```tsx
+import { BreakpointSnipe } from "@wethegit/components"
+
+// you probably only want to display it in dev
+const isDev = import.meta.env.MODE === "development"
+
+export function App() {
+  return (
+    <html>
+      <head>
+        <title>My App</title>
+      </head>
+      <body>
+        {isDev && <BreakpointSnipe />}
+        <h1>Hello World</h1>
+      </body>
+    </html>
+  )
+}
+```

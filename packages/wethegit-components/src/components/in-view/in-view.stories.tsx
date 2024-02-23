@@ -13,7 +13,6 @@ const meta: Meta<typeof InView> = {
     setInViewIfScrolledPast: false,
     matchRootMarginToThreshold: true,
   },
-  argTypes: {},
   decorators: [
     (Story) => (
       <>
