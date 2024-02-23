@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.2.15
+
+### Patch Changes
+
+- 238afee: fix: accessibility utilities styles filename'
+
 ## 2.2.14
 
 ### Patch Changes
