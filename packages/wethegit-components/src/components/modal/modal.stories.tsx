@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
+import { within, userEvent, waitFor } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
 import { UserPreferencesProvider } from "@wethegit/react-hooks"
 import { useModal } from "@wethegit/react-modal"
 import { useRef } from "react"
@@ -36,7 +38,7 @@ export const Default: Story = {
         </p>
       </Modal>
     )
-  },
+  }
 }
 
 export const WithButtonTrigger: Story = {
@@ -68,13 +70,38 @@ export const WithButtonTrigger: Story = {
         >
           {isOpen ? "Close" : "Open"} Modal
         </button>
-        <Modal isOpen={isOpen} toggle={toggle}>
+        <Modal isOpen={isOpen} toggle={toggle} aria-label="My Modal">
           <p style={{ color: "black", margin: 0 }}>
-            <strong>Close</strong> button doesn't work becayse inside the story we use the{" "}
-            <code>isOpen</code> control.
+            Hey! The modal is open!
           </p>
         </Modal>
       </div>
     )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // modal shouldn't be visible
+    expect(canvas.queryByRole('dialog')).not.toBeInTheDocument()
+
+    // open the modal
+    await userEvent.click(canvas.getByText('Open Modal'));
+
+    // modal should be visible
+    expect(canvas.getByRole('dialog')).toBeInTheDocument();
+
+    // initial focus is the out of bounds div, with a single tab we should focus the close button
+    await userEvent.tab();
+
+    // close button should be focused
+    expect(canvas.getByRole('button', { name: 'Close' })).toHaveFocus()
+
+    // close the modal
+    await userEvent.click(canvas.getByRole('button', { name: 'Close' }));
+
+    // modal shouldn't be visible
+    await waitFor(() => {
+      expect(canvas.queryByRole('dialog')).not.toBeInTheDocument()
+    })
   },
 }
