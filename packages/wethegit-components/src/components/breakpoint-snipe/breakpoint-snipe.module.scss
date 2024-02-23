@@ -15,26 +15,42 @@
 
   &::before {
     content: "sm";
-
-    @media #{$md-up} {
-      content: "md";
-    }
-
-    @media #{$lg-up} {
-      content: "lg";
-    }
-
-    @media #{$xl-up} {
-      content: "xl";
-    }
-
-    @media #{$xxl-up} {
-      content: "xxl";
-    }
   }
 }
 
 .breakpointSnipeDark {
   background-color: black;
   color: white;
+}
+
+@media #{$md-up} {
+  .breakpointSnipe {
+    &::before {
+      content: "md";
+    }
+  }
+}
+
+@media #{$lg-up} {
+  .breakpointSnipe {
+    &::before {
+      content: "lg";
+    }
+  }
+}
+
+@media #{$xl-up} {
+  .breakpointSnipe {
+    &::before {
+      content: "xl";
+    }
+  }
+}
+
+@media #{$xxl-up} {
+  .breakpointSnipe {
+    &::before {
+      content: "xxl";
+    }
+  }
 }

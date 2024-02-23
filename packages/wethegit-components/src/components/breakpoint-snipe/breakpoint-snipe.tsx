@@ -8,18 +8,26 @@ export interface BreakpointSnipeProps {
    * @default "light"
    */
   variant?: "light" | "dark"
+  className?: string
 }
 
 /**
  * A visual indicator of the current breakpoint
  */
-export function BreakpointSnipe({ variant = "light" }: BreakpointSnipeProps) {
+export function BreakpointSnipe({
+  variant = "light",
+  className,
+  ...props
+}: BreakpointSnipeProps) {
   return (
     <div
       className={classnames([
         styles.breakpointSnipe,
         variant === "dark" && styles.breakpointSnipeDark,
+        className,
       ])}
+      {...props}
+      aria-hidden="true"
     />
   )
 }
