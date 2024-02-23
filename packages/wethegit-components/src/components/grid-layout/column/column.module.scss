@@ -34,10 +34,10 @@
   @include make-column-classnames(lg);
 }
 
-@media #{$xlg-up} {
+@media #{$xl-up} {
   @include make-column-classnames(xl);
 }
 
-@media #{$xxlg-up} {
+@media #{$xxl-up} {
   @include make-column-classnames(xxl);
 }

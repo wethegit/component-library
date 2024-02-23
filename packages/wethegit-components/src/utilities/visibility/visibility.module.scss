@@ -7,10 +7,10 @@
 .md-up,
 .lg-only,
 .lg-up,
-.xlg-only,
-.xlg-up,
-.xxlg-only,
-.xxlg-up {
+.xl-only,
+.xl-up,
+.xxl-only,
+.xxl-up {
   display: none;
 }
 
@@ -36,23 +36,23 @@
   }
 }
 
-@media #{$xlg-up} {
+@media #{$xl-up} {
   .lg-only {
     display: none;
   }
 
-  .xlg-only,
-  .xlg-up {
+  .xl-only,
+  .xl-up {
     display: block;
   }
 }
 
-@media #{$xxlg-up} {
-  .xlg-only {
+@media #{$xxl-up} {
+  .xl-only {
     display: none;
   }
 
-  .xxlg-up {
+  .xxl-up {
     display: block;
   }
 }
