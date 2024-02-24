@@ -81,7 +81,7 @@ See the [Animation Presets](/docs/components-in-view-docs-animation-presets--ove
 
 ## Sequenced (or staggered) animation
 
-The `<InView>` and `<InViewItem>` components also accept a `staggerChildren` prop, which allows you to easily specify a single animation for all immediate children to preform, in sequence, once they're in view. The properties passed to `staggerChildren` are the same as the top-level animation props (animation, duration, delay), and also include a new `stagger` property to specify the amount of time between sequenced children. See the example below.
+The `<InViewItem>` components also accept a `staggerChildren` prop, which allows you to easily specify a single animation for all immediate children to preform, in sequence, once they're in view. The properties passed to `staggerChildren` are the same as the top-level animation props (animation, duration, delay), and also include a new `stagger` property to specify the amount of time between sequenced children. See the example below.
 
 ### Example
 
@@ -91,27 +91,23 @@ import styles from "./your-component-styles.module.scss"
 
 function Component() {
   return (
-    <InView
-      as="ul"
-      staggerChildren={{
-        animation: animation.fromBottomFixed,
-        duration: 0.3,
-        delay: 0,
-        stagger: 0.2, // Each item will be separated by 0.2 seconds
-      }}
-    >
-      <li>
+    <InView as="ul">
+      {/* passing `true` will use the default values */}
+      <InViewItem as="li" staggerChildren={true}>
         <img src="image-01.jpg" alt="" />
-      </li>
-      <li>
+        <span>Image 01</span>
+      </InViewItem>
+      <InViewItem
+        staggerChildren={{
+          animation: animation.fromBottomFixed,
+          duration: 0.3,
+          delay: 0,
+          stagger: 0.2, // Each item will be separated by 0.2 seconds
+        }}
+      >
         <img src="image-02.jpg" alt="" />
-      </li>
-      <li>
-        <img src="image-03.jpg" alt="" />
-      </li>
-      <li>
-        <img src="image-04.jpg" alt="" />
-      </li>
+        <span>Image 02</span>
+      </InViewItem>
     </InView>
   )
 }

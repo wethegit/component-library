@@ -168,14 +168,7 @@ export const StaggerChildren: Story = {
         </InViewItem>
       </InView>
       <InView as="section" {...args}>
-        <InViewItem
-          as="ul"
-          staggerChildren={{
-            animation: animation.fromBottomFixed,
-            stagger: 0.2,
-            delay: 0,
-          }}
-        >
+        <InViewItem as="ul" staggerChildren={true}>
           <li>
             Each list item is automatically sequenced, using the{" "}
             <strong>staggerChildren</strong> option with a{" "}
