@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.3.1
+
+### Patch Changes
+
+- 62688f9: (comp) fix: inView staggerChildren docs and base duration value
+
 ## 2.3.0
 
 ### Minor Changes
