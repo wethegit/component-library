@@ -1,6 +1,8 @@
+@use "@local/styles/animation/animation-utilities" as *;
+
 /**
  * Returns a value in seconds, equal to the number passed divided by 10. (2 => 0.2s)
- * Useful when generating duration or delay classnames. 
+ * Useful when generating duration or delay classnames.
  */
 @function get-duration($i, $subDivisions: 10) {
   @return calc(#{$i} / #{$subDivisions} * 1s * var(--duration-factor, 1));
@@ -22,7 +24,7 @@
   transform: translate(var(--start-x, 0), var(--start-y, 0))
     rotate(var(--start-rotate, 0deg)) scale(var(--start-scale, 1));
   transition-delay: var(--delay, 0s);
-  transition-duration: var(--duration, 0.4s);
+  transition-duration: duration(var(--duration, 0.4s));
   transition-property: transform, opacity;
   transition-timing-function: var(--ease, ease-out);
 }
