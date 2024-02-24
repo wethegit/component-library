@@ -72,10 +72,10 @@
   @include breakpoint-classnames(lg);
 }
 
-@media #{$xlg-up} {
+@media #{$xl-up} {
   @include breakpoint-classnames(xl);
 }
 
-@media #{$xxlg-up} {
+@media #{$xxl-up} {
   @include breakpoint-classnames(xxl);
 }

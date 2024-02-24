@@ -6,9 +6,9 @@ const classNames = [
   "md-up",
   "lg-only",
   "lg-up",
-  "xlg-only",
-  "xlg-up",
-  "xxlg-up",
+  "xl-only",
+  "xl-up",
+  "xxl-up",
 ] as const
 
 export type VisibilityName = (typeof classNames)[number]

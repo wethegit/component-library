@@ -70,10 +70,10 @@ $total-space-classes: 10;
   @include generate-spacer-classes($total-space-classes, "lg-");
 }
 
-@media #{$xlg-up} {
+@media #{$xl-up} {
   @include generate-spacer-classes($total-space-classes, "xl-");
 }
 
-@media #{$xxlg-up} {
+@media #{$xxl-up} {
   @include generate-spacer-classes($total-space-classes, "xxl-");
 }
