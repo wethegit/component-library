@@ -1,5 +1,23 @@
 # @wethegit/components
 
+## 2.3.1
+
+### Patch Changes
+
+- 62688f9: (comp) fix: inView staggerChildren docs and base duration value
+
+## 2.3.0
+
+### Minor Changes
+
+- 9a9ae39: (comp) feature: adds breakpoint snipe component
+
+## 2.2.15
+
+### Patch Changes
+
+- 238afee: fix: accessibility utilities styles filename'
+
 ## 2.2.14
 
 ### Patch Changes

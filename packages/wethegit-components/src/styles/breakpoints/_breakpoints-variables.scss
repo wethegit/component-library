@@ -5,8 +5,8 @@
 $sm: 0, 639;
 $md: 640, 1023;
 $lg: 1024, 1143;
-$xlg: 1144, 1439;
-$xxlg: 1440;
+$xl: 1144, 1439;
+$xxl: 1440;
 
 // map of media queries
 $breakpoints: (
@@ -17,10 +17,10 @@ $breakpoints: (
   "lg-up": "screen and (min-width: #{list.nth($lg, 1)}px)",
   "lg-only":
     "screen and (min-width: #{list.nth($lg, 1)}px) and (max-width: #{list.nth($lg, 2)}px)",
-  "xlg-up": "screen and (min-width: #{list.nth($xlg, 1)}px)",
-  "xlg-only":
-    "screen and (min-width: #{list.nth($xlg, 1)}px) and (max-width: #{list.nth($xlg, 2)}px)",
-  "xxlg-up": "screen and (min-width: #{$xxlg}px)",
+  "xl-up": "screen and (min-width: #{list.nth($xl, 1)}px)",
+  "xl-only":
+    "screen and (min-width: #{list.nth($xl, 1)}px) and (max-width: #{list.nth($xl, 2)}px)",
+  "xxl-up": "screen and (min-width: #{$xxl}px)",
 );
 
 // media queries
@@ -29,6 +29,6 @@ $md-up: map.get($breakpoints, "md-up");
 $md-only: map.get($breakpoints, "md-only");
 $lg-up: map.get($breakpoints, "lg-up");
 $lg-only: map.get($breakpoints, "lg-only");
-$xlg-up: map.get($breakpoints, "xlg-up");
-$xlg-only: map.get($breakpoints, "xlg-only");
-$xxlg-up: map.get($breakpoints, "xxlg-up");
+$xl-up: map.get($breakpoints, "xl-up");
+$xl-only: map.get($breakpoints, "xl-only");
+$xxl-up: map.get($breakpoints, "xxl-up");
