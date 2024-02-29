@@ -18,6 +18,8 @@
     "eslint": "^8.48.0",
     "eslint-config-custom": "*",
     "husky": "^8.0.3",
+    "lint-staged": "^15.2.2",
+    "lint-staged-config": "*",
     "prettier": "^3.0.3",
     "stylelint": "^15.11.0",
     "stylelint-config-custom": "*",

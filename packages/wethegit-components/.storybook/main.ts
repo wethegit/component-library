@@ -8,7 +8,12 @@ const config: StorybookConfig = {
     "../src/**/*.stories.{js,jsx,ts,tsx}",
   ],
   staticDirs: ["../public"],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials", '@storybook/addon-a11y', '@storybook/addon-interactions'],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-a11y",
+    "@storybook/addon-interactions",
+  ],
   framework: {
     name: "@storybook/react-vite",
     options: {},
