@@ -172,10 +172,15 @@ const VISUALLY_HIDDEN_LINKS: Registry = {
   localDependencies: [CLASSNAMES, VISUALLY_HIDDEN],
 }
 
+const BREAKPOINT_SNIPE: Registry = {
+  name: "breakpoint-snipe",
+  category: "component",
+  localDependencies: [CLASSNAMES],
+}
+
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
-  [CLASSNAMES.name]: CLASSNAMES,
-  [COLOR.name]: COLOR,
+  [BREAKPOINT_SNIPE.name]: BREAKPOINT_SNIPE,
   [FLEX.name]: FLEX,
   [GRID_LAYOUT.name]: GRID_LAYOUT,
   [ICON.name]: ICON,
@@ -183,11 +188,14 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [IN_VIEW.name]: IN_VIEW,
   [MODAL.name]: MODAL,
   [NAVIGATION.name]: NAVIGATION,
-  [SPACING.name]: SPACING,
   [TAG.name]: TAG,
   [TEXT.name]: TEXT,
-  [VISIBILITY.name]: VISIBILITY,
   [VISUALLY_HIDDEN.name]: VISUALLY_HIDDEN,
   [VISUALLY_HIDDEN_LINKS.name]: VISUALLY_HIDDEN_LINKS,
+
+  [CLASSNAMES.name]: CLASSNAMES,
+  [COLOR.name]: COLOR,
+  [SPACING.name]: SPACING,
+  [VISIBILITY.name]: VISIBILITY,
 }
 /* END REGISTRY INDEX */
