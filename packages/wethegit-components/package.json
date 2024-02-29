@@ -9,6 +9,7 @@
     "./src/**/!(*.stories.*)",
     "./src/**/!(.storybook)"
   ],
+  "type": "module",
   "exports": {
     "./components/*": "./src/components/*",
     "./hooks/*": "./src/hooks/*",
