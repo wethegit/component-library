@@ -1,3 +1,1 @@
-import baseConfig from "lint-staged-config/.lintstagedrc.js"
-
-export default baseConfig
+module.exports = require("lint-staged-config/.lintstagedrc.js")
