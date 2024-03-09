@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.3.2
+
+### Patch Changes
+
+- 91431fd: feature: adds tests to <Modal /> component
+
 ## 2.3.1
 
 ### Patch Changes
