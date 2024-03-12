@@ -82,7 +82,7 @@ const TEXT: Registry = {
   category: "component",
   localDependencies: [TAG, CLASSNAMES],
   docsUrl:
-    "https://wethegit.github.io/component-library/?path=/docs/components-text-readme--docs",
+    "https://wethegit.github.io/component-library/?path=/docs/components-text-readme--overview",
   postInstallMessages: [
     `The ${chalk.bold("Text")} component requires a ${chalk.italic("CSS")} file to work properly. Add the following line to your global styles:`,
     '@import "@local/components/text/styles/text.scss";',
@@ -106,7 +106,7 @@ const GRID_LAYOUT: Registry = {
   category: "component",
   localDependencies: [FLEX],
   docsUrl:
-    "https://wethegit.github.io/component-library/?path=/docs/components-grid-layout-readme--docs",
+    "https://wethegit.github.io/component-library/?path=/docs/components-grid-layout-readme--overview",
   postInstallMessages: [
     `The ${chalk.bold("grid")} requires a CSS file to work properly. Add the following line to your global styles:`,
     '@import "@local/components/grid-layout/styles/grid-layout.scss";',
@@ -118,7 +118,7 @@ const IMAGE_GROUP: Registry = {
   category: "component",
   localDependencies: [CLASSNAMES, FIXED_FORWARD_REF, TAG],
   docsUrl:
-    "https://wethegit.github.io/component-library/?path=/docs/components-image-group-readme--docs",
+    "https://wethegit.github.io/component-library/?path=/docs/components-image-group-readme--overview",
 }
 
 const VISUALLY_HIDDEN: Registry = {
@@ -126,7 +126,7 @@ const VISUALLY_HIDDEN: Registry = {
   category: "component",
   localDependencies: [TAG, CLASSNAMES],
   docsUrl:
-    "https://wethegit.github.io/component-library/?path=/docs/components-visually-hidden-readme--docs",
+    "https://wethegit.github.io/component-library/?path=/docs/components-visually-hidden-readme--overview",
 }
 
 const NAVIGATION: Registry = {
@@ -134,7 +134,7 @@ const NAVIGATION: Registry = {
   category: "component",
   localDependencies: [FLEX, CLASSNAMES, VISUALLY_HIDDEN, FIXED_FORWARD_REF],
   docsUrl:
-    "https://wethegit.github.io/component-library/?path=/docs/components-navigation-readme--docs",
+    "https://wethegit.github.io/component-library/?path=/docs/components-navigation-readme--overview",
 }
 
 const ICON: Registry = {
@@ -142,7 +142,7 @@ const ICON: Registry = {
   category: "component",
   localDependencies: [CLASSNAMES],
   docsUrl:
-    "https://wethegit.github.io/component-library/?path=/docs/components-icon-readme--docs",
+    "https://wethegit.github.io/component-library/?path=/docs/components-icon-readme--overview",
 }
 
 const MODAL: Registry = {
@@ -151,7 +151,7 @@ const MODAL: Registry = {
   localDependencies: [CLASSNAMES],
   dependencies: ["@wethegit/react-modal", "@wethegit/react-hooks"],
   docsUrl:
-    "https://wethegit.github.io/component-library/?path=/docs/components-modal-readme--docs",
+    "https://wethegit.github.io/component-library/?path=/docs/components-modal-readme--overview",
   postInstallMessages: [
     `The Modal requires the styles from ${chalk.italic("@wethegit/react-modal")} to work.`,
     `It should be imported in your main ${chalk.bold("js")} file. In NextJS that would be the ${chalk.italic("_app.js")} file:`,
@@ -178,8 +178,18 @@ const BREAKPOINT_SNIPE: Registry = {
   localDependencies: [CLASSNAMES],
 }
 
+const BACK_TO_TOP: Registry = {
+  name: "back-to-top",
+  category: "component",
+  localDependencies: [CLASSNAMES],
+  dependencies: ["@wethegit/react-hooks"],
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/components-back-to-top-readme--overview",
+}
+
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
+  [BACK_TO_TOP.name]: BACK_TO_TOP,
   [BREAKPOINT_SNIPE.name]: BREAKPOINT_SNIPE,
   [FLEX.name]: FLEX,
   [GRID_LAYOUT.name]: GRID_LAYOUT,
