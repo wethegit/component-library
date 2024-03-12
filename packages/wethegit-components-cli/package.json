@@ -26,7 +26,8 @@
     "eslint-config-custom": "*",
     "tsconfig": "*",
     "tsup": "^7.2.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "lint-staged-config": "*"
   },
   "publishConfig": {
     "access": "public"
