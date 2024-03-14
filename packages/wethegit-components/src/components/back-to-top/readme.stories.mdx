@@ -26,8 +26,32 @@ function YourComponent() {
 
 ### Focus management
 
-By default, on completion of scroll, the component will shift the browser's focus to the element at the `#main-content` CSS selector. This can be easily overridden within `back-to-top.tsx`, using the `FOCUS_ON_COMPLETE_SELECTOR` constant.
+By default, on completion of scroll, the component will shift the browser's focus to the element at the `#main-content` CSS selector. This can be easily overridden by passing a CSS selector to the `focusOnCompleteCssSelector` prop.
 
 ### Reduced motion
 
 This component leverages the `@wethegit/react-hooks` package to dynamically change the duration of the scroll effect, based on whether the user has the reduced motion preference enabled on their system. If they do, the scroll happens instanly rather than being tweened.
+
+## Advanced options
+
+Here's a look at some of the more custom props `<BackToTop>` accepts.
+
+```jsx
+import { BackToTop } from "@local/components/back-to-top"
+
+function YourComponent() {
+  return (
+    <BackToTop
+      easingFunction={(d) => d ** 4}
+      focusOnCompleteCssSelector={"#focus-me-on-complete"}
+      onComplete={(buttonElement) => {
+        console.log(buttonElement)
+      }}
+      pixelsPerSecond={2000}
+      revealThreshold="90vh"
+    >
+      Back to top!
+    </BackToTop>
+  )
+}
+```
