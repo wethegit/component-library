@@ -53,7 +53,9 @@ function Comp() {
 
 ### Child spacing
 
-The spacing utility allows you to easily establish a consistent vertical flow for the child elements of a given container. This is a useful alternative to adding `spacing.margin.top[2]` to every child element.
+The spacing utility allows you to easily establish a consistent _vertical_ flow for the child elements of a given container. This is a useful alternative to adding `spacing.margin.top[2]` to every child element.
+
+It's important to mention the distinction between "child spacing" and the other spacing utilities (`padding` and `margin`): "child-spacing" is only for vertical spacing of immediate children. A good use case for this is separating typographic elements vertically, like a heading followed by a few paragraphs.
 
 Here is an unordered list which adds `16px` of vertical space between all immediate child nodes:
 
