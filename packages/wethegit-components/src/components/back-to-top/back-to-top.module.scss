@@ -31,9 +31,7 @@
 }
 
 .viewportReference {
-  // this height does not have to be 100% accurate.
-  // It's just an approximation of 100vh minus a typical nav's height.
-  height: 85vh;
+  height: var(--reveal-threshold, 300px);
   left: 0;
   pointer-events: none;
   position: absolute;

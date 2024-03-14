@@ -5,11 +5,37 @@ import { classnames } from "@local/utilities"
 
 import styles from "./back-to-top.module.scss"
 
-const FOCUS_ON_COMPLETE_SELECTOR = "#main-content"
+export type EasingFunction = (delta: number) => number
 
-export interface BackToTopProps extends React.HTMLAttributes<HTMLButtonElement> {}
+export interface BackToTopProps extends React.HTMLAttributes<HTMLButtonElement> {
+  /**
+   * Easing function for the scroll animation. Defaults to an in-out sine curve.
+   */
+  easingFunction?: EasingFunction
+  /**
+   * Valid CSS selector referencing the DOM element to shift focus to on completion of scroll.
+   */
+  focusOnCompleteCssSelector: string
+  /**
+   * Callback to run after completion of scroll.
+   */
+  onComplete?: (element: HTMLButtonElement | null) => void
+  /**
+   * Number of pixels to scroll per second, when motion is enabled.
+   */
+  pixelsPerSecond?: number
+  /**
+   * CSS height value corresponding to amount of distance to scroll before the button is revealed. Defaults to "85vh". Set this to `"0"` to have the button persist at all times.
+   */
+  revealThreshold: string
+}
 
 export function BackToTop({
+  easingFunction,
+  focusOnCompleteCssSelector = "#main-content",
+  onComplete,
+  pixelsPerSecond = 2000,
+  revealThreshold = "85vh",
   className,
   children,
   ...props
@@ -27,14 +53,16 @@ export function BackToTop({
       if (onClick && typeof onClick === "function") onClick(event)
 
       const position = window.scrollY
-      const duration = prefersReducedMotion ? 0 : getDuration(position)
+      const duration = prefersReducedMotion ? 0 : getDuration(position, pixelsPerSecond)
       let starttime: null | number = null
 
       const animate = (delta: number) => {
         if (starttime === null) starttime = 0
 
         const playHead = clamp(0, 1, (delta - starttime) / duration)
-        const easedPlayHead = Math.sin(playHead * Math.PI * 0.5)
+        const easedPlayHead = easingFunction
+          ? easingFunction(playHead)
+          : Math.sin(playHead * Math.PI * 0.5)
         const newPos = lerp(position, 0, easedPlayHead)
 
         window.scroll(0, newPos)
@@ -42,7 +70,8 @@ export function BackToTop({
         if (delta - starttime < duration) requestAnimationFrame(animate)
 
         // complete
-        focusContent(FOCUS_ON_COMPLETE_SELECTOR)
+        focusContent(focusOnCompleteCssSelector)
+        if (onComplete) onComplete(buttonRef.current)
       }
 
       requestAnimationFrame(animate)
@@ -53,13 +82,17 @@ export function BackToTop({
   return (
     <>
       {/* this is a reference element, so that we know when to show the button */}
-      <div className={styles.viewportReference} ref={setReferenceRef} />
+      <div
+        className={styles.viewportReference}
+        ref={setReferenceRef}
+        style={{ "--reveal-threshold": revealThreshold } as React.CSSProperties}
+      />
 
       <button
         ref={buttonRef}
         className={classnames([
           styles.button,
-          !referenceIsInView && styles.buttonShown,
+          (!referenceIsInView || revealThreshold.startsWith("0")) && styles.buttonShown,
           className,
         ])}
         onClick={handleClick}
@@ -80,7 +113,7 @@ function focusContent(cssSelector: string) {
 }
 
 // returns a dynamic speed, based on the distance from the top of the document.
-function getDuration(distance: number, pixelsPerSecond: number = 2000) {
+function getDuration(distance: number, pixelsPerSecond: number) {
   return Math.floor((distance / pixelsPerSecond) * 1000)
 }
 
