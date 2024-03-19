@@ -105,3 +105,21 @@ export const InvalidFocusOnComplete: Story = {
     expect(b2tButton).toHaveFocus()
   },
 }
+
+export const NoFocusOnComplete: Story = {
+  render: () => (
+    <BackToTop focusOnCompleteCssSelector="#this-doesnt-exist" revealThreshold="0">
+      Back to top!
+    </BackToTop>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const b2tButton = canvas.getByText("Back to top!")
+    expect(b2tButton).toBeInTheDocument()
+    await userEvent.click(b2tButton)
+    await waitFor(() => {
+      expect(window.scrollY).toEqual(0)
+    })
+    expect(b2tButton).toHaveFocus()
+  },
+}
