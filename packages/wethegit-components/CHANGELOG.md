@@ -1,5 +1,12 @@
 # @wethegit/components
 
+## 2.3.3
+
+### Patch Changes
+
+- be07fc2: Adds BackToTop component and child spacing utilities.
+- 8ce33dc: feature: adds lint-staged
+
 ## 2.3.2
 
 ### Patch Changes
