@@ -1,5 +1,14 @@
 # @wethegit/components-cli
 
+## 3.0.3
+
+### Patch Changes
+
+- 8ce33dc: feature: adds lint-staged
+- Updated dependencies [be07fc2]
+- Updated dependencies [8ce33dc]
+  - @wethegit/components@2.3.3
+
 ## 3.0.2
 
 ### Patch Changes
