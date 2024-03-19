@@ -9,7 +9,6 @@
   color: get-color("white");
   opacity: 0;
   padding: 1rem;
-  pointer-events: none;
   position: fixed;
   right: 1rem;
   transform: scale(var(--scale));
@@ -27,7 +26,6 @@
 
 .buttonShown {
   opacity: 1;
-  pointer-events: all;
 }
 
 .viewportReference {
