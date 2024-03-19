@@ -60,20 +60,50 @@ $total-space-classes: 10;
   }
 }
 
+/**
+  * Generates the vertical (block) child-spacing class names.
+  * Classes are generated for each size based on the $base-space variable.
+  *
+  * Format for class names is:
+  * {child-spacing}{-breakpoint[optional]}-{size}
+  *
+  * Examples:
+  * child-spacing-1, child-spacing-md-4, child-spacing-lg-6
+  *
+  * @param {Number} $total - The total number of classes to generate (0 through $total). Sizes are based on the $base-space property.
+  * @param {String} $suffix - An optional suffix to append to the class name.
+  */
+@mixin generate-child-spacing-classes($total, $suffix: "") {
+  @for $i from 0 through $total {
+    $base-classname: "child-spacing";
+
+    .#{$base-classname}-#{$suffix}#{$i} {
+      > * + * {
+        margin-block-start: space-by($i);
+      }
+    }
+  }
+}
+
 @include generate-spacer-classes($total-space-classes);
+@include generate-child-spacing-classes($total-space-classes);
 
 @media #{$md-up} {
   @include generate-spacer-classes($total-space-classes, "md-");
+  @include generate-child-spacing-classes($total-space-classes, "md-");
 }
 
 @media #{$lg-up} {
   @include generate-spacer-classes($total-space-classes, "lg-");
+  @include generate-child-spacing-classes($total-space-classes, "lg-");
 }
 
 @media #{$xl-up} {
   @include generate-spacer-classes($total-space-classes, "xl-");
+  @include generate-child-spacing-classes($total-space-classes, "xl-");
 }
 
 @media #{$xxl-up} {
   @include generate-spacer-classes($total-space-classes, "xxl-");
+  @include generate-child-spacing-classes($total-space-classes, "xxl-");
 }

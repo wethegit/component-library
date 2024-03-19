@@ -51,6 +51,30 @@ function Comp() {
 }
 ```
 
+### Child spacing
+
+The spacing utility allows you to easily establish a consistent _vertical_ flow for the child elements of a given container. This is a useful alternative to adding `spacing.margin.top[2]` to every child element.
+
+It's important to mention the distinction between "child spacing" and the other spacing utilities (`padding` and `margin`): "child-spacing" is only for vertical spacing of immediate children. A good use case for this is separating typographic elements vertically, like a heading followed by a few paragraphs.
+
+Here is an unordered list which adds `16px` of vertical space between all immediate child nodes:
+
+```jsx
+import { classnames, spacing } from "@local/utilities"
+
+function Comp() {
+  return (
+    <ul className={spacing.children[2]}>
+      <li>Item 1</li>
+      <li>Item 1</li>
+      <li>Item 1</li>
+    </ul>
+  )
+}
+```
+
+This uses the CSS selector `> * + *` behind the scenes, adding `margin-top` to every _subsequent_ child of an element (ommitting the first child).
+
 ## Responsiveness
 
 The spacing utility also has responsive classes that can be used to add margin and padding at different breakpoints.
@@ -62,6 +86,16 @@ import { classnames, spacing } from "@local/utilities"
 
 function Comp() {
   return <div className={classnames([spacing.margin[2], spacing.md.margin[3]])} />
+}
+```
+
+Similarly, you could apply the following for spacing-out all immediate children of an element:
+
+```jsx
+import { classnames, spacing } from "@local/utilities"
+
+function Comp() {
+  return <div className={classnames([spacing.children[2], spacing.md.children[3]])} />
 }
 ```
 

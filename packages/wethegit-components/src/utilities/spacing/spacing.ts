@@ -31,9 +31,12 @@ type SpacingPadding = Record<SpacingRange, string> & {
   y: Record<SpacingRange, string>
 }
 
+type SpacingChildren = Record<SpacingRange, string>
+
 interface SpacingStops {
   margin: SpacingMargin
   padding: SpacingPadding
+  children: SpacingChildren
 }
 
 export type Spacing = SpacingStops & Omit<Breakpoints<SpacingStops>, "sm">
@@ -46,6 +49,8 @@ for (const bp of BREAKPOINTS) {
   for (let i = 0 as SpacingRange; i <= TOTAL_SPACE_CLASSES; i++) {
     const directions = ["left", "right", "top", "bottom", "x", "y"] as const
     const properties = ["margin", "padding"] as const
+    const childSpacingProperty = "children"
+    const childSpacingClassName = "child-spacing"
 
     for (const prop of properties) {
       spacing[prop] ||= {} as Spacing["margin"]
@@ -67,6 +72,13 @@ for (const bp of BREAKPOINTS) {
         spacing[bp][prop][dir][i] = styles[`${prop}-${dir}-${bp}-${i}`]
       }
     }
+
+    // child-spacing values; base and breakpoint-specific.
+    // e.g. spacing.children[1], spacing.md.children[3]
+    spacing[childSpacingProperty] ||= {} as Spacing["children"]
+    spacing[childSpacingProperty][i] = styles[`${childSpacingClassName}-${i}`]
+    spacing[bp][childSpacingProperty] ||= {} as Spacing["md"]["children"]
+    spacing[bp][childSpacingProperty][i] = styles[`${childSpacingClassName}-${bp}-${i}`]
   }
 
   // margin left/right/x can be set to auto
