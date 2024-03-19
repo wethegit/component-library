@@ -1,0 +1,57 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/back-to-top/Readme" />
+
+# Back to top
+
+`<BackToTop>` Renders an HTML `<button>` element which scrolls the user to the top of the page when interacted with. The component takes accessibility into mind, managing browser focus and honoring reduced motion preferences.
+
+## Install
+
+```bash
+npx @wethegit/components-cli add back-to-top
+```
+
+## Usage example
+
+```jsx
+import { BackToTop } from "@local/components/back-to-top"
+
+function YourComponent() {
+  return <BackToTop>Back to top!</BackToTop>
+}
+```
+
+## Accessibility
+
+### Focus management
+
+By default, on completion of scroll, the component will shift the browser's focus to the element at the `#main-content` CSS selector. This can be easily overridden by passing a CSS selector to the `focusOnCompleteCssSelector` prop.
+
+### Reduced motion
+
+This component leverages the `@wethegit/react-hooks` package to dynamically change the duration of the scroll effect, based on whether the user has the reduced motion preference enabled on their system. If they do, the scroll happens instanly rather than being tweened.
+
+## Advanced options
+
+Here's a look at some of the more custom props `<BackToTop>` accepts.
+
+```jsx
+import { BackToTop } from "@local/components/back-to-top"
+
+function YourComponent() {
+  return (
+    <BackToTop
+      easingFunction={(d) => d ** 4}
+      focusOnCompleteCssSelector={"#focus-me-on-complete"}
+      onComplete={(buttonElement) => {
+        console.log(buttonElement)
+      }}
+      pixelsPerSecond={2000}
+      revealThreshold="90vh"
+    >
+      Back to top!
+    </BackToTop>
+  )
+}
+```
