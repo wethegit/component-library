@@ -1,14 +1,14 @@
 import styles from "./visibility.module.scss"
 
 const classNames = [
-  "sm-only",
-  "md-only",
-  "md-up",
-  "lg-only",
-  "lg-up",
-  "xl-only",
-  "xl-up",
-  "xxl-up",
+  "smOnly",
+  "mdOnly",
+  "mdUp",
+  "lgOnly",
+  "lgUp",
+  "xlOnly",
+  "xlUp",
+  "xxlUp",
 ] as const
 
 export type VisibilityName = (typeof classNames)[number]
@@ -16,6 +16,9 @@ export type VisibilityName = (typeof classNames)[number]
 export type Visibility = Record<VisibilityName, string>
 
 export const visibility = classNames.reduce((acc, name) => {
-  acc[name] = styles[`bg-${name}`]
+  const className = name.replace(/[A-Z]/g, (match) => "-" + match.toLowerCase())
+
+  acc[name] = styles[className]
+
   return acc
 }, {} as Visibility)
