@@ -1,6 +1,6 @@
 import { expect } from "@storybook/jest"
 import type { Meta, StoryObj } from "@storybook/react"
-import { userEvent, within } from "@storybook/testing-library"
+import { userEvent, within, waitFor } from "@storybook/testing-library"
 
 import { BackToTop, Text } from "@local/components"
 
@@ -79,13 +79,23 @@ export const Default: Story = {
     const canvas = within(canvasElement)
     const b2tButton = canvas.getByText("Back to top!")
 
+    // click the button
     await userEvent.click(b2tButton)
 
-    // check scroll position
-    // TODO can we wait for the scroll?
-    expect(window.scrollY).toEqual(0)
+    // ensure the scroll position is 0
+    await waitFor(() => {
+      expect(window.scrollY).toEqual(0)
+    })
 
-    // ensure the intended content receives focus
-    await expect(document.querySelector(args.focusOnCompleteCssSelector)).toHaveFocus()
+    // Ensure the focus-on-complete selector exists, and that it receives focus.
+    if (args.focusOnCompleteCssSelector) {
+      const focusOnComplete = document.querySelector(args.focusOnCompleteCssSelector)
+
+      expect(focusOnComplete).toBeInTheDocument()
+
+      await waitFor(() => {
+        expect(focusOnComplete).toHaveFocus()
+      })
+    }
   },
 }
