@@ -22,9 +22,19 @@ const meta: Meta<typeof BackToTop> = {
       control: "function",
     },
   },
+}
+
+export default meta
+
+type Story = StoryObj<typeof BackToTop>
+
+export const Default: Story = {
   decorators: [
     (Story) => (
-      <div style={{ textAlign: "center" }} className="childSpacing">
+      <div
+        style={{ textAlign: "center", paddingBlockEnd: "5rem" }}
+        className="childSpacing"
+      >
         <Text>🎉 Yay, caveats!</Text>
         <Text variant="body">
           This story is <em>only</em> here to document all of the available props on the{" "}
@@ -56,46 +66,54 @@ const meta: Meta<typeof BackToTop> = {
       </div>
     ),
   ],
-}
-
-export default meta
-
-type Story = StoryObj<typeof BackToTop>
-
-export const Default: Story = {
-  render: (args) => (
-    <BackToTop
-      style={{
-        position: "sticky",
-        top: "1rem",
-        bottom: "auto",
-      }}
-      {...args}
-    >
-      Back to top!
-    </BackToTop>
-  ),
+  render: (args) => <BackToTop {...args}>Back to top!</BackToTop>,
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement)
     const b2tButton = canvas.getByText("Back to top!")
 
-    // click the button
+    expect(b2tButton).toBeInTheDocument()
+
     await userEvent.click(b2tButton)
 
-    // ensure the scroll position is 0
+    // Scroll position is 0
     await waitFor(() => {
       expect(window.scrollY).toEqual(0)
     })
 
-    // Ensure the focus-on-complete selector exists, and that it receives focus.
-    if (args.focusOnCompleteCssSelector) {
-      const focusOnComplete = document.querySelector(args.focusOnCompleteCssSelector)
+    // Focus-on-complete selector receives focus.
+    const focusOnComplete = document.querySelector(args.focusOnCompleteCssSelector)
+    expect(focusOnComplete).toBeInTheDocument()
+    await waitFor(() => {
+      expect(focusOnComplete).toHaveFocus()
+    })
+  },
+}
 
-      expect(focusOnComplete).toBeInTheDocument()
+export const NoFocusOnComplete: Story = {
+  args: {
+    focusOnCompleteCssSelector: "",
+    revealThreshold: "0",
+  },
+  render: (args) => <BackToTop {...args}>Back to top!</BackToTop>,
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    const b2tButton = canvas.getByText("Back to top!")
+    expect(b2tButton).toBeInTheDocument()
+    expect(args.focusOnCompleteCssSelector).toBeFalsy()
+  },
+}
 
-      await waitFor(() => {
-        expect(focusOnComplete).toHaveFocus()
-      })
-    }
+export const InvalidFocusOnComplete: Story = {
+  args: {
+    focusOnCompleteCssSelector: "#this-doesnt-exist",
+    revealThreshold: "0",
+  },
+  render: (args) => <BackToTop {...args}>Back to top!</BackToTop>,
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    const b2tButton = canvas.getByText("Back to top!")
+    expect(b2tButton).toBeInTheDocument()
+    const focusOnComplete = document.querySelector(args.focusOnCompleteCssSelector)
+    expect(focusOnComplete).not.toBeInTheDocument()
   },
 }
