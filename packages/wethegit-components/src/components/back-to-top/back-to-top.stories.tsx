@@ -88,7 +88,7 @@ export const Default: Story = {
   },
 }
 
-export const InvalidFocusOnComplete: Story = {
+export const NoFocusOnComplete: Story = {
   render: () => (
     <BackToTop focusOnCompleteCssSelector="" revealThreshold="0">
       Back to top!
@@ -106,7 +106,7 @@ export const InvalidFocusOnComplete: Story = {
   },
 }
 
-export const NoFocusOnComplete: Story = {
+export const InvalidFocusOnComplete: Story = {
   render: () => (
     <BackToTop focusOnCompleteCssSelector="#this-doesnt-exist" revealThreshold="0">
       Back to top!
