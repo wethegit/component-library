@@ -108,6 +108,7 @@ export function BackToTop({
 function focusContent(cssSelector: string) {
   if (typeof window === "undefined") return
   const mainContentAnchor = document.querySelector(cssSelector) as HTMLElement
+  if (!mainContentAnchor) return
   mainContentAnchor.tabIndex = -1
   mainContentAnchor.focus({ preventScroll: true })
 }
