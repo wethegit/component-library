@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.3.4
+
+### Patch Changes
+
+- d121019: fix: stories being copied with TS files and TS dependecy version
+
 ## 2.3.3
 
 ### Patch Changes
