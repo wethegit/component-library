@@ -111,7 +111,7 @@ function copyLocalDependencies({
     } else {
       allFilesOperations.push(
         fse
-          .copy(resolve(src, name), dest)
+          .copy(resolve(src, name), dest, { filter: (src) => !src.includes(".stories.") })
           .then(() => {
             componentSpinner.succeed()
           })
