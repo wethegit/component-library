@@ -1,23 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Navigation } from "."
-
-const LINKS = {
-  home: {
-    label: "Home",
-    path: "/",
-  },
-  about: {
-    label: "About",
-    path: "/about",
-  },
-}
+import { NavListItem, Navigation } from "."
 
 const meta: Meta<typeof Navigation> = {
   title: "components/navigation",
   component: Navigation,
   args: {
-    links: LINKS,
     "aria-label": "Main navigation",
   },
   decorators: [
@@ -74,4 +62,18 @@ export default meta
 
 type Story = StoryObj<typeof Navigation>
 
-export const Default: Story = {}
+export const Default: Story = {
+  render: (args) => (
+    <Navigation {...args}>
+      <NavListItem>
+        <a href="/">Home</a>
+      </NavListItem>
+      <NavListItem>
+        <a href="/about">About</a>
+      </NavListItem>
+      <NavListItem>
+        <a href="/contact">Contact</a>
+      </NavListItem>
+    </Navigation>
+  ),
+}

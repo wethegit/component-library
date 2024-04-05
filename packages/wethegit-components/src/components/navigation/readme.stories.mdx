@@ -16,22 +16,17 @@ npx @wethegit/components-cli add navigation
 
 ## Navigation items
 
-The `Navigation` is designed so handling the links is completely open to the developer. By default you'll find a `LINKS` object inside the `navigation.tsx` file that's simply looped over to render the links but you can use whatever you want.
+The `Navigation` is designed so handling the links is completely open to the developer. The only requirement is that the direct children of the `Navigation` are `NavListItem` components.
 
 ```tsx
-const LINKS = {
-  home: {
-    label: "Home",
-    href: "/",
-  },
-}
-```
-
-Highlighting the current page is done by passing a one of the **keys** from the `LINKS` object to the `currentPage` prop on the `<Navigation>` component.
-
-{/* prettier-ignore */}
-```tsx
-<Navigation currentPage="home" />
+<Navigation aria-label="Main Navigation">
+  <NavListItem>
+    <a href="/">Home</a>
+  </NavListItem>
+  <NavListItem>
+    <a href="/about">About</a>
+  </NavListItem>
+</Navigation>
 ```
 
 ## Customizing
