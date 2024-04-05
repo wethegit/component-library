@@ -24,7 +24,7 @@
     "stylelint": "^15.11.0",
     "stylelint-config-custom": "*",
     "tsconfig": "*",
-    "turbo": "latest"
+    "turbo": "^1.13.2"
   },
   "packageManager": "yarn@1.22.19",
   "workspaces": [

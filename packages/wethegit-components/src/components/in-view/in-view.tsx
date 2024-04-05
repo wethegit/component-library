@@ -1,10 +1,12 @@
-import { createContext, ElementType, useMemo } from "react"
+"use client"
+
+import { createContext, ElementType } from "react"
 import { useInView } from "@wethegit/react-hooks"
 
 import { Tag } from "@local/components"
 import type { TagProps } from "@local/components"
 
-export type InViewContext = {
+export type InViewContextReturn = {
   isInView: boolean
   domNode: HTMLElement | undefined
 }
@@ -33,32 +35,21 @@ export type InViewProps<TAs extends ElementType> = TagProps<TAs> & {
   matchRootMarginToThreshold?: boolean
 }
 
-export const InViewContext = createContext<InViewContext>({
+export const InViewContext = createContext<InViewContextReturn>({
   isInView: false,
   domNode: undefined,
 })
 
-export function InView<TAs extends ElementType>({
+export function InView<TAs extends ElementType, T extends HTMLElement>({
   threshold = 0.3,
   once = false,
   setInViewIfScrolledPast = false,
-  matchRootMarginToThreshold = true,
   ...props
 }: InViewProps<TAs>) {
   const { as = "div", className, ...rest } = props
 
-  const observerOptions = useMemo(
-    () => ({
-      threshold,
-      ...(matchRootMarginToThreshold && {
-        rootMargin: `${threshold * 100}% 0px 0px 0px`,
-      }),
-    }),
-    [matchRootMarginToThreshold, threshold]
-  )
-
-  const [setRef, isInView, domNode] = useInView(
-    observerOptions,
+  const [setRef, isInView, domNode] = useInView<T>(
+    threshold,
     once,
     // only honor "setInViewIfScrolledPast" if "once" is true:
     once && setInViewIfScrolledPast ? setInViewIfScrolledPast : false
