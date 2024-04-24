@@ -1,0 +1,11 @@
+# Specify reviewers for pull requests
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    # Add reviewers
+    reviewers:
+      - "wethegit/senior-developers"
