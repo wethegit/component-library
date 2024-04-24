@@ -145,6 +145,14 @@ const ICON: Registry = {
     "https://wethegit.github.io/component-library/?path=/docs/components-icon-readme--overview",
 }
 
+const ACCORDION: Registry = {
+  name: "Accordion",
+  category: "component",
+  localDependencies: [ICON, TEXT],
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/components-accordion-readme--overview",
+}
+
 const MODAL: Registry = {
   name: "modal",
   category: "component",
@@ -189,6 +197,7 @@ const BACK_TO_TOP: Registry = {
 
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
+  [ACCORDION.name]: ACCORDION,
   [BACK_TO_TOP.name]: BACK_TO_TOP,
   [BREAKPOINT_SNIPE.name]: BREAKPOINT_SNIPE,
   [FLEX.name]: FLEX,
