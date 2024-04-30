@@ -10,10 +10,8 @@ export function buildBreakpointClassnames<T extends string | number | boolean>(
   if (typeof prop === "object") {
     const { sm, md, lg, xl, xxl } = prop
 
-    const mediumPrefix = sm ? "md-" : ""
-
     if (sm) allClassnames.push(styles[`${styleName}-${sm}`])
-    if (md) allClassnames.push(styles[`${styleName}-${mediumPrefix}${md}`])
+    if (md) allClassnames.push(styles[`${styleName}-md-${md}`])
     if (lg) allClassnames.push(styles[`${styleName}-lg-${lg}`])
     if (xl) allClassnames.push(styles[`${styleName}-xl-${xl}`])
     if (xxl) allClassnames.push(styles[`${styleName}-xxl-${xxl}`])
