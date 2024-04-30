@@ -8,7 +8,7 @@ import styles from "./flex.module.scss"
 
 export type FlexAlign = "flex-start" | "center" | "flex-end" | "baseline" | "stretch"
 
-export type AlignBreakpoints = Partial<Omit<Breakpoints<FlexAlign>, "sm">>
+export type AlignBreakpoints = Partial<Breakpoints<FlexAlign>>
 
 export type FlexJustify =
   | "flex-start"
@@ -17,9 +17,9 @@ export type FlexJustify =
   | "space-between"
   | "space-around"
 
-export type JustifyBreakpoints = Partial<Omit<Breakpoints<FlexJustify>, "sm">>
+export type JustifyBreakpoints = Partial<Breakpoints<FlexJustify>>
 
-export type BooleanBreakpoints = Partial<Omit<Breakpoints<boolean>, "sm">>
+export type BooleanBreakpoints = Partial<Breakpoints<boolean>>
 
 export type FlexProps<TAs extends ElementType> = TagProps<TAs> & {
   /**
