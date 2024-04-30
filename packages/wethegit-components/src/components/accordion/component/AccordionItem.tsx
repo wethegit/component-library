@@ -25,7 +25,7 @@ interface Props {
   index: number
 }
 
-const AccordionItem: React.FC<Props> = ({ handleToggle, active, card, icon, index }) => {
+const AccordionItem: React.FC<Props> = ({ index, active, handleToggle, card, icon }) => {
   const contentEl = useRef<HTMLDivElement>(null)
   const { title, text } = card
 
@@ -34,7 +34,7 @@ const AccordionItem: React.FC<Props> = ({ handleToggle, active, card, icon, inde
   return (
     <div
       className={styles.accordionPanel}
-      aria-expanded={active === index ? true : false}
+      aria-expanded={active === index ? "true" : undefined}
     >
       <Tag as={DEFAULT_TAG} id={`accordionHeading${index}`}>
         <button

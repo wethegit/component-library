@@ -13,9 +13,7 @@ export interface AccordionProps
 
 export function Accordion({}: AccordionProps) {
   const [active, setActive] = useState<number | null>(null)
-
-  // Define your icon name here
-  const icon = "chevron"
+  const icon = "chevron" // Define your icon name here
 
   const handleToggle = (index: number) => {
     active === index ? setActive(null) : setActive(index)
