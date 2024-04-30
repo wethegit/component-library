@@ -5,6 +5,7 @@ $alignments: start, center, end, justify;
 $variants: "title-1", "title-2", "title-3", "title-4", "title-5", "title-6", "body",
   "body-smaller", "body-larger", "body-legal";
 $weights: "light", "regular", "medium", "semibold", "bold", "black";
+$wraps: wrap, nowrap, balance, pretty;
 
 @mixin alignment-classnames($prefix: "") {
   @each $a in $alignments {
@@ -16,6 +17,7 @@ $weights: "light", "regular", "medium", "semibold", "bold", "black";
 
 .text {
   margin: 0;
+  text-wrap: pretty;
 }
 
 .textHeading {
@@ -34,6 +36,18 @@ $weights: "light", "regular", "medium", "semibold", "bold", "black";
   line-height: var(--wtc-line-height-body);
 }
 
+.noWrap {
+  white-space: nowrap;
+}
+
+.wrapNormal {
+  text-wrap: wrap;
+}
+
+.wrapBalance {
+  text-wrap: balance;
+}
+
 @each $v in $variants {
   .variant-#{$v} {
     font-size: calc-rem-css-var(--wtc-font-size-#{$v});
@@ -46,8 +60,10 @@ $weights: "light", "regular", "medium", "semibold", "bold", "black";
   }
 }
 
-.noWrap {
-  white-space: nowrap;
+@each $wrap in $wraps {
+  .wrap-#{$wrap} {
+    text-wrap: $wrap;
+  }
 }
 
 @include alignment-classnames(-sm);

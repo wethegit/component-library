@@ -23,6 +23,8 @@ type TextVariant =
 
 type TextWeight = "light" | "regular" | "medium" | "semibold" | "bold" | "black"
 
+type TextWrap = "wrap" | "nowrap" | "balance" | "pretty"
+
 export type TextProps<TAs extends React.ElementType> = TagProps<TAs> & {
   /**
    * Specifies the inline text alignment. If omitted, inherits the parent alignment.
@@ -37,9 +39,9 @@ export type TextProps<TAs extends React.ElementType> = TagProps<TAs> & {
    */
   weight?: TextWeight
   /**
-   * Use default text-wrapping.
+   * Specify the text-wrapping algorithm. If omitted, the base .text class decalres it as "pretty".
    */
-  wordWrap?: boolean
+  wrap?: TextWrap
   className?: string
 }
 
@@ -47,7 +49,7 @@ export function Text<TAs extends React.ElementType = typeof DEFAULT_ELEMENT>({
   align,
   variant = "body",
   weight,
-  wordWrap = true,
+  wrap,
   className,
   ...props
 }: TextProps<TAs>): JSX.Element {
@@ -59,7 +61,7 @@ export function Text<TAs extends React.ElementType = typeof DEFAULT_ELEMENT>({
     align && buildBreakpointClassnames<TextAlign>(align, styles, "align"),
     styles[`variant-${variant}`],
     weight && styles[`weight-${weight}`],
-    !wordWrap && styles.noWrap,
+    wrap && styles[`wrap-${wrap}`],
     className,
   ])
 
