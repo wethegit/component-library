@@ -59,15 +59,19 @@ for (const bp of BREAKPOINTS) {
       // e.g. spacing.margin[1]
       spacing[prop][i] = styles[`${prop}-${i}`]
 
+      // base spacing, per breakpoint
+      // e.g. spacing.xl.margin[2]
+      spacing[bp][prop] ||= {} as Spacing["md"]["margin"]
+      spacing[bp][prop][i] = styles[`${prop}-${bp}-${i}`]
+
       for (const dir of directions) {
         // base directional spacing
         // e.g. spacing.margin.left[1]
         spacing[prop][dir] ||= {} as Spacing["margin"]["left"]
         spacing[prop][dir][i] = styles[`${prop}-${dir}-${i}`]
 
-        // breakpoint spacing
+        // breakpoint directional spacing
         // e.g. spacing.md.margin.left[1]
-        spacing[bp][prop] ||= {} as Spacing["md"]["margin"]
         spacing[bp][prop][dir] ||= {} as Spacing["md"]["margin"]["left"]
         spacing[bp][prop][dir][i] = styles[`${prop}-${dir}-${bp}-${i}`]
       }
