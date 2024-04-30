@@ -1,50 +1,92 @@
 import React, { useRef } from "react"
 
-import { Icon, Text } from "@local/components"
+import { Icon, IconDefs, IconSymbol, Tag, Text } from "@local/components"
+
+const DEFAULT_TAG = "h3" as const
+
+export function GenericSection({ ...props }) {
+  const { as = DEFAULT_TAG, ...rest } = props
+
+  return <Tag as={as} {...rest} />
+}
 
 import styles from "../accordion.module.scss"
-interface Card {
-  header: string
-  id: number
-  text: string
+
+export interface CardsData {
+  title: string
+  text: string | object
 }
 
 interface Props {
-  handleToggle: (id: number) => void
+  handleToggle: (index: number) => void
   active: number | null
-  card: Card
-  // className: string
+  card: CardsData
+  icon: string
+  index: number
 }
 
-const AccordionItem: React.FC<Props> = ({ handleToggle, active, card }) => {
+const AccordionItem: React.FC<Props> = ({ handleToggle, active, card, icon, index }) => {
   const contentEl = useRef<HTMLDivElement>(null)
-  const { header, id, text } = card
+  const { title, text } = card
+  const containsTags = /<[a-z][\s\S]*>/i.test(text)
+  const processedHtml = containsTags ? text : text
+
+  if (!card) return null
 
   return (
-    <div className={styles.accordionCard} tabIndex={0}>
-      <div
-        className={`${styles.accordionToggle} ${active === id ? "active" : ""}`}
-        onClick={() => handleToggle(id)}
-      >
-        <h5 className={styles.accordionTitle}>{header}</h5>
+    <div className={styles.accordionPanel}>
+      <Tag as={DEFAULT_TAG} id={`accordionHeading${index}`}>
+        <button
+          className={`${active === index ? "active" : ""}`}
+          onClick={() => handleToggle(index)}
+          tabIndex={0}
+          aria-controls={`accordionBody${index}`}
+          // aria-expanded="true"
+        >
+          <span className={styles.accordionTitle}>{title}</span>
 
-        <Icon id="play" className={styles.accordionIcon} />
-      </div>
+          <IconDefs>
+            <IconSymbol id={icon} size={27}>
+              <path
+                d="M6 9L12 15L18 9"
+                stroke="#000000"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+            </IconSymbol>
+          </IconDefs>
 
-      <div
+          <Icon id={icon} className={styles.accordionIcon} />
+        </button>
+      </Tag>
+
+      <Tag
         ref={contentEl}
-        className={`${styles.collapse} ${active === id ? "show" : ""}`}
+        className={`${styles.collapse} ${styles.accordionBody} ${active === index ? "show" : ""}`}
+        id={`accordionBody${index}`}
+        aria-labelledby={`accordionHeading${index}`}
+        // hidden
+        role="region"
         style={
-          active === id
+          active === index
             ? { height: contentEl.current?.scrollHeight || 200 }
             : { height: "0px" }
         }
       >
-        <Text variant="body-smaller" className={styles.accordionBody}>
-          {text}
-        </Text>
-        {/* <Text variant="body" dangerouslySetInnerHTML={text} /> */}
-      </div>
+        {typeof text === "string" && (
+          <Text variant="body-smaller" dangerouslySetInnerHTML={{ __html: text }} />
+        )}
+
+        {typeof text === "object" &&
+          Object.values(processedHtml).map((p, i) => (
+            <Text
+              key={i}
+              variant="body-smaller"
+              dangerouslySetInnerHTML={{ __html: p.toString() }}
+            />
+          ))}
+      </Tag>
     </div>
   )
 }
