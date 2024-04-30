@@ -2,11 +2,11 @@
 
 // Calculates the rem value of the provided unitelss pixel value input.
 // This assumes 16px as a base.
-@function calc-rem($value, $base: 16) {
-  @return math.div($value, $base) * 1rem;
+@function calc-rem($value) {
+  @return calc(#{$value} / var(--wtc-base-rem-size) * 1rem);
 }
 
 // This is a variation of the above, which accepts a CSS custom property instead of a number.
-@function calc-rem-css-var($css-var, $base: 16) {
-  @return calc(var($css-var) / 16 * 1rem);
+@function calc-rem-css-var($css-var) {
+  @return calc(var($css-var) / var(--wtc-base-rem-size) * 1rem);
 }
