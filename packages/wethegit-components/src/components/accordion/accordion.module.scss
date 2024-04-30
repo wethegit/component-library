@@ -1,3 +1,9 @@
+@mixin reduced-motion {
+  animation: none !important;
+  scroll-behavior: auto !important;
+  transition: none !important;
+}
+
 .accordionPanel {
   --light-grey: #ebedf0;
   --grey: #475f7b;
@@ -5,7 +11,6 @@
 
   background-color: var(--white);
   border: 1px solid var(--light-grey);
-  transition: 0.3s;
 
   & * {
     margin: 0;
@@ -25,7 +30,6 @@
       font-size: 14px;
       font-weight: 500;
       margin: 0;
-      transition: 0.3s;
     }
 
     .accordionIcon {
@@ -79,4 +83,12 @@ a:focus {
   outline: none;
   text-decoration: none;
   transition: 0.5s;
+}
+
+@media (prefers-reduced-motion) {
+  .accordionBody.collapse,
+  .accordionIcon,
+  button.active .accordionIcon {
+    @include reduced-motion;
+  }
 }
