@@ -1,6 +1,13 @@
 @use "@local/styles/breakpoints/breakpoints-variables" as *;
 
 :root {
+  // fonts
+  --wtc-font-family-heading: sans-serif;
+  --wtc-font-family-body: sans-serif;
+
+  // pixel value equivalent to 1rem — this will rarely change
+  --wtc-base-rem-size: 16;
+
   // font sizes
   --wtc-font-size-title-1: 42;
   --wtc-font-size-title-2: 33;
