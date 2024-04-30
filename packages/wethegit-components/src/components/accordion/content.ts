@@ -14,7 +14,7 @@ const cards = [
     Data is a self-aware, sapient, sentient and anatomically fully functional male android who serves as the second officer and chief operations officer aboard the Federation starship USS Enterprise-D and later the USS Enterprise-E.`,
   },
   {
-    title: "Worf",
+    title: "Worf, son of Mogh",
     text: {
       paragraph1: `Worf, <i>son of Mogh</i> is a fictional character in the Star Trek franchise, portrayed by actor Michael Dorn. He appears in the television series Star Trek: The Next Generation (TNG), seasons four through seven of Star Trek: Deep Space Nine (DS9) and the third and final season of Star Trek: Picard, as well as the feature films.
       <ul>
@@ -25,7 +25,7 @@ const cards = [
       </ul>`,
       paragraph2:
         "Worf has appeared in more Star Trek franchise episodes than any other character. Worf is the best character in the Star Trek universe.",
-      paragraph3: "Third paragraph",
+      paragraph3: "Worf has much honour",
     },
   },
 ]

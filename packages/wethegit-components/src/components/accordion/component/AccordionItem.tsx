@@ -2,6 +2,8 @@ import React, { useRef } from "react"
 
 import { Icon, IconDefs, IconSymbol, Tag, Text } from "@local/components"
 
+import styles from "../accordion.module.scss"
+
 const DEFAULT_TAG = "h3" as const
 
 export function GenericSection({ ...props }) {
@@ -9,8 +11,6 @@ export function GenericSection({ ...props }) {
 
   return <Tag as={as} {...rest} />
 }
-
-import styles from "../accordion.module.scss"
 
 export interface CardsData {
   title: string
@@ -28,20 +28,20 @@ interface Props {
 const AccordionItem: React.FC<Props> = ({ handleToggle, active, card, icon, index }) => {
   const contentEl = useRef<HTMLDivElement>(null)
   const { title, text } = card
-  const containsTags = /<[a-z][\s\S]*>/i.test(text)
-  const processedHtml = containsTags ? text : text
 
   if (!card) return null
 
   return (
-    <div className={styles.accordionPanel}>
+    <div
+      className={styles.accordionPanel}
+      aria-expanded={active === index ? true : false}
+    >
       <Tag as={DEFAULT_TAG} id={`accordionHeading${index}`}>
         <button
-          className={`${active === index ? "active" : ""}`}
+          className={`${active === index ? styles.active : ""}`}
           onClick={() => handleToggle(index)}
           tabIndex={0}
           aria-controls={`accordionBody${index}`}
-          // aria-expanded="true"
         >
           <span className={styles.accordionTitle}>{title}</span>
 
@@ -63,10 +63,9 @@ const AccordionItem: React.FC<Props> = ({ handleToggle, active, card, icon, inde
 
       <Tag
         ref={contentEl}
-        className={`${styles.collapse} ${styles.accordionBody} ${active === index ? "show" : ""}`}
+        className={`${styles.collapse} ${styles.accordionBody}`}
         id={`accordionBody${index}`}
         aria-labelledby={`accordionHeading${index}`}
-        // hidden
         role="region"
         style={
           active === index
@@ -79,7 +78,7 @@ const AccordionItem: React.FC<Props> = ({ handleToggle, active, card, icon, inde
         )}
 
         {typeof text === "object" &&
-          Object.values(processedHtml).map((p, i) => (
+          Object.values(text).map((p, i) => (
             <Text
               key={i}
               variant="body-smaller"

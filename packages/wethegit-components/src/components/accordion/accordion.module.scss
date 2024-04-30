@@ -1,14 +1,18 @@
 .accordionPanel {
-  background-color: #ebedf0;
-  border: 1px solid #ddd;
+  --light-grey: #ebedf0;
+  --grey: #475f7b;
+  --white: #fff;
+
+  background-color: var(--white);
+  border: 1px solid var(--light-grey);
   transition: 0.3s;
 
-  h3 {
+  & * {
     margin: 0;
   }
 
   button {
-    align-items: stretch;
+    align-items: center;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -17,7 +21,7 @@
     width: 100%;
 
     .accordionTitle {
-      color: #475f7b;
+      color: var(--grey);
       font-size: 14px;
       font-weight: 500;
       margin: 0;
@@ -26,32 +30,32 @@
 
     .accordionIcon {
       color: transparent;
+      padding: 2px 0 0 2px;
       transition: 0.35s;
     }
 
     &.active {
-      background-color: #5a8dee;
+      background-color: var(--light-grey);
 
       .accordionIcon {
-        color: #fff;
         transform: rotate(180deg);
+        transform-origin: center;
       }
 
       .accordionTitle {
-        color: #fff;
+        color: var(--grey);
       }
     }
   }
 
   .accordionBody {
-    background-color: #fff;
-    flex: 1 1 auto;
+    background-color: var(--white);
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
 
     p {
-      color: #475f7b;
+      color: var(--grey);
       margin: 0;
       padding: 1rem;
 
