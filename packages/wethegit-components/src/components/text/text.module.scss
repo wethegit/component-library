@@ -19,12 +19,16 @@ $weights: "light", "regular", "medium", "semibold", "bold", "black";
 }
 
 .textHeading {
+  font-family: var(--wtc-font-family-heading);
+
   // This default font weight can be overwritten by the `weight` prop.
   font-weight: var(--wtc-font-weight-bold);
   line-height: var(--wtc-line-height-heading);
 }
 
 .textBody {
+  font-family: var(--wtc-font-family-body);
+
   // This default font weight can be overwritten by the `weight` prop.
   font-weight: var(--wtc-font-weight-regular);
   line-height: var(--wtc-line-height-body);
