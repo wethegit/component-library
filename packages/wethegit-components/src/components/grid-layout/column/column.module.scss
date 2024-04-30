@@ -27,7 +27,7 @@
 }
 
 @media #{$md-up} {
-  @include make-column-classnames;
+  @include make-column-classnames(md);
 }
 
 @media #{$lg-up} {

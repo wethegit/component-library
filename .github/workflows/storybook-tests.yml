@@ -5,6 +5,8 @@ on:
     types: [opened, edited, reopened, synchronize]
     paths:
       - "packages/wethegit-components/**"
+      - "yarn.lock"
+      - "**/package.json"
 
   push:
     branches:

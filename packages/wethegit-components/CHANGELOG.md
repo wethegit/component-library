@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.3.5
+
+### Patch Changes
+
+- a8673be: fix: navigation docs and exports
+
 ## 2.3.4
 
 ### Patch Changes

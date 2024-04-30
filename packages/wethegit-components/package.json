@@ -1,6 +1,6 @@
 {
   "name": "@wethegit/components",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "main": "./src/index.ts",
   "sideEffects": false,
   "license": "MIT",
@@ -67,7 +67,7 @@
     "stylelint-config-custom": "*",
     "tsconfig": "*",
     "typescript": "^5.1.6",
-    "vite": "^4.4.9",
+    "vite": "^4.5.3",
     "wait-on": "^7.2.0",
     "lint-staged-config": "*"
   },

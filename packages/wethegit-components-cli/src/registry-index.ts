@@ -80,7 +80,7 @@ const TAG: Registry = {
 const TEXT: Registry = {
   name: "text",
   category: "component",
-  localDependencies: [TAG, CLASSNAMES, FIXED_FORWARD_REF],
+  localDependencies: [BUILD_BREAKPOINT_CLASSNAMES, CLASSNAMES, FIXED_FORWARD_REF, TAG],
   docsUrl:
     "https://wethegit.github.io/component-library/?path=/docs/components-text-readme--overview",
   postInstallMessages: [

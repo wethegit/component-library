@@ -15,23 +15,11 @@ export function NavList({ children, className, ...props }: NavListProps) {
   )
 }
 
-export interface NavListItemProps extends React.HTMLAttributes<HTMLLIElement> {
-  selected?: boolean
-  children?: React.ReactNode
-}
+export interface NavListItemProps extends React.HTMLAttributes<HTMLLIElement> {}
 
-export function NavListItem({
-  selected = false,
-  children,
-  className,
-  ...props
-}: NavListItemProps) {
+export function NavListItem({ children, className, ...props }: NavListItemProps) {
   return (
-    <li
-      className={classnames([styles.navListItem, className])}
-      aria-current={selected ? "page" : undefined}
-      {...props}
-    >
+    <li className={classnames([styles.navListItem, className])} {...props}>
       {children}
     </li>
   )
