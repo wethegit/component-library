@@ -50,7 +50,7 @@ $weights: "light", "regular", "medium", "semibold", "bold", "black";
   white-space: nowrap;
 }
 
-@include alignment-classnames;
+@include alignment-classnames(-sm);
 
 @media #{$md-up} {
   @include alignment-classnames(-md);
