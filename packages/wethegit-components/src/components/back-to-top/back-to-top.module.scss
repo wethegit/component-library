@@ -1,12 +1,11 @@
-@use "@local/utilities/color/styles/color-utilities" as *;
 @use "@local/styles/animation/animation-utilities" as *;
 
 .button {
   --scale: 1;
 
-  background-color: get-color("black");
+  background-color: #000;
   bottom: 1rem;
-  color: get-color("white");
+  color: #fff;
   opacity: 0;
   padding: 1rem;
   position: fixed;
