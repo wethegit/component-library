@@ -33,6 +33,13 @@ const BREAKPOINTS_TYPE: Registry = {
   dontShowOnPrompt: true,
 }
 
+/* HOOKS */
+const USE_BREAKPOINTS: Registry = {
+  name: "use-breakpoints",
+  category: "hook",
+  dontShowOnPrompt: true,
+}
+
 /* UTILITIES */
 const FIXED_FORWARD_REF: Registry = {
   name: "fixed-forward-ref",
@@ -207,5 +214,7 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [COLOR.name]: COLOR,
   [SPACING.name]: SPACING,
   [VISIBILITY.name]: VISIBILITY,
+
+  [USE_BREAKPOINTS.name]: USE_BREAKPOINTS,
 }
 /* END REGISTRY INDEX */
