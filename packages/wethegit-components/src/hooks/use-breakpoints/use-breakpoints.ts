@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import breakpointSettings from "./use-breakpoints.module.scss"
 
@@ -29,9 +29,24 @@ export function useBreakpoints() {
     }
   }, [])
 
-  return {
-    breakpoint,
-    mdUp: breakpoint && breakpoint !== "sm",
-    lgUp: breakpoint && !["sm", "md"].includes(breakpoint),
-  }
+  const breakpointData = useMemo(() => {
+    let xxlUp, xlUp, lgUp, mdUp
+
+    if (breakpoint) {
+      xxlUp = breakpoint === "xxl"
+      xlUp = xxlUp || breakpoint === "xl"
+      lgUp = xlUp || breakpoint === "lg"
+      mdUp = lgUp || breakpoint === "md"
+    }
+
+    return {
+      breakpoint,
+      mdUp,
+      lgUp,
+      xlUp,
+      xxlUp,
+    }
+  }, [breakpoint])
+
+  return breakpointData
 }
