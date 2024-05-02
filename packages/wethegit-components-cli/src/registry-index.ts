@@ -37,7 +37,6 @@ const BREAKPOINTS_TYPE: Registry = {
 const USE_BREAKPOINTS: Registry = {
   name: "use-breakpoints",
   category: "hook",
-  dontShowOnPrompt: true,
 }
 
 /* UTILITIES */
@@ -182,7 +181,7 @@ const VISUALLY_HIDDEN_LINKS: Registry = {
 const BREAKPOINT_SNIPE: Registry = {
   name: "breakpoint-snipe",
   category: "component",
-  localDependencies: [CLASSNAMES],
+  localDependencies: [CLASSNAMES, USE_BREAKPOINTS],
 }
 
 const BACK_TO_TOP: Registry = {
