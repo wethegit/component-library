@@ -1,5 +1,13 @@
 # @wethegit/components-cli
 
+## 3.0.6
+
+### Patch Changes
+
+- 87ff32e: Fixes various issues on the Flex, BackToTop, spacing, and Text components. Creates a useBreakpoints hook, and refactors BreakpointSnipe to use it.
+- Updated dependencies [87ff32e]
+  - @wethegit/components@2.3.6
+
 ## 3.0.5
 
 ### Patch Changes
