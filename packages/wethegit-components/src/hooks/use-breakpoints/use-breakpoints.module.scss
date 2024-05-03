@@ -1,0 +1,12 @@
+/* stylelint-disable selector-pseudo-class-no-unknown */
+/* stylelint-disable property-no-unknown */
+
+@import "@local/styles/breakpoints/breakpoints-variables";
+
+:export {
+  lg: $lg-only;
+  md: $md-only;
+  sm: $sm-only;
+  xl: $xl-only;
+  xxl: $xxl-up;
+}
