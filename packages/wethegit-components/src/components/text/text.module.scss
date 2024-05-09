@@ -66,6 +66,7 @@ $wraps: wrap, nowrap, balance, pretty;
   }
 }
 
+@include alignment-classnames;
 @include alignment-classnames(-sm);
 
 @media #{$md-up} {
