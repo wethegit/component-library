@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.3.8
+
+### Patch Changes
+
+- 938cfe2: Adds missing prefix-less classnames for Column, Flex, and Text components.
+
 ## 2.3.6
 
 ### Patch Changes
