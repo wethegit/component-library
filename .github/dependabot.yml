@@ -6,9 +6,9 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-    abels:
+    labels:
       - "dependencies"
       - "security"
     # Add reviewers
     reviewers:
-      - "wethegit/senior-developers"
+      - "wethegit/developers"
