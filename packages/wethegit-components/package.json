@@ -35,7 +35,7 @@
     "typescript": "^5.1.6"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^7.6.17",
+    "@storybook/addon-a11y": "^8.1.1",
     "@storybook/addon-actions": "^7.5.3",
     "@storybook/addon-docs": "^7.5.3",
     "@storybook/addon-essentials": "^7.5.3",
