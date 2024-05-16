@@ -10,13 +10,13 @@ The `buildBreakpointClassnames` function is designed to generate class names bas
 
 #### `prop: T | Partial<Breakpoints<T>> | undefined`
 
-- The `prop` parameter represents the breakpoint value or an object containing specific breakpoints (sm, md, lg, xl, xxl).
-- It accepts a generic type `T` which can be `string`, `number`, or `boolean`.
-- If `prop` is an object, it can have properties for small (sm), medium (md), large (lg), extra-large (xl), and double extra-large (xxl) breakpoints.
+* The `prop` parameter represents the breakpoint value or an object containing specific breakpoints (sm, md, lg, xl, xxl).
+* It accepts a generic type `T` which can be `string`, `number`, or `boolean`.
+* If `prop` is an object, it can have properties for small (sm), medium (md), large (lg), extra-large (xl), and double extra-large (xxl) breakpoints.
 
 #### `styles: Record<string, string>`
 
-- Default CSS modules `styles`. It is used to generate the breakpoint class names and should contain the following classes:
+* Default CSS modules `styles`. It is used to generate the breakpoint class names and should contain the following classes:
 
 1. `sm`: `${styleName}-${value}`
 2. `md`: `${styleName}-md-${value}`
@@ -26,7 +26,7 @@ The `buildBreakpointClassnames` function is designed to generate class names bas
 
 #### `styleName: string`
 
-- The `styleName` parameter represents the base name of the style for which the breakpoint class names are generated.
+* The `styleName` parameter represents the base name of the style for which the breakpoint class names are generated.
 
 ## Return Value
 
