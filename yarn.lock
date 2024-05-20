@@ -1607,7 +1607,7 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@emotion/use-insertion-effect-with-fallbacks@^1.0.0":
+"@emotion/use-insertion-effect-with-fallbacks@^1.0.0", "@emotion/use-insertion-effect-with-fallbacks@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@emotion/use-insertion-effect-with-fallbacks/-/use-insertion-effect-with-fallbacks-1.0.1.tgz#08de79f54eb3406f9daaf77c76e35313da963963"
   integrity sha512-jT/qyKZ9rzLErtrjGgdkMBn2OP8wl0G3sQlBb3YPryvKHsjvINUhVaPFfP+fpBcOkmrVOVEEHQFJ7nbj2TH2gw==
@@ -3026,6 +3026,13 @@
   dependencies:
     "@storybook/global" "^5.0.0"
 
+"@storybook/client-logger@8.1.1":
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-8.1.1.tgz#63a6908def8d4e873baa9835ab2df38fdcc90cc3"
+  integrity sha512-9AWPgIN3K0eLusChJUqB5Ft+9P2pW5/s4vOMoj3TCvu8lrdq8AH8ctvxk7x2Kw2wEwQ/g9DyE6C/rDQUARbxew==
+  dependencies:
+    "@storybook/global" "^5.0.0"
+
 "@storybook/codemod@7.6.18":
   version "7.6.18"
   resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-7.6.18.tgz#8c250e82d156da01533099821c57e1bc34933904"
@@ -3406,13 +3413,23 @@
     "@testing-library/user-event" "^14.4.0"
     ts-dedent "^2.2.0"
 
-"@storybook/theming@7.6.18", "@storybook/theming@^7.5.3":
+"@storybook/theming@7.6.18":
   version "7.6.18"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-7.6.18.tgz#622d6f5ce071a108e4e1c87e4b16b5f020b0cd7a"
   integrity sha512-5nwqV/rAVzS8wZ6DbsX5/ugDLV189hn2m3K9JlJmhVW9b2mSDYW5i1cTjpoChh1t9gMZl82VPnEhgPRMx5bXgw==
   dependencies:
     "@emotion/use-insertion-effect-with-fallbacks" "^1.0.0"
     "@storybook/client-logger" "7.6.18"
+    "@storybook/global" "^5.0.0"
+    memoizerific "^1.11.3"
+
+"@storybook/theming@^8.1.1":
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-8.1.1.tgz#7deda73d70927c6af148ae4e8c9d8088108afeff"
+  integrity sha512-opjTCpvNDlDyTWnU58YLoFFhNrY88mxWRkHEE0Qt0hhRnS8EkU/+aam/1gTr204peDWZ+Ap3BBHFq28nQ5kfDQ==
+  dependencies:
+    "@emotion/use-insertion-effect-with-fallbacks" "^1.0.1"
+    "@storybook/client-logger" "8.1.1"
     "@storybook/global" "^5.0.0"
     memoizerific "^1.11.3"
 
