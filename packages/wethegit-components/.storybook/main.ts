@@ -6,13 +6,9 @@ const config: StorybookConfig = {
   stories: ["../src/index.mdx", "../src/**/*.mdx", "../src/**/*.stories.{js,jsx,ts,tsx}"],
   staticDirs: ["../public"],
   addons: [
-    getAbsolutePath("@storybook/addon-links"),
-    getAbsolutePath("@storybook/addon-a11y"),
-    getAbsolutePath("@storybook/addon-interactions"),
     {
       name: getAbsolutePath("@storybook/addon-essentials"),
       options: {
-        defaultName: "Overview",
         mdxPluginOptions: {
           mdxCompileOptions: {
             remarkPlugins: [remarkGfm],
@@ -20,7 +16,13 @@ const config: StorybookConfig = {
         },
       },
     },
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-a11y"),
+    getAbsolutePath("@storybook/addon-interactions"),
   ],
+  docs: {
+    defaultName: "Overview",
+  },
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),
     options: {},

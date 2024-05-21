@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react"
 import type { Meta, StoryObj } from "@storybook/react"
 
 import { ImageGroup, ImageGroupItem } from "@local/components"
@@ -60,26 +61,26 @@ const collabStyles = {
  */
 export const Default: Story = {
   render: (args) => (
-    <ImageGroup {...args} style={parentStyles}>
-      <ImageGroupItem style={ethicalStyles}>
+    <ImageGroup {...args} style={parentStyles as CSSProperties}>
+      <ImageGroupItem style={ethicalStyles as CSSProperties}>
         <img
           src="/image-group-demo/wtc-icons-ethical.png"
           alt="We are ethical. Heart brand mark."
         />
       </ImageGroupItem>
-      <ImageGroupItem style={doersStyles}>
+      <ImageGroupItem style={doersStyles as CSSProperties}>
         <img
           src="/image-group-demo/wtc-icons-doers.png"
           alt="We are doers. Lightning bolt brand mark."
         />
       </ImageGroupItem>
-      <ImageGroupItem style={curiousStyles}>
+      <ImageGroupItem style={curiousStyles as CSSProperties}>
         <img
           src="/image-group-demo/wtc-icons-curious.png"
           alt="We are curious. Triangle brand mark."
         />
       </ImageGroupItem>
-      <ImageGroupItem style={collabStyles}>
+      <ImageGroupItem style={collabStyles as CSSProperties}>
         <img
           src="/image-group-demo/wtc-icons-collab.png"
           alt="We are curious. Triangle brand mark."

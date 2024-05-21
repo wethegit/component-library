@@ -1,3 +1,4 @@
+import { FC } from "react"
 import type { Meta, StoryObj } from "@storybook/react"
 
 import { InView, InViewItem, Text } from "@local/components"
@@ -6,7 +7,7 @@ import { animation } from "./components"
 
 type Story = StoryObj<typeof InView>
 
-const Wrapper = ({ children }) => (
+const Wrapper: FC = ({ children }) => (
   <div
     style={{
       border: "1px solid #666",
@@ -20,7 +21,7 @@ const Wrapper = ({ children }) => (
   </div>
 )
 
-const Inner = ({ children }) => (
+const Inner: FC = ({ children }) => (
   <div className="childSpacing" style={{ overflowX: "hidden" }}>
     {children}
   </div>

@@ -1,4 +1,4 @@
-import { expect , userEvent, within, waitFor } from "@storybook/test"
+import { expect, userEvent, within, waitFor } from "@storybook/test"
 import type { Meta, StoryObj } from "@storybook/react"
 
 import { BackToTop, Text } from "@local/components"
@@ -12,14 +12,6 @@ const meta: Meta<typeof BackToTop> = {
     onComplete: undefined,
     pixelsPerSecond: 2000,
     revealThreshold: "85vh",
-  },
-  argTypes: {
-    easingFunction: {
-      control: "function",
-    },
-    onComplete: {
-      control: "function",
-    },
   },
 }
 
