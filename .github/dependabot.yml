@@ -9,6 +9,5 @@ updates:
     labels:
       - "dependencies"
       - "security"
-    # Add reviewers
     reviewers:
       - "wethegit/developers"

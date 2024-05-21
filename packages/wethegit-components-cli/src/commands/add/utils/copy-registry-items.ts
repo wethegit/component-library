@@ -89,7 +89,7 @@ function copyLocalDependencies({
     if (!useTypescript) {
       allFilesOperations.push(
         glob(join(name, "**/*.{ts,tsx,scss}"), {
-          ignore: ["**/*.stories*"],
+          ignore: ["**/*.stories*", "**/*.mdx*"],
           cwd: src,
           absolute: true,
         })
@@ -111,7 +111,9 @@ function copyLocalDependencies({
     } else {
       allFilesOperations.push(
         fse
-          .copy(resolve(src, name), dest, { filter: (src) => !src.includes(".stories.") })
+          .copy(resolve(src, name), dest, {
+            filter: (src) => ![".stories.", ".mdx"].includes(src),
+          })
           .then(() => {
             componentSpinner.succeed()
           })
