@@ -1,5 +1,14 @@
 # @wethegit/components-cli
 
+## 3.0.7
+
+### Patch Changes
+
+- 704cba7: fix: exclude mdx files from CLI copy
+- ff0108e: hotfix: deps versions
+- Updated dependencies [ff0108e]
+  - @wethegit/components@2.3.9
+
 ## 3.0.6
 
 ### Patch Changes
