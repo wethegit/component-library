@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 2.3.9
+
+### Patch Changes
+
+- ff0108e: hotfix: deps versions
+
 ## 2.3.8
 
 ### Patch Changes
