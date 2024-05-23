@@ -14,25 +14,20 @@ export type InViewContextReturn = {
 export type InViewProps<TAs extends ElementType> = TagProps<TAs> & {
   /**
    * Percentage of the entry within the viewport for it to be considered in
-   * view; a number between 0 and 1.
+   * view; a number between 0 and 1. Also accepts an IntersectionObserver options
+   * object.
    */
-  threshold?: number
+  observerOptions?: number | IntersectionObserverInit
   /**
-   * Unobserve the entry once it is considered to be in view.
+   * Whether to detach the observer from the DOM element after the first
+   * intersection callback is invoked.
    */
   once?: boolean
   /**
-   * Consider the entry "in view" if it is above the viewport when the page loads
-   * initially. This is most often used for ensuring that content is already
-   * animated in, when loading a document from a scroll position other than the top.
+   * Whether to consider the element already "in-view", if it is already scrolled
+   * beyond the bounds of the viewport when the element is mounted.
    */
   setInViewIfScrolledPast?: boolean
-  /**
-   * Ensure that the entry remains in view until it fully exits the viewport,
-   * regardless of the threshold. Note that this will not have any effect within
-   * an `<iframe>`.
-   */
-  matchRootMarginToThreshold?: boolean
 }
 
 export const InViewContext = createContext<InViewContextReturn>({
@@ -41,7 +36,7 @@ export const InViewContext = createContext<InViewContextReturn>({
 })
 
 export function InView<TAs extends ElementType, T extends HTMLElement>({
-  threshold = 0.3,
+  observerOptions = 0.3,
   once = false,
   setInViewIfScrolledPast = false,
   ...props
@@ -49,7 +44,7 @@ export function InView<TAs extends ElementType, T extends HTMLElement>({
   const { as = "div", className, ...rest } = props
 
   const [setRef, isInView, domNode] = useInView<T>(
-    threshold,
+    observerOptions,
     once,
     // only honor "setInViewIfScrolledPast" if "once" is true:
     once && setInViewIfScrolledPast ? setInViewIfScrolledPast : false
