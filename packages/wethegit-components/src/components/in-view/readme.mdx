@@ -4,10 +4,10 @@ import { Meta } from "@storybook/blocks"
 
 # InView, InViewItem
 
-* [Install](#install)
-* [Usage](#usage)
-* [How it works](#how-it-works)
-* [Sequenced or staggered animations](#sequencing)
+- [Install](#install)
+- [Usage](#usage)
+- [How it works](#how-it-works)
+- [Sequenced or staggered animations](#sequencing)
 
 `<InView>` and `<InViewItem>` help you to create viewport-triggered CSS transitions on your React components. There are a handful of useful animation presets you can use, but you can also provide entirely custom ones.
 
@@ -37,7 +37,7 @@ import { InView, InViewItem, animation } from "@local/components"
 
 For viewport detection, the `<InView>` component extends the `useInView` hook from [@wethegit/react-hooks](https://wethegit.github.io/react-hooks/). It then creates a React context for any children to subscribe to.
 
-The `<InViewItem>` component is one such child, and it accepts various props relating to animation when its parent is condsidered to be "in view" — `animation`, `delay`, `duration`, and `staggerChildren`.
+The `<InViewItem>` component is one such child, and it accepts various props relating to animation when its parent is condsidered to be "in view" — `animation`, `delay`, `duration`, and `staggerChildren`.
 
 ### Custom animation
 
