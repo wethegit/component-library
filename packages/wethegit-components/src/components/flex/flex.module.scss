@@ -63,19 +63,20 @@
 }
 
 @include breakpoint-classnames;
+@include breakpoint-classnames(-sm);
 
 @media #{$md-up} {
-  @include breakpoint-classnames(md);
+  @include breakpoint-classnames(-md);
 }
 
 @media #{$lg-up} {
-  @include breakpoint-classnames(lg);
+  @include breakpoint-classnames(-lg);
 }
 
 @media #{$xl-up} {
-  @include breakpoint-classnames(xl);
+  @include breakpoint-classnames(-xl);
 }
 
 @media #{$xxl-up} {
-  @include breakpoint-classnames(xxl);
+  @include breakpoint-classnames(-xxl);
 }

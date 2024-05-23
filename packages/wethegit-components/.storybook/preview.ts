@@ -8,7 +8,6 @@ import "./styles/global-story-styles.scss"
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -28,6 +27,7 @@ const preview: Preview = {
       ],
     },
   },
+
   decorators: [
     withThemeByClassName({
       themes: {
@@ -37,6 +37,8 @@ const preview: Preview = {
       defaultTheme: "light",
     }),
   ],
+
+  tags: ["autodocs"],
 }
 
 export default preview

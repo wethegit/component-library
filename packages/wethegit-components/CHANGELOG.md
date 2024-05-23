@@ -1,5 +1,29 @@
 # @wethegit/components
 
+## 2.3.9
+
+### Patch Changes
+
+- ff0108e: hotfix: deps versions
+
+## 2.3.8
+
+### Patch Changes
+
+- 938cfe2: Adds missing prefix-less classnames for Column, Flex, and Text components.
+
+## 2.3.6
+
+### Patch Changes
+
+- 87ff32e: Fixes various issues on the Flex, BackToTop, spacing, and Text components. Creates a useBreakpoints hook, and refactors BreakpointSnipe to use it.
+
+## 2.3.5
+
+### Patch Changes
+
+- a8673be: fix: navigation docs and exports
+
 ## 2.3.4
 
 ### Patch Changes

@@ -1,2 +1,4 @@
 export { Navigation } from "./navigation"
-export * from "./components"
+export type { NavigationProps } from "./navigation"
+export { NavListItem } from "./components"
+export type { NavListItemProps } from "./components"

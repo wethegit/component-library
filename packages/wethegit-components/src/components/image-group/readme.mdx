@@ -4,9 +4,9 @@ import { Meta } from "@storybook/blocks"
 
 # ImageGroup
 
-- [Install](#install)
-- [Usage](#usage)
-- [How it works](#how-it-works)
+* [Install](#install)
+* [Usage](#usage)
+* [How it works](#how-it-works)
 
 `<ImageGroup>` facilitates the creation of responsive image compositions (though it's not limited to images). It works by first establishing an aspect ratio on a parent element, and then positioning child elements within the shape, relative to its dimensions.
 
@@ -65,27 +65,19 @@ import { ImageGroup, ImageGroupItem } from "@local/components/image-group"
 
 ## How it works
 
-`<ImageGroup>` eases the burden of creating responsive lockups consisting of _multiple_ different images or elements. The main idea here is to measure the assets of your design file, and plug the numbers directly into the `<ImageGroup>` and `<ImageGroupItem>` CSS custom properties.
+`<ImageGroup>` eases the burden of creating responsive lockups consisting of *multiple* different images or elements. The main idea here is to measure the assets of your design file, and plug the numbers directly into the `<ImageGroup>` and `<ImageGroupItem>` CSS custom properties.
 
 ### What problem does it solve?
 
-Let's pretend we have been given the following design, where each of the four elements need to animate in—separately from one another—and be crawlable by screen readers. These two requirements mean the images _have_ to be separated, and cannot be a single unit. This potentially introduces responsiveness headaches (how do we handle positioning when a user resizes their browser?). This is the problem that image group solves. We can ensure that the group scales up and down as a whole, by using `<ImageGroup>`.
+Let's pretend we have been given the following design, where each of the four elements need to animate in—separately from one another—and be crawlable by screen readers. These two requirements mean the images *have* to be separated, and cannot be a single unit. This potentially introduces responsiveness headaches (how do we handle positioning when a user resizes their browser?). This is the problem that image group solves. We can ensure that the group scales up and down as a whole, by using `<ImageGroup>`.
 
-<img
-  src="/image-group-demo/image-group-demo.jpg"
-  alt="Example design."
-  style={{ maxInlineSize: "300px" }}
-/>
+<img src="/image-group-demo/image-group-demo.jpg" alt="Example design." style={{ maxInlineSize: "300px" }} />
 
 ### Measuring your design
 
 The following video is a good reference for the example workflow we'll walk through in this section.
 
-<video
-  src="/image-group-demo/image-group-demo.mp4"
-  style={{ maxInlineSize: "500px" }}
-  controls
-/>
+<video src="/image-group-demo/image-group-demo.mp4" style={{ maxInlineSize: "500px" }} controls />
 
 You'll start by plugging your "wrapper shape" dimensions into the two CSS custom properties on the `<ImageGroup>` component. In the case of the example design from before, those will be `300` and `300`. These must be **unitless** values. This will establish the aspect ratio for the group itself. In this case, the width and height are the same, so it will be a simple square.
 

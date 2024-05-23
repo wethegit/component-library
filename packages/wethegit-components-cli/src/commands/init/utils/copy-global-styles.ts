@@ -53,7 +53,7 @@ export async function copyGlobalStyles({
     const src = resolve(componentsPackageRoot, COMPONENTS_PACKAGE_STYLES_DIR)
 
     const files = await glob("**/*", {
-      ignore: ["**/*.stories*"],
+      ignore: ["**/*.stories*", "**/*.mdx*"],
       cwd: src,
       absolute: true,
       nodir: true,

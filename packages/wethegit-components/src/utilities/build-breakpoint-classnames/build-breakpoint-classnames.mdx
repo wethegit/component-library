@@ -8,24 +8,25 @@ The `buildBreakpointClassnames` function is designed to generate class names bas
 
 ## Parameters
 
-#### `prop: T | Partial<Omit<Breakpoints<T>, "sm">> | undefined`
+#### `prop: T | Partial<Breakpoints<T>> | undefined`
 
-- The `prop` parameter represents the breakpoint value or an object containing specific breakpoints (md, lg, xl, xxl).
-- It accepts a generic type `T` which can be `string`, `number`, or `boolean`.
-- If `prop` is an object, it can have properties for medium (md), large (lg), extra-large (xl), and double extra-large (xxl) breakpoints.
+* The `prop` parameter represents the breakpoint value or an object containing specific breakpoints (sm, md, lg, xl, xxl).
+* It accepts a generic type `T` which can be `string`, `number`, or `boolean`.
+* If `prop` is an object, it can have properties for small (sm), medium (md), large (lg), extra-large (xl), and double extra-large (xxl) breakpoints.
 
 #### `styles: Record<string, string>`
 
-- Default CSS modules `styles`. It is used to generate the breakpoint class names and should contain the following classes:
+* Default CSS modules `styles`. It is used to generate the breakpoint class names and should contain the following classes:
 
-1. `md`: `${styleName}-${value}`
-2. `lg`: `${styleName}-lg-${value}`
-3. `xl`: `${styleName}-xl-${value}`
-4. `xxl`: `${styleName}-xxl-${value}`
+1. `sm`: `${styleName}-${value}`
+2. `md`: `${styleName}-md-${value}`
+3. `lg`: `${styleName}-lg-${value}`
+4. `xl`: `${styleName}-xl-${value}`
+5. `xxl`: `${styleName}-xxl-${value}`
 
 #### `styleName: string`
 
-- The `styleName` parameter represents the base name of the style for which the breakpoint class names are generated.
+* The `styleName` parameter represents the base name of the style for which the breakpoint class names are generated.
 
 ## Return Value
 
@@ -38,7 +39,7 @@ import { buildBreakpointClassnames } from "path/to/buildBreakpointClassnames"
 import styles from "path/to/styles.module.css"
 
 const breakpointClasses = buildBreakpointClassnames(
-  { md: 2, lg: 3, xl: 4, xxl: 5 },
+  { sm: 1, md: 2, lg: 3, xl: 4, xxl: 5 },
   styles,
   "container"
 )
@@ -47,5 +48,11 @@ const breakpointClasses = buildBreakpointClassnames(
 The above example will return the following array:
 
 ```typescript
-const result = ["container-2", "container-lg-3", "container-xl-4", "container-xxl-5"]
+const result = [
+  "container-1",
+  "container-md-2",
+  "container-lg-3",
+  "container-xl-4",
+  "container-xxl-5",
+]
 ```

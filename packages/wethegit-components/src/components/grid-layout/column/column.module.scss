@@ -26,8 +26,10 @@
   padding-inline: 0;
 }
 
+@include make-column-classnames;
+
 @media #{$md-up} {
-  @include make-column-classnames;
+  @include make-column-classnames(md);
 }
 
 @media #{$lg-up} {

@@ -1,5 +1,29 @@
 # @wethegit/components-cli
 
+## 3.0.7
+
+### Patch Changes
+
+- 704cba7: fix: exclude mdx files from CLI copy
+- ff0108e: hotfix: deps versions
+- Updated dependencies [ff0108e]
+  - @wethegit/components@2.3.9
+
+## 3.0.6
+
+### Patch Changes
+
+- 87ff32e: Fixes various issues on the Flex, BackToTop, spacing, and Text components. Creates a useBreakpoints hook, and refactors BreakpointSnipe to use it.
+- Updated dependencies [87ff32e]
+  - @wethegit/components@2.3.6
+
+## 3.0.5
+
+### Patch Changes
+
+- Updated dependencies [a8673be]
+  - @wethegit/components@2.3.5
+
 ## 3.0.4
 
 ### Patch Changes

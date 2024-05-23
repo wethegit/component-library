@@ -5,6 +5,8 @@ on:
     types: [opened, edited, reopened, synchronize]
     paths:
       - "packages/wethegit-components/**"
+      - "yarn.lock"
+      - "**/package.json"
 
   push:
     branches:
@@ -25,9 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Commit
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
 
@@ -53,7 +55,4 @@ jobs:
 
       - name: Serve Storybook and run tests
         working-directory: ./packages/wethegit-components
-        run: |
-          npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
-            "yarn run preview-storybook" \
-            "npx wait-on tcp:6006 && yarn run test-storybook"
+        run: yarn test-storybook:ci

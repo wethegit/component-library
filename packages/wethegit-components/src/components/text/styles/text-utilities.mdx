@@ -6,8 +6,8 @@ import { Meta } from "@storybook/blocks"
 
 `<Text>` provides Sass utilities you can use to help with various typography-related CSS tasks.
 
-- [calc-rem](#calc-rem)
-- [calc-rem-css-var](#calc-rem-css-var)
+* [calc-rem](#calc-rem)
+* [calc-rem-css-var](#calc-rem-css-var)
 
 ## Usage
 
@@ -19,9 +19,9 @@ import { Meta } from "@storybook/blocks"
 
 ## calc-rem
 
-Signature: `calc-rem(unitless-pixel-value, <base-unitless-size> = 16)`
+Signature: `calc-rem(unitless-pixel-value)`
 
-`calc-rem` Receives a unitless pixel value, and converts it into a `rem` value. This is accomplished by dividing the value by 16, which is the default font size in most browsers.
+`calc-rem` Receives a unitless pixel value, and converts it into a `rem` value. This is accomplished by dividing the value by 16, which is the default font size in most browsers. That `16` can be manipulated via the root-level CSS custom property, `--wtc-base-rem-size`, although the need for this is uncommon.
 
 ### Example
 

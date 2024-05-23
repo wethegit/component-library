@@ -2,7 +2,7 @@ import styles from "./color.module.scss"
 
 const colorNames = ["black", "white"] as const
 
-type ColorNames = (typeof colorNames)[number]
+export type ColorNames = (typeof colorNames)[number]
 
 type ColorNamesToStyles = Record<ColorNames, string>
 

@@ -42,7 +42,7 @@ export function BackToTop({
 }: BackToTopProps): JSX.Element {
   const buttonRef = useRef<HTMLButtonElement>(null)
   const { prefersReducedMotion } = useUserPrefs()
-  const [setReferenceRef, referenceIsInView] = useInView(1, false, false)
+  const [setReferenceRef, referenceIsInView] = useInView(0, false, false)
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -54,10 +54,10 @@ export function BackToTop({
 
       const position = window.scrollY
       const duration = prefersReducedMotion ? 0 : getDuration(position, pixelsPerSecond)
-      let starttime: null | number = null
+      let starttime: number | null = null
 
       const animate = (delta: number) => {
-        if (starttime === null) starttime = 0
+        if (starttime === null) starttime = delta
 
         const playHead = clamp(0, 1, (delta - starttime) / duration)
         const easedPlayHead = easingFunction
@@ -76,7 +76,14 @@ export function BackToTop({
 
       requestAnimationFrame(animate)
     },
-    [prefersReducedMotion]
+    [
+      easingFunction,
+      focusOnCompleteCssSelector,
+      onComplete,
+      pixelsPerSecond,
+      prefersReducedMotion,
+      props.onClick,
+    ]
   )
 
   return (
@@ -92,7 +99,7 @@ export function BackToTop({
         ref={buttonRef}
         className={classnames([
           styles.button,
-          (!referenceIsInView || revealThreshold.startsWith("0")) && styles.buttonShown,
+          (revealThreshold.startsWith("0") || !referenceIsInView) && styles.buttonShown,
           className,
         ])}
         onClick={handleClick}

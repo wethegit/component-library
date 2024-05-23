@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { within, userEvent, waitFor } from "@storybook/testing-library"
-import { expect } from "@storybook/jest"
+import { within, userEvent, waitFor , expect } from "@storybook/test"
 import { UserPreferencesProvider } from "@wethegit/react-hooks"
 import { useModal } from "@wethegit/react-modal"
 import { useRef } from "react"

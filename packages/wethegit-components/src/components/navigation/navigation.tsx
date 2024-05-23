@@ -7,28 +7,12 @@ import { classnames } from "@local/utilities"
 import { NavList, Overlay, Toggler } from "./components"
 import styles from "./navigation.module.scss"
 
-export type NavigationLinks = {
-  [key: string]: {
-    label: string
-    path: string
-  }
-}
-
 export interface NavigationProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "aria-label"> {
-  /**
-   * The currently selected navigation item, used to highlight the selected item and to set the `aria-current` attribute.
-   * This is based on the `key` of the `LINKS` object.
-   */
-  currentPage?: keyof NavigationProps["links"]
   /**
    * Mandatory `aria-label` attribute.
    */
   "aria-label": string
-  /**
-   * The links to display in the navigation.
-   */
-  links: NavigationLinks
 }
 
 const MAIN_NAV_ID = "main-nav"
