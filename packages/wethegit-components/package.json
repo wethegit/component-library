@@ -67,7 +67,7 @@
     "remark-gfm": "^4.0.0",
     "sass": "^1.69.5",
     "http-server": "^14.1.1",
-    "stylelint": "^16.5.0",
+    "stylelint": "^16.6.0",
     "stylelint-config-custom": "*",
     "tsconfig": "*",
     "wait-on": "^7.2.0"
