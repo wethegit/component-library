@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.3",
-    "@types/node": "^18.11.9",
+    "@types/node": "^20.12.12",
     "@types/prompts": "^2.4.6",
     "eslint-config-custom": "*",
     "tsconfig": "*",
@@ -36,14 +36,14 @@
     "@antfu/ni": "^0.21.8",
     "app-root-path": "^3.1.0",
     "chalk": "^5.3.0",
-    "commander": "^11.1.0",
-    "execa": "^8.0.1",
+    "commander": "^12.1.0",
+    "execa": "^9.1.0",
     "fs-extra": "^11.1.1",
     "glob": "^10.3.10",
     "ora": "^8.0.1",
     "prompts": "^2.4.2",
     "resolve-package-path": "^4.0.3",
-    "ts-morph": "^20.0.0"
+    "ts-morph": "^22.0.0"
   },
   "peerDependencies": {
     "@wethegit/components": "2.3.9"
