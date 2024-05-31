@@ -4330,6 +4330,11 @@
   resolved "https://registry.yarnpkg.com/@wethegit/react-hooks/-/react-hooks-2.0.4.tgz#ec982b526247658600bdff6086445afe72986b78"
   integrity sha512-9yls5kZafM7Azo1h84TSwe7NZ6vJfMsE4zFVv6iVZlrDBCkIroAsU65mMYs36ViviX2J2b5yXk4x+OVWSQXPZw==
 
+"@wethegit/react-hooks@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@wethegit/react-hooks/-/react-hooks-3.0.1.tgz#159a70e66f17772aae14721642f120265d997e76"
+  integrity sha512-kBh/tTt/s/SHJx03OZNv8PawkAOtbRjdoGSNJyLc3fVWD7N2wtmjpIc8mdir20oMO3W/0DuT3pNw5Pi7qNvFnQ==
+
 "@wethegit/react-modal@^2.0.0":
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/@wethegit/react-modal/-/react-modal-2.2.2.tgz#1742e969a0b05a9c22b45332589fb2baa0a41153"

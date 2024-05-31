@@ -34,10 +34,9 @@ const meta: Meta<typeof InView> = {
   title: "components/in-view/Presets",
   component: InView,
   args: {
-    threshold: 0.3,
+    observerOptions: 0.3,
     once: false,
     setInViewIfScrolledPast: false,
-    matchRootMarginToThreshold: true,
   },
   argTypes: {},
   decorators: [
