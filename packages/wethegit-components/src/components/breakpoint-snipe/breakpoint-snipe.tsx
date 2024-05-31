@@ -1,3 +1,5 @@
+"use client"
+
 import { useBreakpoints } from "@local/hooks"
 import { classnames } from "@local/utilities"
 

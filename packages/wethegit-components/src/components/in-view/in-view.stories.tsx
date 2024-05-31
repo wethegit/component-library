@@ -54,7 +54,7 @@ type Story = StoryObj<typeof InView>
 export const Default: Story = {
   render: (args) => (
     <>
-      <InView as="section" {...args}>
+      <InView as="section" {...args} observerOptions={{ rootMargin: "2%" }}>
         <InViewItem as="ul" animation={animation.scaleUp}>
           <li>
             This entire list is animated in using the <strong>"animation.scaleUp"</strong>{" "}
