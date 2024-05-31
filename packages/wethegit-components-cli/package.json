@@ -1,6 +1,6 @@
 {
   "name": "@wethegit/components-cli",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "type": "module",
   "license": "MIT",
   "exports": "./dist/index.js",
@@ -46,6 +46,6 @@
     "ts-morph": "^22.0.0"
   },
   "peerDependencies": {
-    "@wethegit/components": "2.3.9"
+    "@wethegit/components": "2.3.10"
   }
 }
