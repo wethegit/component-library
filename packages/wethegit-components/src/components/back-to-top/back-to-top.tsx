@@ -1,3 +1,5 @@
+"use client"
+
 import { useCallback, useRef } from "react"
 import { useUserPrefs, useInView } from "@wethegit/react-hooks"
 
