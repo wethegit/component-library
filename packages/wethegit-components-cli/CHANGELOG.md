@@ -1,5 +1,13 @@
 # @wethegit/components-cli
 
+## 3.0.9
+
+### Patch Changes
+
+- Updated dependencies [17020be]
+- Updated dependencies [3a038ac]
+  - @wethegit/components@2.3.11
+
 ## 3.0.8
 
 ### Patch Changes
