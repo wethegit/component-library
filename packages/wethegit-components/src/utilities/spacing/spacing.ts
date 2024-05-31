@@ -5,7 +5,7 @@ const TOTAL_SPACE_CLASSES = 10
 const BREAKPOINTS: Exclude<Breakpoint, "sm">[] = ["md", "lg", "xl", "xxl"]
 
 // This should be the same amount as TOTAL_SPACE_CLASSES
-type SpacingRange = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+type SpacingRange = IntRange<0, 10>
 
 /**
  * @description
