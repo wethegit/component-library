@@ -8,10 +8,9 @@ const meta: Meta<typeof InView> = {
   title: "components/in-view/Example usage",
   component: InView,
   args: {
-    threshold: 0.3,
+    observerOptions: 0.3,
     once: false,
     setInViewIfScrolledPast: false,
-    matchRootMarginToThreshold: true,
   },
   decorators: [
     (Story) => (
