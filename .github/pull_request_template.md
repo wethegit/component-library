@@ -1,4 +1,6 @@
-# (cli/components) fix/release/feature/patch: title
+<!-- use the following format as the PR title
+(cli/components) fix/release/feature/patch: title
+-->
 
 ## Description
 
