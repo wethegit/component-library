@@ -21,7 +21,7 @@
     "lint-staged": "^15.2.2",
     "lint-staged-config": "*",
     "prettier": "^3.0.3",
-    "stylelint": "^16.6.0",
+    "stylelint": "^16.6.1",
     "stylelint-config-custom": "*",
     "tsconfig": "*",
     "turbo": "^1.13.3"
