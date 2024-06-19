@@ -2650,12 +2650,12 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@storybook/addon-a11y@^8.1.5":
-  version "8.1.5"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-8.1.5.tgz#0376ef403df0e7f3c43fcf8d5d25774fadbdff15"
-  integrity sha512-ZEXrfdMzo0fT8vhzuzy+UZYyotC1PQV9T1mxnPBzCCCgqXQHgADv88JwOMIqgPKmKJb499Xq6E9h+ta9pYd8YQ==
+"@storybook/addon-a11y@^8.1.10":
+  version "8.1.10"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-8.1.10.tgz#70baaf3633b6f746d615360518b99be9f541ddcb"
+  integrity sha512-Ruags4vx0ocO9FepZPCcfxksxWUgIIYsHguh/Ktestb0LoZN6Uikg9SMmXZeNrjcMrAHLHYKF/HXP0ov/rIexg==
   dependencies:
-    "@storybook/addon-highlight" "8.1.5"
+    "@storybook/addon-highlight" "8.1.10"
     axe-core "^4.2.0"
 
 "@storybook/addon-actions@8.1.5":
@@ -2746,6 +2746,13 @@
     "@storybook/node-logger" "8.1.5"
     "@storybook/preview-api" "8.1.5"
     ts-dedent "^2.0.0"
+
+"@storybook/addon-highlight@8.1.10":
+  version "8.1.10"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-highlight/-/addon-highlight-8.1.10.tgz#1521641919c47b3c72faa610c4bd7917ab3884fa"
+  integrity sha512-s9QKGtU6WGB/+CggNWg940NIi+u0tcxpPxqg/ltg3EOHr8J0NAZur6mibs3Z4Q5CXkAuNdWrvopLu+/27i1rQQ==
+  dependencies:
+    "@storybook/global" "^5.0.0"
 
 "@storybook/addon-highlight@8.1.5":
   version "8.1.5"
