@@ -43,15 +43,16 @@ export const Default: Story = {
 
 export const WithAlt: Story = {
   render: (args) => {
-    return <Icon {...args} alt="play" />
+    return <Icon {...args} />
   },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement)
+    if (args.alt) {
+      const icon = canvas.getByLabelText(args.alt)
 
-    const icon = canvas.getByLabelText("play")
-
-    expect(icon).toBeInTheDocument()
-    expect(icon.getAttribute("aria-label")).toEqual("play")
-    expect(icon.getAttribute("aria-hidden")).toEqual("false")
+      expect(icon).toBeInTheDocument()
+      expect(icon.getAttribute("aria-label")).toEqual(args.alt)
+      expect(icon.getAttribute("aria-hidden")).toEqual("false")
+    }
   },
 }
