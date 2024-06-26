@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
+import { expect, within } from "@storybook/test"
 import { Icon, IconDefs, IconSymbol } from "@local/components"
 
 const meta = {
@@ -28,4 +28,30 @@ type Story = StoryObj<typeof Icon>
 
 export const Default: Story = {
   render: (args) => <Icon {...args} />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    const icon = canvas.getByRole("img", { hidden: true })
+
+    expect(icon).toBeInTheDocument()
+
+    // without an alt prop provided, aria-hidden should be true
+    expect(icon.getAttribute("aria-hidden")).toEqual("true")
+    expect(icon.hasAttribute("aria-label")).toBe(false)
+  },
+}
+
+export const WithAlt: Story = {
+  render: (args) => {
+    return <Icon {...args} alt="play" />
+  },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    const icon = canvas.getByLabelText("play")
+
+    expect(icon).toBeInTheDocument()
+    expect(icon.getAttribute("aria-label")).toEqual("play")
+    expect(icon.getAttribute("aria-hidden")).toEqual("false")
+  },
 }
