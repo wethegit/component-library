@@ -17,7 +17,7 @@
     "@changesets/cli": "^2.27.5",
     "eslint": "^8.48.0",
     "eslint-config-custom": "*",
-    "husky": "^9.0.11",
+    "husky": "^9.1.4",
     "lint-staged": "^15.2.2",
     "lint-staged-config": "*",
     "prettier": "^3.0.3",
