@@ -10,6 +10,9 @@ updates:
       - "security"
     reviewers:
       - "wethegit/developers"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: "npm"
     directory: "/packages/eslint-config-custom/"
     schedule:
@@ -20,6 +23,9 @@ updates:
       - "security"
     reviewers:
       - "wethegit/developers"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: "npm"
     directory: "/packages/lint-staged-config/"
     schedule:
@@ -30,6 +36,9 @@ updates:
       - "security"
     reviewers:
       - "wethegit/developers"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: "npm"
     directory: "/packages/stylelint-config-custom/"
     schedule:
@@ -40,6 +49,9 @@ updates:
       - "security"
     reviewers:
       - "wethegit/developers"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: "npm"
     directory: "/packages/tsconfig/"
     schedule:
@@ -60,6 +72,9 @@ updates:
       - "security"
     reviewers:
       - "wethegit/developers"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: "npm"
     directory: "/packages/wethegit-components-cli/"
     schedule:
@@ -70,3 +85,6 @@ updates:
       - "security"
     reviewers:
       - "wethegit/developers"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
