@@ -1,35 +1,43 @@
-import { expect, within } from "@storybook/test"
-import { StoryObj } from "@storybook/react"
-
-import { Text } from "@local/components"
+import { expect } from "@storybook/test"
 
 import { classnames } from "./classnames"
 
-export default {
-  args: {
-    className: classnames(["test1", "test2"]),
-  },
-}
+export default {}
 
-export const Test: StoryObj<typeof Text> = {
-  render: (args) => (
-    <Text data-testid="classnames-test" {...args}>
-      {`"${classnames([args.className])}" = classnames([${args.className?.split(" ")}])`}
-    </Text>
-  ),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
+export const Test = {
+  render: () => <></>,
+  play: async () => {
+    // passing all kinds of types and expecting return type string
+    expect(
+      typeof classnames(["button", "primary", ["is-active", null, undefined], 2, "2"])
+    ).toBe("string")
 
-    const textElement = canvas.getByTestId("classnames-test")
+    // // passing all kinds of types and expecting extact result "button primary is-active 2"
+    expect(
+      classnames(["button", "primary", ["is-active", null, undefined], 2, "2"])
+    ).toBe("button primary is-active 2")
 
-    expect(textElement).toBeInTheDocument()
+    // passing only string and expecting extact result "button primary is-active"
+    expect(classnames(["button", "primary", "is-active"])).toBe(
+      "button primary is-active"
+    )
 
-    // test cases using the classnames on a Text component
-    expect(textElement.getAttribute("class")).toContain("test1")
-    expect(textElement.getAttribute("class")).toContain("test2")
+    // passing null and expecting an empty string
+    expect(classnames(null)).toBe("")
 
-    // test cases using the classnames directly
-    expect(typeof classnames(["test1", "test2, test3"])).toBe("string")
-    expect(classnames(["test1", "test2", "test3"])).toBe("test1 test2 test3")
+    // passing undefined and expecting an empty string
+    expect(classnames(undefined)).toBe("")
+
+    // passing nested array + double nested array and expecting exact result "button"
+    expect(classnames([["button"], [["active"]]])).toBe("button")
+
+    // passing array + nested array and expecting exact result "button active"
+    expect(classnames(["button", ["active"]])).toBe("button active")
+
+    // passding a number and expecting an empty string
+    expect(classnames(2)).toBe("")
+
+    // passing an object and expecting an empty string
+    expect(classnames({ classname: "test" })).toBe("")
   },
 }
