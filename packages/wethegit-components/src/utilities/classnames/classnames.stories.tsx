@@ -29,7 +29,7 @@ export const Test = {
     expect(classnames(undefined)).toBe("")
 
     // passing nested array + double nested array and expecting exact result "button"
-    expect(classnames([["button"], [["active"]]])).toBe("button")
+    expect(classnames([["button"], [["active"]]])).toBe("button active")
 
     // passing array + nested array and expecting exact result "button active"
     expect(classnames(["button", ["active"]])).toBe("button active")
