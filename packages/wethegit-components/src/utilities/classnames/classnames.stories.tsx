@@ -28,7 +28,7 @@ export const Test = {
     // passing undefined and expecting an empty string
     expect(classnames(undefined)).toBe("")
 
-    // passing nested array + double nested array and expecting exact result "button"
+    // passing nested array + double nested array and expecting exact result "button active"
     expect(classnames([["button"], [["active"]]])).toBe("button active")
 
     // passing array + nested array and expecting exact result "button active"
