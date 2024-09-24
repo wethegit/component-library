@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { within, userEvent, waitFor , expect } from "@storybook/test"
+import { within, userEvent, waitFor, expect } from "@storybook/test"
 import { UserPreferencesProvider } from "@wethegit/react-hooks"
 import { useModal } from "@wethegit/react-modal"
 import { useRef } from "react"
@@ -43,6 +43,7 @@ export const Default: Story = {
 export const WithButtonTrigger: Story = {
   render: () => {
     const triggerRef = useRef<HTMLButtonElement>(null)
+    const modalRootRef = useRef<HTMLDivElement>(null)
     const { isOpen, toggle } = useModal({
       triggerRef,
     })
@@ -69,9 +70,17 @@ export const WithButtonTrigger: Story = {
         >
           {isOpen ? "Close" : "Open"} Modal
         </button>
-        <Modal isOpen={isOpen} toggle={toggle} aria-label="My Modal">
-          <p style={{ color: "black", margin: 0 }}>Hey! The modal is open!</p>
-        </Modal>
+        <div ref={modalRootRef}></div>
+        {modalRootRef.current && (
+          <Modal
+            renderTo={modalRootRef.current}
+            isOpen={isOpen}
+            toggle={toggle}
+            aria-label="My Modal"
+          >
+            <p style={{ color: "black", margin: 0 }}>Hey! The modal is open!</p>
+          </Modal>
+        )}
       </div>
     )
   },

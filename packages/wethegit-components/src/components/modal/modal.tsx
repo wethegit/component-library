@@ -29,6 +29,10 @@ export interface ModalProps extends WTCModalProps {
    * The modal class name.
    */
   className?: string
+  /**
+   * The modal will be appended to the passed element instead of being rendered in place
+   **/
+  renderTo: HTMLElement
 }
 
 /**
