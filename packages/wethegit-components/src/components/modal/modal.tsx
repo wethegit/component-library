@@ -45,6 +45,7 @@ export function Modal({
   toggle,
   className,
   contentClassName,
+  renderTo,
   ...props
 }: ModalProps) {
   const { prefersReducedMotion } = useUserPrefs()
@@ -63,6 +64,7 @@ export function Modal({
     <WTCModal
       style={stylesVars}
       className={classnames([styles.modal, animate && styles.modalOpen, className])}
+      renderTo={renderTo}
       {...props}
     >
       <ModalBackdrop className={styles.modalBackdrop} onClick={toggle} />

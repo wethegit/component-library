@@ -30,9 +30,9 @@ type Story = StoryObj<typeof Modal>
 export const Default: Story = {
   render: (args) => {
     return (
-      <Modal {...args} appendToBody={false}>
+      <Modal {...args}>
         <p style={{ color: "black", margin: 0 }}>
-          <strong>Close</strong> button doesn't work becayse inside the story we use the{" "}
+          <strong>Close</strong> button doesn't work because inside the story we use the{" "}
           <code>isOpen</code> control.
         </p>
       </Modal>
