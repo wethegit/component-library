@@ -29,13 +29,19 @@ type Story = StoryObj<typeof Modal>
 
 export const Default: Story = {
   render: (args) => {
+    const modalRootRef = useRef<HTMLDivElement>(null)
     return (
-      <Modal {...args}>
-        <p style={{ color: "black", margin: 0 }}>
-          <strong>Close</strong> button doesn't work because inside the story we use the{" "}
-          <code>isOpen</code> control.
-        </p>
-      </Modal>
+      <>
+        <div ref={modalRootRef}></div>
+        {modalRootRef.current && (
+          <Modal {...args} renderTo={modalRootRef.current}>
+            <p style={{ color: "black", margin: 0 }}>
+              <strong>Close</strong> button doesn't work because inside the story we use
+              the <code>isOpen</code> control.
+            </p>
+          </Modal>
+        )}
+      </>
     )
   },
 }
