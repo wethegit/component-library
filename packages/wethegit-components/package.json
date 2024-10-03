@@ -58,7 +58,7 @@
     "@storybook/theming": "^8.1.11",
     "@wethegit/react-hooks": "^3.0.1",
     "@wethegit/react-modal": "^3.0.0",
-    "eslint": "^8.15.0",
+    "eslint": "^8.57.1",
     "eslint-config-custom": "*",
     "eslint-plugin-storybook": "^0.8.0",
     "lint-staged-config": "*",
