@@ -47,7 +47,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.3.1",
-    "storybook": "^8.1.5",
+    "storybook": "^8.3.5",
     "typescript": "^5.2.2",
     "vite": "^5.2.14",
     "@storybook/addon-a11y": "^8.1.11",
