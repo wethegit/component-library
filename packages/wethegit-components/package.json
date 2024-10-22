@@ -1,6 +1,6 @@
 {
   "name": "@wethegit/components",
-  "version": "2.3.11",
+  "version": "3.0.0",
   "main": "./src/index.ts",
   "sideEffects": false,
   "license": "MIT",
@@ -30,7 +30,7 @@
   },
   "peerDependencies": {
     "@wethegit/react-hooks": "^3.0.1",
-    "@wethegit/react-modal": "^2.0.0",
+    "@wethegit/react-modal": "^3.0.0",
     "react": "17 - 18",
     "react-dom": "17 - 18",
     "typescript": "^5.2.2"
@@ -47,7 +47,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.3.1",
-    "storybook": "^8.1.5",
+    "storybook": "^8.3.6",
     "typescript": "^5.2.2",
     "vite": "^5.2.14",
     "@storybook/addon-a11y": "^8.1.11",
@@ -57,10 +57,10 @@
     "@storybook/manager-api": "^8.1.11",
     "@storybook/theming": "^8.1.11",
     "@wethegit/react-hooks": "^3.0.1",
-    "@wethegit/react-modal": "^2.0.0",
+    "@wethegit/react-modal": "^3.0.0",
     "eslint": "^8.15.0",
     "eslint-config-custom": "*",
-    "eslint-plugin-storybook": "^0.8.0",
+    "eslint-plugin-storybook": "^0.10.1",
     "lint-staged-config": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

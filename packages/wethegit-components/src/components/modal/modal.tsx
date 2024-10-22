@@ -29,6 +29,10 @@ export interface ModalProps extends WTCModalProps {
    * The modal class name.
    */
   className?: string
+  /**
+   * The modal will be appended to the passed element instead of being rendered in place
+   **/
+  renderTo: HTMLElement
 }
 
 /**
@@ -41,6 +45,7 @@ export function Modal({
   toggle,
   className,
   contentClassName,
+  renderTo,
   ...props
 }: ModalProps) {
   const { prefersReducedMotion } = useUserPrefs()
@@ -59,6 +64,7 @@ export function Modal({
     <WTCModal
       style={stylesVars}
       className={classnames([styles.modal, animate && styles.modalOpen, className])}
+      renderTo={renderTo}
       {...props}
     >
       <ModalBackdrop className={styles.modalBackdrop} onClick={toggle} />
