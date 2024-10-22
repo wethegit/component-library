@@ -20,7 +20,7 @@
     "husky": "^9.1.4",
     "lint-staged": "^15.2.10",
     "lint-staged-config": "*",
-    "prettier": "^3.0.3",
+    "prettier": "^3.3.3",
     "stylelint": "^16.8.0",
     "stylelint-config-custom": "*",
     "tsconfig": "*",
