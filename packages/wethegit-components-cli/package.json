@@ -43,7 +43,7 @@
     "ora": "^8.0.1",
     "prompts": "^2.4.2",
     "resolve-package-path": "^4.0.3",
-    "ts-morph": "^22.0.0"
+    "ts-morph": "^24.0.0"
   },
   "peerDependencies": {
     "@wethegit/components": "3.0.0"
