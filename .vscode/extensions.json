@@ -4,6 +4,7 @@
     "esbenp.prettier-vscode",
     "mikestead.dotenv",
     "unifiedjs.vscode-mdx",
-    "stylelint.vscode-stylelint"
+    "stylelint.vscode-stylelint",
+    "EditorConfig.EditorConfig"
   ]
 }
