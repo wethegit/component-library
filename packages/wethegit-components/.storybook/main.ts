@@ -22,7 +22,7 @@ const config: StorybookConfig = {
   ],
   docs: {
     defaultName: "Overview",
-    autodocs: true
+    autodocs: true,
   },
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),
