@@ -1,7 +1,7 @@
 module.exports = {
   extends: "stylelint-config-standard-scss",
   plugins: ["stylelint-order"],
-  ignoreFiles: ["../wethegit-components/storybook-static/**/*.css"],
+  ignoreFiles: ["../wethegit-components/storybook-static/**/*.css", "/**/node_modules/"],
   rules: {
     "at-rule-no-unknown": null,
     "declaration-block-no-redundant-longhand-properties": null,
