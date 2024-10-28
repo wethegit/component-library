@@ -25,7 +25,7 @@
     "@types/prompts": "^2.4.6",
     "eslint-config-custom": "*",
     "tsconfig": "*",
-    "tsup": "^8.0.2",
+    "tsup": "^8.3.5",
     "typescript": "^5.2.2",
     "lint-staged-config": "*"
   },
