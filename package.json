@@ -26,6 +26,9 @@
     "tsconfig": "*",
     "turbo": "^1.13.4"
   },
+  "resolutions": {
+    "string-width": "4.2.3"
+  },
   "packageManager": "yarn@1.22.19",
   "workspaces": [
     "apps/*",
