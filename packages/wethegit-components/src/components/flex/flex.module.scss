@@ -62,6 +62,7 @@
   display: flex;
 }
 
+@include breakpoint-classnames;
 @include breakpoint-classnames(-sm);
 
 @media #{$md-up} {

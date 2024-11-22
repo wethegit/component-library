@@ -1,3 +1,6 @@
+"use client"
+
+import { useBreakpoints } from "@local/hooks"
 import { classnames } from "@local/utilities"
 
 import styles from "./breakpoint-snipe.module.scss"
@@ -19,6 +22,8 @@ export function BreakpointSnipe({
   className,
   ...props
 }: BreakpointSnipeProps) {
+  const { breakpoint } = useBreakpoints()
+
   return (
     <div
       className={classnames([
@@ -28,6 +33,8 @@ export function BreakpointSnipe({
       ])}
       {...props}
       aria-hidden="true"
-    />
+    >
+      {breakpoint}
+    </div>
   )
 }

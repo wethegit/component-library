@@ -6,7 +6,11 @@ import { animation } from "./components"
 
 type Story = StoryObj<typeof InView>
 
-const Wrapper = ({ children }) => (
+type WrapperProps = {
+  children: React.ReactNode
+}
+
+const Wrapper = ({ children }: WrapperProps) => (
   <div
     style={{
       border: "1px solid #666",
@@ -20,7 +24,7 @@ const Wrapper = ({ children }) => (
   </div>
 )
 
-const Inner = ({ children }) => (
+const Inner = ({ children }: WrapperProps) => (
   <div className="childSpacing" style={{ overflowX: "hidden" }}>
     {children}
   </div>
@@ -30,10 +34,9 @@ const meta: Meta<typeof InView> = {
   title: "components/in-view/Presets",
   component: InView,
   args: {
-    threshold: 0.3,
+    observerOptions: 0.3,
     once: false,
     setInViewIfScrolledPast: false,
-    matchRootMarginToThreshold: true,
   },
   argTypes: {},
   decorators: [

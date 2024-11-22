@@ -1,8 +1,9 @@
+"use client"
+
 import { useContext, useMemo } from "react"
 
-import { Tag } from "@local/components"
+import { Tag, InViewContext } from "@local/components"
 import type { TagProps } from "@local/components"
-import { InViewContext } from "@local/components/in-view"
 import { classnames, fixedForwardRef } from "@local/utilities"
 
 import type {

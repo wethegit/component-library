@@ -1,6 +1,6 @@
 {
   "name": "@wethegit/components-cli",
-  "version": "3.0.5",
+  "version": "4.0.0",
   "type": "module",
   "license": "MIT",
   "exports": "./dist/index.js",
@@ -21,11 +21,11 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.3",
-    "@types/node": "^18.11.9",
+    "@types/node": "^22.8.4",
     "@types/prompts": "^2.4.6",
     "eslint-config-custom": "*",
     "tsconfig": "*",
-    "tsup": "^7.2.0",
+    "tsup": "^8.3.5",
     "typescript": "^5.2.2",
     "lint-staged-config": "*"
   },
@@ -33,19 +33,19 @@
     "access": "public"
   },
   "dependencies": {
-    "@antfu/ni": "^0.21.8",
+    "@antfu/ni": "^0.23.0",
     "app-root-path": "^3.1.0",
     "chalk": "^5.3.0",
-    "commander": "^11.1.0",
-    "execa": "^8.0.1",
+    "commander": "^12.1.0",
+    "execa": "^9.5.0",
     "fs-extra": "^11.1.1",
     "glob": "^10.3.10",
-    "ora": "^7.0.1",
+    "ora": "^8.0.1",
     "prompts": "^2.4.2",
     "resolve-package-path": "^4.0.3",
-    "ts-morph": "^20.0.0"
+    "ts-morph": "^24.0.0"
   },
   "peerDependencies": {
-    "@wethegit/components": "2.3.5"
+    "@wethegit/components": "3.0.0"
   }
 }

@@ -1,0 +1,77 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/modal/Readme" />
+
+# modal
+
+The `<Modal>` component is a wrapper around [@wethegit/react-modal](https://github.com/wethegit/react-modal) with some default styles including animation.
+
+### Install
+
+```bash
+npx @wethegit/components-cli add modal
+```
+
+### Usage
+
+First, import the global modal styles from `@wethegit/react-modal` into your global stylesheet or root layout:
+
+```scss
+@import "@wethegit/react-modal/style.css";
+```
+
+Modal Component Props
+
+Here are the props you can use with the Modal component:
+
+- isOpen: Whether the modal is open or not.
+- toggle: A function that toggles the modal.
+- children (optional): The modal content.
+- className (optional): The modal class name.
+- contentClassName (optional): The modal content class name.
+- renderTo: The modal will be appended to the passed element instead of being rendered in place
+
+Using the useModal Hook
+
+The `useModal` hook takes in an object with `triggerRef` or `hash` and returns `toggle` callback and `isOpen` boolean which can be passed directly to the `<Modal>` that are required by this component.
+
+Handling Reduced Motion
+
+The `Modal` also handles reduced motion by default and because of that you are required to make sure that the modal component renders inside the [UserPreferencesProvider](https://wethegit.github.io/react-hooks/user-preferences-provider).
+
+```tsx
+import { useRef } from "react"
+import { useModal } from "@wethegit/react-modal"
+import { UserPreferencesProvider } from "@wethegit/react-hooks"
+
+import { Modal } from "@local/components"
+
+function Page() {
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const modalRootRef = useRef<HTMLDivElement>(null)
+
+  const props = useModal({
+    triggerRef,
+  })
+
+  return (
+    <>
+      <button ref={triggerRef} onClick={props.toggle}>
+        Open Modal
+      </button>
+      <UserPreferencesProvider>
+        <div ref={modalRootRef}></div>
+        {modalRootRef.current && (
+          <Modal {...props} renderTo={modalRootRef.current}>
+            <h1>Modal Content</h1>
+            <p>
+              Pariatur occaecat quis aliquip excepteur adipisicing minim ipsum qui
+              proident qui voluptate ut sunt.
+            </p>
+          </Modal>
+        )}
+      </UserPreferencesProvider>
+    </>
+  )
+}
+```

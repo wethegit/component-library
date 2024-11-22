@@ -1,5 +1,42 @@
 # @wethegit/components
 
+## 3.0.0
+
+### Major Changes
+
+- 082a0e5: Upgraded the Modal component to use the latest (v3) @wethegit/react-modal version and the documentation is updated. For more information on what has changed on the latest version, head over to [@wethegit/react-modal changelog](https://github.com/wethegit/react-modal/blob/main/CHANGELOG.md)
+
+## 2.3.11
+
+### Patch Changes
+
+- 17020be: feature: adds IntRange type helper
+- 3a038ac: fix: adds use client to missing components
+
+## 2.3.10
+
+### Patch Changes
+
+- d9b8ddd: fix: updates inView to latest version
+
+## 2.3.9
+
+### Patch Changes
+
+- ff0108e: hotfix: deps versions
+
+## 2.3.8
+
+### Patch Changes
+
+- 938cfe2: Adds missing prefix-less classnames for Column, Flex, and Text components.
+
+## 2.3.6
+
+### Patch Changes
+
+- 87ff32e: Fixes various issues on the Flex, BackToTop, spacing, and Text components. Creates a useBreakpoints hook, and refactors BreakpointSnipe to use it.
+
 ## 2.3.5
 
 ### Patch Changes

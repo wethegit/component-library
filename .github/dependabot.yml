@@ -1,0 +1,90 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "security"
+    reviewers:
+      - "wethegit/developers"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: "npm"
+    directory: "/packages/eslint-config-custom/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "security"
+    reviewers:
+      - "wethegit/developers"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: "npm"
+    directory: "/packages/lint-staged-config/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "security"
+    reviewers:
+      - "wethegit/developers"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: "npm"
+    directory: "/packages/stylelint-config-custom/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "security"
+    reviewers:
+      - "wethegit/developers"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: "npm"
+    directory: "/packages/tsconfig/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "security"
+    reviewers:
+      - "wethegit/developers"
+  - package-ecosystem: "npm"
+    directory: "/packages/wethegit-components/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "security"
+    reviewers:
+      - "wethegit/developers"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: "npm"
+    directory: "/packages/wethegit-components-cli/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "security"
+    reviewers:
+      - "wethegit/developers"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]

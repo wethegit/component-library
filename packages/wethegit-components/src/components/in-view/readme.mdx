@@ -20,7 +20,7 @@ npx @wethegit/components-cli add in-view
 ## Usage
 
 ```jsx
-import { InView, InViewItem, animation } from "@local/components/in-view"
+import { InView, InViewItem, animation } from "@local/components"
 ...
 
 <InView>
@@ -37,7 +37,7 @@ import { InView, InViewItem, animation } from "@local/components/in-view"
 
 For viewport detection, the `<InView>` component extends the `useInView` hook from [@wethegit/react-hooks](https://wethegit.github.io/react-hooks/). It then creates a React context for any children to subscribe to.
 
-The `<InViewItem>` component is one such child, and it accepts various props relating to animation when its parent is condsidered to be "in view" — `animation`, `delay`, `duration`, and `staggerChildren`.
+The `<InViewItem>` component is one such child, and it accepts various props relating to animation when its parent is condsidered to be "in view" — `animation`, `delay`, `duration`, and `staggerChildren`.
 
 ### Custom animation
 
@@ -63,7 +63,7 @@ As shown in the example above, you can use animation presets by importing the `a
 All of the `--start` values correspond to the initial state — i.e. when the component is not in view — and all of the `--end` values correspond to the component's "in view" state. Once you've written your CSS module, you just pass it in as the animation prop, like so:
 
 ```jsx
-import { InView, InViewItem } from "@local/components/in-view"
+import { InView, InViewItem } from "@local/components"
 import styles from "./your-component-styles.module.scss"
 
 function Component() {
@@ -86,7 +86,7 @@ The `<InViewItem>` components also accept a `staggerChildren` prop, which allows
 ### Example
 
 ```jsx
-import { InView, InViewItem } from "@local/components/in-view"
+import { InView, InViewItem } from "@local/components"
 import styles from "./your-component-styles.module.scss"
 
 function Component() {
