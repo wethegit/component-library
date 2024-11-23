@@ -54,6 +54,10 @@ module.exports = {
         "@typescript-eslint/no-base-to-string": "off",
         "@typescript-eslint/no-unnecessary-condition": "off",
         "@typescript-eslint/indent": "off",
+        "@typescript-eslint/no-empty-object-type": [
+          "error",
+          { allowInterfaces: "always" },
+        ],
       },
     },
   ],
