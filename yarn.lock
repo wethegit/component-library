@@ -1616,12 +1616,21 @@
   dependencies:
     memoizerific "^1.11.3"
 
-"@storybook/blocks@8.4.5", "@storybook/blocks@^8.4.5":
+"@storybook/blocks@8.4.5":
   version "8.4.5"
   resolved "https://registry.yarnpkg.com/@storybook/blocks/-/blocks-8.4.5.tgz#9494d9ccddc04bacd6a7a6c67cf870b72bf4ce9d"
   integrity sha512-Z+LHauSqm3A4HBR9pUEf9KQhD3/3xYMt0FXgA+GHCAyDa6lFeD1C6r9Y2nlT+9dt8gv9B9oygTZvV6GqFVyRSQ==
   dependencies:
     "@storybook/csf" "^0.1.11"
+    "@storybook/icons" "^1.2.12"
+    ts-dedent "^2.0.0"
+
+"@storybook/blocks@^8.5.0":
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/@storybook/blocks/-/blocks-8.5.0.tgz#6994c44bab2df46cbe925f18a064a6433bd66eff"
+  integrity sha512-2sTOgjH/JFOgWnpqkKjpKVvKAgUaC9ZBjH1gnCoA5dne/SDafYaCAYfv6yZn7g2Xm1sTxWCAmMIUkYSALeWr+w==
+  dependencies:
+    "@storybook/csf" "0.1.12"
     "@storybook/icons" "^1.2.12"
     ts-dedent "^2.0.0"
 
@@ -1673,10 +1682,10 @@
   resolved "https://registry.yarnpkg.com/@storybook/csf-tools/-/csf-tools-8.3.6.tgz#6a76ec8138a2611ccec032d827bbfcc94eb5944c"
   integrity sha512-92D+GUXdmx5eDYcuQ2ajYSUINQngSjB345//43Tx+Xn30eS4flRBmgPsbSPN8IvSBSQlsUU/w8+MFKBK1qGnUw==
 
-"@storybook/csf@^0.1.11":
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/@storybook/csf/-/csf-0.1.11.tgz#ad685a4fe564a47a6b73571c2e7c07b526f4f71b"
-  integrity sha512-dHYFQH3mA+EtnCkHXzicbLgsvzYjcDJ1JWsogbItZogkPHgSJM/Wr71uMkcvw8v9mmCyP4NpXJuu6bPoVsOnzg==
+"@storybook/csf@0.1.12", "@storybook/csf@^0.1.11":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@storybook/csf/-/csf-0.1.12.tgz#1dcfa0f398a69b834c563884b5f747db3d5a81df"
+  integrity sha512-9/exVhabisyIVL0VxTCxo01Tdm8wefIXKXfltAPTSr8cbLn5JAxGQ6QV3mjdecLGEOucfoVhAKtJfVHxEK1iqw==
   dependencies:
     type-fest "^2.19.0"
 
