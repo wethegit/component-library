@@ -1561,14 +1561,14 @@
   dependencies:
     "@storybook/global" "^5.0.0"
 
-"@storybook/addon-interactions@^8.4.5":
-  version "8.4.5"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-interactions/-/addon-interactions-8.4.5.tgz#0053207da50a4cefc9dce46b7980cd54a828c2ff"
-  integrity sha512-s6R8XVD8LTp+LQTDbhtDjDLE6S44I7FtMLxPdMNwN9VEJjBk01NONLDuGDpNq5o/0bnybA3rMHk9+3afsgzidQ==
+"@storybook/addon-interactions@^8.5.0":
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-interactions/-/addon-interactions-8.5.0.tgz#467ab13beedb2bc3113a76b33c2105ce757a7ae8"
+  integrity sha512-vX1a8qS7o/W3kEzfL/CqOj/Rr6UlGLT/n0KXMpfIhx63tzxe1a1qGpFLL0h0zqAVPHZIOu9humWMKri5Iny6oA==
   dependencies:
     "@storybook/global" "^5.0.0"
-    "@storybook/instrumenter" "8.4.5"
-    "@storybook/test" "8.4.5"
+    "@storybook/instrumenter" "8.5.0"
+    "@storybook/test" "8.5.0"
     polished "^4.2.2"
     ts-dedent "^2.2.0"
 
@@ -1673,6 +1673,13 @@
   resolved "https://registry.yarnpkg.com/@storybook/csf-tools/-/csf-tools-8.3.6.tgz#6a76ec8138a2611ccec032d827bbfcc94eb5944c"
   integrity sha512-92D+GUXdmx5eDYcuQ2ajYSUINQngSjB345//43Tx+Xn30eS4flRBmgPsbSPN8IvSBSQlsUU/w8+MFKBK1qGnUw==
 
+"@storybook/csf@0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@storybook/csf/-/csf-0.1.12.tgz#1dcfa0f398a69b834c563884b5f747db3d5a81df"
+  integrity sha512-9/exVhabisyIVL0VxTCxo01Tdm8wefIXKXfltAPTSr8cbLn5JAxGQ6QV3mjdecLGEOucfoVhAKtJfVHxEK1iqw==
+  dependencies:
+    type-fest "^2.19.0"
+
 "@storybook/csf@^0.1.11":
   version "0.1.11"
   resolved "https://registry.yarnpkg.com/@storybook/csf/-/csf-0.1.11.tgz#ad685a4fe564a47a6b73571c2e7c07b526f4f71b"
@@ -1690,10 +1697,10 @@
   resolved "https://registry.yarnpkg.com/@storybook/icons/-/icons-1.2.12.tgz#3e4c939113b67df7ab17b78f805dbb57f4acf0db"
   integrity sha512-UxgyK5W3/UV4VrI3dl6ajGfHM4aOqMAkFLWe2KibeQudLf6NJpDrDMSHwZj+3iKC4jFU7dkKbbtH2h/al4sW3Q==
 
-"@storybook/instrumenter@8.4.5":
-  version "8.4.5"
-  resolved "https://registry.yarnpkg.com/@storybook/instrumenter/-/instrumenter-8.4.5.tgz#14983198b27dfbeedfef28992eef0d304b9f562b"
-  integrity sha512-8qM35FkueuRpJr0zA6ENvhQICbo+iKL1ln450DwV1kKJtc41KdbA3CuCvtZ/FnoPsFnwdtPjhhICFtRt8LRTSg==
+"@storybook/instrumenter@8.5.0":
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/@storybook/instrumenter/-/instrumenter-8.5.0.tgz#e8c38ab912f2b7119cd92efe3977bc33246fa808"
+  integrity sha512-eZ/UY6w4U2vay+wX7QVwKiRoyMzZscuv6v4k4r8BlmHPFWbhiZDO9S2GsG16UkyKnrQrYk432he70n7hn1Xvmg==
   dependencies:
     "@storybook/global" "^5.0.0"
     "@vitest/utils" "^2.1.1"
@@ -1778,14 +1785,14 @@
     nyc "^15.1.0"
     playwright "^1.14.0"
 
-"@storybook/test@8.4.5", "@storybook/test@^8.4.5":
-  version "8.4.5"
-  resolved "https://registry.yarnpkg.com/@storybook/test/-/test-8.4.5.tgz#a22e8a4671c379f8ffc83a3997feb524bf5d9421"
-  integrity sha512-mHsRc6m60nfcEBsjvUkKz+Jnz0or4WH5jmJ1VL2pGKO4VzESCPqAwDnwDqP2YyeSQ0b/MAKUT5kdoLE2RE2eVw==
+"@storybook/test@8.5.0", "@storybook/test@^8.4.5":
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/@storybook/test/-/test-8.5.0.tgz#d7157a87436000142cf6dedee37a74b86ad776f2"
+  integrity sha512-M/DdPlI6gwL7NGkK5o7GYjdEBp95AsFEUtW29zQfnVIAngYugzi3nIuM/XkQHunidVdAZCYjw2s2Yhhsx/m9sw==
   dependencies:
-    "@storybook/csf" "^0.1.11"
+    "@storybook/csf" "0.1.12"
     "@storybook/global" "^5.0.0"
-    "@storybook/instrumenter" "8.4.5"
+    "@storybook/instrumenter" "8.5.0"
     "@testing-library/dom" "10.4.0"
     "@testing-library/jest-dom" "6.5.0"
     "@testing-library/user-event" "14.5.2"
