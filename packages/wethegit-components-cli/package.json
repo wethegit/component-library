@@ -46,6 +46,6 @@
     "ts-morph": "^24.0.0"
   },
   "peerDependencies": {
-    "@wethegit/components": "3.0.0"
+    "@wethegit/components": "~3.0.0"
   }
 }
