@@ -1,5 +1,13 @@
 # @wethegit/components-cli
 
+## 4.0.1
+
+### Patch Changes
+
+- 513aaaa: feature: support for react v19
+- Updated dependencies [513aaaa]
+  - @wethegit/components@3.0.1
+
 ## 4.0.0
 
 ### Patch Changes
