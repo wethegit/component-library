@@ -3,7 +3,7 @@
   "scripts": {
     "clean": "turbo run clean && rm -rf .turbo node_modules .turbo-cookie",
     "build": "turbo run build",
-    "start": "turbo run start --no-cache --continue",
+    "start": "turbo run start --cache=local:r,remote:r --continue",
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
     "lint": "turbo run lint stylelint",
     "typecheck": "turbo run typecheck",
@@ -24,7 +24,7 @@
     "stylelint": "^16.10.0",
     "stylelint-config-custom": "*",
     "tsconfig": "*",
-    "turbo": "^1.13.4"
+    "turbo": "^2.4.4"
   },
   "resolutions": {
     "string-width": "4.2.3"
@@ -36,5 +36,6 @@
   ],
   "license": "MIT",
   "dependencies": {},
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "name": "component-library"
 }
