@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 3.0.2
+
+### Patch Changes
+
+- 701c246: Fixes an issue with the InViewItem component, where the delays were being caluculated incorrectly. For example, using a delay value of `8` would return a `0.4s` value instead of a `0.8s` value.
+
 ## 3.0.1
 
 ### Patch Changes
