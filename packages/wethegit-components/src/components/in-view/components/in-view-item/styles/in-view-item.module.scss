@@ -38,15 +38,15 @@
 // Example: `.delay2` is a 0.2s delay.
 @for $i from 0 through 10 {
   .delay#{$i} {
-    --delay: #{get-duration($i, 10)};
+    --delay: #{get-duration($i)};
   }
 
   .staggerAmount#{$i} {
-    --stagger-amount: #{get-duration($i, 10)};
+    --stagger-amount: #{get-duration($i)};
   }
 
   .staggerDelay#{$i} {
-    --stagger-delay: #{get-duration($i, 10)};
+    --stagger-delay: #{get-duration($i)};
   }
 }
 
@@ -55,10 +55,10 @@
 // Example: `.duration15` is a 1.5s duration.
 @for $i from 0 through 20 {
   .duration#{$i} {
-    --duration: #{get-duration($i, 20)};
+    --duration: #{get-duration($i)};
   }
 
   .staggerDuration#{$i} {
-    --stagger-duration: #{get-duration($i, 20)};
+    --stagger-duration: #{get-duration($i)};
   }
 }
