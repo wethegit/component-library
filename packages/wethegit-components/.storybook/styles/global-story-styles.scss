@@ -1,7 +1,7 @@
-@import "@local/styles/global";
-@import "@local/styles/animation/animation";
-@import "@local/components/grid-layout/styles/grid-layout";
-@import "@local/components/text/styles/text";
+@use "@local/styles/global";
+@use "@local/styles/animation/animation";
+@use "@local/components/grid-layout/styles/grid-layout";
+@use "@local/components/text/styles/text";
 
 @mixin gutter-highlight($color: blue, $size) {
   box-shadow:
