@@ -1,3 +1,5 @@
+import type { Breakpoint } from "@wethegit/components/src/types/breakpoints/breakpoints"
+
 import type { RegistryCategory } from "./registry-index"
 
 export type Entries<T> = {
@@ -12,4 +14,5 @@ type ConfigDirectories = Record<Exclude<RegistryCategory, "type">, string> & {
 
 export interface Config {
   directories: ConfigDirectories
+  breakpoints: Record<Breakpoint, number[]>
 }

@@ -23,6 +23,13 @@ export const DEFAULT_CONFIG: Config = {
     hook: "src/hooks",
     type: "types",
   },
+  breakpoints: {
+    sm: [0, 639],
+    md: [640, 1023],
+    lg: [1024, 1143],
+    xl: [1144, 1439],
+    xxl: [1440],
+  },
 }
 
 export const REGISTRY_TYPE_TO_ROOT_DIR_MAP: Record<RegistryCategory, string> = {
