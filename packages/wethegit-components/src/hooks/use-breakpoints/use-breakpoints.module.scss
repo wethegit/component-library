@@ -3,6 +3,7 @@
 
 @import "@local/styles/breakpoints/breakpoints-variables";
 
+// TODO: This file will be deleted, and will instead be written directly to the `use-breakpoints.ts` file.
 :export {
   lg: $lg-only;
   md: $md-only;

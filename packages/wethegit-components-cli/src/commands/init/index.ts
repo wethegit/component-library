@@ -7,6 +7,7 @@ import {
   handleError,
   installDependencies,
 } from "../../utils"
+import { writeBreakpointVariablesFromConfig } from "../../utils/write-breakpoint-variables-from-config"
 
 import { copyGlobalStyles } from "./utils"
 
@@ -28,6 +29,14 @@ export async function init({ root, skip }: Options): Promise<void> {
 
       // copy styles
       promises.push(copyGlobalStyles({ config }))
+
+      // create breakpoint variables in the global src/styles/breakpoints directory
+      promises.push(
+        writeBreakpointVariablesFromConfig({
+          config,
+          targetPath: `${config.directories.style}/global.scss`,
+        })
+      )
 
       // install global required dependencies
       promises.push(installDependencies(["sass"], cwd))

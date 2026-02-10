@@ -2,6 +2,7 @@
 @use "sass:map";
 
 // ranges in pixels (min, max)
+// TODO: This will be generated from the config.
 $sm: 0, 639;
 $md: 640, 1023;
 $lg: 1024, 1143;
@@ -9,6 +10,7 @@ $xl: 1144, 1439;
 $xxl: 1440;
 
 // map of media queries
+// TODO: This will be generated based on the above
 $breakpoints: (
   "sm-only": "screen and (max-width: #{list.nth($sm, 2)}px)",
   "md-up": "screen and (min-width: #{list.nth($md, 1)}px)",
