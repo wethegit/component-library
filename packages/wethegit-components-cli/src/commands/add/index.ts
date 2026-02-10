@@ -6,7 +6,7 @@ import {
   buildAndParseConfig,
   ensureCwd,
   handleError,
-  ensureComponentsPackageIsInstalled,
+  getComponentsPackageRoot,
   installDependencies,
 } from "../../utils"
 import { REGISTRY_INDEX, type Registry } from "../../registry-index"
@@ -25,7 +25,7 @@ interface Options {
 
 export async function add(names: string[], options: Options): Promise<void> {
   try {
-    ensureComponentsPackageIsInstalled()
+    getComponentsPackageRoot()
 
     const { root }: Options = options
 

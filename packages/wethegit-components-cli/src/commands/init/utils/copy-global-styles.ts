@@ -8,7 +8,7 @@ import { glob } from "glob"
 import type { Config } from "../../../global"
 import {
   COMPONENTS_PACKAGE_STYLES_DIR,
-  ensureComponentsPackageIsInstalled,
+  getComponentsPackageRoot,
   handleError,
 } from "../../../utils"
 
@@ -21,7 +21,7 @@ export async function copyGlobalStyles({
 }: CopyGlobalStylesOptions): Promise<void> {
   if (!config.directories.style) return
 
-  const componentsPackageRoot = ensureComponentsPackageIsInstalled()
+  const componentsPackageRoot = getComponentsPackageRoot()
 
   const {
     directories: { style: stylesRootDir },

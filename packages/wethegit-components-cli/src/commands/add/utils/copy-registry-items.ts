@@ -10,7 +10,7 @@ import type { Registry } from "../../../registry-index"
 import {
   handleError,
   logger,
-  ensureComponentsPackageIsInstalled,
+  getComponentsPackageRoot,
   REGISTRY_TYPE_TO_ROOT_DIR_MAP,
 } from "../../../utils"
 
@@ -36,7 +36,7 @@ export async function copyRegistryItems({
     return
   }
 
-  const componentsPackageRoot = ensureComponentsPackageIsInstalled()
+  const componentsPackageRoot = getComponentsPackageRoot()
 
   // wait for all files to be copied
   const allFilesSpinner = ora("Copying files...").start()

@@ -3,10 +3,10 @@ import { getNodePackageRoot } from "./get-node-package-root"
 import { logger } from "./logger"
 
 /**
- * Ensures that wethegit/components package is installed
+ * Returns the package root directory path.
  * It will exit the process if it's not installed otherwise return the package root
  */
-export function ensureComponentsPackageIsInstalled(): string {
+export function getComponentsPackageRoot(): string {
   // if components are not installed we don't proceed at all
   const componentsPackageRoot = getNodePackageRoot(COMPONENTS_PACKAGE_NAME)
 
