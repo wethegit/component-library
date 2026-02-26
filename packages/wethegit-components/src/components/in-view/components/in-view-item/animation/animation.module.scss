@@ -1,6 +1,6 @@
-@layer component {
-  @use "./animation-presets" as *;
+@use "./animation-presets" as *;
 
+@layer component {
   /**
    * Generate CSS modules for each animation preset. These classes contain
    * only the CSS custom properties for each animation preset (--start-x,

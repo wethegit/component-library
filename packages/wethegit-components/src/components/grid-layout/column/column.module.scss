@@ -1,7 +1,7 @@
-@layer component {
-  @use "@local/styles/breakpoints/breakpoints-variables" as *;
-  @use "../styles/grid-layout-utilities" as layout;
+@use "@local/styles/breakpoints/breakpoints-variables" as *;
+@use "../styles/grid-layout-utilities" as layout;
 
+@layer component {
   @mixin make-column-classnames($breakpoint: false) {
     $base-class: "span";
 

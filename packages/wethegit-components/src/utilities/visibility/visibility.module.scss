@@ -1,9 +1,9 @@
 /* stylelint-disable selector-class-pattern */ // utility classes are not kebab-case
 
-@layer utility {
-  @use "sass:map";
-  @use "@local/styles/breakpoints/breakpoints-variables" as *;
+@use "sass:map";
+@use "@local/styles/breakpoints/breakpoints-variables" as *;
 
+@layer utility {
   .md-only,
   .md-up,
   .lg-only,

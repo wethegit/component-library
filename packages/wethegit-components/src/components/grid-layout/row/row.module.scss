@@ -1,6 +1,6 @@
-@layer component {
-  @use "@local/styles/breakpoints/breakpoints-variables" as *;
+@use "@local/styles/breakpoints/breakpoints-variables" as *;
 
+@layer component {
   .row {
     display: block;
     inline-size: min(var(--wtc-row-width, 1440px), 100%);

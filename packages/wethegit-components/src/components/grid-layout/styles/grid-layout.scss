@@ -1,6 +1,6 @@
-@layer global {
-  @use "@local/styles/breakpoints/breakpoints-variables" as *;
+@use "@local/styles/breakpoints/breakpoints-variables" as *;
 
+@layer global {
   // You can find most of these grid layout values in your design program's layout preferences.
   :root {
     --wtc-total-width: 1392px;

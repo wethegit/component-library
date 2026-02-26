@@ -1,8 +1,8 @@
-@layer utility {
-  @use "@local/styles/breakpoints/breakpoints-variables" as *;
-  @use "./styles/spacing-utilities" as *;
-  @use "./styles/spacing-variables" as *;
+@use "@local/styles/breakpoints/breakpoints-variables" as *;
+@use "./styles/spacing-utilities" as *;
+@use "./styles/spacing-variables" as *;
 
+@layer utility {
   $total-space-classes: 10;
 
   /**

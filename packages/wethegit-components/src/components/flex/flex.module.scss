@@ -1,6 +1,6 @@
-@layer component {
-  @use "@local/styles/breakpoints/breakpoints-variables" as *;
+@use "@local/styles/breakpoints/breakpoints-variables" as *;
 
+@layer component {
   @mixin breakpoint-classnames($prefix: "") {
     .align#{$prefix}-flex-start {
       align-items: flex-start;

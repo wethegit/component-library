@@ -1,6 +1,6 @@
-@layer component {
-  @use "@local/styles/animation/animation-utilities" as *;
+@use "@local/styles/animation/animation-utilities" as *;
 
+@layer component {
   .button {
     --scale: 1;
 

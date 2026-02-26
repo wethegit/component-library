@@ -1,6 +1,6 @@
-@layer component {
-  @use "@local/styles/breakpoints/breakpoints-variables" as *;
+@use "@local/styles/breakpoints/breakpoints-variables" as *;
 
+@layer component {
   .navList {
     flex-direction: column;
     list-style: none;

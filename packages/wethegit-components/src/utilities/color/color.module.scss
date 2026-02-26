@@ -1,7 +1,7 @@
-@layer utility {
-  @use "./styles/color-utilities" as *;
-  @use "./styles/color-variables" as *;
+@use "./styles/color-utilities" as *;
+@use "./styles/color-variables" as *;
 
+@layer utility {
   // define utility classes:
   @each $color, $h in $colors {
     .bg-#{$color} {

@@ -1,6 +1,6 @@
-@layer component {
-  @use "./in-view-utilities" as *;
+@use "./in-view-utilities" as *;
 
+@layer component {
   .wrap {
     @include animation-state-initial;
   }

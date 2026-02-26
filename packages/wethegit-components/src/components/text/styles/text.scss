@@ -1,6 +1,6 @@
-@layer global {
-  @use "@local/styles/breakpoints/breakpoints-variables" as *;
+@use "@local/styles/breakpoints/breakpoints-variables" as *;
 
+@layer global {
   :root {
     // fonts
     --wtc-font-family-heading: sans-serif;
