@@ -1,45 +1,47 @@
-@use "@local/styles/breakpoints/breakpoints-variables" as *;
-@use "../styles/grid-layout-utilities" as layout;
+@layer component {
+  @use "@local/styles/breakpoints/breakpoints-variables" as *;
+  @use "../styles/grid-layout-utilities" as layout;
 
-@mixin make-column-classnames($breakpoint: false) {
-  $base-class: "span";
+  @mixin make-column-classnames($breakpoint: false) {
+    $base-class: "span";
 
-  @if $breakpoint {
-    $base-class: "span-#{$breakpoint}";
-  }
+    @if $breakpoint {
+      $base-class: "span-#{$breakpoint}";
+    }
 
-  @for $i from 1 through 12 {
-    .#{$base-class}-#{$i} {
-      flex: 0 0 layout.grid-calc($i);
+    @for $i from 1 through 12 {
+      .#{$base-class}-#{$i} {
+        flex: 0 0 layout.grid-calc($i);
+      }
     }
   }
-}
 
-.column {
-  flex: 1;
-  list-style: none;
-  margin: 0;
-  padding-inline: calc(var(--wtc-gutter-width, 24px) * 0.5);
-}
+  .column {
+    flex: 1;
+    list-style: none;
+    margin: 0;
+    padding-inline: calc(var(--wtc-gutter-width, 24px) * 0.5);
+  }
 
-.deep {
-  padding-inline: 0;
-}
+  .deep {
+    padding-inline: 0;
+  }
 
-@include make-column-classnames;
+  @include make-column-classnames;
 
-@media #{$md-up} {
-  @include make-column-classnames(md);
-}
+  @media #{$md-up} {
+    @include make-column-classnames(md);
+  }
 
-@media #{$lg-up} {
-  @include make-column-classnames(lg);
-}
+  @media #{$lg-up} {
+    @include make-column-classnames(lg);
+  }
 
-@media #{$xl-up} {
-  @include make-column-classnames(xl);
-}
+  @media #{$xl-up} {
+    @include make-column-classnames(xl);
+  }
 
-@media #{$xxl-up} {
-  @include make-column-classnames(xxl);
+  @media #{$xxl-up} {
+    @include make-column-classnames(xxl);
+  }
 }

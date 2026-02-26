@@ -1,2 +1,7 @@
+@layer reset, global, utility, component;
+
 @use "./reset";
-@use "./animation/animation";
+
+@layer global {
+  @use "./animation/animation";
+}

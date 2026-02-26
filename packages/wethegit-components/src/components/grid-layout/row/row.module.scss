@@ -1,21 +1,23 @@
-@use "@local/styles/breakpoints/breakpoints-variables" as *;
+@layer component {
+  @use "@local/styles/breakpoints/breakpoints-variables" as *;
 
-.row {
-  display: block;
-  inline-size: min(var(--wtc-row-width, 1440px), 100%);
-  list-style: none;
-  margin-inline: auto;
-  padding-inline: calc(var(--wtc-gutter-width, 24px) * 0.5);
-}
-
-@media #{$md-up} {
-  .row:not(.stackMedium) {
-    display: flex;
+  .row {
+    display: block;
+    inline-size: min(var(--wtc-row-width, 1440px), 100%);
+    list-style: none;
+    margin-inline: auto;
+    padding-inline: calc(var(--wtc-gutter-width, 24px) * 0.5);
   }
-}
 
-@media #{$lg-up} {
-  .stackMedium {
-    display: flex;
+  @media #{$md-up} {
+    .row:not(.stackMedium) {
+      display: flex;
+    }
+  }
+
+  @media #{$lg-up} {
+    .stackMedium {
+      display: flex;
+    }
   }
 }

@@ -1,18 +1,20 @@
-.breakpointSnipe {
-  align-items: center;
-  aspect-ratio: 1/1;
-  background-color: white;
-  bottom: 0;
-  color: black;
-  display: flex;
-  line-height: 1;
-  place-content: center center;
-  position: fixed;
-  right: 0;
-  width: 40px;
-}
+@layer component {
+  .breakpointSnipe {
+    align-items: center;
+    aspect-ratio: 1/1;
+    background-color: white;
+    bottom: 0;
+    color: black;
+    display: flex;
+    line-height: 1;
+    place-content: center center;
+    position: fixed;
+    right: 0;
+    width: 40px;
+  }
 
-.breakpointSnipeDark {
-  background-color: black;
-  color: white;
+  .breakpointSnipeDark {
+    background-color: black;
+    color: white;
+  }
 }

@@ -1,37 +1,39 @@
-@use "@local/styles/animation/animation-utilities" as *;
+@layer component {
+  @use "@local/styles/animation/animation-utilities" as *;
 
-.button {
-  --scale: 1;
+  .button {
+    --scale: 1;
 
-  background-color: #000;
-  bottom: 1rem;
-  color: #fff;
-  opacity: 0;
-  padding: 1rem;
-  position: fixed;
-  right: 1rem;
-  transform: scale(var(--scale));
-  transition:
-    opacity 0.3s,
-    transform duration(0.2s);
-  z-index: 10;
-}
-
-@media (hover: hover) {
-  .button:hover {
-    --scale: 1.1;
+    background-color: #000;
+    bottom: 1rem;
+    color: #fff;
+    opacity: 0;
+    padding: 1rem;
+    position: fixed;
+    right: 1rem;
+    transform: scale(var(--scale));
+    transition:
+      opacity 0.3s,
+      transform duration(0.2s);
+    z-index: 10;
   }
-}
 
-.buttonShown {
-  opacity: 1;
-}
+  @media (hover: hover) {
+    .button:hover {
+      --scale: 1.1;
+    }
+  }
 
-.viewportReference {
-  height: var(--reveal-threshold, 300px);
-  left: 0;
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  width: 100%;
+  .buttonShown {
+    opacity: 1;
+  }
+
+  .viewportReference {
+    height: var(--reveal-threshold, 300px);
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
 }
