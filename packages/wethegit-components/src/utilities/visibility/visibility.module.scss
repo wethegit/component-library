@@ -3,56 +3,58 @@
 @use "sass:map";
 @use "@local/styles/breakpoints/breakpoints-variables" as *;
 
-.md-only,
-.md-up,
-.lg-only,
-.lg-up,
-.xl-only,
-.xl-up,
-.xxl-only,
-.xxl-up {
-  display: none;
-}
-
-@media #{$md-up} {
-  .sm-only {
-    display: none;
-  }
-
+@layer utility {
   .md-only,
-  .md-up {
-    display: block;
-  }
-}
-
-@media #{$lg-up} {
-  .md-only {
-    display: none;
-  }
-
+  .md-up,
   .lg-only,
-  .lg-up {
-    display: block;
-  }
-}
-
-@media #{$xl-up} {
-  .lg-only {
-    display: none;
-  }
-
+  .lg-up,
   .xl-only,
-  .xl-up {
-    display: block;
-  }
-}
-
-@media #{$xxl-up} {
-  .xl-only {
+  .xl-up,
+  .xxl-only,
+  .xxl-up {
     display: none;
   }
 
-  .xxl-up {
-    display: block;
+  @media #{$md-up} {
+    .sm-only {
+      display: none;
+    }
+
+    .md-only,
+    .md-up {
+      display: block;
+    }
+  }
+
+  @media #{$lg-up} {
+    .md-only {
+      display: none;
+    }
+
+    .lg-only,
+    .lg-up {
+      display: block;
+    }
+  }
+
+  @media #{$xl-up} {
+    .lg-only {
+      display: none;
+    }
+
+    .xl-only,
+    .xl-up {
+      display: block;
+    }
+  }
+
+  @media #{$xxl-up} {
+    .xl-only {
+      display: none;
+    }
+
+    .xxl-up {
+      display: block;
+    }
   }
 }
