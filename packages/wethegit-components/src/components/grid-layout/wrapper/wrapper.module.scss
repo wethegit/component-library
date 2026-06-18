@@ -1,5 +1,13 @@
+@use "@local/styles/breakpoints/breakpoints-variables" as *;
+
 .wrapper {
-  inline-size: min(var(--wtc-row-width, 1440px), 100%);
+  inset-inline: 100%;
   margin-inline: auto;
-  padding-inline: calc(var(--wtc-gutter-width, 24px));
+  padding-inline: calc(var(--wtc-grid-margin-width));
+}
+
+@media #{$xxl-up} {
+  .wrapper {
+    inline-size: var(--wtc-row-width, 1440px);
+  }
 }

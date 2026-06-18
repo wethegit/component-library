@@ -2,14 +2,21 @@
 
 // You can find most of these grid layout values in your design program's layout preferences.
 :root {
-  --wtc-total-width: 1392px;
+  --wtc-total-width: 1296px;
   --wtc-number-of-columns: 12;
-  --wtc-gutter-width: 16px;
-  --wtc-row-width: calc(var(--wtc-total-width) + var(--wtc-gutter-width) * 2);
+  --wtc-gutter-width: 24px;
+  --wtc-grid-margin-width: 24px;
+  --wtc-row-width: calc(var(--wtc-total-width) + var(--wtc-grid-margin-width) * 2);
 }
 
 @media #{$md-up} {
   :root {
-    --wtc-gutter-width: 24px;
+    --wtc-grid-margin-width: 56px;
+  }
+}
+
+@media #{$xxl-up} {
+  :root {
+    --wtc-grid-margin-width: 72px;
   }
 }
