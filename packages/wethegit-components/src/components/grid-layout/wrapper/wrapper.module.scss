@@ -3,7 +3,7 @@
 .wrapper {
   inset-inline: 100%;
   margin-inline: auto;
-  padding-inline: calc(var(--wtc-grid-margin-width));
+  padding-inline: var(--wtc-grid-margin-width);
 }
 
 @media #{$xxl-up} {
