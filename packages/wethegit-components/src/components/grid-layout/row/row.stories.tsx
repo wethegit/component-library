@@ -19,10 +19,6 @@ const meta = {
       md: true,
       xl: false,
     },
-    reverse: {
-      md: false,
-      xl: true,
-    },
   },
   argTypes: {
     as: {

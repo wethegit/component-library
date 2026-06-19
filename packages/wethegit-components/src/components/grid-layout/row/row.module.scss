@@ -1,27 +1,13 @@
 @use "@local/styles/breakpoints/breakpoints-variables" as *;
 
 .row {
-  display: block;
-  inline-size: 100%;
+  column-gap: var(--wtc-gutter-width);
+  inline-size: min(100%, var(--wtc-row-width, 1440px));
   list-style: none;
   margin-inline: auto;
-  padding-inline: calc(var(--wtc-grid-margin-width) - var(--wtc-gutter-width) * 0.5);
+  padding-inline: var(--wtc-grid-margin-width);
 }
 
-@media #{$md-up} {
-  .row:not(.stackMedium) {
-    display: flex;
-  }
-}
-
-@media #{$lg-up} {
-  .stackMedium {
-    display: flex;
-  }
-}
-
-@media #{$xxl-up} {
-  .row {
-    inline-size: var(--wtc-row-width, 1440px);
-  }
+.noFlex {
+  display: block;
 }
