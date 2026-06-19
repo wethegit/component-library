@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef, ElementType, ForwardedRef } from "react"
 
-import { fixedForwardRef } from "@local/utilities"
+import { fixedForwardRef } from "@local/utilities/fixed-forward-ref"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a utility type
 type DistributiveOmit<T, TOmitted extends PropertyKey> = T extends any
