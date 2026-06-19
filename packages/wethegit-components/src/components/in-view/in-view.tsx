@@ -1,10 +1,10 @@
 "use client"
 
-import { createContext, ElementType } from "react"
+import { ComponentPropsWithRef, createContext, ElementType } from "react"
 import { useInView } from "@wethegit/react-hooks"
 
-import { Tag } from "@local/components"
-import type { TagProps } from "@local/components"
+import { Tag } from "@local/components/tag/tag"
+import type { TagProps } from "@local/components/tag/tag"
 
 export type InViewContextReturn = {
   isInView: boolean
@@ -57,7 +57,12 @@ export function InView<TAs extends ElementType, T extends HTMLElement>({
 
   return (
     <InViewContext.Provider value={value}>
-      <Tag as={as} ref={setRef} className={className} {...rest} />
+      <Tag
+        as={as}
+        ref={setRef as ComponentPropsWithRef<TAs>["ref"]}
+        className={className}
+        {...rest}
+      />
     </InViewContext.Provider>
   )
 }

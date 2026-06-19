@@ -1,10 +1,13 @@
 "use client"
 
-import { useContext, useMemo } from "react"
+import { ComponentPropsWithRef, useContext, useMemo } from "react"
 
-import { Tag, InViewContext } from "@local/components"
-import type { TagProps } from "@local/components"
-import { classnames, fixedForwardRef } from "@local/utilities"
+import { Tag } from "@local/components/tag/tag"
+import type { TagProps } from "@local/components/tag/tag"
+import { classnames } from "@local/utilities/classnames"
+import { fixedForwardRef } from "@local/utilities/fixed-forward-ref"
+
+import { InViewContext } from "../../in-view"
 
 import type {
   AnimationPreset,
@@ -44,7 +47,7 @@ export const InViewItem = fixedForwardRef(function InViewItem<
   TAs extends React.ElementType,
 >(
   { animation, delay, duration, staggerChildren, ...props }: InViewItemProps<TAs>,
-  ref: React.ForwardedRef<unknown>
+  ref: ComponentPropsWithRef<TAs>["ref"]
 ) {
   const context = useContext(InViewContext)
   if (!context) throw new Error("<InViewItem> must be a descendent of <InView>.")
