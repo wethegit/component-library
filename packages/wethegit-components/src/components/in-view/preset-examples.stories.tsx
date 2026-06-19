@@ -1,8 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { InView, InViewItem, Text } from "@local/components"
+import { Text } from "../text/text"
 
-import { animation } from "./components"
+import { InView } from "./in-view"
+import { InViewItem } from "./components/in-view-item"
+import { animation } from "./components/in-view-item/animation/animation"
+import type { AnimationPreset } from "./components/in-view-item/animation/animation"
 
 type Story = StoryObj<typeof InView>
 
@@ -67,7 +70,7 @@ const Box = () => {
   )
 }
 
-const makeBoxes = ({ args, animationKey = "fade" }) => {
+const makeBoxes = ({ args = {}, animationKey = "fade" }) => {
   return (
     <>
       {Array(6)
@@ -83,7 +86,7 @@ const makeBoxes = ({ args, animationKey = "fade" }) => {
             }}
             {...args}
           >
-            <InViewItem animation={animation[animationKey]}>
+            <InViewItem animation={animation[animationKey as AnimationPreset]}>
               <Box />
             </InViewItem>
           </InView>
