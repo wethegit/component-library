@@ -1,8 +1,10 @@
 import type { ElementType, ForwardedRef } from "react"
 
-import { Tag } from "@local/components"
-import type { TagProps } from "@local/components"
-import { buildBreakpointClassnames, classnames, fixedForwardRef } from "@local/utilities"
+import { Tag } from "@local/components/tag/tag"
+import type { TagProps } from "@local/components/tag/tag"
+import { buildBreakpointClassnames } from "@local/utilities/build-breakpoint-classnames/build-breakpoint-classnames"
+import { classnames } from "@local/utilities/classnames/classnames"
+import { fixedForwardRef } from "@local/utilities/fixed-forward-ref/fixed-forward-ref"
 
 import styles from "./flex.module.scss"
 
