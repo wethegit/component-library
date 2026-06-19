@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { InView, InViewItem, Text } from "@local/components"
+import { Text } from "../text/text"
 
-import { animation } from "./components"
+import { InView } from "./in-view"
+import { InViewItem } from "./components/in-view-item"
+import { animation } from "./components/in-view-item/animation/animation"
 
 const meta: Meta<typeof InView> = {
   title: "components/in-view/Example usage",
