@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { BreakpointSnipe } from "@local/components"
+import { BreakpointSnipe } from "./breakpoint-snipe"
 
 const meta = {
   title: "components/breakpoint-snipe",
