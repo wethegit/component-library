@@ -1,5 +1,5 @@
-// Calculates the percentage value of n cells given
-@function column-span($n: 1) {
+// Calculates the percentage value of n columns' width.
+@function get-column-width($n: 1) {
   @return calc(
     #{$n} * (100% - (var(--wtc-number-of-columns) - 1) * var(--wtc-gutter-width)) /
       var(--wtc-number-of-columns) + (var(--wtc-gutter-width) * #{$n - 1})

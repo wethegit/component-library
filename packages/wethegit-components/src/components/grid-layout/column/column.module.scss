@@ -10,7 +10,7 @@
 
   @for $i from 1 through 12 {
     .#{$base-class}-#{$i} {
-      flex: 0 0 layout.column-span($i);
+      flex: 0 0 layout.get-column-width($i);
     }
   }
 }

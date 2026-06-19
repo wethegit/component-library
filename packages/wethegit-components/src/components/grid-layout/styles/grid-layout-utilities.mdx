@@ -6,7 +6,7 @@ import { Meta } from "@storybook/blocks"
 
 The grid layout comes with some Sass utilities to help you size elements based on the grid's configuration.
 
-- [column-span](#column-span)
+- [get-column-width](#get-column-width)
 
 ## Usage
 
@@ -16,16 +16,16 @@ The grid layout comes with some Sass utilities to help you size elements based o
 @use "@local/components/grid-layout/styles/grid-layout-utilities" as *;
 ```
 
-## column-span
+## get-column-width
 
-Signature: `column-span(number-of-columns)`
+Signature: `get-column-width(number-of-columns)`
 
-`column-span` Receives a number, and returns a CSS calc expression that evaluates to the number of columns multiplied by the grid's column width.
+`get-column-width` Receives a number, and returns a CSS calc expression that evaluates to the number of columns multiplied by the grid's column width.
 
 ### Example
 
 ```css
 .customComponent {
-  width: column-span(6);
+  width: get-column-width(6);
 }
 ```
