@@ -1,5 +1,5 @@
-import { Flex } from "@local/components"
-import { classnames } from "@local/utilities"
+import { Flex } from "@local/components/flex/flex"
+import { classnames } from "@local/utilities/classnames"
 
 import styles from "./nav-list.module.scss"
 
