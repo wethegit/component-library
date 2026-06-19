@@ -1,5 +1,6 @@
-import { VisuallyHidden } from "@local/components"
-import { classnames } from "@local/utilities"
+import { classnames } from "@local/utilities/classnames"
+
+import { VisuallyHidden } from "../visually-hidden/visually-hidden"
 
 import styles from "./visually-hidden-links.module.scss"
 
