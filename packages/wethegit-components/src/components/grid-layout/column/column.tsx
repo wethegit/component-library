@@ -11,10 +11,6 @@ import styles from "./column.module.scss"
 export type ColumnBreakpoints = Partial<Omit<Breakpoints<number>, "sm">>
 export type ColumnProps<TAs extends ElementType> = TagProps<TAs> & {
   /**
-   * Remove gutter padding. Useful for nested flex-layouts
-   */
-  deep?: boolean
-  /**
    * Number of flex-layout columns to span. Accepts a `number` or a `breakpoint-object`
    */
   span?: number | ColumnBreakpoints
@@ -28,17 +24,12 @@ export type ColumnProps<TAs extends ElementType> = TagProps<TAs> & {
  * If no `span` prop is provided, the columns will fill the available space.
  */
 export const Column = fixedForwardRef(function Column<TAs extends ElementType = "div">(
-  { deep = false, span, className, ...props }: ColumnProps<TAs>,
+  { span, className, ...props }: ColumnProps<TAs>,
   ref: ForwardedRef<unknown>
 ) {
   const breakpointClassNames = buildBreakpointClassnames<number>(span, styles, "span")
 
-  const classes = classnames([
-    styles.column,
-    deep && styles.deep,
-    breakpointClassNames,
-    className,
-  ])
+  const classes = classnames([styles.column, breakpointClassNames, className])
 
   return <Tag className={classes} ref={ref} {...props} />
 })

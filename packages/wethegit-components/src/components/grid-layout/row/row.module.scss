@@ -6,6 +6,10 @@
   list-style: none;
   margin-inline: auto;
   padding-inline: var(--wtc-grid-margin-width);
+
+  .row {
+    padding-inline: 0;
+  }
 }
 
 .noFlex {

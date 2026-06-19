@@ -67,28 +67,28 @@ export const Default: Story = {
 
 export const NestedColumns: Story = {
   name: "Nested columns",
-  render: (args) => (
-    <Row className="gutterVisualizer">
-      <Column className="gutterVisualizer" {...args}>
+  render: () => (
+    <Row>
+      <Column span={5}>
+        {howManyColumns(5)}
         <p>
           Nesting columns is easy. Just add another <code>Row</code>, more{" "}
           <code>Column</code> components and don't forget to set the <code>deep</code>{" "}
           prop on the nested <code>Column</code> components.
         </p>
-        {howManyColumns(args.span)}
       </Column>
-      <Column className="gutterVisualizer" span={7}>
-        <p>
-          This spans <code>7</code> columns
-        </p>
-        <Row className="gutterVisualizer">
-          <Column className="gutterVisualizer" deep>
+      <Column span={7}>
+        {howManyColumns(7)}
+        <Row>
+          <Column span={6}>
+            {howManyColumns(6)}
             <p>
               Notice how the text touches the edge and they don't have an internal
               left/right gutter.
             </p>
           </Column>
-          <Column className="gutterVisualizer" deep>
+          <Column span={6}>
+            {howManyColumns(6)}
             <p>
               Notice how the text touches the edge and they don't have an internal
               left/right gutter.
