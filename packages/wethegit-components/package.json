@@ -18,7 +18,7 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "build": "storybook build --docs",
+    "build": "storybook build --docs --output-dir storybook-static",
     "clean": "rm -rf ./.turbo ./node_modules ./dist ./storybook-static",
     "start": "storybook dev -p 6006",
     "lint": "eslint src/",
@@ -40,7 +40,6 @@
     "@storybook/addon-actions": "^8.1.10",
     "@storybook/addon-docs": "^8.1.5",
     "@storybook/addon-essentials": "^8.5.8",
-    "@storybook/addon-interactions": "^8.5.8",
     "@storybook/addon-links": "^8.1.11",
     "@storybook/addon-themes": "^8.1.5",
     "@storybook/blocks": "^8.5.8",
@@ -62,7 +61,7 @@
     "lint-staged-config": "*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "remark-gfm": "^4.0.0",
+    "remark-gfm": "^4.0.1",
     "sass": "^1.81.0",
     "storybook": "^8.5.8",
     "stylelint": "^16.8.0",
