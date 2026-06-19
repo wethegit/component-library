@@ -5,7 +5,7 @@ export function buildBreakpointClassnames<T extends string | number | boolean>(
   styles: Record<string, string>,
   styleName: string
 ): ClassnamesProps {
-  const allClassnames: ClassnamesProps = []
+  const allClassnames: ClassnamesProps[] = []
 
   if (typeof prop === "object") {
     const { sm, md, lg, xl, xxl } = prop

@@ -1,5 +1,5 @@
 import { forwardRef } from "react"
-import type { Ref, ReactNode, RefAttributes } from "react"
+import type { Ref, ReactNode, RefAttributes, JSX } from "react"
 
 type FixedForwardRef = <T, P = object>(
   render: (props: P, ref: Ref<T>) => ReactNode
