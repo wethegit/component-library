@@ -91,7 +91,7 @@ const TEXT: Registry = {
     "https://wethegit.github.io/component-library/?path=/docs/components-text-readme--overview",
   postInstallMessages: [
     `The ${chalk.bold("Text")} component requires a ${chalk.italic("CSS")} file to work properly. Add the following line to your global styles:`,
-    '@import "@local/components/text/styles/text.scss";',
+    '@use "@local/components/text/styles/text";',
   ],
 }
 
@@ -115,7 +115,7 @@ const GRID_LAYOUT: Registry = {
     "https://wethegit.github.io/component-library/?path=/docs/components-grid-layout-readme--overview",
   postInstallMessages: [
     `The ${chalk.bold("grid")} requires a CSS file to work properly. Add the following line to your global styles:`,
-    '@import "@local/components/grid-layout/styles/grid-layout.scss";',
+    '@use "@local/components/grid-layout/styles/grid-layout";',
   ],
 }
 
