@@ -1,6 +1,7 @@
-import { Tag } from "@local/components"
-import type { TagProps } from "@local/components"
-import { classnames, fixedForwardRef } from "@local/utilities"
+import { fixedForwardRef } from "@local/utilities/fixed-forward-ref"
+import { classnames } from "@local/utilities/classnames"
+import { Tag } from "@local/components/tag/tag"
+import type { TagProps } from "@local/components/tag/tag"
 
 import styles from "./image-group-item.module.scss"
 
