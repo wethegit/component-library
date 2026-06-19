@@ -1,9 +1,9 @@
 "use client"
 
-import { useCallback, useRef } from "react"
+import { JSX, useCallback, useRef } from "react"
 import { useUserPrefs, useInView } from "@wethegit/react-hooks"
 
-import { classnames } from "@local/utilities"
+import { classnames } from "@local/utilities/classnames"
 
 import styles from "./back-to-top.module.scss"
 
@@ -93,7 +93,7 @@ export function BackToTop({
       {/* this is a reference element, so that we know when to show the button */}
       <div
         className={styles.viewportReference}
-        ref={setReferenceRef}
+        ref={(e: HTMLDivElement) => setReferenceRef(e)}
         style={{ "--reveal-threshold": revealThreshold } as React.CSSProperties}
       />
 
