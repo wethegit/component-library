@@ -65,31 +65,6 @@ export const Default: Story = {
   ),
 }
 
-export const GutterVisualizer: Story = {
-  name: "Gutter visualizer",
-  render: (args) => (
-    <Row className="gutterVisualizer">
-      <Column className="gutterVisualizer">
-        <p>
-          The left or right padding on a <code>Row</code> or a <code>Column</code> is
-          equivalent to half of a gutter's width, within your flex-layout. As shown here,
-          when these components butt-up against one another, they form a gap of exactly
-          one gutter's width.
-        </p>
-        <p>Use the controls to adjust the width of this column.</p>
-        <p>
-          🚀 Note that the padding still applies at the <code>small</code> breakpoint,
-          despite the lack of a flex-layout there, creating "automatic" gutters for your
-          content.
-        </p>
-      </Column>
-      <Column className="gutterVisualizer" {...args}>
-        {howManyColumns(args.span)}
-      </Column>
-    </Row>
-  ),
-}
-
 export const NestedColumns: Story = {
   name: "Nested columns",
   render: (args) => (
@@ -110,13 +85,13 @@ export const NestedColumns: Story = {
           <Column className="gutterVisualizer" deep>
             <p>
               Notice how the text touches the edge and they don't have an internal
-              padding.
+              left/right gutter.
             </p>
           </Column>
           <Column className="gutterVisualizer" deep>
             <p>
               Notice how the text touches the edge and they don't have an internal
-              padding.
+              left/right gutter.
             </p>
           </Column>
         </Row>
