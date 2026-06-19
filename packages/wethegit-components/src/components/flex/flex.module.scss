@@ -49,12 +49,16 @@
     flex-wrap: nowrap;
   }
 
-  .reverse#{$prefix}-true {
+  .direction#{$prefix}-row {
+    flex-direction: row;
+  }
+
+  .direction#{$prefix}-row-reverse {
     flex-direction: row-reverse;
   }
 
-  .reverse#{$prefix}-false {
-    flex-direction: row;
+  .direction#{$prefix}-column {
+    flex-direction: column;
   }
 }
 
