@@ -1,5 +1,6 @@
-import { VisuallyHidden } from "@local/components"
-import { classnames, fixedForwardRef } from "@local/utilities"
+import { VisuallyHidden } from "@local/components/visually-hidden/visually-hidden"
+import { classnames } from "@local/utilities/classnames"
+import { fixedForwardRef } from "@local/utilities/fixed-forward-ref"
 
 import styles from "./toggler.module.scss"
 
