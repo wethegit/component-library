@@ -1,8 +1,7 @@
-import type { ElementType, ForwardedRef } from "react"
+import type { ElementType } from "react"
 
 import { Tag } from "@local/components/tag/tag"
 import type { TagProps } from "@local/components/tag/tag"
-import { fixedForwardRef } from "@local/utilities/fixed-forward-ref/fixed-forward-ref"
 import { buildBreakpointClassnames } from "@local/utilities/build-breakpoint-classnames/build-breakpoint-classnames"
 import { classnames } from "@local/utilities/classnames/classnames"
 
@@ -23,13 +22,14 @@ export type ColumnProps<TAs extends ElementType> = TagProps<TAs> & {
  *
  * If no `span` prop is provided, the columns will fill the available space.
  */
-export const Column = fixedForwardRef(function Column<TAs extends ElementType = "div">(
-  { span, className, ...props }: ColumnProps<TAs>,
-  ref: ForwardedRef<unknown>
-) {
+export function Column<TAs extends ElementType = "div">({
+  span,
+  className,
+  ...props
+}: ColumnProps<TAs>) {
   const breakpointClassNames = buildBreakpointClassnames<number>(span, styles, "span")
 
   const classes = classnames([styles.column, breakpointClassNames, className])
 
-  return <Tag className={classes} ref={ref} {...props} />
-})
+  return <Tag className={classes} {...props} />
+}

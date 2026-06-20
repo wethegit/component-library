@@ -1,9 +1,8 @@
-import type { ElementType, ForwardedRef } from "react"
+import type { ElementType } from "react"
 
 import { Flex } from "@local/components/flex/flex"
 import type { FlexProps } from "@local/components/flex/flex"
 import { classnames } from "@local/utilities/classnames/classnames"
-import { fixedForwardRef } from "@local/utilities/fixed-forward-ref/fixed-forward-ref"
 
 import styles from "./row.module.scss"
 
@@ -21,10 +20,12 @@ export type RowProps<T extends ElementType> = FlexProps<T> & {
  *
  * By default, the flex layout system follows a "column" direction on sm, and "row" on md+.
  */
-export const Row = fixedForwardRef(function Row<T extends ElementType = "div">(
-  { variant = "flex", flexDirection, className, ...props }: RowProps<T>,
-  ref: ForwardedRef<unknown>
-) {
+export function Row<T extends ElementType = "div">({
+  variant = "flex",
+  flexDirection,
+  className,
+  ...props
+}: RowProps<T>) {
   return (
     <Flex
       className={classnames([
@@ -37,8 +38,7 @@ export const Row = fixedForwardRef(function Row<T extends ElementType = "div">(
           ? flexDirection
           : { sm: "column", md: "row", ...(flexDirection ?? {}) }
       }
-      ref={ref}
       {...props}
     />
   )
-})
+}
