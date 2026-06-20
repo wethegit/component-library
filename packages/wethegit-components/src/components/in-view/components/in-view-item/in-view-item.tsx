@@ -5,7 +5,6 @@ import { type ComponentPropsWithRef, useContext, useMemo } from "react"
 import { Tag } from "@local/components/tag/tag"
 import type { TagProps } from "@local/components/tag/tag"
 import { classnames } from "@local/utilities/classnames"
-import { fixedForwardRef } from "@local/utilities/fixed-forward-ref"
 
 import { InViewContext } from "../../in-view"
 
@@ -43,12 +42,13 @@ export type InViewItemProps<TAs extends React.ElementType> = TagProps<TAs> & {
   staggerChildren?: StaggerOptions | boolean
 }
 
-export const InViewItem = fixedForwardRef(function InViewItem<
-  TAs extends React.ElementType,
->(
-  { animation, delay, duration, staggerChildren, ...props }: InViewItemProps<TAs>,
-  ref: ComponentPropsWithRef<TAs>["ref"]
-) {
+export function InViewItem<TAs extends React.ElementType>({
+  animation,
+  delay,
+  duration,
+  staggerChildren,
+  ...props
+}: InViewItemProps<TAs>) {
   const context = useContext(InViewContext)
   if (!context) throw new Error("<InViewItem> must be a descendent of <InView>.")
 
@@ -75,5 +75,5 @@ export const InViewItem = fixedForwardRef(function InViewItem<
     className,
   ])
 
-  return <Tag as={as} ref={ref} className={mergedClasses} {...rest} />
-})
+  return <Tag as={as} className={mergedClasses} {...rest} />
+}

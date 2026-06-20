@@ -40,11 +40,6 @@ const USE_BREAKPOINTS: Registry = {
 }
 
 /* UTILITIES */
-const FIXED_FORWARD_REF: Registry = {
-  name: "fixed-forward-ref",
-  category: "utility",
-}
-
 const BUILD_BREAKPOINT_CLASSNAMES: Registry = {
   name: "build-breakpoint-classnames",
   category: "utility",
@@ -86,7 +81,7 @@ const TAG: Registry = {
 const TEXT: Registry = {
   name: "text",
   category: "component",
-  localDependencies: [BUILD_BREAKPOINT_CLASSNAMES, CLASSNAMES, FIXED_FORWARD_REF, TAG],
+  localDependencies: [BUILD_BREAKPOINT_CLASSNAMES, CLASSNAMES, TAG],
   docsUrl:
     "https://wethegit.github.io/component-library/?path=/docs/components-text-readme--overview",
   postInstallMessages: [
@@ -98,13 +93,7 @@ const TEXT: Registry = {
 const FLEX: Registry = {
   name: "flex",
   category: "component",
-  localDependencies: [
-    TAG,
-    CLASSNAMES,
-    FIXED_FORWARD_REF,
-    BUILD_BREAKPOINT_CLASSNAMES,
-    BREAKPOINTS_TYPE,
-  ],
+  localDependencies: [TAG, CLASSNAMES, BUILD_BREAKPOINT_CLASSNAMES, BREAKPOINTS_TYPE],
 }
 
 const GRID_LAYOUT: Registry = {
@@ -122,7 +111,7 @@ const GRID_LAYOUT: Registry = {
 const IMAGE_GROUP: Registry = {
   name: "image-group",
   category: "component",
-  localDependencies: [CLASSNAMES, FIXED_FORWARD_REF, TAG],
+  localDependencies: [CLASSNAMES, TAG],
   docsUrl:
     "https://wethegit.github.io/component-library/?path=/docs/components-image-group-readme--overview",
 }
@@ -138,7 +127,7 @@ const VISUALLY_HIDDEN: Registry = {
 const NAVIGATION: Registry = {
   name: "navigation",
   category: "component",
-  localDependencies: [FLEX, CLASSNAMES, VISUALLY_HIDDEN, FIXED_FORWARD_REF],
+  localDependencies: [FLEX, CLASSNAMES, VISUALLY_HIDDEN],
   docsUrl:
     "https://wethegit.github.io/component-library/?path=/docs/components-navigation-readme--overview",
 }
@@ -168,7 +157,7 @@ const MODAL: Registry = {
 const IN_VIEW: Registry = {
   name: "in-view",
   category: "component",
-  localDependencies: [CLASSNAMES, FIXED_FORWARD_REF, TAG],
+  localDependencies: [CLASSNAMES, TAG],
   dependencies: ["@wethegit/react-hooks"],
 }
 

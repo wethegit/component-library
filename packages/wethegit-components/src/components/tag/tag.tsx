@@ -1,6 +1,4 @@
-import type { ComponentPropsWithRef, ElementType, ForwardedRef } from "react"
-
-import { fixedForwardRef } from "@local/utilities/fixed-forward-ref"
+import type { ComponentPropsWithRef, ElementType } from "react"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a utility type
 type DistributiveOmit<T, TOmitted extends PropertyKey> = T extends any
@@ -13,11 +11,6 @@ export type TagProps<TAs extends ElementType> = {
    */
   as?: TAs
 } & DistributiveOmit<ComponentPropsWithRef<ElementType extends TAs ? "div" : TAs>, "as">
-
-/*
-  Adapted from the example by the TS wizard Matt Pocock
-  https://github.com/total-typescript/react-typescript-tutorial/blob/main/src/08-advanced-patterns/72-as-prop-with-forward-ref.solution.tsx
-*/
 
 /**
  * This is a generic component that can be used to create any HTML tag and infer the type of the props.
@@ -46,11 +39,7 @@ export type TagProps<TAs extends ElementType> = {
  * })
  * ```
  */
-export const Tag = fixedForwardRef(function Tag<TAs extends ElementType>(
-  props: TagProps<TAs>,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a utility type
-  ref: ForwardedRef<any>
-) {
+export function Tag<TAs extends ElementType>(props: TagProps<TAs>) {
   const { as: Comp = "div", ...rest } = props
-  return <Comp {...rest} ref={ref} />
-})
+  return <Comp {...rest} />
+}
