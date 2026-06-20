@@ -7,11 +7,13 @@ import { fixedForwardRef } from "@local/utilities/fixed-forward-ref/fixed-forwar
 
 import styles from "./row.module.scss"
 
+export type RowVariant = "block" | "flex"
+
 export type RowProps<T extends ElementType> = FlexProps<T> & {
   /**
-   * Remove flexbox from the Row's styling. Used for simple "Wrapper" divs that are only used for adhering to the grid width and gutter sizing.
+   * Whether to remove flexbox from the Row's styling and simply use "display: block". Used for simple "Wrapper" divs that are only used for adhering to the grid width and gutter sizing.
    */
-  noFlex?: boolean
+  variant?: RowVariant
 }
 
 /**
@@ -20,12 +22,16 @@ export type RowProps<T extends ElementType> = FlexProps<T> & {
  * By default, the flex layout system follows a "column" direction on sm, and "row" on md+.
  */
 export const Row = fixedForwardRef(function Row<T extends ElementType = "div">(
-  { noFlex = false, flexDirection, className, ...props }: RowProps<T>,
+  { variant = "flex", flexDirection, className, ...props }: RowProps<T>,
   ref: ForwardedRef<unknown>
 ) {
   return (
     <Flex
-      className={classnames([styles.row, noFlex && styles.noFlex, className])}
+      className={classnames([
+        styles.row,
+        variant === "block" && styles.rowBlock,
+        className,
+      ])}
       flexDirection={
         typeof flexDirection === "string"
           ? flexDirection
