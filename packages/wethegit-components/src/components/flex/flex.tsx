@@ -1,10 +1,9 @@
-import type { ElementType, ForwardedRef } from "react"
+import type { ElementType } from "react"
 
 import { Tag } from "@local/components/tag/tag"
 import type { TagProps } from "@local/components/tag/tag"
 import { buildBreakpointClassnames } from "@local/utilities/build-breakpoint-classnames/build-breakpoint-classnames"
 import { classnames } from "@local/utilities/classnames/classnames"
-import { fixedForwardRef } from "@local/utilities/fixed-forward-ref/fixed-forward-ref"
 
 import styles from "./flex.module.scss"
 
@@ -51,17 +50,14 @@ export type FlexProps<TAs extends ElementType> = TagProps<TAs> & {
  *
  * Learn more about [Breakpoints](https://wethegit.github.io/component-library/?path=/docs/core-breakpoints--overview).
  */
-export const Flex = fixedForwardRef(function Flex<TAs extends ElementType = "div">(
-  {
-    align = "center",
-    justify = "center",
-    flexDirection,
-    wrap = true,
-    className,
-    ...props
-  }: FlexProps<TAs>,
-  ref: ForwardedRef<unknown>
-) {
+export function Flex<TAs extends ElementType = "div">({
+  align = "center",
+  justify = "center",
+  flexDirection,
+  wrap = true,
+  className,
+  ...props
+}: FlexProps<TAs>) {
   const alignClassnames = buildBreakpointClassnames<FlexAlign>(align, styles, "align")
 
   const justifyClassnames = buildBreakpointClassnames<FlexJustify>(
@@ -87,5 +83,5 @@ export const Flex = fixedForwardRef(function Flex<TAs extends ElementType = "div
     className,
   ])
 
-  return <Tag className={classes} ref={ref} {...props} />
-})
+  return <Tag className={classes} {...props} />
+}
