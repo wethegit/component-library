@@ -1,6 +1,6 @@
 "use client"
 
-import { ComponentPropsWithRef, createContext, ElementType } from "react"
+import { type ComponentPropsWithRef, createContext, type ElementType } from "react"
 import { useInView } from "@wethegit/react-hooks"
 
 import { Tag } from "@local/components/tag/tag"
