@@ -1,6 +1,6 @@
 "use client"
 
-import { JSX, useCallback, useRef } from "react"
+import { useCallback, useRef } from "react"
 import { useUserPrefs, useInView } from "@wethegit/react-hooks"
 
 import { classnames } from "@local/utilities/classnames"
@@ -41,7 +41,7 @@ export function BackToTop({
   className,
   children,
   ...props
-}: BackToTopProps): JSX.Element {
+}: BackToTopProps): React.JSX.Element {
   const buttonRef = useRef<HTMLButtonElement>(null)
   const { prefersReducedMotion } = useUserPrefs()
   const [setReferenceRef, referenceIsInView] = useInView(0, false, false)

@@ -1,4 +1,3 @@
-import { JSX } from "react"
 import type { Meta, StoryObj } from "@storybook/react"
 
 import { Row } from "../row/row"
@@ -32,7 +31,7 @@ function plural(span: number): string {
 
 function howManyColumns(
   span?: ColumnBreakpoints | number
-): JSX.Element | null | JSX.Element[] {
+): React.JSX.Element | null | React.JSX.Element[] {
   if (!span) return null
 
   if (typeof span === "number")
