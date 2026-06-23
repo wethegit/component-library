@@ -1,5 +1,3 @@
-import { JSX } from "react"
-
 import { Tag } from "@local/components/tag/tag"
 import type { TagProps } from "@local/components/tag/tag"
 import { buildBreakpointClassnames } from "@local/utilities/build-breakpoint-classnames"
@@ -55,7 +53,7 @@ export function Text<TAs extends React.ElementType = typeof DEFAULT_ELEMENT>({
   wrap,
   className,
   ...props
-}: TextProps<TAs>): JSX.Element {
+}: TextProps<TAs>): React.JSX.Element {
   const { as = DEFAULT_ELEMENT, ...rest } = props
   const classes = classnames([
     styles.text,
