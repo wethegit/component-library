@@ -3,7 +3,8 @@
 "@wethegit/components-cli": patch
 ---
 
-- COMP: Removes barrel files (`index.ts`) from each component. Barrel files are known to cause circular reference issues, and so we've opted to remove them in favor of explicit imports.
+- COMP: Removes barrel files (`index.ts`) from each component. Barrel files are known to cause circular reference issues, so we've opted to remove them in favor of explicit imports.
+- COMP: Removes `fixedForwaredRef` component, as React 19+ treats `ref` just as any other prop.
 - COMP: Removes the CSS modules file from `useBreakpoints`, due to Next JS and Turbopack no longer supporting the `:export` feature. Instead, this value is hard-coded in the `use-breakpoints.ts` file now.
 - COMP: Overhauls the flex `grid-layout` system:
   - Removes `Wrapper` component in favor of the new `variant` prop on the `Row` component.
