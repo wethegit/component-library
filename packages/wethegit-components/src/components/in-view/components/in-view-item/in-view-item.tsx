@@ -1,6 +1,6 @@
 "use client"
 
-import { type ComponentPropsWithRef, useContext, useMemo } from "react"
+import { useContext, useMemo } from "react"
 
 import { Tag } from "@local/components/tag/tag"
 import type { TagProps } from "@local/components/tag/tag"
