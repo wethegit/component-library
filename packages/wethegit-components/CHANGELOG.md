@@ -4,7 +4,8 @@
 
 ### Major Changes
 
-- c10218d: - COMP: Removes barrel files (`index.ts`) from each component. Barrel files are known to cause circular reference issues, so we've opted to remove them in favor of explicit imports.
+- c10218d:
+  - COMP: Removes barrel files (`index.ts`) from each component. Barrel files are known to cause circular reference issues, so we've opted to remove them in favor of explicit imports.
   - COMP: Removes `fixedForwaredRef` component, as React 19+ treats `ref` just as any other prop.
   - COMP: Removes the CSS modules file from `useBreakpoints`, due to Next JS and Turbopack no longer supporting the `:export` feature. Instead, this value is hard-coded in the `use-breakpoints.ts` file now.
   - COMP: Overhauls the flex `grid-layout` system:
@@ -17,8 +18,6 @@
   - COMP: Adds `margin: 0` to the `body` element in the CSS resets stylesheet.
   - COMP: Fixes Github-flavored Markdown not working in Storybook
   - COMP: Fixes static asset path on deployed Storybook (image group examples have broken images)
-  - CLI: Fixes SCSS import instructions syntax on the CLI after adding components
-  - CLI: Supports `deno` package manager.
 
 ## 3.0.2
 
