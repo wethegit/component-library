@@ -24,7 +24,7 @@
     "stylelint": "^16.26.0",
     "stylelint-config-custom": "*",
     "tsconfig": "*",
-    "turbo": "^2.4.4"
+    "turbo": "^2.9.14"
   },
   "resolutions": {
     "string-width": "4.2.3"
