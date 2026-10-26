@@ -30,7 +30,7 @@
   },
   "peerDependencies": {
     "@wethegit/react-hooks": "^3.0.1",
-    "@wethegit/react-modal": "^3.0.0",
+    "@wethegit/react-modal": "^3.2.0",
     "react": "17 - 19",
     "react-dom": "17 - 19",
     "typescript": "^5.2.2"
@@ -53,7 +53,7 @@
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.7.0",
     "@wethegit/react-hooks": "^3.0.1",
-    "@wethegit/react-modal": "^3.0.0",
+    "@wethegit/react-modal": "^3.2.0",
     "eslint": "^8.57.1",
     "eslint-config-custom": "*",
     "eslint-plugin-storybook": "^0.12.0",

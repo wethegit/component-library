@@ -2759,10 +2759,10 @@
     "@eslint/js" "^9.13.0"
     globals "^15.11.0"
 
-"@wethegit/react-modal@^3.0.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@wethegit/react-modal/-/react-modal-3.1.0.tgz#a6936b128eebd1453a38446f9176c8ae03810471"
-  integrity sha512-y0AzKOnOD3043Lwiot52qrFRcfUX1nnLTUJv+zWutZKYHHV9gmeqMl9BhsgHShOci2c0Lucx+MmqXJ6yl+OYsQ==
+"@wethegit/react-modal@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@wethegit/react-modal/-/react-modal-3.2.0.tgz#0ebaa674f65d5dd1b79d7d0d555c812cf0feaf1c"
+  integrity sha512-+uR1wGC/yTI2uFE5cucQ4fPz5Jo8VXXglJgNSWoThQnEV4wpDCSitaTLLoHj8aUB3XkQwXcXMiHG+3Lr4hNZxA==
   dependencies:
     "@changesets/changelog-github" "~0.5.0"
     "@changesets/cli" "~2.27.1"
