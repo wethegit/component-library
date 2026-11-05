@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { expect, within } from "@storybook/test"
 
-import { Icon, IconDefs, IconSymbol } from "@local/components"
+import { IconDefs } from "../icon-defs/icon-defs"
+import { IconSymbol } from "../icon-symbol/icon-symbol"
+
+import { Icon } from "./icon"
 
 const meta = {
   title: "components/icon",

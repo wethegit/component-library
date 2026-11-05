@@ -1,8 +1,8 @@
 import type { ElementType } from "react"
 
-import { Tag } from "@local/components"
-import type { TagProps } from "@local/components"
-import { classnames } from "@local/utilities"
+import { Tag } from "@local/components/tag/tag"
+import type { TagProps } from "@local/components/tag/tag"
+import { classnames } from "@local/utilities/classnames"
 
 import styles from "./visually-hidden.module.scss"
 
@@ -16,7 +16,7 @@ export function VisuallyHidden<TAs extends ElementType = typeof DEFAULT_ELEMENT>
   revealOnFocus = false,
   className,
   ...props
-}: VisuallyHiddenProps<TAs>): JSX.Element {
+}: VisuallyHiddenProps<TAs>): React.JSX.Element {
   const { as = DEFAULT_ELEMENT, ...rest } = props
   const classes = revealOnFocus ? styles.revealOnFocus : styles.standard
 

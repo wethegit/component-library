@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Row, Column } from "@local/components"
+import { Column } from "../column/column"
+
+import { Row } from "./row"
 
 const meta = {
   title: "components/grid-layout/row",
@@ -18,10 +20,6 @@ const meta = {
     wrap: {
       md: true,
       xl: false,
-    },
-    reverse: {
-      md: false,
-      xl: true,
     },
   },
   argTypes: {

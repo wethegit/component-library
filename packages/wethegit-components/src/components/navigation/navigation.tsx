@@ -2,13 +2,15 @@
 
 import { useRef, useState } from "react"
 
-import { classnames } from "@local/utilities"
+import { classnames } from "@local/utilities/classnames"
 
 import { NavList, Overlay, Toggler } from "./components"
 import styles from "./navigation.module.scss"
 
-export interface NavigationProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "aria-label"> {
+export interface NavigationProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  "aria-label"
+> {
   /**
    * Mandatory `aria-label` attribute.
    */

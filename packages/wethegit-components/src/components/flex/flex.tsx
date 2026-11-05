@@ -1,8 +1,9 @@
-import type { ElementType, ForwardedRef } from "react"
+import type { ElementType } from "react"
 
-import { Tag } from "@local/components"
-import type { TagProps } from "@local/components"
-import { buildBreakpointClassnames, classnames, fixedForwardRef } from "@local/utilities"
+import { Tag } from "@local/components/tag/tag"
+import type { TagProps } from "@local/components/tag/tag"
+import { buildBreakpointClassnames } from "@local/utilities/build-breakpoint-classnames/build-breakpoint-classnames"
+import { classnames } from "@local/utilities/classnames/classnames"
 
 import styles from "./flex.module.scss"
 
@@ -21,6 +22,10 @@ export type JustifyBreakpoints = Partial<Breakpoints<FlexJustify>>
 
 export type BooleanBreakpoints = Partial<Breakpoints<boolean>>
 
+export type FlexDirection = "column" | "row" | "row-reverse"
+
+export type DirectionBreakpoints = Partial<Breakpoints<FlexDirection>>
+
 export type FlexProps<TAs extends ElementType> = TagProps<TAs> & {
   /**
    * Alignment on the cross axis. Accepts a `string` or a `breakpoint-object`
@@ -31,33 +36,28 @@ export type FlexProps<TAs extends ElementType> = TagProps<TAs> & {
    */
   justify?: FlexJustify | JustifyBreakpoints
   /**
+   * Flex-direction. Accepts a string or a `breakpoint-object`
+   */
+  flexDirection?: FlexDirection | DirectionBreakpoints
+  /**
    * Whether or not to wrap children. Accepts a `boolean` or a `breakpoint-object`
    */
   wrap?: boolean | BooleanBreakpoints
-  /**
-   * Whether or not to reverse the order of children. Accepts a `boolean` or a `breakpoint-object`
-   */
-  reverse?: boolean | BooleanBreakpoints
 }
 
 /**
- * Spans the specified number of columns within the component library's grid layout system. Intended to be used as a child of the `<Row>` component. Supports mobile-first, breakpoint-specific settings.
- *
- * The grid layout system does not apply to the `small` breakpoint.
+ * Simple, flexbox-based container component. Allows for breakpoint-specific settings for common things like justify-content, align-items, and more.
  *
  * Learn more about [Breakpoints](https://wethegit.github.io/component-library/?path=/docs/core-breakpoints--overview).
  */
-export const Flex = fixedForwardRef(function Flex<TAs extends ElementType = "div">(
-  {
-    align = "center",
-    justify = "center",
-    wrap = true,
-    reverse = false,
-    className,
-    ...props
-  }: FlexProps<TAs>,
-  ref: ForwardedRef<unknown>
-) {
+export function Flex<TAs extends ElementType = "div">({
+  align = "center",
+  justify = "center",
+  flexDirection,
+  wrap = true,
+  className,
+  ...props
+}: FlexProps<TAs>) {
   const alignClassnames = buildBreakpointClassnames<FlexAlign>(align, styles, "align")
 
   const justifyClassnames = buildBreakpointClassnames<FlexJustify>(
@@ -66,18 +66,22 @@ export const Flex = fixedForwardRef(function Flex<TAs extends ElementType = "div
     "justify"
   )
 
-  const wrapClassnames = buildBreakpointClassnames<boolean>(wrap, styles, "wrap")
+  const directionClassnames = buildBreakpointClassnames<FlexDirection>(
+    flexDirection,
+    styles,
+    "direction"
+  )
 
-  const reverseClassnames = buildBreakpointClassnames<boolean>(reverse, styles, "reverse")
+  const wrapClassnames = buildBreakpointClassnames<boolean>(wrap, styles, "wrap")
 
   const classes = classnames([
     styles.flex,
     alignClassnames,
     justifyClassnames,
+    directionClassnames,
     wrapClassnames,
-    reverseClassnames,
     className,
   ])
 
-  return <Tag className={classes} ref={ref} {...props} />
-})
+  return <Tag className={classes} {...props} />
+}

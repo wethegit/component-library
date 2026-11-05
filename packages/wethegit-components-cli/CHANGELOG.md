@@ -1,5 +1,15 @@
 # @wethegit/components-cli
 
+## 4.0.2
+
+### Patch Changes
+
+- c10218d:
+  - CLI: Fixes SCSS import instructions syntax on the CLI after adding components
+  - CLI: Supports `deno` package manager.
+- Updated dependencies [c10218d]
+  - @wethegit/components@4.0.0
+
 ## 4.0.1
 
 ### Patch Changes

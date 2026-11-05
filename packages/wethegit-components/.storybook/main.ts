@@ -7,7 +7,7 @@ const config: StorybookConfig = {
   staticDirs: ["../public"],
   addons: [
     {
-      name: getAbsolutePath("@storybook/addon-essentials"),
+      name: "@storybook/addon-docs",
       options: {
         mdxPluginOptions: {
           mdxCompileOptions: {
@@ -16,6 +16,7 @@ const config: StorybookConfig = {
         },
       },
     },
+    getAbsolutePath("@storybook/addon-essentials"),
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-a11y"),
     getAbsolutePath("@storybook/addon-interactions"),

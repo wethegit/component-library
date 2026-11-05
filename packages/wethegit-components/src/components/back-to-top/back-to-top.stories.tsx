@@ -1,7 +1,9 @@
 import { expect, userEvent, within, waitFor } from "@storybook/test"
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { BackToTop, Text } from "@local/components"
+import { Text } from "@local/components/text/text"
+
+import { BackToTop } from "./back-to-top"
 
 const meta: Meta<typeof BackToTop> = {
   title: "components/back-to-top",

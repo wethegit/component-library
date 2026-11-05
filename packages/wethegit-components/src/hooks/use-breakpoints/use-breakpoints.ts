@@ -1,6 +1,13 @@
 import { useEffect, useMemo, useState } from "react"
 
-import breakpointSettings from "./use-breakpoints.module.scss"
+// *Important: These settings need to remain in sync with those defined in `src/styles/breakpoints/_breakpoints-variables.scss`.
+const breakpointSettings = {
+  sm: "screen and (max-width: 639px)",
+  md: "screen and (min-width: 640px) and (max-width: 1023px)",
+  lg: "screen and (min-width: 1024px) and (max-width: 1143px)",
+  xl: "screen and (min-width: 1144px) and (max-width: 1439px)",
+  xxl: "screen and (min-width: 1440px)",
+}
 
 const BREAKPOINTS: [Breakpoint, string][] = Object.entries(breakpointSettings).map(
   ([key, val]) => [key as Breakpoint, val.replaceAll('"', "")]

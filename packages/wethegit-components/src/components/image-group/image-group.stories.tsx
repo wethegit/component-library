@@ -1,7 +1,8 @@
 import type { CSSProperties } from "react"
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { ImageGroup, ImageGroupItem } from "@local/components"
+import { ImageGroup } from "./image-group"
+import { ImageGroupItem } from "./components/image-group-item"
 
 const meta: Meta<typeof ImageGroup> = {
   component: ImageGroup,

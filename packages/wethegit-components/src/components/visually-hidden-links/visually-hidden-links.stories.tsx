@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { VisuallyHiddenLinks, VisuallyHiddenLinkItem } from "@local/components"
+import { VisuallyHiddenLinks, VisuallyHiddenLinkItem } from "./visually-hidden-links"
 
 const items = [
   {

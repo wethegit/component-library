@@ -50,15 +50,6 @@ a {
   @include dashed-outline;
 }
 
-.gutterVisualizer {
-  @include dashed-outline;
-  @include gutter-highlight(rgb(83 198 82 / 34%), calc(var(--wtc-gutter-width) * 0.5));
-}
-
-.gutterVisualizerFull {
-  @include gutter-highlight(rgb(83 198 82 / 34%), var(--wtc-gutter-width));
-}
-
 .childSpacing {
   > * + * {
     margin-top: 2rem !important;

@@ -1,4 +1,4 @@
-import { classnames } from "@local/utilities"
+import { classnames } from "@local/utilities/classnames"
 
 import styles from "./icon.module.scss"
 
