@@ -6,31 +6,33 @@ import { classnames } from "@local/utilities/classnames"
 
 import styles from "./reduced-motion-toggle.module.scss"
 
-export type ReducedMotionToggleProps = React.ButtonHTMLAttributes<HTMLButtonElement>
+export type ReducedMotionToggleProps = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "type" | "checked" | "defaultChecked"
+>
 
 export function ReducedMotionToggle({
   children = "Reduced motion",
   className,
-  onClick,
+  onChange,
   ...props
 }: ReducedMotionToggleProps): React.JSX.Element {
   const { prefersReducedMotion, setPrefersReducedMotion } = useUserPrefs()
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    onClick?.(event)
-    setPrefersReducedMotion(!prefersReducedMotion)
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onChange?.(event)
+    setPrefersReducedMotion(event.target.checked)
   }
 
   return (
-    <button
-      {...props}
-      type="button"
-      role="switch"
-      aria-checked={!!prefersReducedMotion}
-      className={classnames([styles.toggle, className])}
-      onClick={handleClick}
-    >
+    <label className={classnames([styles.toggle, className])}>
+      <input
+        {...props}
+        type="checkbox"
+        checked={!!prefersReducedMotion}
+        onChange={handleChange}
+      />
       {children}
-    </button>
+    </label>
   )
 }

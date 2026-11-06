@@ -25,20 +25,22 @@ type Story = StoryObj<typeof ReducedMotionToggle>
 export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const toggle = canvas.getByRole("switch", { name: "Reduced motion" })
-    const initial = toggle.getAttribute("aria-checked") === "true"
+    const toggle = canvas.getByRole<HTMLInputElement>("checkbox", {
+      name: "Reduced motion",
+    })
+    const initial = toggle.checked
 
     await userEvent.click(toggle)
 
     await waitFor(() => {
-      expect(toggle).toHaveAttribute("aria-checked", String(!initial))
+      expect(toggle.checked).toBe(!initial)
     })
     expect(window.localStorage.getItem(STORAGE_KEY)).toEqual(String(!initial))
 
     await userEvent.click(toggle)
 
     await waitFor(() => {
-      expect(toggle).toHaveAttribute("aria-checked", String(initial))
+      expect(toggle.checked).toBe(initial)
     })
   },
 }
