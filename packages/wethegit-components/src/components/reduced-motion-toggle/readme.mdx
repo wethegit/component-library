@@ -4,7 +4,7 @@ import { Meta } from "@storybook/blocks"
 
 # Reduced motion toggle
 
-`<ReducedMotionToggle>` renders an HTML checkbox inside a `<label>`, which lets the user turn reduced motion on or off. It starts checked if the user has the reduced motion preference enabled on their system, and their selection is saved to `localStorage`.
+`<ReducedMotionToggle>` renders an HTML checkbox inside a `<label>`, which lets the user turn reduced motion on or off. This component uses the `useUserPrefs` hook to maintain & toggle the reduced motion state. More on that here: https://wethegit.github.io/react-hooks/use-user-prefs
 
 ## Install
 
