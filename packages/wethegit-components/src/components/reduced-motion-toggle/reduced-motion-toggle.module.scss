@@ -1,0 +1,20 @@
+.toggle {
+  align-items: center;
+  border: 1px solid currentcolor;
+  border-radius: 8px;
+  display: inline-flex;
+  gap: 8px;
+  padding: 8px 16px;
+}
+
+.toggle::before {
+  border: 2px solid currentcolor;
+  border-radius: 50%;
+  content: "";
+  height: 12px;
+  width: 12px;
+}
+
+.toggle[aria-checked="true"]::before {
+  background-color: currentcolor;
+}

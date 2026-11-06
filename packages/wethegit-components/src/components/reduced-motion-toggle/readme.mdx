@@ -1,0 +1,37 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/reduced-motion-toggle/Readme" />
+
+# Reduced motion toggle
+
+`<ReducedMotionToggle>` renders an HTML `<button>` element which lets the user turn reduced motion on or off. It starts checked if the user has the reduced motion preference enabled on their system, and their selection is saved to `localStorage`.
+
+## Install
+
+```bash
+npx @wethegit/components-cli add reduced-motion-toggle
+```
+
+## Usage example
+
+The component must render inside the [UserPreferencesProvider](https://wethegit.github.io/react-hooks/user-preferences-provider), which holds and saves the preference. Without the provider, clicking the toggle will throw an error.
+
+```jsx
+import { UserPreferencesProvider } from "@wethegit/react-hooks"
+
+import { ReducedMotionToggle } from "@local/components/reduced-motion-toggle/reduced-motion-toggle"
+
+function YourComponent() {
+  return (
+    <UserPreferencesProvider>
+      <ReducedMotionToggle />
+    </UserPreferencesProvider>
+  )
+}
+```
+
+The label defaults to "Reduced motion". Pass `children` to change it.
+
+```jsx
+<ReducedMotionToggle>Turn off animations</ReducedMotionToggle>
+```
