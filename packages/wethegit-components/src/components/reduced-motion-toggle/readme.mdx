@@ -36,4 +36,8 @@ The label defaults to "Reduced motion". Pass `children` to change it.
 <ReducedMotionToggle>Turn off animations</ReducedMotionToggle>
 ```
 
-`className` is applied to the `<label>`. All other props are passed to the `<input>`.
+Props are spread onto the `<label>`. To pass props to the checkbox, use `checkboxProps`.
+
+```jsx
+<ReducedMotionToggle checkboxProps={{ id: "reduced-motion" }} />
+```

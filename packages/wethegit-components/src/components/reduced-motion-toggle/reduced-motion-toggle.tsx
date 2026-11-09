@@ -6,28 +6,30 @@ import { classnames } from "@local/utilities/classnames"
 
 import styles from "./reduced-motion-toggle.module.scss"
 
-export type ReducedMotionToggleProps = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  "type" | "checked" | "defaultChecked"
->
+interface ReducedMotionToggleProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  checkboxProps?: Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    "type" | "checked" | "defaultChecked"
+  >
+}
 
 export function ReducedMotionToggle({
   children = "Reduced motion",
   className,
-  onChange,
+  checkboxProps,
   ...props
 }: ReducedMotionToggleProps): React.JSX.Element {
   const { prefersReducedMotion, setPrefersReducedMotion } = useUserPrefs()
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange?.(event)
+    checkboxProps?.onChange?.(event)
     setPrefersReducedMotion(event.target.checked)
   }
 
   return (
-    <label className={classnames([styles.toggle, className])}>
+    <label className={classnames([styles.toggle, className])} {...props}>
       <input
-        {...props}
+        {...checkboxProps}
         type="checkbox"
         checked={!!prefersReducedMotion}
         onChange={handleChange}
