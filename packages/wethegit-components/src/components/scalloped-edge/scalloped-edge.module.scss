@@ -1,154 +1,66 @@
-@use "@local/styles/breakpoints/breakpoints-variables" as *;
-
 .scallopedEdge {
-  isolation: isolate;
   position: relative;
+}
+
+.maskSizer {
+  /* For container units */
+  container-type: size;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* Holds the inline SVG mask without taking up space */
+.maskDefs {
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  width: 0;
 }
 
 .scallopedContent {
   position: relative;
-  z-index: 1;
 }
 
-/* ---------------------------------------------------------------------------
-   Overlay variant: one band per edge. The artwork lives on ::before so the
-   band itself stays put while the image is flipped / faded.
-   --------------------------------------------------------------------------- */
-
-.band {
-  overflow: hidden;
-  pointer-events: none;
-  position: absolute;
-  z-index: 2;
-}
-
-.band::before {
-  background-image: var(--scallop-image);
-  background-position: var(--scallop-bg-position, center);
-  background-repeat: var(--scallop-repeat, no-repeat);
-  background-size: var(--scallop-bg-size, 100% 100%);
-  content: "";
-  inset: 0;
-  position: absolute;
-  transform: var(--scallop-flip, none);
-}
-
-.bandTop {
-  height: var(--scallop-size);
-  left: 0;
-  right: 0;
-  top: var(--scallop-offset, 0);
-}
-
-.bandBottom {
-  bottom: var(--scallop-offset, 0);
-  height: var(--scallop-size);
-  left: 0;
-  right: 0;
-}
-
-.bandLeft {
-  bottom: 0;
-  left: var(--scallop-offset, 0);
-  top: 0;
-  width: var(--scallop-size);
-}
-
-.bandRight {
-  bottom: 0;
-  right: var(--scallop-offset, 0);
-  top: 0;
-  width: var(--scallop-size);
-}
-
-.bandFade {
-  --scallop-fade-stop: 60%;
-}
-
-.bandTop.bandFade {
-  // -webkit-mask-image: linear-gradient(
-  //   to bottom,
-  //   #000 var(--scallop-fade-stop),
-  //   transparent
-  // );
-  mask-image: linear-gradient(to bottom, #000 var(--scallop-fade-stop), transparent);
-}
-
-.bandBottom.bandFade {
-  // -webkit-mask-image: linear-gradient(
-  //   to top,
-  //   #000 var(--scallop-fade-stop),
-  //   transparent
-  // );
-  mask-image: linear-gradient(to top, #000 var(--scallop-fade-stop), transparent);
-}
-
-.bandLeft.bandFade {
-  // -webkit-mask-image: linear-gradient(
-  //   to right,
-  //   #000 var(--scallop-fade-stop),
-  //   transparent
-  // );
-  mask-image: linear-gradient(to right, #000 var(--scallop-fade-stop), transparent);
-}
-
-.bandRight.bandFade {
-  // -webkit-mask-image: linear-gradient(
-  //   to left,
-  //   #000 var(--scallop-fade-stop),
-  //   transparent
-  // );
-  mask-image: linear-gradient(to left, #000 var(--scallop-fade-stop), transparent);
-}
-
-/* ---------------------------------------------------------------------------
-   Full frame overlay. The artwork is mapped to the whole box, then cropped
-   to the requested sides with a gradient mask (union by default).
-   --------------------------------------------------------------------------- */
-
-.frameOverlay {
-  background-image: var(--scallop-image);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  inset: 0;
-  pointer-events: none;
-  position: absolute;
-  z-index: 2;
-}
-
-/* ---------------------------------------------------------------------------
-   Full frame sizing.
-   --------------------------------------------------------------------------- */
-
-.frameRoot {
-  aspect-ratio: var(--scallop-aspect, 16 / 9);
-}
-
-.frameContent {
+.fullFrame {
   inset: 0;
   overflow: hidden;
   position: absolute;
 }
 
-/* ---------------------------------------------------------------------------
-   Masked variant. The layers themselves are written inline because the
-   compositing order has to match the array order exactly. If the browser
-   cannot composite, fall back to an opaque mask so nothing disappears.
-   --------------------------------------------------------------------------- */
+/* Move mask to edge */
+.edgeBottom {
+  transform: translateY(calc(100cqh - var(--scallop-edge-size)));
+}
+
+.edgeRight {
+  transform: translateX(calc(100cqw - var(--scallop-edge-size)));
+}
+
+.maskImage {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.mirrorX {
+  transform: scaleX(-1);
+}
+
+.mirrorY {
+  transform: scaleY(-1);
+}
+
+/* 
+  Support is widely available (Fallback if subtract is not supported)
+  https://caniuse.com/mdn-css_properties_mask-composite_subtract
+*/
 
 @supports not (mask-composite: subtract) {
   .masked {
-    // -webkit-mask-image: linear-gradient(#000, #000) !important;
     mask-image: linear-gradient(#000, #000) !important;
-
-    // -webkit-mask-position: 0 0 !important;
     mask-position: 0 0 !important;
-
-    // -webkit-mask-repeat: no-repeat !important;
     mask-repeat: no-repeat !important;
-
-    // -webkit-mask-size: 100% 100% !important;
     mask-size: 100% 100% !important;
   }
 }

@@ -1,0 +1,84 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/scalloped-edge/Readme" />
+
+# ScallopedEdge
+
+Use a mask to cut a decorative edge from the container's side.
+Where the edge art is opaque, the container is cut out.
+
+## Install
+
+```bash
+npx @wethegit/components-cli add scalloped-edge
+```
+
+## Usage
+
+### Top
+
+Pass an image to `top`, optionally update `size` to taste [default size = 40px].
+
+Also works for the other 3 sides, `bottom`, `left`, `right`
+
+```tsx
+<ScallopedEdge top="/images/crumb-border.svg" size="30px">
+  ...
+</ScallopedEdge>
+```
+
+### Top and Bottom / Left and Right - Mirror
+
+Pass one `image`, define `sides`, then add `mirror` to have the opposite edge inherit and mirror the image.
+
+If you want the edge art to repeat, add `repeat`, then `tileSize` to control size of tiling.
+
+Omitting `repeat` and `tileSize` will stretch image 100% to match edge length.
+
+```tsx
+<ScallopedEdge
+  image="/images/tiled-border.svg"
+  sides="top bottom"
+  mirror
+  repeat
+  tileSize="75px"
+>
+  ...
+</ScallopedEdge>
+```
+
+`sides` accepts `top bottom`, `left right`, and `all`. When `image` is provided with no defined sides, it defaults to all four sides.
+
+### Top and Bottom / Left and Right - Unique
+
+Pass an image path to `top`, `bottom`, `left`, or `right`. Can be combined or a single entry.
+
+```tsx
+<ScallopedEdge top="/images/crumb-border.svg" bottom="/images/crumb-border-bottom.png">
+  ...
+</ScallopedEdge>
+```
+
+```tsx
+<ScallopedEdge left="/images/crumb-border-vertical.svg" size="100px">
+  ...
+</ScallopedEdge>
+```
+
+### Full frame
+
+`fullFrame` maps your `image` over the whole `frameAspect` box (16:9 by default).
+
+```tsx
+<ScallopedEdge image="/images/frame-1x1.svg" fullFrame frameAspect="1 / 1">
+  <img src="images/video-1x1.gif" alt="" />
+</ScallopedEdge>
+```
+
+## Notes
+
+- SVG artwork that needs to stretch should set `preserveAspectRatio="none"`.
+- The artwork is used as a mask: opaque areas are cut away and transparent
+  areas stay visible.
+- `mirror` is ignored by `fullFrame`.
+- `size` is the thickness of each edge container.
