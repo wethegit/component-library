@@ -1,5 +1,16 @@
 # @wethegit/components-cli
 
+## 5.0.0
+
+### Minor Changes
+
+- 307ed50: Adds the ReducedMotionToggle component
+
+### Patch Changes
+
+- Updated dependencies [307ed50]
+  - @wethegit/components@4.1.0
+
 ## 4.0.2
 
 ### Patch Changes
