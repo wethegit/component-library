@@ -1,0 +1,181 @@
+// Styles for the presentational Showcase story only. Not part of the component:
+// the CLI skips `*.stories*` files, so this never ships to projects.
+
+.stage {
+  background: #08080d;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.showcase {
+  --select-gap: 0.75rem;
+  --select-padding: 0.875rem 1.25rem;
+  --select-max-height: none;
+
+  color: #f4f4f8;
+  font-family: system-ui, sans-serif;
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+}
+
+@supports (appearance: base-select) {
+  .showcase select {
+    --select-background: #12121c;
+
+    background:
+      linear-gradient(var(--select-background), var(--select-background)) padding-box,
+      linear-gradient(120deg, var(--from), var(--to)) border-box;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    box-shadow:
+      0 0 1.5rem -0.25rem color-mix(in srgb, var(--from) 60%, transparent),
+      0 0 3rem -0.5rem color-mix(in srgb, var(--to) 50%, transparent);
+    color: inherit;
+    font: inherit;
+    font-weight: 600;
+    min-width: 14rem;
+    transition: box-shadow 0.4s;
+  }
+
+  .showcase select:focus-visible {
+    outline: 2px solid #f4f4f8;
+    outline-offset: 4px;
+  }
+
+  .showcase select::picker-icon {
+    color: var(--to);
+    content: "✦";
+    transition: rotate 0.5s cubic-bezier(0.3, 1.6, 0.5, 1);
+  }
+
+  .showcase select:open::picker-icon {
+    rotate: 135deg;
+  }
+
+  // The picker: a frosted grid of cards that springs open
+  .showcase select::picker(select) {
+    backdrop-filter: blur(16px) saturate(1.4);
+    background: color-mix(in srgb, #12121c 85%, transparent);
+    border: 1px solid #ffffff2e;
+    border-radius: 1.25rem;
+    box-shadow: 0 1.5rem 4rem -1rem #000c;
+    color: #f4f4f8;
+    gap: 0.5rem;
+    grid-template-columns: repeat(3, 7.5rem);
+    margin-block-start: 0.75rem;
+    opacity: 0;
+    padding: 0.75rem;
+    position-area: block-end span-inline-end;
+    position-try-fallbacks: flip-block;
+    scale: 0.9;
+    transform-origin: top left;
+    transition:
+      opacity 0.25s,
+      scale 0.35s cubic-bezier(0.3, 1.4, 0.5, 1),
+      display 0.35s allow-discrete,
+      overlay 0.35s allow-discrete;
+  }
+
+  .showcase select:open::picker(select) {
+    display: grid;
+    opacity: 1;
+    scale: 1;
+  }
+
+  @starting-style {
+    .showcase select:open::picker(select) {
+      opacity: 0;
+      scale: 0.9;
+    }
+  }
+
+  // Each option is a card: gradient tile drawn with ::before, label below
+  .option {
+    align-items: stretch;
+    border-radius: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    position: relative;
+    transition:
+      background-color 0.2s,
+      translate 0.2s;
+  }
+
+  .option::before {
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, var(--from), var(--to));
+    border-radius: 0.5rem;
+    content: "";
+    transition: box-shadow 0.3s;
+    width: 100%;
+  }
+
+  .option:hover,
+  .option:focus-visible {
+    background-color: #ffffff14;
+    translate: 0 -2px;
+  }
+
+  .option:hover::before,
+  .option:focus-visible::before {
+    box-shadow: 0 0.5rem 1.5rem -0.5rem var(--from);
+  }
+
+  .option:checked {
+    background-color: #ffffff1f;
+  }
+
+  // The checkmark becomes a badge in the corner of the tile
+  .option::checkmark {
+    align-items: center;
+    background: #f4f4f8;
+    border-radius: 50%;
+    color: #12121c;
+    display: flex;
+    font-size: 0.75rem;
+    height: 1.5rem;
+    inset-block-start: 0.875rem;
+    inset-inline-end: 0.875rem;
+    justify-content: center;
+    position: absolute;
+    width: 1.5rem;
+  }
+
+  .option:not(:checked)::checkmark {
+    display: none;
+  }
+
+  // Stagger the cards in where sibling-index() is supported
+  @supports (animation-delay: calc(sibling-index() * 1ms)) {
+    .showcase select:open .option {
+      animation: rise 0.4s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+      animation-delay: calc(sibling-index() * 40ms);
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      translate: 0 0.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .showcase select,
+    .showcase select::picker(select),
+    .showcase select::picker-icon,
+    .option,
+    .option::before {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
