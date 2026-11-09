@@ -1,6 +1,6 @@
 # We The Collective Component Library
 
-Minally styled, accessible, React component primitives that can be copy and pasted into your project.
+Minimally styled, accessible, React component primitives that can be copy and pasted into your project.
 
 [Documentation](https://wethegit.github.io/component-library/)
 

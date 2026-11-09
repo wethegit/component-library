@@ -20,7 +20,8 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}-storybook-tests
 jobs:
   # Install and cache npm dependencies
   test:
-    runs-on: ubuntu-latest
+    # Specific version because Playwright was failing on "latest".
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Commit
         uses: actions/checkout@v4

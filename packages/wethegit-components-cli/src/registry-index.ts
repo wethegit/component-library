@@ -182,6 +182,15 @@ const BACK_TO_TOP: Registry = {
     "https://wethegit.github.io/component-library/?path=/docs/components-back-to-top-readme--overview",
 }
 
+const REDUCED_MOTION_TOGGLE: Registry = {
+  name: "reduced-motion-toggle",
+  category: "component",
+  localDependencies: [CLASSNAMES],
+  dependencies: ["@wethegit/react-hooks"],
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/components-reduced-motion-toggle-readme--overview",
+}
+
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
   [BACK_TO_TOP.name]: BACK_TO_TOP,
@@ -193,6 +202,7 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [IN_VIEW.name]: IN_VIEW,
   [MODAL.name]: MODAL,
   [NAVIGATION.name]: NAVIGATION,
+  [REDUCED_MOTION_TOGGLE.name]: REDUCED_MOTION_TOGGLE,
   [TAG.name]: TAG,
   [TEXT.name]: TEXT,
   [VISUALLY_HIDDEN.name]: VISUALLY_HIDDEN,
