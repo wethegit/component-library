@@ -191,6 +191,14 @@ const REDUCED_MOTION_TOGGLE: Registry = {
     "https://wethegit.github.io/component-library/?path=/docs/components-reduced-motion-toggle-readme--overview",
 }
 
+const SELECT: Registry = {
+  name: "select",
+  category: "component",
+  localDependencies: [CLASSNAMES],
+  docsUrl:
+    "https://wethegit.github.io/component-library/?path=/docs/components-select-readme--overview",
+}
+
 /* INDEX */
 export const REGISTRY_INDEX: RegistryIndex = {
   [BACK_TO_TOP.name]: BACK_TO_TOP,
@@ -203,6 +211,7 @@ export const REGISTRY_INDEX: RegistryIndex = {
   [MODAL.name]: MODAL,
   [NAVIGATION.name]: NAVIGATION,
   [REDUCED_MOTION_TOGGLE.name]: REDUCED_MOTION_TOGGLE,
+  [SELECT.name]: SELECT,
   [TAG.name]: TAG,
   [TEXT.name]: TEXT,
   [VISUALLY_HIDDEN.name]: VISUALLY_HIDDEN,

@@ -1,0 +1,131 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/select/Readme" />
+
+# Select
+
+`<Select>` is a native `<select>` with a label. In browsers that support [customizable select](https://developer.mozilla.org/en-US/docs/Web/CSS/appearance) (`appearance: base-select`), the button and the picker are styled. Everywhere else it's the browser's own select.
+
+Because it's native, the browser handles keyboard, screen reader and touch support, form submission and validation, and keeps the picker inside the viewport.
+
+## Requirements
+
+React 18 or later, because the component uses `useId`.
+
+## Browser support
+
+As of November 2026, customizable select is supported in Chrome and Edge 135+ and Safari 27+. Firefox has it behind a flag. Check [Can I use](https://caniuse.com/?search=base-select) for the current status.
+
+Browsers without support show a standard native select.
+
+## Install
+
+```bash
+npx @wethegit/components-cli add select
+```
+
+## Usage example
+
+Pass `value` and `onChange` to control the select:
+
+```jsx
+import { useState } from "react"
+
+import { Select } from "@local/components/select/select"
+
+const options = [
+  { value: "apple", label: "Apple" },
+  { value: "banana", label: "Banana" },
+  { value: "cherry", label: "Cherry", disabled: true },
+]
+
+function YourComponent() {
+  const [fruit, setFruit] = useState(null)
+
+  return (
+    <Select
+      label="Fruit"
+      options={options}
+      value={fruit}
+      onChange={(value) => setFruit(value)}
+    />
+  )
+}
+```
+
+Or leave out `value` and let the select keep its own state. Use `defaultValue` for the initial value and `selectProps.name` to submit it with a form:
+
+```jsx
+<form>
+  <Select
+    label="Fruit"
+    options={options}
+    defaultValue="banana"
+    selectProps={{ name: "fruit" }}
+  />
+</form>
+```
+
+### Decorating options
+
+Options can only contain text. React reports an error for elements inside `<option>`, and browsers without customizable select remove them. To add decoration such as colour swatches, give options a `className` and `style`, and draw the decoration with CSS:
+
+```jsx
+const colours = [
+  { value: "red", label: "Red", className: "swatch", style: { "--swatch": "#d32f2f" } },
+  { value: "blue", label: "Blue", className: "swatch", style: { "--swatch": "#1976d2" } },
+]
+```
+
+```css
+.swatch::before {
+  background-color: var(--swatch);
+  content: "";
+  display: inline-block;
+  height: 1em;
+  margin-inline-end: 0.5em;
+  width: 1em;
+}
+```
+
+Keep the meaning in the text. The swatch is decoration only, and it shows in the picker but not in the closed button.
+
+### Props
+
+- `label`: the visible label. It's required, so the select always has an accessible name.
+- `options`: an array of `{ value, label, disabled?, className?, style? }`.
+- `value`: the selected value when controlled, or `null` for no selection.
+- `defaultValue`: the initial value when uncontrolled. Defaults to `null`.
+- `onChange(value, option)`: called when the user picks a different option.
+- `placeholder`: shown when nothing is selected. Defaults to "Select an option". It can't be picked again once an option is selected. Pass `null` to leave it out, and the first enabled option is selected instead.
+- `disabled`: disables the whole select.
+- `id`: the select's id. Optional: one is generated with `useId`.
+- `selectProps`: props for the `<select>`, such as `name`, `required`, `form` or `className`. Your `onChange` runs before the component's.
+
+Any other props are spread onto the wrapper `<div>`.
+
+## Keyboard
+
+The browser handles the keyboard, the same way it does for any native select.
+
+## Styling
+
+The styles are kept simple. Everything that styles the button and picker sits inside `@supports (appearance: base-select)`, so other browsers show their own select. The button's background is a tint of the text colour, and the picker uses the `Canvas` and `CanvasText` system colours, so both are readable in any theme and in forced-colours mode.
+
+Set these custom properties on the component or a parent to adjust it:
+
+| Property              | Default                                             | Controls                                  |
+| --------------------- | --------------------------------------------------- | ----------------------------------------- |
+| `--select-gap`        | `0.5em`                                             | Space between the label and the select    |
+| `--select-background` | `color-mix(in srgb, currentcolor 15%, transparent)` | The button's background                   |
+| `--select-padding`    | `0.5em 0.75em`                                      | Padding of the button and of each option  |
+| `--select-max-height` | `15rem`                                             | The picker's maximum height before scroll |
+
+- Style the picker with `::picker(select)`, the arrow with `::picker-icon`, the tick with `::checkmark`, and the open state with `:open`. Selected options match `:checked` and disabled ones `:disabled`.
+- Restyle through `className` and `selectProps.className`, or edit `select.module.scss` after installing.
+
+## Limitations
+
+- Options can only contain text. Use `className` and `style` for decoration (see above).
+- Only the parts the browser exposes can be styled, and only in browsers that support customizable select.
+- There's no multiple selection.
