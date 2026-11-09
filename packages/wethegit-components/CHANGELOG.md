@@ -1,5 +1,11 @@
 # @wethegit/components
 
+## 4.1.0
+
+### Minor Changes
+
+- 307ed50: Adds the ReducedMotionToggle component
+
 ## 4.0.0
 
 ### Major Changes
