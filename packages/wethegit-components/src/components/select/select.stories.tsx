@@ -3,10 +3,10 @@ import { expect, fn, userEvent, waitFor, within } from "@storybook/test"
 import { useState } from "react"
 
 import { Select } from "./select"
-import type { SelectOption } from "./select"
+import type { SelectProps } from "./select"
 import styles from "./select.stories.module.scss"
 
-const FRUIT: SelectOption[] = [
+const FRUIT = [
   { value: "apple", label: "Apple" },
   { value: "banana", label: "Banana" },
   { value: "cherry", label: "Cherry" },
@@ -18,9 +18,6 @@ const meta: Meta<typeof Select> = {
   title: "components/select",
   component: Select,
   args: {
-    label: "Fruit",
-    options: FRUIT,
-    value: "banana",
     onChange: fn(),
   },
   decorators: [
@@ -30,28 +27,73 @@ const meta: Meta<typeof Select> = {
       </div>
     ),
   ],
-  // Most stories are controlled, so keep the selected value in local state
-  render: function Render(args) {
-    const [value, setValue] = useState(args.value)
-
-    return (
-      <Select
-        {...args}
-        value={value}
-        onChange={(newValue, option) => {
-          setValue(newValue)
-          args.onChange?.(newValue, option)
-        }}
-      />
-    )
-  },
 }
 
 export default meta
 
 type Story = StoryObj<typeof Select>
 
+/**
+ * A label above the select. The component has no label of its own, so stories add one.
+ */
+function Field({
+  id,
+  label,
+  className,
+  children,
+}: {
+  id: string
+  label: string
+  className?: string
+  children: React.ReactNode
+}) {
+  return (
+    <div
+      className={className}
+      style={
+        className
+          ? undefined
+          : { display: "inline-flex", flexDirection: "column", gap: "0.5em" }
+      }
+    >
+      <label htmlFor={id}>{label}</label>
+      {children}
+    </div>
+  )
+}
+
+/**
+ * Keeps the select's value in local state and still reports changes to the `onChange` arg.
+ */
+function useControlled(args: SelectProps, initialValue: string) {
+  const [value, setValue] = useState(initialValue)
+
+  return {
+    ...args,
+    value,
+    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setValue(event.target.value)
+      args.onChange?.(event)
+    },
+  }
+}
+
 export const Default: Story = {
+  render: function Render(args) {
+    const props = useControlled(args, "banana")
+
+    return (
+      <Field id="fruit" label="Fruit">
+        <Select {...props} id="fruit">
+          {FRUIT.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </Select>
+      </Field>
+    )
+  },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement)
     const select = canvas.getByRole("combobox", { name: "Fruit" })
@@ -60,38 +102,71 @@ export const Default: Story = {
 
     await userEvent.selectOptions(select, "cherry")
     await waitFor(() => expect(select).toHaveValue("cherry"))
-    expect(args.onChange).toHaveBeenLastCalledWith("cherry", FRUIT[2])
+    expect(args.onChange).toHaveBeenLastCalledWith(
+      expect.objectContaining({ target: select })
+    )
   },
 }
 
-export const WithPlaceholder: Story = {
-  args: {
-    value: null,
-    placeholder: "Pick a fruit",
+/**
+ * `<optgroup>` groups options under a heading, and `<hr>` draws a separator in the picker.
+ */
+export const OptionGroups: Story = {
+  render: function Render(args) {
+    const props = useControlled(args, "orange")
+
+    return (
+      <Field id="fruit-groups" label="Fruit">
+        <Select {...props} id="fruit-groups">
+          <optgroup label="Citrus">
+            <option value="lemon">Lemon</option>
+            <option value="lime">Lime</option>
+            <option value="orange">Orange</option>
+          </optgroup>
+          <hr />
+          <optgroup label="Berries">
+            <option value="blueberry">Blueberry</option>
+            <option value="raspberry">Raspberry</option>
+            <option value="strawberry">Strawberry</option>
+          </optgroup>
+        </Select>
+      </Field>
+    )
   },
-  play: async ({ canvasElement, args }) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const select = canvas.getByRole<HTMLSelectElement>("combobox", { name: "Fruit" })
+    const select = canvas.getByRole("combobox", { name: "Fruit" })
+    const groups = select.querySelectorAll("optgroup")
 
-    expect(select).toHaveValue("")
-    expect(select.selectedOptions[0]).toHaveTextContent("Pick a fruit")
-    expect(select.selectedOptions[0]).toBeDisabled()
+    expect(groups).toHaveLength(2)
+    expect(groups[1].label).toBe("Berries")
+    expect(
+      within(groups[1]).getByRole("option", { name: "Raspberry" })
+    ).toBeInTheDocument()
 
-    await userEvent.selectOptions(select, "apple")
-    await waitFor(() => expect(select).toHaveValue("apple"))
-    expect(args.onChange).toHaveBeenLastCalledWith("apple", FRUIT[0])
+    await userEvent.selectOptions(select, "raspberry")
+    await waitFor(() => expect(select).toHaveValue("raspberry"))
   },
 }
 
 export const DisabledOptions: Story = {
-  args: {
-    options: [
-      { value: "apple", label: "Apple" },
-      { value: "banana", label: "Banana", disabled: true },
-      { value: "cherry", label: "Cherry", disabled: true },
-      { value: "date", label: "Date" },
-    ],
-    value: "apple",
+  render: function Render(args) {
+    const props = useControlled(args, "apple")
+
+    return (
+      <Field id="fruit-disabled" label="Fruit">
+        <Select {...props} id="fruit-disabled">
+          <option value="apple">Apple</option>
+          <option value="banana" disabled>
+            Banana
+          </option>
+          <option value="cherry" disabled>
+            Cherry
+          </option>
+          <option value="date">Date</option>
+        </Select>
+      </Field>
+    )
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
@@ -102,27 +177,18 @@ export const DisabledOptions: Story = {
   },
 }
 
-const COLOURS: SelectOption[] = [
+const COLOURS = [
   { value: "red", label: "Red", hex: "#d32f2f" },
   { value: "green", label: "Green", hex: "#388e3c" },
   { value: "blue", label: "Blue", hex: "#1976d2" },
-].map(({ hex, ...option }) => ({
-  ...option,
-  className: "swatch-option",
-  style: { "--swatch": hex } as React.CSSProperties,
-}))
+]
 
 /**
- * Options can only contain text, so decoration like colour swatches is drawn with CSS
- * through each option's `className` and `style`. Browsers without customizable select
- * show the text only.
+ * Options can only contain text in React, so decoration like colour swatches is drawn
+ * with CSS through each option's `className` and `style`. Browsers without customizable
+ * select show the text only.
  */
 export const StyledOptions: Story = {
-  args: {
-    label: "Colour",
-    options: COLOURS,
-    value: "green",
-  },
   decorators: [
     (Story) => (
       <>
@@ -142,6 +208,26 @@ export const StyledOptions: Story = {
       </>
     ),
   ],
+  render: function Render(args) {
+    const props = useControlled(args, "green")
+
+    return (
+      <Field id="colour" label="Colour">
+        <Select {...props} id="colour">
+          {COLOURS.map((option) => (
+            <option
+              key={option.value}
+              value={option.value}
+              className="swatch-option"
+              style={{ "--swatch": option.hex } as React.CSSProperties}
+            >
+              {option.label}
+            </option>
+          ))}
+        </Select>
+      </Field>
+    )
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
     const option = canvas.getByRole("option", { name: "Red" })
@@ -160,13 +246,7 @@ const GRADIENTS = [
   { value: "lagoon", label: "Lagoon", from: "#43e97b", to: "#38f9d7" },
 ]
 
-const GRADIENT_OPTIONS: SelectOption[] = GRADIENTS.map(({ from, to, ...option }) => ({
-  ...option,
-  className: styles.option,
-  style: { "--from": from, "--to": to } as React.CSSProperties,
-}))
-
-const gradientStyle = (value?: string | null) => {
+const gradientStyle = (value: string) => {
   const gradient = GRADIENTS.find((item) => item.value === value) ?? GRADIENTS[0]
 
   return { "--from": gradient.from, "--to": gradient.to } as React.CSSProperties
@@ -180,12 +260,6 @@ const gradientStyle = (value?: string | null) => {
  * state. Browsers without customizable select show the plain native select.
  */
 export const Showcase: Story = {
-  args: {
-    label: "Gradient",
-    options: GRADIENT_OPTIONS,
-    value: "aurora",
-    placeholder: null,
-  },
   decorators: [
     (Story) => (
       <div className={styles.stage}>
@@ -194,22 +268,26 @@ export const Showcase: Story = {
     ),
   ],
   render: function Render(args) {
-    const [value, setValue] = useState(args.value)
+    const props = useControlled(args, "aurora")
 
     return (
-      <Select
-        {...args}
-        value={value}
-        className={styles.showcase}
-        selectProps={{ style: gradientStyle(value) }}
-        onChange={(newValue, option) => {
-          setValue(newValue)
-          args.onChange?.(newValue, option)
-        }}
-      />
+      <Field id="gradient" label="Gradient" className={styles.showcase}>
+        <Select {...props} id="gradient" style={gradientStyle(props.value)}>
+          {GRADIENTS.map(({ value, label, from, to }) => (
+            <option
+              key={value}
+              value={value}
+              className={styles.option}
+              style={{ "--from": from, "--to": to } as React.CSSProperties}
+            >
+              {label}
+            </option>
+          ))}
+        </Select>
+      </Field>
     )
   },
-  play: async ({ canvasElement, args }) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
     const select = canvas.getByRole("combobox", { name: "Gradient" })
 
@@ -217,6 +295,5 @@ export const Showcase: Story = {
 
     await userEvent.selectOptions(select, "ember")
     await waitFor(() => expect(select.style.getPropertyValue("--from")).toBe("#f12711"))
-    expect(args.onChange).toHaveBeenLastCalledWith("ember", GRADIENT_OPTIONS[3])
   },
 }

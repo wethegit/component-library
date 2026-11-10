@@ -8,12 +8,14 @@
 }
 
 .showcase {
-  --select-gap: 0.75rem;
   --select-padding: 0.875rem 1.25rem;
   --select-max-height: none;
 
   color: #f4f4f8;
+  display: inline-flex;
+  flex-direction: column;
   font-family: system-ui, sans-serif;
+  gap: 0.75rem;
 
   label {
     font-size: 0.75rem;

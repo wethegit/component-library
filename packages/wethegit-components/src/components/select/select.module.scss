@@ -1,46 +1,41 @@
 // Only the styles the component needs. Browsers without customizable select
-// (`appearance: base-select`) show their own native select, so everything that
-// styles the button and picker sits inside `@supports`. Colours are derived from
-// `currentcolor` and system colours, so the select stays readable in any theme
-// and in forced-colours mode.
-
-.select {
-  display: inline-flex;
-  flex-direction: column;
-  gap: var(--select-gap, 0.5em);
-}
+// (`appearance: base-select`) show their own native select, so everything sits
+// inside `@supports`.
+// Selectors are wrapped in `:where()` so any class you add wins.
 
 @supports (appearance: base-select) {
-  .control,
-  .control::picker(select) {
+  :where(.control),
+  :where(.control)::picker(select) {
     appearance: base-select;
   }
 
-  .control {
-    // A tint of the text colour, so it works on light and dark backgrounds
-    background-color: var(--select-background, #000);
+  :where(.control) {
+    background-color: var(
+      --select-background,
+      color-mix(in srgb, currentcolor 15%, transparent)
+    );
     border-radius: 0.25em;
     padding: var(--select-padding, 0.5em 0.75em);
   }
 
-  .control::picker(select) {
-    background-color: Canvas;
-    border: 1px solid CanvasText;
+  :where(.control)::picker(select) {
+    background-color: var(--select-picker-background, Canvas);
+    border: 1px solid var(--select-picker-border-color, CanvasText);
     border-radius: 0.25em;
-    color: CanvasText;
+    color: var(--select-picker-color, CanvasText);
     margin-block-start: 0.25em;
     max-height: var(--select-max-height, 15rem);
   }
 
-  .control:open::picker-icon {
+  :where(.control):open::picker-icon {
     rotate: 180deg;
   }
 
-  .option {
+  :where(.control option) {
     padding: var(--select-padding, 0.5em 0.75em);
   }
 
-  .option:checked {
+  :where(.control option:checked) {
     font-weight: bold;
   }
 }
