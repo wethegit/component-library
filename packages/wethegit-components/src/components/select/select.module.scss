@@ -1,0 +1,41 @@
+// Only the styles the component needs. Browsers without customizable select
+// (`appearance: base-select`) show their own native select, so everything sits
+// inside `@supports`.
+// Selectors are wrapped in `:where()` so any class you add wins.
+
+@supports (appearance: base-select) {
+  :where(.control),
+  :where(.control)::picker(select) {
+    appearance: base-select;
+  }
+
+  :where(.control) {
+    background-color: var(
+      --select-background,
+      color-mix(in srgb, currentcolor 15%, transparent)
+    );
+    border-radius: 0.25em;
+    padding: var(--select-padding, 0.5em 0.75em);
+  }
+
+  :where(.control)::picker(select) {
+    background-color: var(--select-picker-background, Canvas);
+    border: 1px solid var(--select-picker-border-color, CanvasText);
+    border-radius: 0.25em;
+    color: var(--select-picker-color, CanvasText);
+    margin-block-start: 0.25em;
+    max-height: var(--select-max-height, 15rem);
+  }
+
+  :where(.control):open::picker-icon {
+    rotate: 180deg;
+  }
+
+  :where(.control option) {
+    padding: var(--select-padding, 0.5em 0.75em);
+  }
+
+  :where(.control option:checked) {
+    font-weight: bold;
+  }
+}

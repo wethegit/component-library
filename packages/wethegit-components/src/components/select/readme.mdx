@@ -1,0 +1,132 @@
+import { Meta } from "@storybook/blocks"
+
+<Meta title="components/select/Readme" />
+
+# Select
+
+`<Select>` is a native `<select>` with a thin layer of styles. In browsers that support [customizable select](https://developer.mozilla.org/en-US/docs/Web/CSS/appearance) (`appearance: base-select`), the button and the picker are styled. Everywhere else it's the browser's own select.
+
+It takes every attribute `<select>` does, along with its children (`<option>`, `<optgroup>`, `<hr>`), and forwards `ref` to the `<select>`. Because it's native, the browser handles keyboard, screen reader and touch support, form submission and validation, and keeps the picker inside the viewport.
+
+## Browser support
+
+As of November 2026, customizable select is supported in Chrome and Edge 135+ and Safari 27+. Firefox has it behind a flag. Check [Can I use](https://caniuse.com/?search=base-select) for the current status.
+
+Browsers without support show a standard native select.
+
+## Install
+
+```bash
+npx @wethegit/components-cli add select
+```
+
+## Usage example
+
+The component has no label of its own, so give it one with `<label htmlFor>` or `aria-label`:
+
+```jsx
+import { useState } from "react"
+
+import { Select } from "@local/components/select/select"
+
+function YourComponent() {
+  const [fruit, setFruit] = useState("apple")
+
+  return (
+    <>
+      <label htmlFor="fruit">Fruit</label>
+      <Select id="fruit" value={fruit} onChange={(event) => setFruit(event.target.value)}>
+        <option value="apple">Apple</option>
+        <option value="banana">Banana</option>
+        <option value="cherry" disabled>
+          Cherry
+        </option>
+      </Select>
+    </>
+  )
+}
+```
+
+Or leave out `value` and let the select keep its own state, with `defaultValue` and `name` for forms:
+
+```jsx
+<form>
+  <label htmlFor="fruit">Fruit</label>
+  <Select id="fruit" name="fruit" defaultValue="banana">
+    …
+  </Select>
+</form>
+```
+
+### Groups and separators
+
+Use `<optgroup>` to group options under a heading, and `<hr>` to draw a separator in the picker:
+
+```jsx
+<Select id="fruit">
+  <optgroup label="Citrus">
+    <option value="lemon">Lemon</option>
+    <option value="orange">Orange</option>
+  </optgroup>
+  <hr />
+  <optgroup label="Berries">
+    <option value="raspberry">Raspberry</option>
+  </optgroup>
+</Select>
+```
+
+### Decorating options
+
+To add decoration such as colour swatches, give options a `className` and `style`, and draw the decoration with CSS:
+
+```jsx
+<option value="red" className="swatch" style={{ "--swatch": "#d32f2f" }}>
+  Red
+</option>
+```
+
+```css
+.swatch::before {
+  background-color: var(--swatch);
+  content: "";
+  display: inline-block;
+  height: 1em;
+  margin-inline-end: 0.5em;
+  width: 1em;
+}
+```
+
+Keep the meaning in the text. The swatch is decoration only, and it shows in the picker but not in the closed button.
+
+### Rich content
+
+Customizable select allows elements such as images inside `<option>`, and a `<button><selectedcontent>` inside `<select>` to show them in the closed button. The component doesn't stop you passing them, but be aware of two things:
+
+- React (as of 19.2) only expects text inside `<option>`, and only `<option>`, `<optgroup>` and `<hr>` inside `<select>`. In development it logs an error for anything else.
+- Browsers without customizable select remove those elements when they parse HTML. Server-rendered markup then doesn't match what React expects, and hydration fails.
+
+Rendered on the client only, it works, and browsers without support show the option's text.
+
+## Keyboard
+
+The browser handles the keyboard, the same way it does for any native select.
+
+## Styling
+
+The styles are kept simple. Everything sits inside `@supports (appearance: base-select)`, so other browsers show their own select. The button's background is a tint of the text colour, and the picker uses the `Canvas` and `CanvasText` system colours, so both are readable in any theme and in forced-colours mode.
+
+Every selector is wrapped in `:where()`, so it has no specificity and any class you add wins.
+
+Set these custom properties on the select or a parent to adjust it:
+
+| Property                       | Default                                             | Controls                                  |
+| ------------------------------ | --------------------------------------------------- | ----------------------------------------- |
+| `--select-background`          | `color-mix(in srgb, currentcolor 15%, transparent)` | The button's background                   |
+| `--select-picker-background`   | `Canvas`                                            | The picker's background                   |
+| `--select-picker-border-color` | `CanvasText`                                        | The picker's border colour                |
+| `--select-picker-color`        | `CanvasText`                                        | The picker's text colour                  |
+| `--select-padding`             | `0.5em 0.75em`                                      | Padding of the button and of each option  |
+| `--select-max-height`          | `15rem`                                             | The picker's maximum height before scroll |
+
+- Style the picker with `::picker(select)`, the arrow with `::picker-icon`, the tick with `::checkmark`, and the open state with `:open`. Selected options match `:checked` and disabled ones `:disabled`.
+- Restyle through `className`, or edit `select.module.scss` after installing.
