@@ -1,91 +1,95 @@
-/* Box sizing rules */
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
+@use "./layers";
 
-/* Remove default margin */
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
-  margin-block-end: 0;
-}
+@layer reset {
+  /* Box sizing rules */
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
 
-/* Set core body defaults */
-body {
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.5;
-  margin: 0;
-  min-height: 100vh;
-  text-rendering: optimizespeed;
-}
+  /* Remove default margin */
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin-block-end: 0;
+  }
 
-/* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-}
+  /* Set core body defaults */
+  body {
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    margin: 0;
+    min-height: 100vh;
+    text-rendering: optimizespeed;
+  }
 
-/* Make images easier to work with */
-img,
-picture {
-  border-style: none;
-  display: block;
-  height: auto;
-  max-width: 100%;
-}
+  /* A elements that don't have a class get default styles */
+  a:not([class]) {
+    text-decoration-skip-ink: auto;
+  }
 
-figure {
-  margin: 0;
-}
+  /* Make images easier to work with */
+  img,
+  picture {
+    border-style: none;
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
 
-/* Inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
+  figure {
+    margin: 0;
+  }
 
-button {
-  appearance: none;
-  background: none;
-  border: none;
-  border-radius: 0;
-  color: inherit;
-  cursor: pointer;
-  display: inline-block;
-  padding: 0;
-}
+  /* Inherit fonts for inputs and buttons */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
 
-/* Avoid text overflows */
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
+  button {
+    appearance: none;
+    background: none;
+    border: none;
+    border-radius: 0;
+    color: inherit;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0;
+  }
 
-/* Create a root stacking context */
-#root,
-/* stylelint-disable-next-line selector-id-pattern */
-#__next {
-  isolation: isolate;
-}
+  /* Avoid text overflows */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
 
-/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-    scroll-behavior: auto;
+  /* Create a root stacking context */
+  #root,
+  /* stylelint-disable-next-line selector-id-pattern */
+  #__next {
+    isolation: isolate;
+  }
+
+  /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+  @media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+      scroll-behavior: auto;
+    }
   }
 }

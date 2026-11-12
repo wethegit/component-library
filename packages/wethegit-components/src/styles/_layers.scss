@@ -1,0 +1,10 @@
+// Cascade layer order for the whole library.
+// Every layered stylesheet `@use`s this file so the order is locked in no matter
+// which stylesheet the browser loads first. Restating the order is harmless.
+// - reset: browser normalization
+// - global: global custom properties and base styles
+// - component: component styles
+// - utility: utility classes (color, spacing, visibility), which beat component defaults
+// Any unlayered CSS you write beats every layer, so you can override library
+// styles without extra specificity or !important.
+@layer reset, global, component, utility;

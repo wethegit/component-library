@@ -1,17 +1,21 @@
-%visually-hidden {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
+@use "@local/styles/layers";
 
-.standard {
-  @extend %visually-hidden;
-}
+@layer component {
+  %visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
 
-.revealOnFocus:not(:focus, :active) {
-  @extend %visually-hidden;
+  .standard {
+    @extend %visually-hidden;
+  }
+
+  .revealOnFocus:not(:focus, :active) {
+    @extend %visually-hidden;
+  }
 }

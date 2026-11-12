@@ -7,3 +7,39 @@ import { Meta } from "@storybook/blocks"
 **Location:** `@local/styles/global.scss`
 
 This file contains the global styles and it also imports the reset stylesheet by default.
+
+## Cascade layers
+
+All library styles live in [CSS cascade layers](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer). The order is declared in `@local/styles/_layers.scss`:
+
+```css
+@layer reset, global, component, utility;
+```
+
+| Layer       | What goes in it                                                                      |
+| ----------- | ------------------------------------------------------------------------------------ |
+| `reset`     | `reset.scss`                                                                         |
+| `global`    | Global custom properties (`animation.scss`, the text and grid-layout `:root` styles) |
+| `component` | Every component's `*.module.scss`                                                    |
+| `utility`   | Utility classes: color, spacing, visibility                                          |
+
+Later layers win, so utility classes override component defaults (e.g. a spacing class on `<Text>` beats its `margin: 0`).
+
+Every layered stylesheet `@use`s `_layers.scss`. This keeps the order correct no matter which file the browser loads first, so keep that `@use` when you add a new stylesheet.
+
+### Overriding library styles
+
+**Unlayered CSS always beats layered CSS**, whatever its specificity. To override a component, write a plain rule in your own stylesheet; you don't need `!important` or extra selectors:
+
+```css
+/* beats .text from the component layer */
+.my-heading {
+  margin-block-end: 2rem;
+}
+```
+
+To keep your own styles layered, add your layers after the library's:
+
+```css
+@layer reset, global, component, utility, app;
+```
