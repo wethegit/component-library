@@ -1,13 +1,15 @@
 @use "./styles/color-utilities" as *;
 @use "./styles/color-variables" as *;
 
-// define utility classes:
-@each $color, $h in $colors {
-  .bg-#{$color} {
-    background-color: $h;
-  }
+@layer utility {
+  // define utility classes:
+  @each $color, $h in $colors {
+    .bg-#{$color} {
+      background-color: $h;
+    }
 
-  .text-#{$color} {
-    color: $h;
+    .text-#{$color} {
+      color: $h;
+    }
   }
 }

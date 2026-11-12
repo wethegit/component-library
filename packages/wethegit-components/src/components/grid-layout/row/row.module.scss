@@ -1,17 +1,19 @@
 @use "@local/styles/breakpoints/breakpoints-variables" as *;
 
-.row {
-  column-gap: var(--wtc-gutter-width);
-  inline-size: min(100%, var(--wtc-row-width, 1440px));
-  list-style: none;
-  margin-inline: auto;
-  padding-inline: var(--wtc-grid-margin-width);
-
+@layer component {
   .row {
-    padding-inline: 0;
-  }
-}
+    column-gap: var(--wtc-gutter-width);
+    inline-size: min(100%, var(--wtc-row-width, 1440px));
+    list-style: none;
+    margin-inline: auto;
+    padding-inline: var(--wtc-grid-margin-width);
 
-.rowBlock {
-  display: block;
+    .row {
+      padding-inline: 0;
+    }
+  }
+
+  .rowBlock {
+    display: block;
+  }
 }
