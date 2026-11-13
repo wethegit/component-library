@@ -1,8 +1,8 @@
 import { Meta } from "@storybook/blocks"
 
-<Meta title="components/scalloped-edge/Readme" />
+<Meta title="components/masked-edge/Readme" />
 
-# ScallopedEdge
+# MaskedEdge
 
 Use a mask to cut a decorative edge from the container's side.
 Where the edge art is opaque, the container is cut out.
@@ -10,7 +10,7 @@ Where the edge art is opaque, the container is cut out.
 ## Install
 
 ```bash
-npx @wethegit/components-cli add scalloped-edge
+npx @wethegit/components-cli add masked-edge
 ```
 
 ## Usage
@@ -22,9 +22,9 @@ Pass an image to `top`, optionally update `size` to taste [default size = 40px].
 Also works for the other 3 sides, `bottom`, `left`, `right`
 
 ```tsx
-<ScallopedEdge top="/images/crumb-border.svg" size="30px">
+<MaskedEdge top="/images/crumb-border.svg" size="30px">
   ...
-</ScallopedEdge>
+</MaskedEdge>
 ```
 
 ### Top and Bottom / Left and Right - Mirror
@@ -36,7 +36,7 @@ If you want the edge art to repeat, add `repeat`, then `tileSize` to control siz
 Omitting `repeat` and `tileSize` will stretch image 100% to match edge length.
 
 ```tsx
-<ScallopedEdge
+<MaskedEdge
   image="/images/tiled-border.svg"
   sides="top bottom"
   mirror
@@ -44,7 +44,7 @@ Omitting `repeat` and `tileSize` will stretch image 100% to match edge length.
   tileSize="75px"
 >
   ...
-</ScallopedEdge>
+</MaskedEdge>
 ```
 
 `sides` accepts `top bottom`, `left right`, and `all`. When `image` is provided with no defined sides, it defaults to all four sides.
@@ -54,15 +54,15 @@ Omitting `repeat` and `tileSize` will stretch image 100% to match edge length.
 Pass an image path to `top`, `bottom`, `left`, or `right`. Can be combined or a single entry.
 
 ```tsx
-<ScallopedEdge top="/images/crumb-border.svg" bottom="/images/crumb-border-bottom.png">
+<MaskedEdge top="/images/crumb-border.svg" bottom="/images/crumb-border-bottom.png">
   ...
-</ScallopedEdge>
+</MaskedEdge>
 ```
 
 ```tsx
-<ScallopedEdge left="/images/crumb-border-vertical.svg" size="100px">
+<MaskedEdge left="/images/crumb-border-vertical.svg" size="100px">
   ...
-</ScallopedEdge>
+</MaskedEdge>
 ```
 
 ### Full frame
@@ -70,9 +70,9 @@ Pass an image path to `top`, `bottom`, `left`, or `right`. Can be combined or a 
 `fullFrame` maps your `image` over the whole `frameAspect` box (16:9 by default).
 
 ```tsx
-<ScallopedEdge image="/images/frame-1x1.svg" fullFrame frameAspect="1 / 1">
+<MaskedEdge image="/images/frame-1x1.svg" fullFrame frameAspect="1 / 1">
   <img src="images/video-1x1.gif" alt="" />
-</ScallopedEdge>
+</MaskedEdge>
 ```
 
 ## Notes

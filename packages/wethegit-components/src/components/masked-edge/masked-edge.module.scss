@@ -1,4 +1,4 @@
-.scallopedEdge {
+.maskedEdge {
   position: relative;
 }
 
@@ -19,7 +19,7 @@
   width: 0;
 }
 
-.scallopedContent {
+.maskedContent {
   position: relative;
 }
 
@@ -31,11 +31,11 @@
 
 /* Move mask to edge */
 .edgeBottom {
-  transform: translateY(calc(100cqh - var(--scallop-edge-size)));
+  transform: translateY(calc(100cqh - var(--masked-edge-size)));
 }
 
 .edgeRight {
-  transform: translateX(calc(100cqw - var(--scallop-edge-size)));
+  transform: translateX(calc(100cqw - var(--masked-edge-size)));
 }
 
 .maskImage {

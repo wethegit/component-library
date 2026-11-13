@@ -3,13 +3,13 @@ import type { ComponentPropsWithoutRef, CSSProperties, ReactNode } from "react"
 
 import { classnames } from "@local/utilities/classnames"
 
-import styles from "./scalloped-edge.module.scss"
+import styles from "./masked-edge.module.scss"
 
-export const SCALLOPED_EDGE_SIDES = ["top", "bottom", "left", "right"] as const
+export const MASKED_EDGE_SIDES = ["top", "bottom", "left", "right"] as const
 
-export type ScallopedEdgeSide = (typeof SCALLOPED_EDGE_SIDES)[number]
+export type MaskedEdgeSide = (typeof MASKED_EDGE_SIDES)[number]
 
-type ScallopedEdgeOwnProps = {
+type MaskedEdgeOwnProps = {
   /**
    * Shared edge artwork.
    * Applied to every side added to `sides`.
@@ -68,11 +68,11 @@ type ScallopedEdgeOwnProps = {
   children?: ReactNode
 }
 
-export type ScallopedEdgeProps = ScallopedEdgeOwnProps &
-  Omit<ComponentPropsWithoutRef<"div">, keyof ScallopedEdgeOwnProps>
+export type MaskedEdgeProps = MaskedEdgeOwnProps &
+  Omit<ComponentPropsWithoutRef<"div">, keyof MaskedEdgeOwnProps>
 
 type Edge = {
-  side: ScallopedEdgeSide
+  side: MaskedEdgeSide
   src: string
   mirrorAxis: MirrorAxis | null
 }
@@ -82,7 +82,7 @@ type MirrorAxis = "x" | "y"
 type EdgeMask = {
   id: string
   patternId: string
-  side: ScallopedEdgeSide
+  side: MaskedEdgeSide
   src: string
   mirrorAxis: MirrorAxis
   repeat: boolean
@@ -96,9 +96,9 @@ type MaskProperties = {
 
 type MaskComposite = "add" | "subtract"
 
-const SIDE_SET = new Set<string>(SCALLOPED_EDGE_SIDES)
+const SIDE_SET = new Set<string>(MASKED_EDGE_SIDES)
 
-const SIDE_POSITION: Record<ScallopedEdgeSide, string> = {
+const SIDE_POSITION: Record<MaskedEdgeSide, string> = {
   top: "0 0",
   bottom: "0 100%",
   left: "0 0",
@@ -110,29 +110,29 @@ function toLength(value: number | string | undefined, fallback: string): string 
   return typeof value === "number" ? `${value}px` : value
 }
 
-function isVerticalSide(side: ScallopedEdgeSide): boolean {
+function isVerticalSide(side: MaskedEdgeSide): boolean {
   return side === "left" || side === "right"
 }
 
-function edgeContainerSize(side: ScallopedEdgeSide, size: string): string {
+function edgeContainerSize(side: MaskedEdgeSide, size: string): string {
   return isVerticalSide(side) ? `${size} 100%` : `100% ${size}`
 }
 
-function repeatLayerSize(side: ScallopedEdgeSide, size: string): string {
+function repeatLayerSize(side: MaskedEdgeSide, size: string): string {
   return isVerticalSide(side) ? `${size} auto` : `auto ${size}`
 }
 
-function parseSides(value?: string): ScallopedEdgeSide[] | null {
+function parseSides(value?: string): MaskedEdgeSide[] | null {
   if (value === undefined) return null
 
   const sideNames = value.split(/[\s,|]+/)
-  const found: ScallopedEdgeSide[] = []
+  const found: MaskedEdgeSide[] = []
   sideNames.forEach((sideName) => {
     const side = sideName.toLowerCase()
     if (side === "all") {
-      found.push(...SCALLOPED_EDGE_SIDES)
+      found.push(...MASKED_EDGE_SIDES)
     } else if (SIDE_SET.has(side)) {
-      found.push(side as ScallopedEdgeSide)
+      found.push(side as MaskedEdgeSide)
     }
   })
 
@@ -142,7 +142,7 @@ function parseSides(value?: string): ScallopedEdgeSide[] | null {
 /**
  * - bottom and right edges point inwards when mirrored
  */
-function mirrorAxis(side: ScallopedEdgeSide, mirror: boolean): MirrorAxis | null {
+function mirrorAxis(side: MaskedEdgeSide, mirror: boolean): MirrorAxis | null {
   if (!mirror) return null
   if (side === "bottom") return "y"
   if (side === "right") return "x"
@@ -245,7 +245,7 @@ function mirrorClass(mirrorAxis: MirrorAxis): string {
   return mirrorAxis === "x" ? styles.mirrorX : styles.mirrorY
 }
 
-function edgeTransformClass(side: ScallopedEdgeSide): string | undefined {
+function edgeTransformClass(side: MaskedEdgeSide): string | undefined {
   if (side === "bottom") return styles.edgeBottom
   if (side === "right") return styles.edgeRight
 
@@ -261,7 +261,7 @@ function edgeTransformClass(side: ScallopedEdgeSide): string | undefined {
  *
  * **Note**: SVG artwork that needs to stretch should set `preserveAspectRatio="none"`.
  */
-export function ScallopedEdge({
+export function MaskedEdge({
   image,
   top,
   bottom,
@@ -278,25 +278,25 @@ export function ScallopedEdge({
   children,
   style,
   ...rest
-}: ScallopedEdgeProps): React.JSX.Element {
+}: MaskedEdgeProps): React.JSX.Element {
   const edgeSize = toLength(size, "40px")
   const edgeTileSize = toLength(tileSize, edgeSize)
-  const idPrefix = `scallop-${useId().replace(/:/g, "")}`
+  const idPrefix = `masked-${useId().replace(/:/g, "")}`
 
-  const sideImages: Record<ScallopedEdgeSide, string | undefined> = {
+  const sideImages: Record<MaskedEdgeSide, string | undefined> = {
     top,
     bottom,
     left,
     right,
   }
-  const suppliedSides = SCALLOPED_EDGE_SIDES.filter((side) => Boolean(sideImages[side]))
+  const suppliedSides = MASKED_EDGE_SIDES.filter((side) => Boolean(sideImages[side]))
   const requestedSides = parseSides(sides)
 
-  let activeSides: ScallopedEdgeSide[]
+  let activeSides: MaskedEdgeSide[]
   if (requestedSides) {
     activeSides = Array.from(new Set([...requestedSides, ...suppliedSides]))
   } else if (image) {
-    activeSides = [...SCALLOPED_EDGE_SIDES]
+    activeSides = [...MASKED_EDGE_SIDES]
   } else {
     activeSides = suppliedSides
   }
@@ -322,14 +322,14 @@ export function ScallopedEdge({
     ...(fullFrame ? { aspectRatio: frameAspect } : null),
     ...maskStyle,
     ...style,
-    "--scallop-edge-size": edgeSize,
+    "--masked-edge-size": edgeSize,
   } as CSSProperties
 
   return (
     <div
       {...rest}
       className={classnames([
-        styles.scallopedEdge,
+        styles.maskedEdge,
         maskStyle ? styles.masked : null,
         className,
       ])}
@@ -344,12 +344,12 @@ export function ScallopedEdge({
                 const bandStyle: CSSProperties = vertical
                   ? {
                       height: "100cqh",
-                      width: "var(--scallop-edge-size)",
+                      width: "var(--masked-edge-size)",
                       x: 0,
                       y: 0,
                     }
                   : {
-                      height: "var(--scallop-edge-size)",
+                      height: "var(--masked-edge-size)",
                       width: "100cqw",
                       x: 0,
                       y: 0,
@@ -415,7 +415,7 @@ export function ScallopedEdge({
 
       <div
         className={classnames([
-          styles.scallopedContent,
+          styles.maskedContent,
           fullFrame ? styles.fullFrame : null,
         ])}
       >

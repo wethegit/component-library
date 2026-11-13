@@ -1,11 +1,11 @@
 import type { CSSProperties, ReactNode } from "react"
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { ScallopedEdge } from "./scalloped-edge"
+import { MaskedEdge } from "./masked-edge"
 
 const pageStyle: CSSProperties = {
   background: "#e6f5ff",
-  backgroundImage: 'url("/scalloped-edge-demo/rpg-fight-bg.gif")',
+  backgroundImage: 'url("/masked-edge-demo/rpg-fight-bg.gif")',
   backgroundSize: "cover",
   display: "flex",
   flexWrap: "wrap",
@@ -46,26 +46,22 @@ function Scene({ children }: { children: ReactNode }) {
   return <div style={pageStyle}>{children}</div>
 }
 
-const meta: Meta<typeof ScallopedEdge> = {
-  component: ScallopedEdge,
-  title: "components/scalloped-edge",
+const meta: Meta<typeof MaskedEdge> = {
+  component: MaskedEdge,
+  title: "components/masked-edge",
 }
 
 export default meta
 
-type Story = StoryObj<typeof ScallopedEdge>
+type Story = StoryObj<typeof MaskedEdge>
 
 export const Top: Story = {
   name: "Top",
   render: () => (
     <Scene>
-      <ScallopedEdge
-        top="/scalloped-edge-demo/crumb-border.svg"
-        size="30px"
-        style={cardStyle}
-      >
+      <MaskedEdge top="/masked-edge-demo/crumb-border.svg" size="30px" style={cardStyle}>
         <CardContent />
-      </ScallopedEdge>
+      </MaskedEdge>
     </Scene>
   ),
 }
@@ -74,14 +70,14 @@ export const Bottom: Story = {
   name: "Bottom",
   render: () => (
     <Scene>
-      <ScallopedEdge
-        bottom="/scalloped-edge-demo/crumb-border.svg"
+      <MaskedEdge
+        bottom="/masked-edge-demo/crumb-border.svg"
         mirror
         size="30px"
         style={cardStyle}
       >
         <CardContent />
-      </ScallopedEdge>
+      </MaskedEdge>
     </Scene>
   ),
 }
@@ -90,15 +86,15 @@ export const TopAndBottomMirror: Story = {
   name: "Top and Bottom - Mirrored",
   render: () => (
     <Scene>
-      <ScallopedEdge
-        image="/scalloped-edge-demo/crumb-border.svg"
+      <MaskedEdge
+        image="/masked-edge-demo/crumb-border.svg"
         sides="top bottom"
         mirror
         size="30px"
         style={cardStyle}
       >
         <CardContent />
-      </ScallopedEdge>
+      </MaskedEdge>
     </Scene>
   ),
 }
@@ -107,14 +103,14 @@ export const TopAndBottom: Story = {
   name: "Top and Bottom - Unique",
   render: () => (
     <Scene>
-      <ScallopedEdge
-        top="/scalloped-edge-demo/crumb-border.svg"
-        bottom="/scalloped-edge-demo/crumb-border-bottom.png"
+      <MaskedEdge
+        top="/masked-edge-demo/crumb-border.svg"
+        bottom="/masked-edge-demo/crumb-border-bottom.png"
         size="30px"
         style={cardStyle}
       >
         <CardContent />
-      </ScallopedEdge>
+      </MaskedEdge>
     </Scene>
   ),
 }
@@ -123,20 +119,18 @@ export const Right: Story = {
   name: "Right",
   render: () => (
     <Scene>
-      <ScallopedEdge
-        right="/scalloped-edge-demo/edge-pattern-vertical.png"
+      <MaskedEdge
+        right="/masked-edge-demo/edge-pattern-bite-vertical.png"
         mirror
-        repeat
-        tileSize="100px"
+        size="80px"
         style={narrowCardStyle}
       >
         <CardContent />
         <p>
-          When we want the container taller, we can add more text. When we want the
-          container taller, we can add more text. When we want the container taller, we
-          can add more text.
+          One asset set on the right and mirrored to flip it the desired direction. Repeat
+          is not set, therefore the masked asset will stretch.
         </p>
-      </ScallopedEdge>
+      </MaskedEdge>
     </Scene>
   ),
 }
@@ -145,22 +139,19 @@ export const LeftAndRight: Story = {
   name: "Left and right",
   render: () => (
     <Scene>
-      <ScallopedEdge
-        image="/scalloped-edge-demo/edge-pattern-vertical.png"
+      <MaskedEdge
+        image="/masked-edge-demo/edge-pattern-bite-vertical.png"
         sides="left right"
         mirror
-        repeat
-        tileSize="100px"
-        size="40px"
+        size="80px"
         style={narrowCardStyle}
       >
         <CardContent />
         <p>
-          When we want the container taller, we can add more text. When we want the
-          container taller, we can add more text. When we want the container taller, we
-          can add more text.
+          One asset set to the left and right, mirrored. They will stretch to the ends of
+          the container if <u>repeat</u> is not set to tile the asset.
         </p>
-      </ScallopedEdge>
+      </MaskedEdge>
     </Scene>
   ),
 }
@@ -169,8 +160,8 @@ export const Repeat: Story = {
   name: "Repeat and tile",
   render: () => (
     <Scene>
-      <ScallopedEdge
-        image="/scalloped-edge-demo/edge-pattern.png"
+      <MaskedEdge
+        image="/masked-edge-demo/edge-pattern.png"
         sides="top bottom"
         repeat
         tileSize="100px"
@@ -179,7 +170,11 @@ export const Repeat: Story = {
         style={{ ...cardStyle, padding: 100 }}
       >
         <CardContent />
-      </ScallopedEdge>
+        <p>
+          A pattern set to the top and bottom edge and repeating. We can adjust the tile
+          size or limit to a single side.
+        </p>
+      </MaskedEdge>
     </Scene>
   ),
 }
@@ -189,11 +184,11 @@ export const FullFrame169: Story = {
   render: () => (
     <Scene>
       <div style={{ maxWidth: 500, width: "40vw" }}>
-        <ScallopedEdge image="/scalloped-edge-demo/frame-16-9.png" fullFrame>
+        <MaskedEdge image="/masked-edge-demo/frame-16-9.png" fullFrame>
           <div style={framePanelStyle}>
-            <img src="/scalloped-edge-demo/water-animated.gif" alt="" />
+            <img src="/masked-edge-demo/water-animated.gif" alt="" />
           </div>
-        </ScallopedEdge>
+        </MaskedEdge>
       </div>
     </Scene>
   ),
@@ -204,15 +199,11 @@ export const FullFrame11: Story = {
   render: () => (
     <Scene>
       <div style={{ maxWidth: 400, width: "40vw" }}>
-        <ScallopedEdge
-          image="/scalloped-edge-demo/frame-1-1.png"
-          fullFrame
-          frameAspect="1 / 1"
-        >
+        <MaskedEdge image="/masked-edge-demo/frame-1-1.png" fullFrame frameAspect="1 / 1">
           <div style={framePanelStyle}>
-            <img src="/scalloped-edge-demo/animated-1-1.gif" alt="" />
+            <img src="/masked-edge-demo/animated-1-1.gif" alt="" />
           </div>
-        </ScallopedEdge>
+        </MaskedEdge>
       </div>
     </Scene>
   ),
