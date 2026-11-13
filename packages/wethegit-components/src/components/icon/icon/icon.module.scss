@@ -1,19 +1,23 @@
-.icon {
-  --size: 1em;
+@use "@local/styles/layers";
 
-  aspect-ratio: 1 / 1;
-  display: block;
-  fill: currentcolor;
-  width: var(--size);
-}
+@layer component {
+  .icon {
+    --size: 1em;
 
-.iconDefs {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
+    aspect-ratio: 1 / 1;
+    display: block;
+    fill: currentcolor;
+    width: var(--size);
+  }
+
+  .iconDefs {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
 }

@@ -1,5 +1,9 @@
-.toggle {
-  align-items: center;
-  display: inline-flex;
-  gap: 8px;
+@use "@local/styles/layers";
+
+@layer component {
+  .toggle {
+    align-items: center;
+    display: inline-flex;
+    gap: 8px;
+  }
 }
