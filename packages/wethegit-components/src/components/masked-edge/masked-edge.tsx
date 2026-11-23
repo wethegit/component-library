@@ -188,7 +188,7 @@ export function MaskedEdge({
       ])}
       style={rootStyle}
     >
-      {masks.length ? (
+      {masks.length > 0 && (
         <div className={styles.maskSizer}>
           <svg aria-hidden="true" className={styles.maskDefs} focusable="false">
             <defs>
@@ -264,7 +264,7 @@ export function MaskedEdge({
             </defs>
           </svg>
         </div>
-      ) : null}
+      )}
 
       <div
         className={classnames([
