@@ -181,11 +181,7 @@ export function MaskedEdge({
   return (
     <div
       {...rest}
-      className={classnames([
-        styles.maskedEdge,
-        maskStyle ? styles.masked : null,
-        className,
-      ])}
+      className={classnames([styles.maskedEdge, maskStyle && styles.masked, className])}
       style={rootStyle}
     >
       {masks.length > 0 && (
