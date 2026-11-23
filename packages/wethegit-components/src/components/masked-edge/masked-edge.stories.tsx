@@ -56,7 +56,6 @@ export default meta
 type Story = StoryObj<typeof MaskedEdge>
 
 export const Top: Story = {
-  name: "Top",
   render: () => (
     <Scene>
       <MaskedEdge top="/masked-edge-demo/crumb-border.svg" size="30px" style={cardStyle}>
@@ -67,7 +66,6 @@ export const Top: Story = {
 }
 
 export const Bottom: Story = {
-  name: "Bottom",
   render: () => (
     <Scene>
       <MaskedEdge
@@ -83,7 +81,6 @@ export const Bottom: Story = {
 }
 
 export const TopAndBottomMirror: Story = {
-  name: "Top and Bottom - Mirrored",
   render: () => (
     <Scene>
       <MaskedEdge
@@ -100,7 +97,6 @@ export const TopAndBottomMirror: Story = {
 }
 
 export const TopAndBottom: Story = {
-  name: "Top and Bottom - Unique",
   render: () => (
     <Scene>
       <MaskedEdge
@@ -116,7 +112,6 @@ export const TopAndBottom: Story = {
 }
 
 export const Right: Story = {
-  name: "Right",
   render: () => (
     <Scene>
       <MaskedEdge
@@ -136,7 +131,6 @@ export const Right: Story = {
 }
 
 export const LeftAndRight: Story = {
-  name: "Left and right",
   render: () => (
     <Scene>
       <MaskedEdge
@@ -157,7 +151,6 @@ export const LeftAndRight: Story = {
 }
 
 export const Repeat: Story = {
-  name: "Repeat and tile",
   render: () => (
     <Scene>
       <MaskedEdge
@@ -180,7 +173,6 @@ export const Repeat: Story = {
 }
 
 export const FullFrame169: Story = {
-  name: "Full frame 16:9",
   render: () => (
     <Scene>
       <div style={{ maxWidth: 500, width: "40vw" }}>
@@ -195,7 +187,6 @@ export const FullFrame169: Story = {
 }
 
 export const FullFrame11: Story = {
-  name: "Full frame 1:1",
   render: () => (
     <Scene>
       <div style={{ maxWidth: 400, width: "40vw" }}>
