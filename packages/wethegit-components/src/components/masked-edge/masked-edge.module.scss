@@ -1,0 +1,52 @@
+.maskedEdge {
+  position: relative;
+}
+
+.maskSizer {
+  /* For container units */
+  container-type: size;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* Holds the inline SVG mask without taking up space */
+.maskDefs {
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+}
+
+.maskedContent {
+  position: relative;
+}
+
+.fullFrame {
+  inset: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+/* Move mask to edge */
+.edgeBottom {
+  transform: translateY(calc(100cqh - var(--masked-edge-size)));
+}
+
+.edgeRight {
+  transform: translateX(calc(100cqw - var(--masked-edge-size)));
+}
+
+.maskImage {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.mirrorX {
+  transform: scaleX(-1);
+}
+
+.mirrorY {
+  transform: scaleY(-1);
+}
