@@ -105,153 +105,6 @@ const SIDE_POSITION: Record<MaskedEdgeSide, string> = {
   right: "100% 0",
 }
 
-function toLength(value: number | string | undefined, fallback: string): string {
-  if (value === undefined || value === "") return fallback
-  return typeof value === "number" ? `${value}px` : value
-}
-
-function isVerticalSide(side: MaskedEdgeSide): boolean {
-  return side === "left" || side === "right"
-}
-
-function edgeContainerSize(side: MaskedEdgeSide, size: string): string {
-  return isVerticalSide(side) ? `${size} 100%` : `100% ${size}`
-}
-
-function repeatLayerSize(side: MaskedEdgeSide, size: string): string {
-  return isVerticalSide(side) ? `${size} auto` : `auto ${size}`
-}
-
-function parseSides(value?: string): MaskedEdgeSide[] | null {
-  if (value === undefined) return null
-
-  const sideNames = value.split(/[\s,|]+/)
-  const found: MaskedEdgeSide[] = []
-  sideNames.forEach((sideName) => {
-    const side = sideName.toLowerCase()
-    if (side === "all") {
-      found.push(...MASKED_EDGE_SIDES)
-    } else if (SIDE_SET.has(side)) {
-      found.push(side as MaskedEdgeSide)
-    }
-  })
-
-  return Array.from(new Set(found))
-}
-
-/**
- * - bottom and right edges point inwards when mirrored
- */
-function mirrorAxis(side: MaskedEdgeSide, mirror: boolean): MirrorAxis | null {
-  if (!mirror) return null
-  if (side === "bottom") return "y"
-  if (side === "right") return "x"
-
-  return null
-}
-
-function makeMask({
-  edges,
-  frameSrc,
-  size,
-  repeat,
-  tileSize,
-  idPrefix,
-}: {
-  edges: Edge[]
-  frameSrc?: string
-  size: string
-  repeat: boolean
-  tileSize: string
-  idPrefix: string
-}): MaskProperties {
-  const images: string[] = []
-  const sizes: string[] = []
-  const positions: string[] = []
-  const repeats: string[] = []
-  const composites: MaskComposite[] = []
-  const masks: EdgeMask[] = []
-
-  const addMaskingLayer = (
-    image: string,
-    layerSize: string,
-    position: string,
-    layerRepeat: string,
-    composite: MaskComposite
-  ) => {
-    images.push(image)
-    sizes.push(layerSize)
-    positions.push(position)
-    repeats.push(layerRepeat)
-    composites.push(composite)
-  }
-
-  addMaskingLayer(
-    "linear-gradient(#000, #000)",
-    "100% 100%",
-    "0 0",
-    "no-repeat",
-    "subtract"
-  )
-
-  if (frameSrc) {
-    addMaskingLayer(`url("${frameSrc}")`, "100% 100%", "0 0", "no-repeat", "add")
-  } else {
-    edges.forEach(({ side, src, mirrorAxis }) => {
-      if (mirrorAxis) {
-        const id = `${idPrefix}-${side}`
-
-        masks.push({
-          id,
-          patternId: `${id}-tile`,
-          side,
-          src,
-          mirrorAxis,
-          repeat,
-          tileSize: tileSize,
-        })
-
-        addMaskingLayer(`url(#${id})`, "100% 100%", "0 0", "no-repeat", "add")
-        return
-      }
-
-      const vertical = isVerticalSide(side)
-
-      addMaskingLayer(
-        `url("${src}")`,
-        repeat ? repeatLayerSize(side, size) : edgeContainerSize(side, size),
-        SIDE_POSITION[side],
-        repeat ? (vertical ? "repeat-y" : "repeat-x") : "no-repeat",
-        "add"
-      )
-    })
-  }
-
-  if (images.length < 2) return { style: null, masks }
-
-  return {
-    masks,
-    style: {
-      maskComposite: composites.join(", "),
-      maskImage: images.join(", "),
-      maskPosition: positions.join(", "),
-      maskRepeat: repeats.join(", "),
-      maskSize: sizes.join(", "),
-    },
-  }
-}
-
-function mirrorClass(mirrorAxis: MirrorAxis): string {
-  return mirrorAxis === "x" ? styles.mirrorX : styles.mirrorY
-}
-
-function edgeTransformClass(side: MaskedEdgeSide): string | undefined {
-  if (side === "bottom") return styles.edgeBottom
-  if (side === "right") return styles.edgeRight
-
-  return undefined
-}
-
 /**
  * Cut a decorative edge from a container's side.
  *
@@ -423,4 +276,151 @@ export function MaskedEdge({
       </div>
     </div>
   )
+}
+
+function toLength(value: number | string | undefined, fallback: string): string {
+  if (value === undefined || value === "") return fallback
+  return typeof value === "number" ? `${value}px` : value
+}
+
+function isVerticalSide(side: MaskedEdgeSide): boolean {
+  return side === "left" || side === "right"
+}
+
+function edgeContainerSize(side: MaskedEdgeSide, size: string): string {
+  return isVerticalSide(side) ? `${size} 100%` : `100% ${size}`
+}
+
+function repeatLayerSize(side: MaskedEdgeSide, size: string): string {
+  return isVerticalSide(side) ? `${size} auto` : `auto ${size}`
+}
+
+function parseSides(value?: string): MaskedEdgeSide[] | null {
+  if (value === undefined) return null
+
+  const sideNames = value.split(/[\s,|]+/)
+  const found: MaskedEdgeSide[] = []
+  sideNames.forEach((sideName) => {
+    const side = sideName.toLowerCase()
+    if (side === "all") {
+      found.push(...MASKED_EDGE_SIDES)
+    } else if (SIDE_SET.has(side)) {
+      found.push(side as MaskedEdgeSide)
+    }
+  })
+
+  return Array.from(new Set(found))
+}
+
+/**
+ * - bottom and right edges point inwards when mirrored
+ */
+function mirrorAxis(side: MaskedEdgeSide, mirror: boolean): MirrorAxis | null {
+  if (!mirror) return null
+  if (side === "bottom") return "y"
+  if (side === "right") return "x"
+
+  return null
+}
+
+function makeMask({
+  edges,
+  frameSrc,
+  size,
+  repeat,
+  tileSize,
+  idPrefix,
+}: {
+  edges: Edge[]
+  frameSrc?: string
+  size: string
+  repeat: boolean
+  tileSize: string
+  idPrefix: string
+}): MaskProperties {
+  const images: string[] = []
+  const sizes: string[] = []
+  const positions: string[] = []
+  const repeats: string[] = []
+  const composites: MaskComposite[] = []
+  const masks: EdgeMask[] = []
+
+  const addMaskingLayer = (
+    image: string,
+    layerSize: string,
+    position: string,
+    layerRepeat: string,
+    composite: MaskComposite
+  ) => {
+    images.push(image)
+    sizes.push(layerSize)
+    positions.push(position)
+    repeats.push(layerRepeat)
+    composites.push(composite)
+  }
+
+  addMaskingLayer(
+    "linear-gradient(#000, #000)",
+    "100% 100%",
+    "0 0",
+    "no-repeat",
+    "subtract"
+  )
+
+  if (frameSrc) {
+    addMaskingLayer(`url("${frameSrc}")`, "100% 100%", "0 0", "no-repeat", "add")
+  } else {
+    edges.forEach(({ side, src, mirrorAxis }) => {
+      if (mirrorAxis) {
+        const id = `${idPrefix}-${side}`
+
+        masks.push({
+          id,
+          patternId: `${id}-tile`,
+          side,
+          src,
+          mirrorAxis,
+          repeat,
+          tileSize: tileSize,
+        })
+
+        addMaskingLayer(`url(#${id})`, "100% 100%", "0 0", "no-repeat", "add")
+        return
+      }
+
+      const vertical = isVerticalSide(side)
+
+      addMaskingLayer(
+        `url("${src}")`,
+        repeat ? repeatLayerSize(side, size) : edgeContainerSize(side, size),
+        SIDE_POSITION[side],
+        repeat ? (vertical ? "repeat-y" : "repeat-x") : "no-repeat",
+        "add"
+      )
+    })
+  }
+
+  if (images.length < 2) return { style: null, masks }
+
+  return {
+    masks,
+    style: {
+      maskComposite: composites.join(", "),
+      maskImage: images.join(", "),
+      maskPosition: positions.join(", "),
+      maskRepeat: repeats.join(", "),
+      maskSize: sizes.join(", "),
+    },
+  }
+}
+
+function mirrorClass(mirrorAxis: MirrorAxis): string {
+  return mirrorAxis === "x" ? styles.mirrorX : styles.mirrorY
+}
+
+function edgeTransformClass(side: MaskedEdgeSide): string | undefined {
+  if (side === "bottom") return styles.edgeBottom
+  if (side === "right") return styles.edgeRight
+
+  return undefined
 }
