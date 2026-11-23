@@ -42,12 +42,12 @@ type MaskedEdgeOwnProps = {
    * Size of one tile along the edge when `repeat` is used with `mirror`.
    * Defaults to `size`. Numbers = pixels
    */
-  tileSize?: number | string
+  tileSize?: number
 
   /**
    * Thickness of the edge container. Numbers = pixels
    */
-  size?: number | string
+  size?: number
 
   /**
    * Mirror the artwork on the opposite side.
@@ -123,7 +123,7 @@ export function MaskedEdge({
   sides,
   repeat = false,
   tileSize,
-  size = "40px",
+  size = 40,
   mirror = false,
   fullFrame = false,
   frameAspect = "16 / 9",

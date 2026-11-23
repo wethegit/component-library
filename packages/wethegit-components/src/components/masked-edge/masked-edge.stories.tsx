@@ -58,7 +58,7 @@ type Story = StoryObj<typeof MaskedEdge>
 export const Top: Story = {
   render: () => (
     <Scene>
-      <MaskedEdge top="/masked-edge-demo/crumb-border.svg" size="30px" style={cardStyle}>
+      <MaskedEdge top="/masked-edge-demo/crumb-border.svg" size={30} style={cardStyle}>
         <CardContent />
       </MaskedEdge>
     </Scene>
@@ -71,7 +71,7 @@ export const Bottom: Story = {
       <MaskedEdge
         bottom="/masked-edge-demo/crumb-border.svg"
         mirror
-        size="30px"
+        size={30}
         style={cardStyle}
       >
         <CardContent />
@@ -87,7 +87,7 @@ export const TopAndBottomMirror: Story = {
         image="/masked-edge-demo/crumb-border.svg"
         sides="top bottom"
         mirror
-        size="30px"
+        size={30}
         style={cardStyle}
       >
         <CardContent />
@@ -102,7 +102,7 @@ export const TopAndBottom: Story = {
       <MaskedEdge
         top="/masked-edge-demo/crumb-border.svg"
         bottom="/masked-edge-demo/crumb-border-bottom.png"
-        size="30px"
+        size={30}
         style={cardStyle}
       >
         <CardContent />
@@ -117,7 +117,7 @@ export const Right: Story = {
       <MaskedEdge
         right="/masked-edge-demo/edge-pattern-bite-vertical.png"
         mirror
-        size="80px"
+        size={80}
         style={narrowCardStyle}
       >
         <CardContent />
@@ -137,7 +137,7 @@ export const LeftAndRight: Story = {
         image="/masked-edge-demo/edge-pattern-bite-vertical.png"
         sides="left right"
         mirror
-        size="80px"
+        size={80}
         style={narrowCardStyle}
       >
         <CardContent />
@@ -157,8 +157,8 @@ export const Repeat: Story = {
         image="/masked-edge-demo/edge-pattern.png"
         sides="top bottom"
         repeat
-        tileSize="100px"
-        size="40px"
+        tileSize={100}
+        size={40}
         mirror
         style={{ ...cardStyle, padding: 100 }}
       >
